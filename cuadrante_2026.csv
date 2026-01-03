@@ -1,0 +1,381 @@
+anio,mes,fecha,dia,nip,nombre,turno,tipo
+2026,1,2026-01-01,Thursday,032015,Pedro Rodríguez Pedreira,D,Descanso
+2026,1,2026-01-03,Saturday,032015,Pedro Rodríguez Pedreira,Ts,Tiempo sindical
+2026,1,2026-01-03,Saturday,032015,Pedro Rodríguez Pedreira,D,Descanso
+2026,1,2026-01-03,Saturday,032015,Pedro Rodríguez Pedreira,D,Descanso
+2026,1,2026-01-03,Saturday,032015,Pedro Rodríguez Pedreira,2,Tarde
+2026,1,2026-01-03,Saturday,032015,Pedro Rodríguez Pedreira,D,Descanso
+2026,1,2026-01-02,Friday,032015,Pedro Rodríguez Pedreira,3,Noche
+2026,1,2026-01-02,Friday,032015,Pedro Rodríguez Pedreira,D,Descanso
+2026,1,2026-01-02,Friday,032015,Pedro Rodríguez Pedreira,D,Descanso
+2026,1,2026-01-02,Friday,032015,Pedro Rodríguez Pedreira,Ts,Tiempo sindical
+2026,1,2026-01-01,Thursday,032015,Pedro Rodríguez Pedreira,D,Descanso
+2026,1,2026-01-01,Thursday,032015,Pedro Rodríguez Pedreira,D,Descanso
+2026,1,2026-01-17,Saturday,032015,Pedro Rodríguez Pedreira,16,16
+2026,1,2026-01-03,Saturday,032015,Pedro Rodríguez Pedreira,4,4
+2026,1,2026-01-04,Sunday,032015,Pedro Rodríguez Pedreira,3,Noche
+2026,1,2026-01-05,Monday,032015,Pedro Rodríguez Pedreira,5,5
+2026,1,2026-01-15,Thursday,032015,Pedro Rodríguez Pedreira,15,15
+2026,1,2026-01-02,Friday,032015,Pedro Rodríguez Pedreira,2,Tarde
+2026,1,2026-01-03,Saturday,032015,Pedro Rodríguez Pedreira,0,0
+2026,1,2026-01-01,Thursday,032015,Pedro Rodríguez Pedreira,0,0
+2026,1,2026-01-12,Monday,032015,Pedro Rodríguez Pedreira,13,13
+2026,1,2026-01-02,Friday,032015,Pedro Rodríguez Pedreira,1,Mañana
+2026,1,2026-01-01,Thursday,032016,Víctor Mendez Vázquez,D,Descanso
+2026,1,2026-01-03,Saturday,032016,Víctor Mendez Vázquez,D,Descanso
+2026,1,2026-01-03,Saturday,032016,Víctor Mendez Vázquez,D,Descanso
+2026,1,2026-01-03,Saturday,032016,Víctor Mendez Vázquez,D,Descanso
+2026,1,2026-01-03,Saturday,032016,Víctor Mendez Vázquez,D,Descanso
+2026,1,2026-01-03,Saturday,032016,Víctor Mendez Vázquez,D,Descanso
+2026,1,2026-01-02,Friday,032016,Víctor Mendez Vázquez,1,Mañana
+2026,1,2026-01-02,Friday,032016,Víctor Mendez Vázquez,1,Mañana
+2026,1,2026-01-02,Friday,032016,Víctor Mendez Vázquez,Dct,Descanso compensado tiro
+2026,1,2026-01-02,Friday,032016,Víctor Mendez Vázquez,D,Descanso
+2026,1,2026-01-01,Thursday,032016,Víctor Mendez Vázquez,3,Noche
+2026,1,2026-01-01,Thursday,032016,Víctor Mendez Vázquez,3,Noche
+2026,1,2026-01-17,Saturday,032016,Víctor Mendez Vázquez,16,16
+2026,1,2026-01-03,Saturday,032016,Víctor Mendez Vázquez,7,7
+2026,1,2026-01-04,Sunday,032016,Víctor Mendez Vázquez,3,Noche
+2026,1,2026-01-05,Monday,032016,Víctor Mendez Vázquez,5,5
+2026,1,2026-01-15,Thursday,032016,Víctor Mendez Vázquez,15,15
+2026,1,2026-01-02,Friday,032016,Víctor Mendez Vázquez,2,Tarde
+2026,1,2026-01-03,Saturday,032016,Víctor Mendez Vázquez,0,0
+2026,1,2026-01-01,Thursday,032016,Víctor Mendez Vázquez,0,0
+2026,1,2026-01-12,Monday,032016,Víctor Mendez Vázquez,13,13
+2026,1,2026-01-02,Friday,032016,Víctor Mendez Vázquez,2,Tarde
+2026,1,2026-01-01,Thursday,032022,Miguel Naveiras Picos,3,Noche
+2026,1,2026-01-03,Saturday,032022,Miguel Naveiras Picos,D,Descanso
+2026,1,2026-01-03,Saturday,032022,Miguel Naveiras Picos,D,Descanso
+2026,1,2026-01-03,Saturday,032022,Miguel Naveiras Picos,D,Descanso
+2026,1,2026-01-03,Saturday,032022,Miguel Naveiras Picos,1,Mañana
+2026,1,2026-01-03,Saturday,032022,Miguel Naveiras Picos,1,Mañana
+2026,1,2026-01-02,Friday,032022,Miguel Naveiras Picos,3,Noche
+2026,1,2026-01-02,Friday,032022,Miguel Naveiras Picos,3,Noche
+2026,1,2026-01-02,Friday,032022,Miguel Naveiras Picos,D,Descanso
+2026,1,2026-01-02,Friday,032022,Miguel Naveiras Picos,D,Descanso
+2026,1,2026-01-01,Thursday,032022,Miguel Naveiras Picos,2,Tarde
+2026,1,2026-01-01,Thursday,032022,Miguel Naveiras Picos,2,Tarde
+2026,1,2026-01-17,Saturday,032022,Miguel Naveiras Picos,16,16
+2026,1,2026-01-03,Saturday,032022,Miguel Naveiras Picos,4,4
+2026,1,2026-01-04,Sunday,032022,Miguel Naveiras Picos,7,7
+2026,1,2026-01-05,Monday,032022,Miguel Naveiras Picos,5,5
+2026,1,2026-01-15,Thursday,032022,Miguel Naveiras Picos,15,15
+2026,1,2026-01-02,Friday,032022,Miguel Naveiras Picos,2,Tarde
+2026,1,2026-01-03,Saturday,032022,Miguel Naveiras Picos,0,0
+2026,1,2026-01-01,Thursday,032022,Miguel Naveiras Picos,0,0
+2026,1,2026-01-12,Monday,032022,Miguel Naveiras Picos,15,15
+2026,1,2026-01-02,Friday,032022,Miguel Naveiras Picos,2,Tarde
+2026,1,2026-01-01,Thursday,032023,Javier Plana Costoya,1,Mañana
+2026,1,2026-01-03,Saturday,032023,Javier Plana Costoya,3,Noche
+2026,1,2026-01-03,Saturday,032023,Javier Plana Costoya,3,Noche
+2026,1,2026-01-03,Saturday,032023,Javier Plana Costoya,D,Descanso
+2026,1,2026-01-03,Saturday,032023,Javier Plana Costoya,D,Descanso
+2026,1,2026-01-03,Saturday,032023,Javier Plana Costoya,AP,Asuntos particulares
+2026,1,2026-01-02,Friday,032023,Javier Plana Costoya,2,Tarde
+2026,1,2026-01-02,Friday,032023,Javier Plana Costoya,2,Tarde
+2026,1,2026-01-02,Friday,032023,Javier Plana Costoya,D,Descanso
+2026,1,2026-01-02,Friday,032023,Javier Plana Costoya,AP,Asuntos particulares
+2026,1,2026-01-01,Thursday,032023,Javier Plana Costoya,D,Descanso
+2026,1,2026-01-01,Thursday,032023,Javier Plana Costoya,D,Descanso
+2026,1,2026-01-17,Saturday,032023,Javier Plana Costoya,17,17
+2026,1,2026-01-03,Saturday,032023,Javier Plana Costoya,4,4
+2026,1,2026-01-04,Sunday,032023,Javier Plana Costoya,4,4
+2026,1,2026-01-05,Monday,032023,Javier Plana Costoya,5,5
+2026,1,2026-01-15,Thursday,032023,Javier Plana Costoya,15,15
+2026,1,2026-01-02,Friday,032023,Javier Plana Costoya,2.5,2.5
+2026,1,2026-01-03,Saturday,032023,Javier Plana Costoya,3,Noche
+2026,1,2026-01-01,Thursday,032023,Javier Plana Costoya,0,0
+2026,1,2026-01-12,Monday,032023,Javier Plana Costoya,6,6
+2026,1,2026-01-02,Friday,032023,Javier Plana Costoya,1,Mañana
+2026,1,2026-01-01,Thursday,032025,Samuel Fernández Pérez,D,Descanso
+2026,1,2026-01-03,Saturday,032025,Samuel Fernández Pérez,2,Tarde
+2026,1,2026-01-03,Saturday,032025,Samuel Fernández Pérez,2,Tarde
+2026,1,2026-01-03,Saturday,032025,Samuel Fernández Pérez,2,Tarde
+2026,1,2026-01-03,Saturday,032025,Samuel Fernández Pérez,D,Descanso
+2026,1,2026-01-03,Saturday,032025,Samuel Fernández Pérez,D,Descanso
+2026,1,2026-01-02,Friday,032025,Samuel Fernández Pérez,D,Descanso
+2026,1,2026-01-02,Friday,032025,Samuel Fernández Pérez,D,Descanso
+2026,1,2026-01-02,Friday,032025,Samuel Fernández Pérez,D,Descanso
+2026,1,2026-01-02,Friday,032025,Samuel Fernández Pérez,1,Mañana
+2026,1,2026-01-01,Thursday,032025,Samuel Fernández Pérez,D,Descanso
+2026,1,2026-01-01,Thursday,032025,Samuel Fernández Pérez,D,Descanso
+2026,1,2026-01-17,Saturday,032025,Samuel Fernández Pérez,16,16
+2026,1,2026-01-03,Saturday,032025,Samuel Fernández Pérez,7,7
+2026,1,2026-01-04,Sunday,032025,Samuel Fernández Pérez,4,4
+2026,1,2026-01-05,Monday,032025,Samuel Fernández Pérez,5,5
+2026,1,2026-01-15,Thursday,032025,Samuel Fernández Pérez,15,15
+2026,1,2026-01-02,Friday,032025,Samuel Fernández Pérez,2,Tarde
+2026,1,2026-01-03,Saturday,032025,Samuel Fernández Pérez,0,0
+2026,1,2026-01-01,Thursday,032025,Samuel Fernández Pérez,0,0
+2026,1,2026-01-12,Monday,032025,Samuel Fernández Pérez,11,11
+2026,1,2026-01-02,Friday,032025,Samuel Fernández Pérez,1,Mañana
+2026,1,2026-01-01,Thursday,032026,Iago Blanco Muiño,Ts,Tiempo sindical
+2026,1,2026-01-03,Saturday,032026,Iago Blanco Muiño,3,Noche
+2026,1,2026-01-03,Saturday,032026,Iago Blanco Muiño,3,Noche
+2026,1,2026-01-03,Saturday,032026,Iago Blanco Muiño,D,Descanso
+2026,1,2026-01-03,Saturday,032026,Iago Blanco Muiño,D,Descanso
+2026,1,2026-01-03,Saturday,032026,Iago Blanco Muiño,1,Mañana
+2026,1,2026-01-02,Friday,032026,Iago Blanco Muiño,D,Descanso
+2026,1,2026-01-02,Friday,032026,Iago Blanco Muiño,D,Descanso
+2026,1,2026-01-02,Friday,032026,Iago Blanco Muiño,3,Noche
+2026,1,2026-01-02,Friday,032026,Iago Blanco Muiño,3,Noche
+2026,1,2026-01-01,Thursday,032026,Iago Blanco Muiño,D,Descanso
+2026,1,2026-01-01,Thursday,032026,Iago Blanco Muiño,D,Descanso
+2026,1,2026-01-17,Saturday,032026,Iago Blanco Muiño,16,16
+2026,1,2026-01-03,Saturday,032026,Iago Blanco Muiño,4,4
+2026,1,2026-01-04,Sunday,032026,Iago Blanco Muiño,4,4
+2026,1,2026-01-05,Monday,032026,Iago Blanco Muiño,5,5
+2026,1,2026-01-15,Thursday,032026,Iago Blanco Muiño,15,15
+2026,1,2026-01-02,Friday,032026,Iago Blanco Muiño,2,Tarde
+2026,1,2026-01-03,Saturday,032026,Iago Blanco Muiño,0,0
+2026,1,2026-01-01,Thursday,032026,Iago Blanco Muiño,0,0
+2026,1,2026-01-12,Monday,032026,Iago Blanco Muiño,4,4
+2026,1,2026-01-02,Friday,032026,Iago Blanco Muiño,1,Mañana
+2026,1,2026-01-01,Thursday,032027,Iago Romar Tajes,D,Descanso
+2026,1,2026-01-03,Saturday,032027,Iago Romar Tajes,1,Mañana
+2026,1,2026-01-03,Saturday,032027,Iago Romar Tajes,D,Descanso
+2026,1,2026-01-03,Saturday,032027,Iago Romar Tajes,D,Descanso
+2026,1,2026-01-03,Saturday,032027,Iago Romar Tajes,1,Mañana
+2026,1,2026-01-03,Saturday,032027,Iago Romar Tajes,2,Tarde
+2026,1,2026-01-02,Friday,032027,Iago Romar Tajes,D,Descanso
+2026,1,2026-01-02,Friday,032027,Iago Romar Tajes,D,Descanso
+2026,1,2026-01-02,Friday,032027,Iago Romar Tajes,1,Mañana
+2026,1,2026-01-02,Friday,032027,Iago Romar Tajes,2,Tarde
+2026,1,2026-01-01,Thursday,032027,Iago Romar Tajes,D,Descanso
+2026,1,2026-01-01,Thursday,032027,Iago Romar Tajes,3,Noche
+2026,1,2026-01-17,Saturday,032027,Iago Romar Tajes,16,16
+2026,1,2026-01-03,Saturday,032027,Iago Romar Tajes,5,5
+2026,1,2026-01-04,Sunday,032027,Iago Romar Tajes,6,6
+2026,1,2026-01-05,Monday,032027,Iago Romar Tajes,5,5
+2026,1,2026-01-15,Thursday,032027,Iago Romar Tajes,15,15
+2026,1,2026-01-02,Friday,032027,Iago Romar Tajes,2,Tarde
+2026,1,2026-01-03,Saturday,032027,Iago Romar Tajes,0,0
+2026,1,2026-01-01,Thursday,032027,Iago Romar Tajes,0,0
+2026,1,2026-01-12,Monday,032027,Iago Romar Tajes,7,7
+2026,1,2026-01-02,Friday,032027,Iago Romar Tajes,2,Tarde
+2026,1,2026-01-01,Thursday,032028,Iker Díaz Villaverde,D,Descanso
+2026,1,2026-01-03,Saturday,032028,Iker Díaz Villaverde,2,Tarde
+2026,1,2026-01-03,Saturday,032028,Iker Díaz Villaverde,2,Tarde
+2026,1,2026-01-03,Saturday,032028,Iker Díaz Villaverde,2,Tarde
+2026,1,2026-01-03,Saturday,032028,Iker Díaz Villaverde,D,Descanso
+2026,1,2026-01-03,Saturday,032028,Iker Díaz Villaverde,Dct,Descanso compensado tiro
+2026,1,2026-01-02,Friday,032028,Iker Díaz Villaverde,D,Descanso
+2026,1,2026-01-02,Friday,032028,Iker Díaz Villaverde,D,Descanso
+2026,1,2026-01-02,Friday,032028,Iker Díaz Villaverde,D,Descanso
+2026,1,2026-01-02,Friday,032028,Iker Díaz Villaverde,Dcc,Descanso compensado curso
+2026,1,2026-01-01,Thursday,032028,Iker Díaz Villaverde,3,Noche
+2026,1,2026-01-01,Thursday,032028,Iker Díaz Villaverde,3,Noche
+2026,1,2026-01-17,Saturday,032028,Iker Díaz Villaverde,16,16
+2026,1,2026-01-03,Saturday,032028,Iker Díaz Villaverde,4,4
+2026,1,2026-01-04,Sunday,032028,Iker Díaz Villaverde,4,4
+2026,1,2026-01-05,Monday,032028,Iker Díaz Villaverde,5,5
+2026,1,2026-01-15,Thursday,032028,Iker Díaz Villaverde,15,15
+2026,1,2026-01-02,Friday,032028,Iker Díaz Villaverde,2,Tarde
+2026,1,2026-01-03,Saturday,032028,Iker Díaz Villaverde,0,0
+2026,1,2026-01-01,Thursday,032028,Iker Díaz Villaverde,0,0
+2026,1,2026-01-12,Monday,032028,Iker Díaz Villaverde,1,Mañana
+2026,1,2026-01-02,Friday,032028,Iker Díaz Villaverde,1,Mañana
+2026,1,2026-01-01,Thursday,032029,Xoaquín Miguel Novo Vázquez,2,Tarde
+2026,1,2026-01-03,Saturday,032029,Xoaquín Miguel Novo Vázquez,1,Mañana
+2026,1,2026-01-03,Saturday,032029,Xoaquín Miguel Novo Vázquez,1,Mañana
+2026,1,2026-01-03,Saturday,032029,Xoaquín Miguel Novo Vázquez,1,Mañana
+2026,1,2026-01-03,Saturday,032029,Xoaquín Miguel Novo Vázquez,D,Descanso
+2026,1,2026-01-03,Saturday,032029,Xoaquín Miguel Novo Vázquez,D,Descanso
+2026,1,2026-01-02,Friday,032029,Xoaquín Miguel Novo Vázquez,3,Noche
+2026,1,2026-01-02,Friday,032029,Xoaquín Miguel Novo Vázquez,3,Noche
+2026,1,2026-01-02,Friday,032029,Xoaquín Miguel Novo Vázquez,D,Descanso
+2026,1,2026-01-02,Friday,032029,Xoaquín Miguel Novo Vázquez,D,Descanso
+2026,1,2026-01-01,Thursday,032029,Xoaquín Miguel Novo Vázquez,3,Noche
+2026,1,2026-01-01,Thursday,032029,Xoaquín Miguel Novo Vázquez,3,Noche
+2026,1,2026-01-17,Saturday,032029,Xoaquín Miguel Novo Vázquez,16,16
+2026,1,2026-01-03,Saturday,032029,Xoaquín Miguel Novo Vázquez,4,4
+2026,1,2026-01-04,Sunday,032029,Xoaquín Miguel Novo Vázquez,7,7
+2026,1,2026-01-05,Monday,032029,Xoaquín Miguel Novo Vázquez,5,5
+2026,1,2026-01-15,Thursday,032029,Xoaquín Miguel Novo Vázquez,15,15
+2026,1,2026-01-02,Friday,032029,Xoaquín Miguel Novo Vázquez,2,Tarde
+2026,1,2026-01-03,Saturday,032029,Xoaquín Miguel Novo Vázquez,0,0
+2026,1,2026-01-01,Thursday,032029,Xoaquín Miguel Novo Vázquez,0,0
+2026,1,2026-01-12,Monday,032029,Xoaquín Miguel Novo Vázquez,5,5
+2026,1,2026-01-02,Friday,032029,Xoaquín Miguel Novo Vázquez,2,Tarde
+2026,1,2026-01-01,Thursday,032030,Martín Lago Fernández,2,Tarde
+2026,1,2026-01-03,Saturday,032030,Martín Lago Fernández,1,Mañana
+2026,1,2026-01-03,Saturday,032030,Martín Lago Fernández,3,Noche
+2026,1,2026-01-03,Saturday,032030,Martín Lago Fernández,3,Noche
+2026,1,2026-01-03,Saturday,032030,Martín Lago Fernández,3,Noche
+2026,1,2026-01-03,Saturday,032030,Martín Lago Fernández,D,Descanso
+2026,1,2026-01-02,Friday,032030,Martín Lago Fernández,D,Descanso
+2026,1,2026-01-02,Friday,032030,Martín Lago Fernández,D,Descanso
+2026,1,2026-01-02,Friday,032030,Martín Lago Fernández,2,Tarde
+2026,1,2026-01-02,Friday,032030,Martín Lago Fernández,3,Noche
+2026,1,2026-01-01,Thursday,032030,Martín Lago Fernández,D,Descanso
+2026,1,2026-01-01,Thursday,032030,Martín Lago Fernández,D,Descanso
+2026,1,2026-01-17,Saturday,032030,Martín Lago Fernández,16,16
+2026,1,2026-01-03,Saturday,032030,Martín Lago Fernández,4,4
+2026,1,2026-01-04,Sunday,032030,Martín Lago Fernández,6,6
+2026,1,2026-01-05,Monday,032030,Martín Lago Fernández,5,5
+2026,1,2026-01-15,Thursday,032030,Martín Lago Fernández,15,15
+2026,1,2026-01-02,Friday,032030,Martín Lago Fernández,2,Tarde
+2026,1,2026-01-03,Saturday,032030,Martín Lago Fernández,0,0
+2026,1,2026-01-01,Thursday,032030,Martín Lago Fernández,0,0
+2026,1,2026-01-12,Monday,032030,Martín Lago Fernández,2,Tarde
+2026,1,2026-01-02,Friday,032030,Martín Lago Fernández,2,Tarde
+2026,1,2026-01-01,Thursday,032031,Carlota Tella Granda,Dct,Descanso compensado tiro
+2026,1,2026-01-03,Saturday,032031,Carlota Tella Granda,D,Descanso
+2026,1,2026-01-03,Saturday,032031,Carlota Tella Granda,D,Descanso
+2026,1,2026-01-03,Saturday,032031,Carlota Tella Granda,D,Descanso
+2026,1,2026-01-03,Saturday,032031,Carlota Tella Granda,D,Descanso
+2026,1,2026-01-03,Saturday,032031,Carlota Tella Granda,2,Tarde
+2026,1,2026-01-02,Friday,032031,Carlota Tella Granda,1,Mañana
+2026,1,2026-01-02,Friday,032031,Carlota Tella Granda,1,Mañana
+2026,1,2026-01-02,Friday,032031,Carlota Tella Granda,D,Descanso
+2026,1,2026-01-02,Friday,032031,Carlota Tella Granda,D,Descanso
+2026,1,2026-01-01,Thursday,032031,Carlota Tella Granda,2,Tarde
+2026,1,2026-01-01,Thursday,032031,Carlota Tella Granda,2,Tarde
+2026,1,2026-01-17,Saturday,032031,Carlota Tella Granda,16,16
+2026,1,2026-01-03,Saturday,032031,Carlota Tella Granda,5,5
+2026,1,2026-01-04,Sunday,032031,Carlota Tella Granda,3,Noche
+2026,1,2026-01-05,Monday,032031,Carlota Tella Granda,5,5
+2026,1,2026-01-15,Thursday,032031,Carlota Tella Granda,15,15
+2026,1,2026-01-02,Friday,032031,Carlota Tella Granda,2,Tarde
+2026,1,2026-01-03,Saturday,032031,Carlota Tella Granda,0,0
+2026,1,2026-01-01,Thursday,032031,Carlota Tella Granda,0,0
+2026,1,2026-01-12,Monday,032031,Carlota Tella Granda,1,Mañana
+2026,1,2026-01-02,Friday,032031,Carlota Tella Granda,2,Tarde
+2026,1,2026-01-01,Thursday,032013,Simeón Porto Fernández,1,Mañana
+2026,1,2026-01-03,Saturday,032013,Simeón Porto Fernández,D,Descanso
+2026,1,2026-01-03,Saturday,032013,Simeón Porto Fernández,D,Descanso
+2026,1,2026-01-03,Saturday,032013,Simeón Porto Fernández,D,Descanso
+2026,1,2026-01-03,Saturday,032013,Simeón Porto Fernández,D,Descanso
+2026,1,2026-01-03,Saturday,032013,Simeón Porto Fernández,D,Descanso
+2026,1,2026-01-02,Friday,032013,Simeón Porto Fernández,3,Noche
+2026,1,2026-01-02,Friday,032013,Simeón Porto Fernández,D,Descanso
+2026,1,2026-01-02,Friday,032013,Simeón Porto Fernández,D,Descanso
+2026,1,2026-01-02,Friday,032013,Simeón Porto Fernández,D,Descanso
+2026,1,2026-01-01,Thursday,032013,Simeón Porto Fernández,1,Mañana
+2026,1,2026-01-01,Thursday,032013,Simeón Porto Fernández,1,Mañana
+2026,1,2026-01-17,Saturday,032013,Simeón Porto Fernández,17,17
+2026,1,2026-01-03,Saturday,032013,Simeón Porto Fernández,7,7
+2026,1,2026-01-04,Sunday,032013,Simeón Porto Fernández,3,Noche
+2026,1,2026-01-05,Monday,032013,Simeón Porto Fernández,5,5
+2026,1,2026-01-15,Thursday,032013,Simeón Porto Fernández,15,15
+2026,1,2026-01-02,Friday,032013,Simeón Porto Fernández,2,Tarde
+2026,1,2026-01-03,Saturday,032013,Simeón Porto Fernández,0,0
+2026,1,2026-01-01,Thursday,032013,Simeón Porto Fernández,0,0
+2026,1,2026-01-12,Monday,032013,Simeón Porto Fernández,3,Noche
+2026,1,2026-01-02,Friday,032013,Simeón Porto Fernández,1,Mañana
+2026,1,2026-01-17,Saturday,032019,Juan Rozados Saya,0,0
+2026,1,2026-01-03,Saturday,032019,Juan Rozados Saya,0,0
+2026,1,2026-01-04,Sunday,032019,Juan Rozados Saya,0,0
+2026,1,2026-01-05,Monday,032019,Juan Rozados Saya,0,0
+2026,1,2026-01-15,Thursday,032019,Juan Rozados Saya,0,0
+2026,1,2026-01-02,Friday,032019,Juan Rozados Saya,0,0
+2026,1,2026-01-03,Saturday,032019,Juan Rozados Saya,0,0
+2026,1,2026-01-01,Thursday,032019,Juan Rozados Saya,0,0
+2026,1,2026-01-12,Monday,032019,Juan Rozados Saya,0,0
+2026,1,2026-01-02,Friday,032019,Juan Rozados Saya,0,0
+2026,1,2026-01-01,Thursday,A032099,Ricardo Fariña Vidal,3,Noche
+2026,1,2026-01-03,Saturday,A032099,Ricardo Fariña Vidal,1,Mañana
+2026,1,2026-01-03,Saturday,A032099,Ricardo Fariña Vidal,1,Mañana
+2026,1,2026-01-03,Saturday,A032099,Ricardo Fariña Vidal,1,Mañana
+2026,1,2026-01-03,Saturday,A032099,Ricardo Fariña Vidal,2,Tarde
+2026,1,2026-01-03,Saturday,A032099,Ricardo Fariña Vidal,Ts,Tiempo sindical
+2026,1,2026-01-02,Friday,A032099,Ricardo Fariña Vidal,D,Descanso
+2026,1,2026-01-02,Friday,A032099,Ricardo Fariña Vidal,D,Descanso
+2026,1,2026-01-02,Friday,A032099,Ricardo Fariña Vidal,1,Mañana
+2026,1,2026-01-02,Friday,A032099,Ricardo Fariña Vidal,1,Mañana
+2026,1,2026-01-01,Thursday,A032099,Ricardo Fariña Vidal,D,Descanso
+2026,1,2026-01-01,Thursday,A032099,Ricardo Fariña Vidal,D,Descanso
+2026,1,2026-01-17,Saturday,A032099,Ricardo Fariña Vidal,17,17
+2026,1,2026-01-03,Saturday,A032099,Ricardo Fariña Vidal,5,5
+2026,1,2026-01-04,Sunday,A032099,Ricardo Fariña Vidal,4,4
+2026,1,2026-01-05,Monday,A032099,Ricardo Fariña Vidal,5,5
+2026,1,2026-01-15,Thursday,A032099,Ricardo Fariña Vidal,14,14
+2026,1,2026-01-02,Friday,A032099,Ricardo Fariña Vidal,2,Tarde
+2026,1,2026-01-03,Saturday,A032099,Ricardo Fariña Vidal,0,0
+2026,1,2026-01-01,Thursday,A032099,Ricardo Fariña Vidal,0,0
+2026,1,2026-01-12,Monday,A032099,Ricardo Fariña Vidal,0,0
+2026,1,2026-01-02,Friday,A032099,Ricardo Fariña Vidal,2,Tarde
+2026,1,2026-01-01,Thursday,032017,Francisco Fernández Otero,L,Laborable
+2026,1,2026-01-03,Saturday,032017,Francisco Fernández Otero,L,Laborable
+2026,1,2026-01-03,Saturday,032017,Francisco Fernández Otero,D,Descanso
+2026,1,2026-01-03,Saturday,032017,Francisco Fernández Otero,D,Descanso
+2026,1,2026-01-03,Saturday,032017,Francisco Fernández Otero,L,Laborable
+2026,1,2026-01-03,Saturday,032017,Francisco Fernández Otero,L,Laborable
+2026,1,2026-01-02,Friday,032017,Francisco Fernández Otero,D,Descanso
+2026,1,2026-01-02,Friday,032017,Francisco Fernández Otero,D,Descanso
+2026,1,2026-01-02,Friday,032017,Francisco Fernández Otero,L,Laborable
+2026,1,2026-01-02,Friday,032017,Francisco Fernández Otero,L,Laborable
+2026,1,2026-01-01,Thursday,032017,Francisco Fernández Otero,L,Laborable
+2026,1,2026-01-01,Thursday,032017,Francisco Fernández Otero,D,Descanso
+2026,1,2026-01-01,Thursday,7:00 - 14:30,Mañanas,3,Noche
+2026,1,2026-01-03,Saturday,7:00 - 14:30,Mañanas,4,4
+2026,1,2026-01-03,Saturday,7:00 - 14:30,Mañanas,2,Tarde
+2026,1,2026-01-03,Saturday,7:00 - 14:30,Mañanas,2,Tarde
+2026,1,2026-01-03,Saturday,7:00 - 14:30,Mañanas,2,Tarde
+2026,1,2026-01-03,Saturday,7:00 - 14:30,Mañanas,3,Noche
+2026,1,2026-01-02,Friday,7:00 - 14:30,Mañanas,2,Tarde
+2026,1,2026-01-02,Friday,7:00 - 14:30,Mañanas,2,Tarde
+2026,1,2026-01-02,Friday,7:00 - 14:30,Mañanas,2,Tarde
+2026,1,2026-01-02,Friday,7:00 - 14:30,Mañanas,2,Tarde
+2026,1,2026-01-01,Thursday,7:00 - 14:30,Mañanas,2,Tarde
+2026,1,2026-01-01,Thursday,7:00 - 14:30,Mañanas,2,Tarde
+2026,1,2026-01-01,Thursday,14:30 - 22:00,Tardes,2,Tarde
+2026,1,2026-01-03,Saturday,14:30 - 22:00,Tardes,3,Noche
+2026,1,2026-01-03,Saturday,14:30 - 22:00,Tardes,4,4
+2026,1,2026-01-03,Saturday,14:30 - 22:00,Tardes,4,4
+2026,1,2026-01-03,Saturday,14:30 - 22:00,Tardes,2,Tarde
+2026,1,2026-01-03,Saturday,14:30 - 22:00,Tardes,3,Noche
+2026,1,2026-01-02,Friday,14:30 - 22:00,Tardes,2,Tarde
+2026,1,2026-01-02,Friday,14:30 - 22:00,Tardes,2,Tarde
+2026,1,2026-01-02,Friday,14:30 - 22:00,Tardes,2,Tarde
+2026,1,2026-01-02,Friday,14:30 - 22:00,Tardes,2,Tarde
+2026,1,2026-01-01,Thursday,14:30 - 22:00,Tardes,2,Tarde
+2026,1,2026-01-01,Thursday,14:30 - 22:00,Tardes,2,Tarde
+2026,1,2026-01-01,Thursday,22:00 - 7:00,Noches,2,Tarde
+2026,1,2026-01-03,Saturday,22:00 - 7:00,Noches,3,Noche
+2026,1,2026-01-03,Saturday,22:00 - 7:00,Noches,4,4
+2026,1,2026-01-03,Saturday,22:00 - 7:00,Noches,2,Tarde
+2026,1,2026-01-03,Saturday,22:00 - 7:00,Noches,2,Tarde
+2026,1,2026-01-03,Saturday,22:00 - 7:00,Noches,1,Mañana
+2026,1,2026-01-02,Friday,22:00 - 7:00,Noches,4,4
+2026,1,2026-01-02,Friday,22:00 - 7:00,Noches,2,Tarde
+2026,1,2026-01-02,Friday,22:00 - 7:00,Noches,1,Mañana
+2026,1,2026-01-02,Friday,22:00 - 7:00,Noches,2,Tarde
+2026,1,2026-01-01,Thursday,22:00 - 7:00,Noches,3,Noche
+2026,1,2026-01-01,Thursday,22:00 - 7:00,Noches,4,4
+2026,1,2026-01-01,Thursday,7:00 - 14:30,Jefe de Servicio Mañana,032018,032018
+2026,1,2026-01-03,Saturday,7:00 - 14:30,Jefe de Servicio Mañana,032027,032027
+2026,1,2026-01-03,Saturday,7:00 - 14:30,Jefe de Servicio Mañana,032029,032029
+2026,1,2026-01-03,Saturday,7:00 - 14:30,Jefe de Servicio Mañana,032029,032029
+2026,1,2026-01-03,Saturday,7:00 - 14:30,Jefe de Servicio Mañana,032022,032022
+2026,1,2026-01-03,Saturday,7:00 - 14:30,Jefe de Servicio Mañana,032022,032022
+2026,1,2026-01-02,Friday,7:00 - 14:30,Jefe de Servicio Mañana,032016,032016
+2026,1,2026-01-02,Friday,7:00 - 14:30,Jefe de Servicio Mañana,032016,032016
+2026,1,2026-01-02,Friday,7:00 - 14:30,Jefe de Servicio Mañana,032027,032027
+2026,1,2026-01-02,Friday,7:00 - 14:30,Jefe de Servicio Mañana,032025,032025
+2026,1,2026-01-01,Thursday,7:00 - 14:30,Jefe de Servicio Mañana,032018,032018
+2026,1,2026-01-01,Thursday,7:00 - 14:30,Jefe de Servicio Mañana,032018,032018
+2026,1,2026-01-01,Thursday,14:30 - 22:00,Jefe de Servicio Tarde,032029,032029
+2026,1,2026-01-03,Saturday,14:30 - 22:00,Jefe de Servicio Tarde,032025,032025
+2026,1,2026-01-03,Saturday,14:30 - 22:00,Jefe de Servicio Tarde,032025,032025
+2026,1,2026-01-03,Saturday,14:30 - 22:00,Jefe de Servicio Tarde,032025,032025
+2026,1,2026-01-03,Saturday,14:30 - 22:00,Jefe de Servicio Tarde,032015,032015
+2026,1,2026-01-03,Saturday,14:30 - 22:00,Jefe de Servicio Tarde,032022,032022
+2026,1,2026-01-02,Friday,14:30 - 22:00,Jefe de Servicio Tarde,032018,032018
+2026,1,2026-01-02,Friday,14:30 - 22:00,Jefe de Servicio Tarde,032018,032018
+2026,1,2026-01-02,Friday,14:30 - 22:00,Jefe de Servicio Tarde,032018,032018
+2026,1,2026-01-02,Friday,14:30 - 22:00,Jefe de Servicio Tarde,032018,032018
+2026,1,2026-01-01,Thursday,14:30 - 22:00,Jefe de Servicio Tarde,032022,032022
+2026,1,2026-01-01,Thursday,14:30 - 22:00,Jefe de Servicio Tarde,032022,032022
+2026,1,2026-01-01,Thursday,22:00 - 7:00,Jefe de Servicio Noche,032015,032015
+2026,1,2026-01-03,Saturday,22:00 - 7:00,Jefe de Servicio Noche,032018,032018
+2026,1,2026-01-03,Saturday,22:00 - 7:00,Jefe de Servicio Noche,032018,032018
+2026,1,2026-01-03,Saturday,22:00 - 7:00,Jefe de Servicio Noche,032018,032018
+2026,1,2026-01-03,Saturday,22:00 - 7:00,Jefe de Servicio Noche,032018,032018
+2026,1,2026-01-03,Saturday,22:00 - 7:00,Jefe de Servicio Noche,032018,032018
+2026,1,2026-01-02,Friday,22:00 - 7:00,Jefe de Servicio Noche,032015,032015
+2026,1,2026-01-02,Friday,22:00 - 7:00,Jefe de Servicio Noche,032022,032022
+2026,1,2026-01-02,Friday,22:00 - 7:00,Jefe de Servicio Noche,032026,032026
+2026,1,2026-01-02,Friday,22:00 - 7:00,Jefe de Servicio Noche,032026,032026
+2026,1,2026-01-01,Thursday,22:00 - 7:00,Jefe de Servicio Noche,032016,032016
+2026,1,2026-01-01,Thursday,22:00 - 7:00,Jefe de Servicio Noche,032016,032016
