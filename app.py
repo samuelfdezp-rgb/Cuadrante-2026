@@ -42,7 +42,10 @@ if st.session_state.nip is None:
             st.session_state.nip = ADMIN_NIP
             st.session_state.is_admin = True
             st.rerun()
-        elif nip_input in df["nip"].astype(str).str.strip().str.zfill(6).unique():
+        else:
+            st.error("NIP no válido")
+            st.write("DEBUG → NIPs disponibles:")
+            st.write(sorted(df["nip"].astype(str).unique()))
             st.session_state.nip = nip_input
             st.session_state.is_admin = False
             st.rerun()
