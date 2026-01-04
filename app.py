@@ -41,11 +41,11 @@ if st.session_state.nip is None:
         if nip_input == ADMIN_NIP:
             st.session_state.nip = ADMIN_NIP
             st.session_state.is_admin = True
-            st.st.rerun()()
+            st.rerun()()
         elif nip_input in df["nip"].astype(str).unique():
             st.session_state.nip = nip_input
             st.session_state.is_admin = False
-            st.st.rerun()()
+            st.rerun()()
         else:
             st.error("NIP no válido")
 
@@ -57,7 +57,7 @@ st.title("📅 Cuadrante 2026")
 if st.button("🚪 Cerrar sesión"):
     st.session_state.nip = None
     st.session_state.is_admin = False
-    st.st.rerun()()
+    st.rerun()()
 
 # ---------------- SELECTOR MES ----------------
 meses = sorted(df["mes"].unique())
