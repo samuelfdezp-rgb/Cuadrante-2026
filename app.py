@@ -39,13 +39,24 @@ df = load_data()
 if st.session_state.nip is None:
     st.title("🔐 Acceso al Cuadrante")
 
-    nip_input = st.text_input("Introduce tu NIP").strip().zfill(6)
+    raw_input = st.text_input("Introduce tu NIP").strip()
 
-    if st.button("Entrar"):
-        if nip_input == ADMIN_NIP:
-            st.session_state.nip = ADMIN_NIP
-            st.session_state.is_admin = True
-            st.rerun()
+if st.button("Entrar"):
+    # ADMIN entra sin normalización
+    if raw_input == ADMIN_NIP:
+        st.session_state.nip = ADMIN_NIP
+        st.session_state.is_admin = True
+        st.rerun()
+
+    # Normalizar solo NIPs numéricos
+    nip_input = raw_input.zfill(6)
+
+    if nip_input in df["nip"].astype(str).str.strip().str.zfill(6).unique():
+        st.session_state.nip = nip_input
+        st.session_state.is_admin = False
+        st.rerun()
+    else:
+        st.error("NIP no válido")
         elif nip_input in df["nip"].astype(str).str.strip().str.zfill(6).unique():
             st.session_state.nip = nip_input
             st.session_state.is_admin = False
