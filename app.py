@@ -101,27 +101,35 @@ tab_general, tab_personal = st.tabs(
 # PESTAÑA 1 – CUADRANTE GENERAL (EXCEL VISUAL)
 # --------------------------------------------------
 with tab_general:
-    st.subheader("📋 Cuadrante general (vista mensual)")
+    with tab_general:
+    st.subheader("📋 Cuadrante general (generado)")
 
-    try:
-        df_excel = pd.read_excel(
-            EXCEL_FILE,
-            sheet_name=EXCEL_SHEET,
-            header=None
+    # Datos solo del mes seleccionado
+    df_mes = df[df["mes"] == mes_sel].copy()
+
+    # Crear columna día del mes (1–31)
+    df_mes["dia_mes"] = df_mes["fecha"].dt.day
+
+    # Pivotar: filas = persona, columnas = día
+    cuadrante = (
+        df_mes
+        .pivot_table(
+            index="nombre",
+            columns="dia_mes",
+            values="turno",
+            aggfunc="first"
         )
+        .sort_index()
+    )
 
-        # Rango A3 : AM44
-        df_visual = df_excel.iloc[2:44, 0:39]
+    # Ordenar columnas por día
+    cuadrante = cuadrante.reindex(sorted(cuadrante.columns), axis=1)
 
-        st.dataframe(
-            df_visual,
-            use_container_width=True,
-            height=800
-        )
-
-    except Exception as e:
-        st.error("No se pudo cargar el cuadrante general")
-        st.write(e)
+    st.dataframe(
+        cuadrante,
+        use_container_width=True,
+        height=800
+    )
 
 # --------------------------------------------------
 # PESTAÑA 2 – MI CUADRANTE (CALENDARIO)
