@@ -35,17 +35,17 @@ df = load_data()
 # ---------------- LOGIN ----------------
 if st.session_state.nip is None:
     st.title("🔐 Acceso al Cuadrante")
-    nip_input = st.text_input("Introduce tu NIP").strip().zfill(6)
+    nip_input = st.text_input("Introduce tu NIP")
 
     if st.button("Entrar"):
         if nip_input == ADMIN_NIP:
             st.session_state.nip = ADMIN_NIP
             st.session_state.is_admin = True
-            st.rerun()
+            st.experimental_rerun()
         elif nip_input in df["nip"].astype(str).unique():
             st.session_state.nip = nip_input
             st.session_state.is_admin = False
-            st.rerun()
+            st.experimental_rerun()
         else:
             st.error("NIP no válido")
 
@@ -57,7 +57,7 @@ st.title("📅 Cuadrante 2026")
 if st.button("🚪 Cerrar sesión"):
     st.session_state.nip = None
     st.session_state.is_admin = False
-    st.rerun()
+    st.experimental_rerun()
 
 # ---------------- SELECTOR MES ----------------
 meses = sorted(df["mes"].unique())
