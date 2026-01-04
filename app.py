@@ -101,7 +101,6 @@ tab_general, tab_personal = st.tabs(
 # PESTAÑA 1 – CUADRANTE GENERAL (EXCEL VISUAL)
 # --------------------------------------------------
 with tab_general:
-    with tab_general:
     st.subheader("📋 Cuadrante general (generado)")
 
     # Datos solo del mes seleccionado
