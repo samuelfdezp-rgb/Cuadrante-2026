@@ -74,23 +74,33 @@ df_mes = df[df["mes"] == mes_sel].copy()
 df_mes["dia_mes"] = df_mes["fecha"].dt.day
 
 # ==================================================
-# DÍAS ESPECIALES
+# FESTIVOS Y DOMINGOS
 # ==================================================
 festivos = {
     date(2026, 1, 1),
     date(2026, 1, 6),
 }
 
-def es_dia_especial(d):
-    return d in festivos or d.weekday() == 6  # domingo
+def es_dia_especial(fecha):
+    return fecha in festivos or fecha.weekday() == 6
 
 # ==================================================
-# ESTILOS DE TURNO (YA DEFINIDOS)
+# ESTILOS DE TURNO (NORMALIZADOS)
 # ==================================================
 def estilo_turno(turno):
-    t = "" if pd.isna(turno) else str(turno)
+    if pd.isna(turno):
+        return {"bg": "#FFFFFF", "fg": "#000000"}
+
+    t = str(turno).strip()
+
+    # normalizaciones
+    if t.lower() == "baja":
+        t = "BAJA"
+    if t.lower() == "perm":
+        t = "Perm"
 
     estilos = {
+        "L": {"bg": "#BDD7EE", "fg": "#0070C0"},
         "1": {"bg": "#BDD7EE", "fg": "#0070C0"},
         "2": {"bg": "#FFE699", "fg": "#0070C0"},
         "3": {"bg": "#F8CBAD", "fg": "#FF0000"},
@@ -103,16 +113,6 @@ def estilo_turno(turno):
         "1y3": {"bg": "#BDD7EE", "fg": "#FF0000"},
         "2y3": {"bg": "#BDD7EE", "fg": "#FF0000"},
 
-        "1|2ex": {"bg": "#00B050", "fg": "#FF0000", "bold": True},
-        "1|3ex": {"bg": "#00B050", "fg": "#FF0000", "bold": True},
-        "2|1ex": {"bg": "#00B050", "fg": "#FF0000", "bold": True},
-        "2|3ex": {"bg": "#00B050", "fg": "#FF0000", "bold": True},
-        "3|1ex": {"bg": "#00B050", "fg": "#FF0000", "bold": True},
-        "3|2ex": {"bg": "#00B050", "fg": "#FF0000", "bold": True},
-        "1y2ex": {"bg": "#00B050", "fg": "#FF0000", "bold": True},
-        "1y3ex": {"bg": "#00B050", "fg": "#FF0000", "bold": True},
-        "2y3ex": {"bg": "#00B050", "fg": "#FF0000", "bold": True},
-
         "D": {"bg": "#C6E0B4", "fg": "#00B050"},
         "Dc": {"bg": "#C6E0B4", "fg": "#00B050"},
         "Dcv": {"bg": "#C6E0B4", "fg": "#00B050"},
@@ -120,21 +120,22 @@ def estilo_turno(turno):
         "Dct": {"bg": "#C6E0B4", "fg": "#00B050"},
         "Dcj": {"bg": "#C6E0B4", "fg": "#00B050"},
 
-        "Vac": {"bg": "#FFFFFF", "fg": "#FF0000", "bold": True, "italic": True},
-        "AP": {"bg": "#FFFFFF", "fg": "#0070C0", "bold": True},
-        "Ts": {"bg": "#FFFFFF", "fg": "#FF0000", "bold": True},
         "Perm": {"bg": "#FFFFFF", "fg": "#FF0000", "bold": True},
+        "Ts": {"bg": "#FFFFFF", "fg": "#FF0000", "bold": True},
         "Indisp": {"bg": "#FFFFFF", "fg": "#FF0000", "bold": True},
         "JuB": {"bg": "#FFFFFF", "fg": "#FF0000", "bold": True},
         "JuC": {"bg": "#FFFFFF", "fg": "#FF0000", "bold": True},
         "Curso": {"bg": "#FFFFFF", "fg": "#FF0000", "bold": True},
-        "Baja": {"bg": "#FFFFFF", "fg": "#FF0000", "bold": True},
+        "BAJA": {"bg": "#FFFFFF", "fg": "#FF0000", "bold": True},
+
+        "Vac": {"bg": "#FFFFFF", "fg": "#FF0000", "bold": True, "italic": True},
+        "AP": {"bg": "#FFFFFF", "fg": "#0070C0", "bold": True},
     }
 
     return estilos.get(t, {"bg": "#FFFFFF", "fg": "#000000"})
 
 # ==================================================
-# PESTAÑA CUADRANTE GENERAL
+# CUADRANTE GENERAL
 # ==================================================
 st.subheader("📋 Cuadrante general")
 
@@ -147,42 +148,31 @@ cuadrante = df_mes.pivot_table(
     aggfunc="first"
 ).reindex(pd.MultiIndex.from_frame(orden))
 
-html = """
-<div style="overflow:auto; max-height:80vh">
-<table border="1" style="border-collapse:collapse;font-size:11px;table-layout:fixed;width:100%">
-<thead>
-<tr>
-<th style="position:sticky;left:0;top:0;background:#DDD;z-index:3">Nombre</th>
-<th style="position:sticky;left:150px;top:0;background:#DDD;z-index:3">Cat.</th>
-<th style="position:sticky;left:230px;top:0;background:#DDD;z-index:3">NIP</th>
-"""
+html = "<div style='overflow:auto; max-height:80vh'><table border='1' style='border-collapse:collapse'>"
+html += "<tr><th>Nombre y Apellidos</th><th>Categoría</th><th>NIP</th>"
 
 for d in cuadrante.columns:
     fecha = date(2026, mes_sel, d)
     if es_dia_especial(fecha):
-        html += f"<th style='top:0;position:sticky;background:#92D050;color:#FF0000;font-weight:bold'>{d}</th>"
+        html += f"<th style='background:#92D050;color:#FF0000;font-weight:bold'>{d}</th>"
     else:
-        html += f"<th style='top:0;position:sticky;background:#FFFFFF;color:#000000;font-weight:bold'>{d}</th>"
+        html += f"<th style='background:#FFFFFF;color:#000000;font-weight:bold'>{d}</th>"
 
-html += "</tr></thead><tbody>"
+html += "</tr>"
 
 for (nombre, categoria, nip), fila in cuadrante.iterrows():
-    html += "<tr>"
-    html += f"<td style='position:sticky;left:0;background:#FFF;white-space:nowrap'>{nombre}</td>"
-    html += f"<td style='position:sticky;left:150px;background:#FFF'>{categoria}</td>"
-    html += f"<td style='position:sticky;left:230px;background:#FFF'>{nip}</td>"
-
-    for d, v in zip(cuadrante.columns, fila):
+    html += f"<tr><td style='white-space:nowrap'>{nombre}</td><td>{categoria}</td><td>{nip}</td>"
+    for v in fila:
         e = estilo_turno(v)
-        texto = "" if pd.isna(v) else v
+        texto = "" if pd.isna(v) else str(v)
         html += (
-            f"<td style='background:{e['bg']};color:{e['fg']};"
+            f"<td style='white-space:nowrap;"
+            f"background:{e['bg']};color:{e['fg']};"
             f"{'font-weight:bold;' if e.get('bold') else ''}"
             f"{'font-style:italic;' if e.get('italic') else ''}"
             f"text-align:center'>{texto}</td>"
         )
     html += "</tr>"
 
-html += "</tbody></table></div>"
-
+html += "</table></div>"
 st.markdown(html, unsafe_allow_html=True)
