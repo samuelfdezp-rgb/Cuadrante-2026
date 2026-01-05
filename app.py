@@ -3,7 +3,7 @@ import pandas as pd
 from datetime import datetime, date
 
 # ==================================================
-# CONFIGURACIÓN GENERAL
+# CONFIGURACIÓN
 # ==================================================
 st.set_page_config(page_title="Cuadrante 2026", layout="wide")
 
@@ -15,73 +15,63 @@ DATA_FILE = "cuadrante_2026.csv"
 # ==================================================
 if "nip" not in st.session_state:
     st.session_state.nip = None
-    st.session_state.is_admin = False
 
 # ==================================================
-# CARGA DE DATOS
+# CARGA DATOS
 # ==================================================
-def load_data():
-    return pd.read_csv(DATA_FILE, parse_dates=["fecha"])
-
-df = load_data()
+df = pd.read_csv(DATA_FILE, parse_dates=["fecha"])
 
 # ==================================================
 # LOGIN
 # ==================================================
 if st.session_state.nip is None:
     st.title("🔐 Acceso al Cuadrante")
-
-    raw_input = st.text_input("Introduce tu NIP").strip()
+    nip_raw = st.text_input("Introduce tu NIP").strip()
 
     if st.button("Entrar"):
-        if raw_input == ADMIN_NIP:
+        if nip_raw == ADMIN_NIP:
             st.session_state.nip = ADMIN_NIP
-            st.session_state.is_admin = True
             st.rerun()
 
-        nip_input = raw_input.zfill(6)
-        if nip_input in df["nip"].astype(str).str.zfill(6).unique():
-            st.session_state.nip = nip_input
-            st.session_state.is_admin = False
+        nip = nip_raw.zfill(6)
+        if nip in df["nip"].astype(str).str.zfill(6).unique():
+            st.session_state.nip = nip
             st.rerun()
         else:
             st.error("NIP no válido")
-
     st.stop()
 
 # ==================================================
 # CABECERA
 # ==================================================
 st.title("📋 Cuadrante general 2026")
-
 if st.button("🚪 Cerrar sesión"):
     st.session_state.nip = None
-    st.session_state.is_admin = False
     st.rerun()
 
 # ==================================================
-# SELECTOR DE MES
+# MES
 # ==================================================
 meses = sorted(df["mes"].unique())
-mes_sel = st.selectbox(
+mes = st.selectbox(
     "Selecciona mes",
     meses,
     format_func=lambda x: datetime(2026, x, 1).strftime("%B 2026")
 )
 
-df_mes = df[df["mes"] == mes_sel].copy()
-df_mes["dia_mes"] = df_mes["fecha"].dt.day
+df_mes = df[df["mes"] == mes].copy()
+df_mes["dia"] = df_mes["fecha"].dt.day
 
 # ==================================================
 # FESTIVOS Y DOMINGOS
 # ==================================================
 festivos = {date(2026, 1, 1), date(2026, 1, 6)}
 
-def es_dia_especial(fecha):
+def es_especial(fecha):
     return fecha in festivos or fecha.weekday() == 6
 
 # ==================================================
-# ESTILOS DE TURNO (YA CORRECTOS)
+# ESTILO TURNOS
 # ==================================================
 def estilo_turno(turno):
     if pd.isna(turno):
@@ -125,68 +115,107 @@ def estilo_turno(turno):
         "Vac": {"bg": "#FFFFFF", "fg": "#FF0000", "bold": True, "italic": True},
         "AP": {"bg": "#FFFFFF", "fg": "#0070C0", "bold": True},
     }
-
     return estilos.get(t, {"bg": "#FFFFFF", "fg": "#000000"})
 
 # ==================================================
-# CUADRANTE GENERAL (STICKY + BORDES LIMPIOS)
+# CUADRANTE
 # ==================================================
 orden = df_mes[["nombre", "categoria", "nip"]].drop_duplicates()
 
-cuadrante = df_mes.pivot_table(
+tabla = df_mes.pivot_table(
     index=["nombre", "categoria", "nip"],
-    columns="dia_mes",
+    columns="dia",
     values="turno",
     aggfunc="first"
 ).reindex(pd.MultiIndex.from_frame(orden))
 
+# ==================================================
+# HTML (DOS TABLAS)
+# ==================================================
 html = """
 <style>
-table { border-collapse: collapse; }
-th, td { border: 1px solid #000; padding: 4px; white-space: nowrap; }
-th { background: #FFF; font-weight: bold; }
-.borde-grueso-derecha { border-right: 3px solid #000 !important; }
-.borde-grueso-abajo { border-bottom: 3px solid #000 !important; }
+.container {
+    display: flex;
+    max-height: 80vh;
+    overflow-y: auto;
+}
+table {
+    border-collapse: collapse;
+}
+th, td {
+    border: 1px solid #000;
+    padding: 4px;
+    white-space: nowrap;
+}
+thead th {
+    position: sticky;
+    top: 0;
+    background: #FFF;
+    z-index: 5;
+}
+.fija {
+    border-right: 3px solid #000;
+}
+.abajo {
+    border-bottom: 3px solid #000;
+}
 </style>
 
-<div style="overflow:auto; max-height:80vh">
+<div class="container">
+
+<!-- TABLA IZQUIERDA -->
 <table>
 <thead>
-<tr>
-<th style="position:sticky;top:0;left:0;z-index:6;width:260px">Nombre y Apellidos</th>
-<th style="position:sticky;top:0;left:260px;z-index:6;width:140px">Categoría</th>
-<th class="borde-grueso-derecha" style="position:sticky;top:0;left:400px;z-index:6;width:100px">NIP</th>
+<tr class="abajo">
+<th>Nombre y Apellidos</th>
+<th>Categoría</th>
+<th class="fija">NIP</th>
+</tr>
+</thead>
+<tbody>
 """
 
-for d in cuadrante.columns:
-    fecha = date(2026, mes_sel, d)
-    if es_dia_especial(fecha):
-        html += f"<th style='position:sticky;top:0;background:#92D050;color:#FF0000;font-weight:bold'>{d}</th>"
+for (nombre, categoria, nip), _ in tabla.iterrows():
+    html += f"<tr><td>{nombre}</td><td>{categoria}</td><td class='fija'>{nip}</td></tr>"
+
+html += """
+</tbody>
+</table>
+
+<!-- TABLA DERECHA -->
+<div style="overflow-x:auto">
+<table>
+<thead>
+<tr class="abajo">
+"""
+
+for d in tabla.columns:
+    fecha = date(2026, mes, d)
+    if es_especial(fecha):
+        html += f"<th style='background:#92D050;color:#FF0000;font-weight:bold'>{d}</th>"
     else:
-        html += f"<th style='position:sticky;top:0;background:#FFFFFF;color:#000000;font-weight:bold'>{d}</th>"
+        html += f"<th style='font-weight:bold'>{d}</th>"
 
 html += "</tr></thead><tbody>"
 
-for i, ((nombre, categoria, nip), fila) in enumerate(cuadrante.iterrows()):
-    tr_class = "borde-grueso-abajo" if i == 0 else ""
-    html += f"<tr class='{tr_class}'>"
-
-    html += f"<td style='position:sticky;left:0;background:#FFF;width:260px'>{nombre}</td>"
-    html += f"<td style='position:sticky;left:260px;background:#FFF;width:140px'>{categoria}</td>"
-    html += f"<td class='borde-grueso-derecha' style='position:sticky;left:400px;background:#FFF;width:100px'>{nip}</td>"
-
+for (_, _, _), fila in tabla.iterrows():
+    html += "<tr>"
     for v in fila:
         e = estilo_turno(v)
-        texto = "" if pd.isna(v) else str(v)
+        texto = "" if pd.isna(v) else v
         html += (
             f"<td style='background:{e['bg']};color:{e['fg']};"
             f"{'font-weight:bold;' if e.get('bold') else ''}"
             f"{'font-style:italic;' if e.get('italic') else ''}"
             f"text-align:center'>{texto}</td>"
         )
-
     html += "</tr>"
 
-html += "</tbody></table></div>"
+html += """
+</tbody>
+</table>
+</div>
+</div>
+"""
 
 st.markdown(html, unsafe_allow_html=True)
