@@ -6,10 +6,7 @@ from datetime import datetime
 # ==================================================
 # CONFIGURACIÓN GENERAL
 # ==================================================
-st.set_page_config(
-    page_title="Cuadrante 2026",
-    layout="wide"
-)
+st.set_page_config(page_title="Cuadrante 2026", layout="wide")
 
 ADMIN_NIP = "ADMIN"
 DATA_FILE = "cuadrante_2026.csv"
@@ -38,17 +35,13 @@ if st.session_state.nip is None:
     raw_input = st.text_input("Introduce tu NIP").strip()
 
     if st.button("Entrar"):
-        # ADMIN
         if raw_input == ADMIN_NIP:
             st.session_state.nip = ADMIN_NIP
             st.session_state.is_admin = True
             st.rerun()
 
-        # Usuario normal
         nip_input = raw_input.zfill(6)
-        nips_validos = df["nip"].astype(str).str.zfill(6).unique()
-
-        if nip_input in nips_validos:
+        if nip_input in df["nip"].astype(str).str.zfill(6).unique():
             st.session_state.nip = nip_input
             st.session_state.is_admin = False
             st.rerun()
@@ -81,24 +74,42 @@ df_mes = df[df["mes"] == mes_sel].copy()
 df_mes["dia_mes"] = df_mes["fecha"].dt.day
 
 # ==================================================
-# ESTILOS DE TURNO (COLORES + TEXTO)
+# ESTILOS DE TURNO (COMPLETO)
 # ==================================================
 def estilo_turno(turno):
     t = "" if pd.isna(turno) else str(turno)
 
     estilos = {
-        # Laborable / Mañana
-        "L":  {"bg": "#BDD7EE", "fg": "#0070C0"},
-        "1":  {"bg": "#BDD7EE", "fg": "#0070C0"},
-        "1ex":{"bg": "#BDD7EE", "fg": "#0070C0"},
+        # Mañana / Laborable
+        "L": {"bg": "#BDD7EE", "fg": "#0070C0"},
+        "1": {"bg": "#BDD7EE", "fg": "#0070C0"},
 
         # Tarde
-        "2":  {"bg": "#FFE699", "fg": "#0070C0"},
-        "2ex":{"bg": "#FFE699", "fg": "#0070C0"},
+        "2": {"bg": "#FFE699", "fg": "#0070C0"},
 
         # Noche
-        "3":  {"bg": "#F8CBAD", "fg": "#FF0000"},
-        "3ex":{"bg": "#F8CBAD", "fg": "#FF0000"},
+        "3": {"bg": "#F8CBAD", "fg": "#FF0000"},
+
+        # Extras
+        "1ex": {"bg": "#00B050", "fg": "#FF0000", "bold": True},
+        "2ex": {"bg": "#00B050", "fg": "#FF0000", "bold": True},
+        "3ex": {"bg": "#00B050", "fg": "#FF0000", "bold": True},
+
+        # Combinados normales
+        "1y2": {"bg": "#BDD7EE", "fg": "#FF0000"},
+        "1y3": {"bg": "#BDD7EE", "fg": "#FF0000"},
+        "2y3": {"bg": "#BDD7EE", "fg": "#FF0000"},
+
+        # Combinados con extras
+        "1|2ex": {"bg": "#00B050", "fg": "#FF0000", "bold": True},
+        "1|3ex": {"bg": "#00B050", "fg": "#FF0000", "bold": True},
+        "2|1ex": {"bg": "#00B050", "fg": "#FF0000", "bold": True},
+        "2|3ex": {"bg": "#00B050", "fg": "#FF0000", "bold": True},
+        "3|1ex": {"bg": "#00B050", "fg": "#FF0000", "bold": True},
+        "3|2ex": {"bg": "#00B050", "fg": "#FF0000", "bold": True},
+        "1y2ex": {"bg": "#00B050", "fg": "#FF0000", "bold": True},
+        "1y3ex": {"bg": "#00B050", "fg": "#FF0000", "bold": True},
+        "2y3ex": {"bg": "#00B050", "fg": "#FF0000", "bold": True},
 
         # Descansos
         "D":   {"bg": "#C6E0B4", "fg": "#00B050"},
@@ -106,8 +117,9 @@ def estilo_turno(turno):
         "Dcv": {"bg": "#C6E0B4", "fg": "#00B050"},
         "Dcc": {"bg": "#C6E0B4", "fg": "#00B050"},
         "Dct": {"bg": "#C6E0B4", "fg": "#00B050"},
+        "Dcj": {"bg": "#C6E0B4", "fg": "#00B050"},
 
-        # Incidencias (negrita)
+        # Incidencias
         "Ts":     {"bg": "#FFFFFF", "fg": "#FF0000", "bold": True},
         "Perm":   {"bg": "#FFFFFF", "fg": "#FF0000", "bold": True},
         "Indisp": {"bg": "#FFFFFF", "fg": "#FF0000", "bold": True},
@@ -116,9 +128,8 @@ def estilo_turno(turno):
         "Curso":  {"bg": "#FFFFFF", "fg": "#FF0000", "bold": True},
         "Baja":   {"bg": "#FFFFFF", "fg": "#FF0000", "bold": True},
 
-        # Vacaciones (negrita + cursiva)
-        "Vac":        {"bg": "#FFFFFF", "fg": "#FF0000", "bold": True, "italic": True},
-        "Vacaciones": {"bg": "#FFFFFF", "fg": "#FF0000", "bold": True, "italic": True},
+        # Vacaciones
+        "Vac": {"bg": "#FFFFFF", "fg": "#FF0000", "bold": True, "italic": True},
 
         # Asuntos particulares
         "AP": {"bg": "#FFFFFF", "fg": "#0070C0", "bold": True},
@@ -129,119 +140,66 @@ def estilo_turno(turno):
 # ==================================================
 # PESTAÑAS
 # ==================================================
-tab_general, tab_personal = st.tabs(
-    ["📋 Cuadrante general", "📆 Mi cuadrante"]
-)
+tab_general, tab_personal = st.tabs(["📋 Cuadrante general", "📆 Mi cuadrante"])
 
 # ==================================================
-# PESTAÑA 1 – CUADRANTE GENERAL
+# CUADRANTE GENERAL (COMPACTO)
 # ==================================================
 with tab_general:
-    st.subheader("📋 Cuadrante general")
-
-    # Orden según CSV
-    orden = (
-        df_mes[["nombre", "categoria", "nip"]]
-        .drop_duplicates()
-        .reset_index(drop=True)
-    )
+    orden = df_mes[["nombre", "categoria", "nip"]].drop_duplicates()
 
     cuadrante = df_mes.pivot_table(
         index=["nombre", "categoria", "nip"],
         columns="dia_mes",
         values="turno",
         aggfunc="first"
-    )
+    ).reindex(pd.MultiIndex.from_frame(orden))
 
-    cuadrante = cuadrante.reindex(
-        pd.MultiIndex.from_frame(orden)
-    )
-
-    cuadrante = cuadrante.reindex(
-        sorted(cuadrante.columns),
-        axis=1
-    )
-
-    # HTML
-    html = "<div style='overflow-x:auto'><table border='1' style='border-collapse:collapse; font-size:14px'>"
-
-    html += "<tr>"
-    html += "<th>Nombre y Apellidos</th><th>Categoría</th><th>NIP</th>"
-    for dia in cuadrante.columns:
-        html += f"<th>{dia}</th>"
+    html = "<div style='overflow-x:auto'><table border='1' style='border-collapse:collapse;font-size:11px'>"
+    html += "<tr><th>Nombre</th><th>Cat.</th><th>NIP</th>"
+    for d in cuadrante.columns:
+        html += f"<th style='width:28px'>{d}</th>"
     html += "</tr>"
 
     for (nombre, categoria, nip), fila in cuadrante.iterrows():
-        html += "<tr>"
-        html += f"<td>{nombre}</td>"
-        html += f"<td>{categoria}</td>"
-        html += f"<td>{nip}</td>"
-
-        for valor in fila:
-            texto = "" if pd.isna(valor) else valor
-            estilo = estilo_turno(valor)
-
-            bg = estilo.get("bg")
-            fg = estilo.get("fg")
-            bold = "font-weight:bold;" if estilo.get("bold") else ""
-            italic = "font-style:italic;" if estilo.get("italic") else ""
-
+        html += f"<tr><td>{nombre}</td><td>{categoria}</td><td>{nip}</td>"
+        for v in fila:
+            e = estilo_turno(v)
+            texto = "" if pd.isna(v) else v
             html += (
-                f"<td style='background-color:{bg}; color:{fg}; "
-                f"{bold}{italic} text-align:center'>{texto}</td>"
+                f"<td style='background:{e['bg']};color:{e['fg']};"
+                f"{'font-weight:bold;' if e.get('bold') else ''}"
+                f"{'font-style:italic;' if e.get('italic') else ''}"
+                f"text-align:center'>{texto}</td>"
             )
-
         html += "</tr>"
 
     html += "</table></div>"
-
     st.markdown(html, unsafe_allow_html=True)
 
 # ==================================================
-# PESTAÑA 2 – MI CUADRANTE
+# MI CUADRANTE
 # ==================================================
 with tab_personal:
-    st.subheader("📆 Mi cuadrante")
-
-    df_persona = df_mes[df_mes["nip"] == st.session_state.nip]
-
-    cal = calendar.Calendar(firstweekday=0)
-    semanas = cal.monthdatescalendar(2026, mes_sel)
-
-    for semana in semanas:
+    df_p = df_mes[df_mes["nip"] == st.session_state.nip]
+    cal = calendar.Calendar()
+    for semana in cal.monthdatescalendar(2026, mes_sel):
         cols = st.columns(7)
-        for i, dia in enumerate(semana):
+        for i, d in enumerate(semana):
             with cols[i]:
-                if dia.month != mes_sel:
+                if d.month != mes_sel:
                     st.write("")
                     continue
-
-                dato = df_persona[df_persona["fecha"] == pd.Timestamp(dia)]
-
+                dato = df_p[df_p["fecha"] == pd.Timestamp(d)]
                 if not dato.empty:
-                    turno = dato.iloc[0]["turno"]
-                    estilo = estilo_turno(turno)
-
-                    bg = estilo.get("bg")
-                    fg = estilo.get("fg")
-                    bold = "font-weight:bold;" if estilo.get("bold") else ""
-                    italic = "font-style:italic;" if estilo.get("italic") else ""
-
+                    t = dato.iloc[0]["turno"]
+                    e = estilo_turno(t)
                     st.markdown(
-                        f"""
-                        <div style="
-                            background-color:{bg};
-                            color:{fg};
-                            {bold}{italic}
-                            padding:10px;
-                            border-radius:8px;
-                            text-align:center;
-                            min-height:70px;
-                        ">
-                        <b>{dia.day}</b><br>{turno}
-                        </div>
-                        """,
+                        f"<div style='background:{e['bg']};color:{e['fg']};"
+                        f"{'font-weight:bold;' if e.get('bold') else ''}"
+                        f"{'font-style:italic;' if e.get('italic') else ''}"
+                        f"text-align:center;border-radius:6px'>{d.day}<br>{t}</div>",
                         unsafe_allow_html=True
                     )
                 else:
-                    st.markdown(f"<b>{dia.day}</b>", unsafe_allow_html=True)
+                    st.markdown(f"<b>{d.day}</b>", unsafe_allow_html=True)
