@@ -5,7 +5,7 @@ from datetime import datetime, date
 import os
 
 # ==================================================
-# CONFIGURACIÓN
+# CONFIGURACIÓN GENERAL
 # ==================================================
 st.set_page_config(page_title="Cuadrante 2026", layout="wide")
 
@@ -20,7 +20,7 @@ if "nip" not in st.session_state:
     st.session_state.nip = None
 
 # ==================================================
-# DATOS
+# CARGA DE DATOS
 # ==================================================
 df = pd.read_csv(DATA_FILE, parse_dates=["fecha"])
 df["dia"] = df["fecha"].dt.day
@@ -32,7 +32,6 @@ if not os.path.exists(HORAS_MANUALES_FILE):
     pd.DataFrame(columns=["nip", "mes", "tipo", "horas"]).to_csv(
         HORAS_MANUALES_FILE, index=False
     )
-
 df_horas_manual = pd.read_csv(HORAS_MANUALES_FILE)
 
 # ==================================================
@@ -85,7 +84,33 @@ HORAS = {
 }
 
 # ==================================================
-# ESTILO TURNOS (COLORES)
+# NOMBRES DE TURNOS
+# ==================================================
+NOMBRES_TURNO = {
+    "1": "Mañana",
+    "2": "Tarde",
+    "3": "Noche",
+    "L": "Laborable",
+    "D": "Descanso",
+    "Vac": "Vacaciones",
+    "Perm": "Permiso",
+    "BAJA": "Baja",
+    "Ts": "Tiempo sindical",
+    "AP": "Asuntos particulares",
+    "JuB": "Juicio Betanzos",
+    "JuC": "Juicio Coruña",
+    "Curso": "Curso",
+    "Indisp": "Indisposición",
+    "1ex": "Mañana extra",
+    "2ex": "Tarde extra",
+    "3ex": "Noche extra",
+}
+
+def nombre_turno(codigo):
+    return NOMBRES_TURNO.get(codigo, codigo)
+
+# ==================================================
+# ESTILOS DE TURNOS
 # ==================================================
 def estilo_turno(turno):
     if pd.isna(turno):
@@ -98,52 +123,21 @@ def estilo_turno(turno):
         t = "Perm"
 
     estilos = {
-        "L": {"bg": "#BDD7EE", "fg": "#0070C0"},
         "1": {"bg": "#BDD7EE", "fg": "#0070C0"},
         "2": {"bg": "#FFE699", "fg": "#0070C0"},
         "3": {"bg": "#F8CBAD", "fg": "#FF0000"},
-
-        "1ex": {"bg": "#00B050", "fg": "#FF0000", "bold": True},
-        "2ex": {"bg": "#00B050", "fg": "#FF0000", "bold": True},
-        "3ex": {"bg": "#00B050", "fg": "#FF0000", "bold": True},
-
-        "1y2": {"bg": "#BDD7EE", "fg": "#FF0000"},
-        "1y3": {"bg": "#BDD7EE", "fg": "#FF0000"},
-        "2y3": {"bg": "#BDD7EE", "fg": "#FF0000"},
-
-        "1|2ex": {"bg": "#00B050", "fg": "#FF0000", "bold": True},
-        "1|3ex": {"bg": "#00B050", "fg": "#FF0000", "bold": True},
-        "2|1ex": {"bg": "#00B050", "fg": "#FF0000", "bold": True},
-        "2|3ex": {"bg": "#00B050", "fg": "#FF0000", "bold": True},
-        "3|1ex": {"bg": "#00B050", "fg": "#FF0000", "bold": True},
-        "3|2ex": {"bg": "#00B050", "fg": "#FF0000", "bold": True},
-        "1y2ex": {"bg": "#00B050", "fg": "#FF0000", "bold": True},
-        "1y3ex": {"bg": "#00B050", "fg": "#FF0000", "bold": True},
-        "2y3ex": {"bg": "#00B050", "fg": "#FF0000", "bold": True},
-
         "D": {"bg": "#C6E0B4", "fg": "#00B050"},
-        "Dc": {"bg": "#C6E0B4", "fg": "#00B050"},
-        "Dcv": {"bg": "#C6E0B4", "fg": "#00B050"},
-        "Dcc": {"bg": "#C6E0B4", "fg": "#00B050"},
-        "Dct": {"bg": "#C6E0B4", "fg": "#00B050"},
-        "Dcj": {"bg": "#C6E0B4", "fg": "#00B050"},
-
-        "Ts": {"bg": "#FFFFFF", "fg": "#FF0000", "bold": True},
-        "Perm": {"bg": "#FFFFFF", "fg": "#FF0000", "bold": True},
-        "Indisp": {"bg": "#FFFFFF", "fg": "#FF0000", "bold": True},
-        "JuB": {"bg": "#FFFFFF", "fg": "#FF0000", "bold": True},
-        "JuC": {"bg": "#FFFFFF", "fg": "#FF0000", "bold": True},
-        "Curso": {"bg": "#FFFFFF", "fg": "#FF0000", "bold": True},
-        "BAJA": {"bg": "#FFFFFF", "fg": "#FF0000", "bold": True},
-
         "Vac": {"bg": "#FFFFFF", "fg": "#FF0000", "bold": True, "italic": True},
+        "Perm": {"bg": "#FFFFFF", "fg": "#FF0000", "bold": True},
+        "BAJA": {"bg": "#FFFFFF", "fg": "#FF0000", "bold": True},
+        "Ts": {"bg": "#FFFFFF", "fg": "#FF0000", "bold": True},
         "AP": {"bg": "#FFFFFF", "fg": "#0070C0", "bold": True},
     }
 
     return estilos.get(t, {"bg": "#FFFFFF", "fg": "#000000"})
 
 # ==================================================
-# MES
+# SELECCIÓN DE MES
 # ==================================================
 meses = sorted(df["mes"].unique())
 mes = st.selectbox(
@@ -154,16 +148,16 @@ mes = st.selectbox(
 df_mes = df[df["mes"] == mes]
 
 # ==================================================
-# TABS
+# PESTAÑAS
 # ==================================================
-tab1, tab2, tab3 = st.tabs(
+tab_general, tab_mis_turnos, tab_resumen = st.tabs(
     ["📋 Cuadrante general", "📆 Mis turnos", "📊 Resumen"]
 )
 
 # ==================================================
 # TAB 1 — CUADRANTE GENERAL
 # ==================================================
-with tab1:
+with tab_general:
     st.subheader("📋 Cuadrante general")
 
     orden = df_mes[["nombre", "categoria", "nip"]].drop_duplicates()
@@ -221,7 +215,7 @@ with tab1:
 # ==================================================
 # TAB 2 — MIS TURNOS
 # ==================================================
-with tab2:
+with tab_mis_turnos:
     st.subheader("📆 Mis turnos")
 
     df_user = df_mes[df_mes["nip"] == st.session_state.nip]
@@ -234,6 +228,17 @@ with tab2:
             return turno.split("|")
         return [turno]
 
+    def compañeros(fecha, subturno):
+        return (
+            df_mes[
+                (df_mes["fecha"] == fecha) &
+                (df_mes["turno"].str.contains(subturno)) &
+                (df_mes["nip"] != st.session_state.nip)
+            ]["nombre"]
+            .apply(lambda x: x.split()[0])
+            .tolist()
+        )
+
     for semana in cal.monthdatescalendar(2026, mes):
         cols = st.columns(7)
         for i, d in enumerate(semana):
@@ -243,24 +248,29 @@ with tab2:
                     continue
 
                 fila = df_user[df_user["fecha"] == pd.Timestamp(d)]
-                html = f"<div style='border:1px solid #999;border-radius:6px'>"
+                html = "<div style='border:1px solid #999;border-radius:6px'>"
                 html += f"<div style='text-align:center;font-weight:bold'>{d.day}</div>"
 
                 if not fila.empty:
-                    for p in separar(str(fila.iloc[0]["turno"])):
+                    turno = str(fila.iloc[0]["turno"])
+                    for p in separar(turno):
                         e = estilo_turno(p)
                         html += (
                             f"<div style='background:{e['bg']};color:{e['fg']};"
                             f"text-align:center;padding:6px'>"
-                            f"<b>{p}</b></div>"
+                            f"<b>{nombre_turno(p)}</b><br>"
                         )
+                        for c in compañeros(pd.Timestamp(d), p):
+                            html += f"{c}<br>"
+                        html += "</div>"
+
                 html += "</div>"
                 st.markdown(html, unsafe_allow_html=True)
 
 # ==================================================
 # TAB 3 — RESUMEN
 # ==================================================
-with tab3:
+with tab_resumen:
     st.subheader("📊 Resumen año 2026")
 
     df_user_all = df[df["nip"] == st.session_state.nip]
@@ -280,8 +290,8 @@ with tab3:
         "Fines de semana trabajados","Domingos trabajados",
         "Horas trabajadas",
     ]
-    resumen = {f: [0]*12 for f in filas}
 
+    resumen = {f: [0]*12 for f in filas}
     orden_general = df[["nombre","nip"]].drop_duplicates().reset_index(drop=True)
 
     for _, r in df_user_all.iterrows():
@@ -296,7 +306,6 @@ with tab3:
             if t == "1": resumen["Mañanas"][m] += 1
             if t == "2": resumen["Tardes"][m] += 1
             if t == "3": resumen["Noches"][m] += 1
-
             resumen["Horas trabajadas"][m] += HORAS.get(t, 0)
 
         if turno == "Vac" and dia_sem < 5 and not es_festivo(fecha):
@@ -322,7 +331,8 @@ with tab3:
                 resumen["Domingos trabajados"][m] += 1
 
         for t in sub:
-            if t not in ["1","2","3"]: continue
+            if t not in ["1","2","3"]:
+                continue
             cand = df[(df["fecha"]==fecha) & (df["turno"].str.contains(t))]
             cand = cand.merge(orden_general, on=["nombre","nip"])
             if not cand.empty and cand.iloc[0]["nip"] == nip:
