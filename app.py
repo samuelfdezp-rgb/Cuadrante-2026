@@ -96,9 +96,9 @@ def estilo_turno(turno):
         "3ex": {"bg": "#00B050", "fg": "#FF0000", "bold": True},
 
         # Combinados normales
-        "1y2": {"bg": "#BDD7EE", "fg": "#FF0000"},
-        "1y3": {"bg": "#BDD7EE", "fg": "#FF0000"},
-        "2y3": {"bg": "#BDD7EE", "fg": "#FF0000"},
+        "1Y2": {"bg": "#BDD7EE", "fg": "#FF0000"},
+        "1Y3": {"bg": "#BDD7EE", "fg": "#FF0000"},
+        "2Y3": {"bg": "#BDD7EE", "fg": "#FF0000"},
 
         # Combinados con extras
         "1|2ex": {"bg": "#00B050", "fg": "#FF0000", "bold": True},
@@ -107,9 +107,9 @@ def estilo_turno(turno):
         "2|3ex": {"bg": "#00B050", "fg": "#FF0000", "bold": True},
         "3|1ex": {"bg": "#00B050", "fg": "#FF0000", "bold": True},
         "3|2ex": {"bg": "#00B050", "fg": "#FF0000", "bold": True},
-        "1y2ex": {"bg": "#00B050", "fg": "#FF0000", "bold": True},
-        "1y3ex": {"bg": "#00B050", "fg": "#FF0000", "bold": True},
-        "2y3ex": {"bg": "#00B050", "fg": "#FF0000", "bold": True},
+        "1Y2ex": {"bg": "#00B050", "fg": "#FF0000", "bold": True},
+        "1Y3ex": {"bg": "#00B050", "fg": "#FF0000", "bold": True},
+        "2Y3ex": {"bg": "#00B050", "fg": "#FF0000", "bold": True},
 
         # Descansos
         "D":   {"bg": "#C6E0B4", "fg": "#00B050"},
@@ -121,7 +121,7 @@ def estilo_turno(turno):
 
         # Incidencias
         "Ts":     {"bg": "#FFFFFF", "fg": "#FF0000", "bold": True},
-        "Perm":   {"bg": "#FFFFFF", "fg": "#FF0000", "bold": True},
+        "perm":   {"bg": "#FFFFFF", "fg": "#FF0000", "bold": True},
         "Indisp": {"bg": "#FFFFFF", "fg": "#FF0000", "bold": True},
         "JuB":    {"bg": "#FFFFFF", "fg": "#FF0000", "bold": True},
         "JuC":    {"bg": "#FFFFFF", "fg": "#FF0000", "bold": True},
