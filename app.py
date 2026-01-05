@@ -3,9 +3,9 @@ import pandas as pd
 import calendar
 from datetime import datetime
 
-# --------------------------------------------------
+# ==================================================
 # CONFIGURACIÓN GENERAL
-# --------------------------------------------------
+# ==================================================
 st.set_page_config(
     page_title="Cuadrante 2026",
     layout="wide"
@@ -14,35 +14,37 @@ st.set_page_config(
 ADMIN_NIP = "ADMIN"
 DATA_FILE = "cuadrante_2026.csv"
 
-# --------------------------------------------------
+# ==================================================
 # SESIÓN
-# --------------------------------------------------
+# ==================================================
 if "nip" not in st.session_state:
     st.session_state.nip = None
     st.session_state.is_admin = False
 
-# --------------------------------------------------
+# ==================================================
 # CARGA DE DATOS
-# --------------------------------------------------
+# ==================================================
 def load_data():
     return pd.read_csv(DATA_FILE, parse_dates=["fecha"])
 
 df = load_data()
 
-# --------------------------------------------------
+# ==================================================
 # LOGIN
-# --------------------------------------------------
+# ==================================================
 if st.session_state.nip is None:
     st.title("🔐 Acceso al Cuadrante")
 
     raw_input = st.text_input("Introduce tu NIP").strip()
 
     if st.button("Entrar"):
+        # ADMIN
         if raw_input == ADMIN_NIP:
             st.session_state.nip = ADMIN_NIP
             st.session_state.is_admin = True
             st.rerun()
 
+        # Usuario normal
         nip_input = raw_input.zfill(6)
         nips_validos = df["nip"].astype(str).str.zfill(6).unique()
 
@@ -55,9 +57,9 @@ if st.session_state.nip is None:
 
     st.stop()
 
-# --------------------------------------------------
+# ==================================================
 # CABECERA
-# --------------------------------------------------
+# ==================================================
 st.title("📅 Cuadrante 2026")
 
 if st.button("🚪 Cerrar sesión"):
@@ -65,9 +67,9 @@ if st.button("🚪 Cerrar sesión"):
     st.session_state.is_admin = False
     st.rerun()
 
-# --------------------------------------------------
+# ==================================================
 # SELECTOR DE MES
-# --------------------------------------------------
+# ==================================================
 meses = sorted(df["mes"].unique())
 mes_sel = st.selectbox(
     "Selecciona mes",
@@ -76,17 +78,11 @@ mes_sel = st.selectbox(
 )
 
 df_mes = df[df["mes"] == mes_sel].copy()
+df_mes["dia_mes"] = df_mes["fecha"].dt.day
 
-# --------------------------------------------------
-# PESTAÑAS
-# --------------------------------------------------
-tab_general, tab_personal = st.tabs(
-    ["📋 Cuadrante general", "📆 Mi cuadrante"]
-)
-
-# --------------------------------------------------
-# FUNCIÓN DE COLORES
-# --------------------------------------------------
+# ==================================================
+# ESTILOS DE TURNO (COLORES + TEXTO)
+# ==================================================
 def estilo_turno(turno):
     t = "" if pd.isna(turno) else str(turno)
 
@@ -94,15 +90,15 @@ def estilo_turno(turno):
         # Laborable / Mañana
         "L":  {"bg": "#BDD7EE", "fg": "#0070C0"},
         "1":  {"bg": "#BDD7EE", "fg": "#0070C0"},
-        "1ex":{"bg": "#00B050", "fg": "#FF0000", "bold": True},
+        "1ex":{"bg": "#BDD7EE", "fg": "#0070C0"},
 
         # Tarde
         "2":  {"bg": "#FFE699", "fg": "#0070C0"},
-        "2ex":{"bg": "#00B050", "fg": "#FF0000", "bold": True},
+        "2ex":{"bg": "#FFE699", "fg": "#0070C0"},
 
         # Noche
         "3":  {"bg": "#F8CBAD", "fg": "#FF0000"},
-        "3ex":{"bg": "#00B050", "fg": "#FF0000", "bold": True},
+        "3ex":{"bg": "#F8CBAD", "fg": "#FF0000"},
 
         # Descansos
         "D":   {"bg": "#C6E0B4", "fg": "#00B050"},
@@ -110,7 +106,6 @@ def estilo_turno(turno):
         "Dcv": {"bg": "#C6E0B4", "fg": "#00B050"},
         "Dcc": {"bg": "#C6E0B4", "fg": "#00B050"},
         "Dct": {"bg": "#C6E0B4", "fg": "#00B050"},
-        "Dcj": {"bg": "#C6E0B4", "fg": "#00B050"},
 
         # Incidencias (negrita)
         "Ts":     {"bg": "#FFFFFF", "fg": "#FF0000", "bold": True},
@@ -131,14 +126,20 @@ def estilo_turno(turno):
 
     return estilos.get(t, {"bg": "#FFFFFF", "fg": "#000000"})
 
-# --------------------------------------------------
+# ==================================================
+# PESTAÑAS
+# ==================================================
+tab_general, tab_personal = st.tabs(
+    ["📋 Cuadrante general", "📆 Mi cuadrante"]
+)
+
+# ==================================================
 # PESTAÑA 1 – CUADRANTE GENERAL
-# --------------------------------------------------
+# ==================================================
 with tab_general:
     st.subheader("📋 Cuadrante general")
 
-    df_mes["dia_mes"] = df_mes["fecha"].dt.day
-
+    # Orden según CSV
     orden = (
         df_mes[["nombre", "categoria", "nip"]]
         .drop_duplicates()
@@ -161,17 +162,15 @@ with tab_general:
         axis=1
     )
 
-    # Construcción HTML con colores
+    # HTML
     html = "<div style='overflow-x:auto'><table border='1' style='border-collapse:collapse; font-size:14px'>"
 
-    # Cabecera
     html += "<tr>"
     html += "<th>Nombre y Apellidos</th><th>Categoría</th><th>NIP</th>"
     for dia in cuadrante.columns:
         html += f"<th>{dia}</th>"
     html += "</tr>"
 
-    # Filas
     for (nombre, categoria, nip), fila in cuadrante.iterrows():
         html += "<tr>"
         html += f"<td>{nombre}</td>"
@@ -186,20 +185,21 @@ with tab_general:
             fg = estilo.get("fg")
             bold = "font-weight:bold;" if estilo.get("bold") else ""
             italic = "font-style:italic;" if estilo.get("italic") else ""
-            html += f"<td style='background-color:{color}; text-align:center'>{texto}</td>"
 
-        html += (
-            f"<td style='background-color:{bg}; color:{fg}; "
-            f"{bold}{italic} text-align:center'>{texto}</td>"
-        )
+            html += (
+                f"<td style='background-color:{bg}; color:{fg}; "
+                f"{bold}{italic} text-align:center'>{texto}</td>"
+            )
+
+        html += "</tr>"
 
     html += "</table></div>"
 
     st.markdown(html, unsafe_allow_html=True)
 
-# --------------------------------------------------
+# ==================================================
 # PESTAÑA 2 – MI CUADRANTE
-# --------------------------------------------------
+# ==================================================
 with tab_personal:
     st.subheader("📆 Mi cuadrante")
 
@@ -220,12 +220,19 @@ with tab_personal:
 
                 if not dato.empty:
                     turno = dato.iloc[0]["turno"]
-                    color = color_turno(turno)
+                    estilo = estilo_turno(turno)
+
+                    bg = estilo.get("bg")
+                    fg = estilo.get("fg")
+                    bold = "font-weight:bold;" if estilo.get("bold") else ""
+                    italic = "font-style:italic;" if estilo.get("italic") else ""
 
                     st.markdown(
                         f"""
                         <div style="
-                            background-color:{color};
+                            background-color:{bg};
+                            color:{fg};
+                            {bold}{italic}
                             padding:10px;
                             border-radius:8px;
                             text-align:center;
