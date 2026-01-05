@@ -148,7 +148,7 @@ th {
     background: #FFFFFF;
     color: #000000;
     font-weight: bold;
-    text-align: center;
+    text-align: center;   /* 👈 CLAVE */
 }
 .fija {
     border-right: 3px solid #000;
@@ -189,11 +189,7 @@ html += """
 for d in tabla.columns:
     fecha = date(2026, mes, d)
     if es_especial(fecha):
-        html += (
-            "<th style='background:#92D050;color:#FF0000;"
-            "font-weight:bold;text-align:center'>"
-            f"{d}</th>"
-        )
+        html += f"<th style='background:#92D050;color:#FF0000'>{d}</th>"
     else:
         html += f"<th>{d}</th>"
 
