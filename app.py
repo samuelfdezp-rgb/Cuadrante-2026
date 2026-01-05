@@ -93,7 +93,6 @@ def estilo_turno(turno):
 
     t = str(turno).strip()
 
-    # normalizaciones
     if t.lower() == "baja":
         t = "BAJA"
     if t.lower() == "perm":
@@ -135,7 +134,7 @@ def estilo_turno(turno):
     return estilos.get(t, {"bg": "#FFFFFF", "fg": "#000000"})
 
 # ==================================================
-# CUADRANTE GENERAL
+# CUADRANTE GENERAL (CON GELADO CORRECTO)
 # ==================================================
 st.subheader("📋 Cuadrante general")
 
@@ -148,20 +147,31 @@ cuadrante = df_mes.pivot_table(
     aggfunc="first"
 ).reindex(pd.MultiIndex.from_frame(orden))
 
-html = "<div style='overflow:auto; max-height:80vh'><table border='1' style='border-collapse:collapse'>"
-html += "<tr><th>Nombre y Apellidos</th><th>Categoría</th><th>NIP</th>"
+html = """
+<div style="overflow:auto; max-height:80vh">
+<table border="1" style="border-collapse:collapse">
+<thead>
+<tr>
+<th style="position:sticky;top:0;left:0;background:#DDD;z-index:5">Nombre y Apellidos</th>
+<th style="position:sticky;top:0;left:0;background:#DDD;z-index:4">Categoría</th>
+<th style="position:sticky;top:0;left:0;background:#DDD;z-index:3">NIP</th>
+"""
 
 for d in cuadrante.columns:
     fecha = date(2026, mes_sel, d)
     if es_dia_especial(fecha):
-        html += f"<th style='background:#92D050;color:#FF0000;font-weight:bold'>{d}</th>"
+        html += f"<th style='position:sticky;top:0;background:#92D050;color:#FF0000;font-weight:bold;z-index:2'>{d}</th>"
     else:
-        html += f"<th style='background:#FFFFFF;color:#000000;font-weight:bold'>{d}</th>"
+        html += f"<th style='position:sticky;top:0;background:#FFFFFF;color:#000000;font-weight:bold;z-index:2'>{d}</th>"
 
-html += "</tr>"
+html += "</tr></thead><tbody>"
 
 for (nombre, categoria, nip), fila in cuadrante.iterrows():
-    html += f"<tr><td style='white-space:nowrap'>{nombre}</td><td>{categoria}</td><td>{nip}</td>"
+    html += "<tr>"
+    html += f"<td style='position:sticky;left:0;background:#FFF;white-space:nowrap;z-index:3'>{nombre}</td>"
+    html += f"<td style='position:sticky;left:0;background:#FFF;white-space:nowrap;z-index:2'>{categoria}</td>"
+    html += f"<td style='position:sticky;left:0;background:#FFF;white-space:nowrap;z-index:1'>{nip}</td>"
+
     for v in fila:
         e = estilo_turno(v)
         texto = "" if pd.isna(v) else str(v)
@@ -174,5 +184,6 @@ for (nombre, categoria, nip), fila in cuadrante.iterrows():
         )
     html += "</tr>"
 
-html += "</table></div>"
+html += "</tbody></table></div>"
+
 st.markdown(html, unsafe_allow_html=True)
