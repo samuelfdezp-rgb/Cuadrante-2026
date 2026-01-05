@@ -163,8 +163,8 @@ def estilo_turno(turno):
 # ==================================================
 # PESTAÑAS
 # ==================================================
-tab_general, tab_mis_turnos = st.tabs(
-    ["📋 Cuadrante general", "📆 Mis turnos"]
+tab_general, tab_mis_turnos, tab_resumen = st.tabs(
+    ["📋 Cuadrante general", "📆 Mis turnos", "📊 Resumen"]
 )
 
 # ==================================================
