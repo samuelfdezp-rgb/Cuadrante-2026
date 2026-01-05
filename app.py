@@ -87,17 +87,49 @@ tab_general, tab_personal = st.tabs(
 # --------------------------------------------------
 # FUNCIÓN DE COLORES
 # --------------------------------------------------
-def color_turno(turno):
-    colores = {
-        "1": "#B7DEE8",      # Mañana
-        "2": "#FCD5B4",      # Tarde
-        "3": "#D9D2E9",      # Noche
-        "D": "#E7E6E6",      # Descanso
-        "Vac": "#C6EFCE",    # Vacaciones
-        "Baja": "#F4CCCC",   # Baja
-        "Ts": "#FFF2CC",     # Tiempo sindical
+def estilo_turno(turno):
+    t = "" if pd.isna(turno) else str(turno)
+
+    estilos = {
+        # Laborable / Mañana
+        "L":  {"bg": "#BDD7EE", "fg": "#0070C0"},
+        "1":  {"bg": "#BDD7EE", "fg": "#0070C0"},
+        "1ex":{"bg": "#00B050", "fg": "#FF0000", "bold": True},
+
+        # Tarde
+        "2":  {"bg": "#FFE699", "fg": "#0070C0"},
+        "2ex":{"bg": "#00B050", "fg": "#FF0000", "bold": True},
+
+        # Noche
+        "3":  {"bg": "#F8CBAD", "fg": "#FF0000"},
+        "3ex":{"bg": "#00B050", "fg": "#FF0000", "bold": True},
+
+        # Descansos
+        "D":   {"bg": "#C6E0B4", "fg": "#00B050"},
+        "Dc":  {"bg": "#C6E0B4", "fg": "#00B050"},
+        "Dcv": {"bg": "#C6E0B4", "fg": "#00B050"},
+        "Dcc": {"bg": "#C6E0B4", "fg": "#00B050"},
+        "Dct": {"bg": "#C6E0B4", "fg": "#00B050"},
+        "Dcj": {"bg": "#C6E0B4", "fg": "#00B050"},
+
+        # Incidencias (negrita)
+        "Ts":     {"bg": "#FFFFFF", "fg": "#FF0000", "bold": True},
+        "Perm":   {"bg": "#FFFFFF", "fg": "#FF0000", "bold": True},
+        "Indisp": {"bg": "#FFFFFF", "fg": "#FF0000", "bold": True},
+        "JuB":    {"bg": "#FFFFFF", "fg": "#FF0000", "bold": True},
+        "JuC":    {"bg": "#FFFFFF", "fg": "#FF0000", "bold": True},
+        "Curso":  {"bg": "#FFFFFF", "fg": "#FF0000", "bold": True},
+        "Baja":   {"bg": "#FFFFFF", "fg": "#FF0000", "bold": True},
+
+        # Vacaciones (negrita + cursiva)
+        "Vac":        {"bg": "#FFFFFF", "fg": "#FF0000", "bold": True, "italic": True},
+        "Vacaciones": {"bg": "#FFFFFF", "fg": "#FF0000", "bold": True, "italic": True},
+
+        # Asuntos particulares
+        "AP": {"bg": "#FFFFFF", "fg": "#0070C0", "bold": True},
     }
-    return colores.get(str(turno), "#FFFFFF")
+
+    return estilos.get(t, {"bg": "#FFFFFF", "fg": "#000000"})
 
 # --------------------------------------------------
 # PESTAÑA 1 – CUADRANTE GENERAL
@@ -148,10 +180,18 @@ with tab_general:
 
         for valor in fila:
             texto = "" if pd.isna(valor) else valor
-            color = color_turno(valor)
+            estilo = estilo_turno(valor)
+
+            bg = estilo.get("bg")
+            fg = estilo.get("fg")
+            bold = "font-weight:bold;" if estilo.get("bold") else ""
+            italic = "font-style:italic;" if estilo.get("italic") else ""
             html += f"<td style='background-color:{color}; text-align:center'>{texto}</td>"
 
-        html += "</tr>"
+        html += (
+            f"<td style='background-color:{bg}; color:{fg}; "
+            f"{bold}{italic} text-align:center'>{texto}</td>"
+        )
 
     html += "</table></div>"
 
