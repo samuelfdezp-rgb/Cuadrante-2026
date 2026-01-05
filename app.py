@@ -118,7 +118,7 @@ def estilo_turno(turno):
     return estilos.get(t, {"bg": "#FFFFFF", "fg": "#000000"})
 
 # ==================================================
-# CUADRANTE (DOS TABLAS)
+# CUADRANTE (TABLA ÚNICA)
 # ==================================================
 orden = df_mes[["nombre", "categoria", "nip"]].drop_duplicates()
 
@@ -131,59 +131,30 @@ tabla = df_mes.pivot_table(
 
 html = """
 <style>
-.container {
-    display: flex;
-    max-height: 80vh;
-    overflow-y: auto;
-}
-table {
-    border-collapse: collapse;
-}
+table { border-collapse: collapse; }
 th, td {
     border: 1px solid #000;
     padding: 4px;
     white-space: nowrap;
 }
 th {
-    background: #FFFFFF;
-    color: #000000;
     font-weight: bold;
-    text-align: center;   /* 👈 CLAVE */
+    text-align: center;
 }
-.fija {
-    border-right: 3px solid #000;
-}
-.abajo {
+.borde-abajo {
     border-bottom: 3px solid #000;
+}
+.borde-derecha {
+    border-right: 3px solid #000;
 }
 </style>
 
-<div class="container">
-
-<!-- TABLA IZQUIERDA -->
+<div style="overflow:auto; max-height:80vh">
 <table>
-<thead>
-<tr class="abajo">
+<tr class="borde-abajo">
 <th>Nombre y Apellidos</th>
 <th>Categoría</th>
-<th class="fija">NIP</th>
-</tr>
-</thead>
-<tbody>
-"""
-
-for (nombre, categoria, nip), _ in tabla.iterrows():
-    html += f"<tr><td>{nombre}</td><td>{categoria}</td><td class='fija'>{nip}</td></tr>"
-
-html += """
-</tbody>
-</table>
-
-<!-- TABLA DERECHA -->
-<div style="overflow-x:auto">
-<table>
-<thead>
-<tr class="abajo">
+<th class="borde-derecha">NIP</th>
 """
 
 for d in tabla.columns:
@@ -193,10 +164,10 @@ for d in tabla.columns:
     else:
         html += f"<th>{d}</th>"
 
-html += "</tr></thead><tbody>"
+html += "</tr>"
 
-for fila in tabla.itertuples(index=False):
-    html += "<tr>"
+for (nombre, categoria, nip), fila in tabla.iterrows():
+    html += f"<tr><td>{nombre}</td><td>{categoria}</td><td class='borde-derecha'>{nip}</td>"
     for v in fila:
         e = estilo_turno(v)
         texto = "" if pd.isna(v) else v
@@ -208,11 +179,6 @@ for fila in tabla.itertuples(index=False):
         )
     html += "</tr>"
 
-html += """
-</tbody>
-</table>
-</div>
-</div>
-"""
+html += "</table></div>"
 
 st.markdown(html, unsafe_allow_html=True)
