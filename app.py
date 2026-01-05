@@ -140,4 +140,61 @@ with tab_general:
     html += "</tr>"
 
     # Filas
-    for (nombre, categoria, nip), fila in cuadrant
+    for (nombre, categoria, nip), fila in cuadrante.iterrows():
+        html += "<tr>"
+        html += f"<td>{nombre}</td>"
+        html += f"<td>{categoria}</td>"
+        html += f"<td>{nip}</td>"
+
+        for valor in fila:
+            texto = "" if pd.isna(valor) else valor
+            color = color_turno(valor)
+            html += f"<td style='background-color:{color}; text-align:center'>{texto}</td>"
+
+        html += "</tr>"
+
+    html += "</table></div>"
+
+    st.markdown(html, unsafe_allow_html=True)
+
+# --------------------------------------------------
+# PESTAÑA 2 – MI CUADRANTE
+# --------------------------------------------------
+with tab_personal:
+    st.subheader("📆 Mi cuadrante")
+
+    df_persona = df_mes[df_mes["nip"] == st.session_state.nip]
+
+    cal = calendar.Calendar(firstweekday=0)
+    semanas = cal.monthdatescalendar(2026, mes_sel)
+
+    for semana in semanas:
+        cols = st.columns(7)
+        for i, dia in enumerate(semana):
+            with cols[i]:
+                if dia.month != mes_sel:
+                    st.write("")
+                    continue
+
+                dato = df_persona[df_persona["fecha"] == pd.Timestamp(dia)]
+
+                if not dato.empty:
+                    turno = dato.iloc[0]["turno"]
+                    color = color_turno(turno)
+
+                    st.markdown(
+                        f"""
+                        <div style="
+                            background-color:{color};
+                            padding:10px;
+                            border-radius:8px;
+                            text-align:center;
+                            min-height:70px;
+                        ">
+                        <b>{dia.day}</b><br>{turno}
+                        </div>
+                        """,
+                        unsafe_allow_html=True
+                    )
+                else:
+                    st.markdown(f"<b>{dia.day}</b>", unsafe_allow_html=True)
