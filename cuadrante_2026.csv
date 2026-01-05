@@ -231,8 +231,8 @@ anio,mes,fecha,dia,nip,nombre,categoria,turno,tipo
 2026,1,2026-01-13,Martes,032026,Iago Blanco Muiño,Policía,Ts,Tiempo Sindical
 2026,1,2026-01-14,Miércoles,032026,Iago Blanco Muiño,Policía,1,Mañana
 2026,1,2026-01-15,Jueves,032026,Iago Blanco Muiño,Policía,3,Noche
-2026,1,2026-01-16,Viernes,032026,Iago Blanco Muiño,Policía,2Y3,Tarde y Noche
-2026,1,2026-01-17,Sábado,032026,Iago Blanco Muiño,Policía,2Y3,Tarde y Noche
+2026,1,2026-01-16,Viernes,032026,Iago Blanco Muiño,Policía,2y3,Tarde y Noche
+2026,1,2026-01-17,Sábado,032026,Iago Blanco Muiño,Policía,2y3,Tarde y Noche
 2026,1,2026-01-18,Domingo,032026,Iago Blanco Muiño,Policía,2,Tarde
 2026,1,2026-01-19,Lunes,032026,Iago Blanco Muiño,Policía,D,Descanso
 2026,1,2026-01-20,Martes,032026,Iago Blanco Muiño,Policía,1,Mañana
@@ -287,7 +287,7 @@ anio,mes,fecha,dia,nip,nombre,categoria,turno,tipo
 2026,1,2026-01-07,Miércoles,032028,Iker Díaz Villaverde,Policía,1,Mañana
 2026,1,2026-01-08,Jueves,032028,Iker Díaz Villaverde,Policía,3,Noche
 2026,1,2026-01-09,Viernes,032028,Iker Díaz Villaverde,Policía,3,Noche
-2026,1,2026-01-10,Sábado,032028,Iker Díaz Villaverde,Policía,2Y3,Tarde y Noche
+2026,1,2026-01-10,Sábado,032028,Iker Díaz Villaverde,Policía,2y3,Tarde y Noche
 2026,1,2026-01-11,Domingo,032028,Iker Díaz Villaverde,Policía,2,Tarde
 2026,1,2026-01-12,Lunes,032028,Iker Díaz Villaverde,Policía,D,Descanso
 2026,1,2026-01-13,Martes,032028,Iker Díaz Villaverde,Policía,D,Descanso
