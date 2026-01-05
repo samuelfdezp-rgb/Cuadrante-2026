@@ -126,7 +126,7 @@ def estilo_turno(turno):
         "JuB":    {"bg": "#FFFFFF", "fg": "#FF0000", "bold": True},
         "JuC":    {"bg": "#FFFFFF", "fg": "#FF0000", "bold": True},
         "Curso":  {"bg": "#FFFFFF", "fg": "#FF0000", "bold": True},
-        "Baja":   {"bg": "#FFFFFF", "fg": "#FF0000", "bold": True},
+        "BAJA":   {"bg": "#FFFFFF", "fg": "#FF0000", "bold": True},
 
         # Vacaciones
         "Vac": {"bg": "#FFFFFF", "fg": "#FF0000", "bold": True, "italic": True},
