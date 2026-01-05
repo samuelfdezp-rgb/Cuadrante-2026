@@ -1,7 +1,7 @@
 import streamlit as st
 import pandas as pd
 import calendar
-from datetime import datetime
+from datetime import datetime, date
 
 # ==================================================
 # CONFIGURACIÓN GENERAL
@@ -74,33 +74,35 @@ df_mes = df[df["mes"] == mes_sel].copy()
 df_mes["dia_mes"] = df_mes["fecha"].dt.day
 
 # ==================================================
-# ESTILOS DE TURNO (COMPLETO)
+# DÍAS ESPECIALES
+# ==================================================
+festivos = {
+    date(2026, 1, 1),
+    date(2026, 1, 6),
+}
+
+def es_dia_especial(d):
+    return d in festivos or d.weekday() == 6  # domingo
+
+# ==================================================
+# ESTILOS DE TURNO (YA DEFINIDOS)
 # ==================================================
 def estilo_turno(turno):
     t = "" if pd.isna(turno) else str(turno)
 
     estilos = {
-        # Mañana / Laborable
-        "L": {"bg": "#BDD7EE", "fg": "#0070C0"},
         "1": {"bg": "#BDD7EE", "fg": "#0070C0"},
-
-        # Tarde
         "2": {"bg": "#FFE699", "fg": "#0070C0"},
-
-        # Noche
         "3": {"bg": "#F8CBAD", "fg": "#FF0000"},
 
-        # Extras
         "1ex": {"bg": "#00B050", "fg": "#FF0000", "bold": True},
         "2ex": {"bg": "#00B050", "fg": "#FF0000", "bold": True},
         "3ex": {"bg": "#00B050", "fg": "#FF0000", "bold": True},
 
-        # Combinados normales
         "1y2": {"bg": "#BDD7EE", "fg": "#FF0000"},
         "1y3": {"bg": "#BDD7EE", "fg": "#FF0000"},
         "2y3": {"bg": "#BDD7EE", "fg": "#FF0000"},
 
-        # Combinados con extras
         "1|2ex": {"bg": "#00B050", "fg": "#FF0000", "bold": True},
         "1|3ex": {"bg": "#00B050", "fg": "#FF0000", "bold": True},
         "2|1ex": {"bg": "#00B050", "fg": "#FF0000", "bold": True},
@@ -111,95 +113,76 @@ def estilo_turno(turno):
         "1y3ex": {"bg": "#00B050", "fg": "#FF0000", "bold": True},
         "2y3ex": {"bg": "#00B050", "fg": "#FF0000", "bold": True},
 
-        # Descansos
-        "D":   {"bg": "#C6E0B4", "fg": "#00B050"},
-        "Dc":  {"bg": "#C6E0B4", "fg": "#00B050"},
+        "D": {"bg": "#C6E0B4", "fg": "#00B050"},
+        "Dc": {"bg": "#C6E0B4", "fg": "#00B050"},
         "Dcv": {"bg": "#C6E0B4", "fg": "#00B050"},
         "Dcc": {"bg": "#C6E0B4", "fg": "#00B050"},
         "Dct": {"bg": "#C6E0B4", "fg": "#00B050"},
         "Dcj": {"bg": "#C6E0B4", "fg": "#00B050"},
 
-        # Incidencias
-        "Ts":     {"bg": "#FFFFFF", "fg": "#FF0000", "bold": True},
-        "perm":   {"bg": "#FFFFFF", "fg": "#FF0000", "bold": True},
-        "Indisp": {"bg": "#FFFFFF", "fg": "#FF0000", "bold": True},
-        "JuB":    {"bg": "#FFFFFF", "fg": "#FF0000", "bold": True},
-        "JuC":    {"bg": "#FFFFFF", "fg": "#FF0000", "bold": True},
-        "Curso":  {"bg": "#FFFFFF", "fg": "#FF0000", "bold": True},
-        "BAJA":   {"bg": "#FFFFFF", "fg": "#FF0000", "bold": True},
-
-        # Vacaciones
         "Vac": {"bg": "#FFFFFF", "fg": "#FF0000", "bold": True, "italic": True},
-
-        # Asuntos particulares
         "AP": {"bg": "#FFFFFF", "fg": "#0070C0", "bold": True},
+        "Ts": {"bg": "#FFFFFF", "fg": "#FF0000", "bold": True},
+        "Perm": {"bg": "#FFFFFF", "fg": "#FF0000", "bold": True},
+        "Indisp": {"bg": "#FFFFFF", "fg": "#FF0000", "bold": True},
+        "JuB": {"bg": "#FFFFFF", "fg": "#FF0000", "bold": True},
+        "JuC": {"bg": "#FFFFFF", "fg": "#FF0000", "bold": True},
+        "Curso": {"bg": "#FFFFFF", "fg": "#FF0000", "bold": True},
+        "Baja": {"bg": "#FFFFFF", "fg": "#FF0000", "bold": True},
     }
 
     return estilos.get(t, {"bg": "#FFFFFF", "fg": "#000000"})
 
 # ==================================================
-# PESTAÑAS
+# PESTAÑA CUADRANTE GENERAL
 # ==================================================
-tab_general, tab_personal = st.tabs(["📋 Cuadrante general", "📆 Mi cuadrante"])
+st.subheader("📋 Cuadrante general")
 
-# ==================================================
-# CUADRANTE GENERAL (COMPACTO)
-# ==================================================
-with tab_general:
-    orden = df_mes[["nombre", "categoria", "nip"]].drop_duplicates()
+orden = df_mes[["nombre", "categoria", "nip"]].drop_duplicates()
 
-    cuadrante = df_mes.pivot_table(
-        index=["nombre", "categoria", "nip"],
-        columns="dia_mes",
-        values="turno",
-        aggfunc="first"
-    ).reindex(pd.MultiIndex.from_frame(orden))
+cuadrante = df_mes.pivot_table(
+    index=["nombre", "categoria", "nip"],
+    columns="dia_mes",
+    values="turno",
+    aggfunc="first"
+).reindex(pd.MultiIndex.from_frame(orden))
 
-    html = "<div style='overflow-x:auto'><table border='1' style='border-collapse:collapse;font-size:11px'>"
-    html += "<tr><th>Nombre</th><th>Cat.</th><th>NIP</th>"
-    for d in cuadrante.columns:
-        html += f"<th style='width:28px'>{d}</th>"
+html = """
+<div style="overflow:auto; max-height:80vh">
+<table border="1" style="border-collapse:collapse;font-size:11px;table-layout:fixed;width:100%">
+<thead>
+<tr>
+<th style="position:sticky;left:0;top:0;background:#DDD;z-index:3">Nombre</th>
+<th style="position:sticky;left:150px;top:0;background:#DDD;z-index:3">Cat.</th>
+<th style="position:sticky;left:230px;top:0;background:#DDD;z-index:3">NIP</th>
+"""
+
+for d in cuadrante.columns:
+    fecha = date(2026, mes_sel, d)
+    if es_dia_especial(fecha):
+        html += f"<th style='top:0;position:sticky;background:#92D050;color:#FF0000;font-weight:bold'>{d}</th>"
+    else:
+        html += f"<th style='top:0;position:sticky;background:#FFFFFF;color:#000000;font-weight:bold'>{d}</th>"
+
+html += "</tr></thead><tbody>"
+
+for (nombre, categoria, nip), fila in cuadrante.iterrows():
+    html += "<tr>"
+    html += f"<td style='position:sticky;left:0;background:#FFF;white-space:nowrap'>{nombre}</td>"
+    html += f"<td style='position:sticky;left:150px;background:#FFF'>{categoria}</td>"
+    html += f"<td style='position:sticky;left:230px;background:#FFF'>{nip}</td>"
+
+    for d, v in zip(cuadrante.columns, fila):
+        e = estilo_turno(v)
+        texto = "" if pd.isna(v) else v
+        html += (
+            f"<td style='background:{e['bg']};color:{e['fg']};"
+            f"{'font-weight:bold;' if e.get('bold') else ''}"
+            f"{'font-style:italic;' if e.get('italic') else ''}"
+            f"text-align:center'>{texto}</td>"
+        )
     html += "</tr>"
 
-    for (nombre, categoria, nip), fila in cuadrante.iterrows():
-        html += f"<tr><td>{nombre}</td><td>{categoria}</td><td>{nip}</td>"
-        for v in fila:
-            e = estilo_turno(v)
-            texto = "" if pd.isna(v) else v
-            html += (
-                f"<td style='background:{e['bg']};color:{e['fg']};"
-                f"{'font-weight:bold;' if e.get('bold') else ''}"
-                f"{'font-style:italic;' if e.get('italic') else ''}"
-                f"text-align:center'>{texto}</td>"
-            )
-        html += "</tr>"
+html += "</tbody></table></div>"
 
-    html += "</table></div>"
-    st.markdown(html, unsafe_allow_html=True)
-
-# ==================================================
-# MI CUADRANTE
-# ==================================================
-with tab_personal:
-    df_p = df_mes[df_mes["nip"] == st.session_state.nip]
-    cal = calendar.Calendar()
-    for semana in cal.monthdatescalendar(2026, mes_sel):
-        cols = st.columns(7)
-        for i, d in enumerate(semana):
-            with cols[i]:
-                if d.month != mes_sel:
-                    st.write("")
-                    continue
-                dato = df_p[df_p["fecha"] == pd.Timestamp(d)]
-                if not dato.empty:
-                    t = dato.iloc[0]["turno"]
-                    e = estilo_turno(t)
-                    st.markdown(
-                        f"<div style='background:{e['bg']};color:{e['fg']};"
-                        f"{'font-weight:bold;' if e.get('bold') else ''}"
-                        f"{'font-style:italic;' if e.get('italic') else ''}"
-                        f"text-align:center;border-radius:6px'>{d.day}<br>{t}</div>",
-                        unsafe_allow_html=True
-                    )
-                else:
-                    st.markdown(f"<b>{d.day}</b>", unsafe_allow_html=True)
+st.markdown(html, unsafe_allow_html=True)
