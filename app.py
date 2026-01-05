@@ -132,6 +132,70 @@ tab_general, tab_mis_turnos = st.tabs(
 )
 
 # ==================================================
+# TAB 1 — CUADRANTE GENERAL (RESTAURADO)
+# ==================================================
+with tab_general:
+    st.subheader("📋 Cuadrante general")
+
+    orden = df_mes[["nombre", "categoria", "nip"]].drop_duplicates()
+
+    tabla = df_mes.pivot_table(
+        index=["nombre", "categoria", "nip"],
+        columns="dia",
+        values="turno",
+        aggfunc="first"
+    ).reindex(pd.MultiIndex.from_frame(orden))
+
+    html = """
+    <style>
+    table { border-collapse: collapse; }
+    th, td {
+        border: 1px solid #000;
+        padding: 4px;
+        white-space: nowrap;
+    }
+    th {
+        font-weight: bold;
+        text-align: center;
+    }
+    .borde-abajo { border-bottom: 3px solid #000; }
+    .borde-derecha { border-right: 3px solid #000; }
+    </style>
+
+    <div style="overflow:auto; max-height:80vh">
+    <table>
+    <tr class="borde-abajo">
+    <th>Nombre y Apellidos</th>
+    <th>Categoría</th>
+    <th class="borde-derecha">NIP</th>
+    """
+
+    for d in tabla.columns:
+        fecha = date(2026, mes, d)
+        if es_especial(fecha):
+            html += f"<th style='background:#92D050;color:#FF0000'>{d}</th>"
+        else:
+            html += f"<th>{d}</th>"
+
+    html += "</tr>"
+
+    for (nombre, categoria, nip), fila in tabla.iterrows():
+        html += f"<tr><td>{nombre}</td><td>{categoria}</td><td class='borde-derecha'>{nip}</td>"
+        for v in fila:
+            e = estilo_turno(v)
+            texto = "" if pd.isna(v) else v
+            html += (
+                f"<td style='background:{e['bg']};color:{e['fg']};"
+                f"{'font-weight:bold;' if e.get('bold') else ''}"
+                f"{'font-style:italic;' if e.get('italic') else ''}"
+                f"text-align:center'>{texto}</td>"
+            )
+        html += "</tr>"
+
+    html += "</table></div>"
+    st.markdown(html, unsafe_allow_html=True)
+
+# ==================================================
 # TAB MIS TURNOS (PULIDO)
 # ==================================================
 with tab_mis_turnos:
