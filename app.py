@@ -72,7 +72,29 @@ def es_especial(fecha):
     return fecha in festivos or fecha.weekday() == 6
 
 # ==================================================
-# ESTILOS DE TURNO (ÚNICO Y COMPARTIDO)
+# MAPEO DE TURNOS A TEXTO
+# ==================================================
+NOMBRES_TURNO = {
+    "1": "Mañana",
+    "2": "Tarde",
+    "3": "Noche",
+    "L": "Laborable",
+    "D": "Descanso",
+    "Vac": "Vacaciones",
+    "Perm": "Permiso",
+    "BAJA": "Baja",
+    "Ts": "Tiempo sindical",
+    "AP": "Asuntos particulares",
+    "1ex": "Mañana extra",
+    "2ex": "Tarde extra",
+    "3ex": "Noche extra",
+}
+
+def nombre_turno(codigo):
+    return NOMBRES_TURNO.get(codigo, codigo)
+
+# ==================================================
+# ESTILO DE TURNOS (COLORES)
 # ==================================================
 def estilo_turno(turno):
     if pd.isna(turno):
@@ -85,38 +107,22 @@ def estilo_turno(turno):
         t = "Perm"
 
     estilos = {
-        "L": {"bg": "#BDD7EE", "fg": "#0070C0"},
-        "1": {"bg": "#BDD7EE", "fg": "#0070C0"},
-        "2": {"bg": "#FFE699", "fg": "#0070C0"},
-        "3": {"bg": "#F8CBAD", "fg": "#FF0000"},
-
-        "1ex": {"bg": "#00B050", "fg": "#FF0000", "bold": True},
-        "2ex": {"bg": "#00B050", "fg": "#FF0000", "bold": True},
-        "3ex": {"bg": "#00B050", "fg": "#FF0000", "bold": True},
-
-        "1y2": {"bg": "#BDD7EE", "fg": "#FF0000"},
-        "1y3": {"bg": "#BDD7EE", "fg": "#FF0000"},
-        "2y3": {"bg": "#BDD7EE", "fg": "#FF0000"},
-
-        "D": {"bg": "#C6E0B4", "fg": "#00B050"},
-        "Dc": {"bg": "#C6E0B4", "fg": "#00B050"},
-        "Dcv": {"bg": "#C6E0B4", "fg": "#00B050"},
-        "Dcc": {"bg": "#C6E0B4", "fg": "#00B050"},
-        "Dct": {"bg": "#C6E0B4", "fg": "#00B050"},
-        "Dcj": {"bg": "#C6E0B4", "fg": "#00B050"},
-
-        "Perm": {"bg": "#FFFFFF", "fg": "#FF0000", "bold": True},
-        "Ts": {"bg": "#FFFFFF", "fg": "#FF0000", "bold": True},
-        "Indisp": {"bg": "#FFFFFF", "fg": "#FF0000", "bold": True},
-        "JuB": {"bg": "#FFFFFF", "fg": "#FF0000", "bold": True},
-        "JuC": {"bg": "#FFFFFF", "fg": "#FF0000", "bold": True},
-        "Curso": {"bg": "#FFFFFF", "fg": "#FF0000", "bold": True},
-        "BAJA": {"bg": "#FFFFFF", "fg": "#FF0000", "bold": True},
-
-        "Vac": {"bg": "#FFFFFF", "fg": "#FF0000", "bold": True, "italic": True},
-        "AP": {"bg": "#FFFFFF", "fg": "#0070C0", "bold": True},
+        "L": ("#BDD7EE", "#0070C0"),
+        "1": ("#BDD7EE", "#0070C0"),
+        "2": ("#FFE699", "#0070C0"),
+        "3": ("#F8CBAD", "#FF0000"),
+        "1ex": ("#00B050", "#FF0000"),
+        "2ex": ("#00B050", "#FF0000"),
+        "3ex": ("#00B050", "#FF0000"),
+        "D": ("#C6E0B4", "#00B050"),
+        "Vac": ("#FFFFFF", "#FF0000"),
+        "Perm": ("#FFFFFF", "#FF0000"),
+        "BAJA": ("#FFFFFF", "#FF0000"),
+        "AP": ("#FFFFFF", "#0070C0"),
     }
-    return estilos.get(t, {"bg": "#FFFFFF", "fg": "#000000"})
+
+    bg, fg = estilos.get(t, ("#FFFFFF", "#000000"))
+    return {"bg": bg, "fg": fg}
 
 # ==================================================
 # PESTAÑAS
@@ -126,71 +132,7 @@ tab_general, tab_mis_turnos = st.tabs(
 )
 
 # ==================================================
-# TAB 1 — CUADRANTE GENERAL (RESTAURADO)
-# ==================================================
-with tab_general:
-    st.subheader("📋 Cuadrante general")
-
-    orden = df_mes[["nombre", "categoria", "nip"]].drop_duplicates()
-
-    tabla = df_mes.pivot_table(
-        index=["nombre", "categoria", "nip"],
-        columns="dia",
-        values="turno",
-        aggfunc="first"
-    ).reindex(pd.MultiIndex.from_frame(orden))
-
-    html = """
-    <style>
-    table { border-collapse: collapse; }
-    th, td {
-        border: 1px solid #000;
-        padding: 4px;
-        white-space: nowrap;
-    }
-    th {
-        font-weight: bold;
-        text-align: center;
-    }
-    .borde-abajo { border-bottom: 3px solid #000; }
-    .borde-derecha { border-right: 3px solid #000; }
-    </style>
-
-    <div style="overflow:auto; max-height:80vh">
-    <table>
-    <tr class="borde-abajo">
-    <th>Nombre y Apellidos</th>
-    <th>Categoría</th>
-    <th class="borde-derecha">NIP</th>
-    """
-
-    for d in tabla.columns:
-        fecha = date(2026, mes, d)
-        if es_especial(fecha):
-            html += f"<th style='background:#92D050;color:#FF0000'>{d}</th>"
-        else:
-            html += f"<th>{d}</th>"
-
-    html += "</tr>"
-
-    for (nombre, categoria, nip), fila in tabla.iterrows():
-        html += f"<tr><td>{nombre}</td><td>{categoria}</td><td class='borde-derecha'>{nip}</td>"
-        for v in fila:
-            e = estilo_turno(v)
-            texto = "" if pd.isna(v) else v
-            html += (
-                f"<td style='background:{e['bg']};color:{e['fg']};"
-                f"{'font-weight:bold;' if e.get('bold') else ''}"
-                f"{'font-style:italic;' if e.get('italic') else ''}"
-                f"text-align:center'>{texto}</td>"
-            )
-        html += "</tr>"
-
-    html += "</table></div>"
-    st.markdown(html, unsafe_allow_html=True)
-
-# ==================================================
-# TAB 2 — MIS TURNOS
+# TAB MIS TURNOS (PULIDO)
 # ==================================================
 with tab_mis_turnos:
     st.subheader("📆 Mis turnos")
@@ -224,34 +166,45 @@ with tab_mis_turnos:
                     st.write("")
                     continue
 
+                especial = es_especial(d)
+                cabecera_style = (
+                    "background:#92D050;color:#FF0000;"
+                    if especial else
+                    "background:#FFFFFF;color:#000000;"
+                )
+
                 fila = df_user[df_user["fecha"] == pd.Timestamp(d)]
-                if fila.empty:
-                    st.markdown(f"**{d.day}**")
-                    continue
 
-                turno = fila.iloc[0]["turno"]
-                partes = separar_turnos(turno)
+                html = (
+                    f"<div style='border:1px solid #999;"
+                    f"border-radius:6px;'>"
+                    f"<div style='{cabecera_style}"
+                    f"font-weight:bold;text-align:center;padding:4px'>"
+                    f"{d.day}</div>"
+                )
 
-                html = f"<div style='border:1px solid #999;border-radius:6px'>"
-                html += f"<div style='text-align:center;font-weight:bold'>{d.day}</div>"
+                if not fila.empty:
+                    turno = fila.iloc[0]["turno"]
+                    partes = separar_turnos(turno)
 
-                altura = 100 // len(partes)
+                    for p in partes:
+                        estilo = estilo_turno(p)
+                        comps = compañeros(d.day, p)
+                        nombre = nombre_turno(p)
 
-                for p in partes:
-                    estilo = estilo_turno(p)
-                    comps = compañeros(d.day, p)
+                        html += (
+                            f"<div style='background:{estilo['bg']};"
+                            f"color:{estilo['fg']};"
+                            f"text-align:center;"
+                            f"padding:6px;font-size:12px'>"
+                            f"<b>{nombre}</b><br>"
+                        )
 
-                    html += (
-                        f"<div style='background:{estilo['bg']};color:{estilo['fg']};"
-                        f"padding:4px;height:{altura}px;font-size:12px'>"
-                        f"<b>{p}</b><br>"
-                    )
+                        if p not in ["D", "Vac", "Perm", "BAJA"]:
+                            for c in comps:
+                                html += f"{c}<br>"
 
-                    if p not in ["D", "Vac", "Perm", "BAJA"]:
-                        for c in comps:
-                            html += f"{c}<br>"
-
-                    html += "</div>"
+                        html += "</div>"
 
                 html += "</div>"
                 st.markdown(html, unsafe_allow_html=True)
