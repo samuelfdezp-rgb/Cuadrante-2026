@@ -308,3 +308,105 @@ with tab_mis_turnos:
 
                 html += "</div>"
                 st.markdown(html, unsafe_allow_html=True)
+
+# ==================================================
+# TAB 3 — RESUMEN
+# ==================================================
+with st.tabs(["📋 Cuadrante general", "📆 Mis turnos", "📊 Resumen"])[2]:
+
+    st.subheader("📊 Resumen año 2026")
+
+    df_user_all = df[df["nip"] == st.session_state.nip].copy()
+    nombre_usuario = df_user_all["nombre"].iloc[0]
+    nip_usuario = df_user_all["nip"].iloc[0]
+
+    st.markdown(
+        f"<h3 style='text-align:center'>RESUMEN AÑO 2026<br>"
+        f"{nombre_usuario} – {nip_usuario}</h3>",
+        unsafe_allow_html=True
+    )
+
+    # Horas por turno
+    HORAS = {
+        "1": 7.5, "2": 7.5, "3": 10,
+        "1y2": 15, "1y3": 17.5, "2y3": 17.5,
+        "1ex": 7.5, "2ex": 7.5, "3ex": 10,
+    }
+
+    filas = [
+        "Mañanas", "Tardes", "Noches", "Vacaciones", "APs", "Ferias",
+        "Días de Trabajo Sindical", "Días de Baja", "Días de Juicio",
+        "Permisos", "Cursos", "Descansos compensados",
+        "Indisposiciones", "Festivos trabajados",
+        "Fines de semana trabajados", "Horas trabajadas",
+        "1ex", "2ex", "3ex"
+    ]
+
+    resumen = {f: [0]*12 for f in filas}
+
+    for _, r in df_user_all.iterrows():
+        mes = int(r["mes"]) - 1
+        turno = str(r["turno"])
+        fecha = r["fecha"]
+
+        # Turnos simples
+        if "1" in turno:
+            resumen["Mañanas"][mes] += 1
+        if "2" in turno:
+            resumen["Tardes"][mes] += 1
+        if "3" in turno:
+            resumen["Noches"][mes] += 1
+
+        if turno == "Vac":
+            resumen["Vacaciones"][mes] += 1
+        if turno == "AP":
+            resumen["APs"][mes] += 1
+        if turno == "Ts":
+            resumen["Días de Trabajo Sindical"][mes] += 1
+        if turno == "BAJA":
+            resumen["Días de Baja"][mes] += 1
+        if turno in ["JuB", "JuC"]:
+            resumen["Días de Juicio"][mes] += 1
+        if turno == "Perm":
+            resumen["Permisos"][mes] += 1
+        if turno == "Curso":
+            resumen["Cursos"][mes] += 1
+        if turno.startswith("Dc"):
+            resumen["Descansos compensados"][mes] += 1
+        if turno == "Indisp":
+            resumen["Indisposiciones"][mes] += 1
+
+        # Festivos trabajados
+        if es_especial(fecha) and turno not in ["D", "Vac", "Perm", "BAJA"]:
+            resumen["Festivos trabajados"][mes] += 1
+
+        # Fin de semana
+        if fecha.weekday() == 5:  # sábado
+            resumen["Fines de semana trabajados"][mes] += 0.5
+        if fecha.weekday() == 6:  # domingo
+            resumen["Fines de semana trabajados"][mes] += 0.5
+
+        # Horas
+        resumen["Horas trabajadas"][mes] += HORAS.get(turno, 0)
+
+        # Extras
+        if turno == "1ex":
+            resumen["1ex"][mes] += 1
+        if turno == "2ex":
+            resumen["2ex"][mes] += 1
+        if turno == "3ex":
+            resumen["3ex"][mes] += 1
+
+    # Construcción de tabla
+    meses_nombres = [
+        "Enero","Febrero","Marzo","Abril","Mayo","Junio",
+        "Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"
+    ]
+
+    df_resumen = pd.DataFrame(
+        {m: [resumen[f][i] for f in filas] for i, m in enumerate(meses_nombres)},
+        index=filas
+    )
+    df_resumen["Total"] = df_resumen.sum(axis=1)
+
+    st.dataframe(df_resumen, use_container_width=True)
