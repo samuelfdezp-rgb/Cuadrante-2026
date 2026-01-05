@@ -312,8 +312,7 @@ with tab_mis_turnos:
 # ==================================================
 # TAB 3 — RESUMEN
 # ==================================================
-with st.tabs(["📋 Cuadrante general", "📆 Mis turnos", "📊 Resumen"])[2]:
-
+with tab_Resumen:
     st.subheader("📊 Resumen año 2026")
 
     df_user_all = df[df["nip"] == st.session_state.nip].copy()
