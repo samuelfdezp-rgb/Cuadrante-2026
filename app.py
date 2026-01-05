@@ -106,20 +106,33 @@ with tab_general:
     # Datos solo del mes seleccionado
     df_mes = df[df["mes"] == mes_sel].copy()
 
-    # Crear columna día del mes (1–31)
+    # Crear día del mes
     df_mes["dia_mes"] = df_mes["fecha"].dt.day
 
-    # Pivotar: filas = persona, columnas = día
-    cuadrante = (
-        df_mes
-        .pivot_table(
-            index="nombre",
-            columns="dia_mes",
-            values="turno",
-            aggfunc="first"
-        )
-        .sort_index()
+    # Crear columna identificador visible
+    df_mes["persona"] = (
+        df_mes["nombre"]
+        + " | "
+        + df_mes["nip"]
     )
+
+    # Obtener orden original según CSV
+    orden_personas = (
+        df_mes[["persona"]]
+        .drop_duplicates()
+        .reset_index(drop=True)
+    )
+
+    # Pivotar sin ordenar alfabéticamente
+    cuadrante = df_mes.pivot_table(
+        index="persona",
+        columns="dia_mes",
+        values="turno",
+        aggfunc="first"
+    )
+
+    # Reaplicar orden original
+    cuadrante = cuadrante.reindex(orden_personas["persona"])
 
     # Ordenar columnas por día
     cuadrante = cuadrante.reindex(sorted(cuadrante.columns), axis=1)
