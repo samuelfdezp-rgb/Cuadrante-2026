@@ -94,7 +94,7 @@ def nombre_turno(codigo):
     return NOMBRES_TURNO.get(codigo, codigo)
 
 # ==================================================
-# ESTILO DE TURNOS (COLORES)
+# ESTILO DE TURNOS (DEFINITIVO)
 # ==================================================
 def estilo_turno(turno):
     if pd.isna(turno):
@@ -107,22 +107,58 @@ def estilo_turno(turno):
         t = "Perm"
 
     estilos = {
-        "L": ("#BDD7EE", "#0070C0"),
-        "1": ("#BDD7EE", "#0070C0"),
-        "2": ("#FFE699", "#0070C0"),
-        "3": ("#F8CBAD", "#FF0000"),
-        "1ex": ("#00B050", "#FF0000"),
-        "2ex": ("#00B050", "#FF0000"),
-        "3ex": ("#00B050", "#FF0000"),
-        "D": ("#C6E0B4", "#00B050"),
-        "Vac": ("#FFFFFF", "#FF0000"),
-        "Perm": ("#FFFFFF", "#FF0000"),
-        "BAJA": ("#FFFFFF", "#FF0000"),
-        "AP": ("#FFFFFF", "#0070C0"),
+        # Laborable / simples
+        "L":   {"bg": "#BDD7EE", "fg": "#0070C0"},
+        "1":   {"bg": "#BDD7EE", "fg": "#0070C0"},
+        "2":   {"bg": "#FFE699", "fg": "#0070C0"},
+        "3":   {"bg": "#F8CBAD", "fg": "#FF0000"},
+
+        # Extras
+        "1ex": {"bg": "#00B050", "fg": "#FF0000", "bold": True},
+        "2ex": {"bg": "#00B050", "fg": "#FF0000", "bold": True},
+        "3ex": {"bg": "#00B050", "fg": "#FF0000", "bold": True},
+
+        # Dobles
+        "1y2": {"bg": "#BDD7EE", "fg": "#FF0000"},
+        "1y3": {"bg": "#BDD7EE", "fg": "#FF0000"},
+        "2y3": {"bg": "#BDD7EE", "fg": "#FF0000"},
+
+        # Dobles + extra
+        "1|2ex": {"bg": "#00B050", "fg": "#FF0000", "bold": True},
+        "1|3ex": {"bg": "#00B050", "fg": "#FF0000", "bold": True},
+        "2|1ex": {"bg": "#00B050", "fg": "#FF0000", "bold": True},
+        "2|3ex": {"bg": "#00B050", "fg": "#FF0000", "bold": True},
+        "3|1ex": {"bg": "#00B050", "fg": "#FF0000", "bold": True},
+        "3|2ex": {"bg": "#00B050", "fg": "#FF0000", "bold": True},
+        "1y2ex": {"bg": "#00B050", "fg": "#FF0000", "bold": True},
+        "1y3ex": {"bg": "#00B050", "fg": "#FF0000", "bold": True},
+        "2y3ex": {"bg": "#00B050", "fg": "#FF0000", "bold": True},
+
+        # Descansos
+        "D":   {"bg": "#C6E0B4", "fg": "#00B050"},
+        "Dc":  {"bg": "#C6E0B4", "fg": "#00B050"},
+        "Dcv": {"bg": "#C6E0B4", "fg": "#00B050"},
+        "Dcc": {"bg": "#C6E0B4", "fg": "#00B050"},
+        "Dct": {"bg": "#C6E0B4", "fg": "#00B050"},
+        "Dcj": {"bg": "#C6E0B4", "fg": "#00B050"},
+
+        # Situaciones especiales
+        "Ts":     {"bg": "#FFFFFF", "fg": "#FF0000", "bold": True},
+        "Perm":   {"bg": "#FFFFFF", "fg": "#FF0000", "bold": True},
+        "Indisp": {"bg": "#FFFFFF", "fg": "#FF0000", "bold": True},
+        "JuB":    {"bg": "#FFFFFF", "fg": "#FF0000", "bold": True},
+        "JuC":    {"bg": "#FFFFFF", "fg": "#FF0000", "bold": True},
+        "Curso":  {"bg": "#FFFFFF", "fg": "#FF0000", "bold": True},
+        "BAJA":   {"bg": "#FFFFFF", "fg": "#FF0000", "bold": True},
+
+        # Vacaciones
+        "Vac": {"bg": "#FFFFFF", "fg": "#FF0000", "bold": True, "italic": True},
+
+        # Asuntos particulares
+        "AP": {"bg": "#FFFFFF", "fg": "#0070C0", "bold": True},
     }
 
-    bg, fg = estilos.get(t, ("#FFFFFF", "#000000"))
-    return {"bg": bg, "fg": fg}
+    return estilos.get(t, {"bg": "#FFFFFF", "fg": "#000000"})
 
 # ==================================================
 # PESTAÑAS
@@ -132,7 +168,7 @@ tab_general, tab_mis_turnos = st.tabs(
 )
 
 # ==================================================
-# TAB 1 — CUADRANTE GENERAL (RESTAURADO)
+# TAB 1 — CUADRANTE GENERAL
 # ==================================================
 with tab_general:
     st.subheader("📋 Cuadrante general")
@@ -196,7 +232,7 @@ with tab_general:
     st.markdown(html, unsafe_allow_html=True)
 
 # ==================================================
-# TAB MIS TURNOS (PULIDO)
+# TAB 2 — MIS TURNOS (NO TOCADO)
 # ==================================================
 with tab_mis_turnos:
     st.subheader("📆 Mis turnos")
