@@ -4,18 +4,15 @@ import calendar
 from datetime import datetime
 
 # --------------------------------------------------
-# CONFIGURACIÓN
+# CONFIGURACIÓN GENERAL
 # --------------------------------------------------
-ADMIN_NIP = "ADMIN"
-
-DATA_FILE = "cuadrante_2026.csv"
-EXCEL_FILE = "01 - Cuadrante Enero 2026.xlsx"
-EXCEL_SHEET = "Enero 2026"
-
 st.set_page_config(
     page_title="Cuadrante 2026",
     layout="wide"
 )
+
+ADMIN_NIP = "ADMIN"
+DATA_FILE = "cuadrante_2026.csv"
 
 # --------------------------------------------------
 # SESIÓN
@@ -25,9 +22,8 @@ if "nip" not in st.session_state:
     st.session_state.is_admin = False
 
 # --------------------------------------------------
-# CARGA DE DATOS CSV
+# CARGA DE DATOS
 # --------------------------------------------------
-@st.cache_data
 def load_data():
     return pd.read_csv(DATA_FILE, parse_dates=["fecha"])
 
@@ -42,22 +38,13 @@ if st.session_state.nip is None:
     raw_input = st.text_input("Introduce tu NIP").strip()
 
     if st.button("Entrar"):
-        # Caso ADMIN (sin normalización)
         if raw_input == ADMIN_NIP:
             st.session_state.nip = ADMIN_NIP
             st.session_state.is_admin = True
             st.rerun()
 
-        # Caso trabajador: normalizamos a 6 dígitos
         nip_input = raw_input.zfill(6)
-
-        nips_validos = (
-            df["nip"]
-            .astype(str)
-            .str.strip()
-            .str.zfill(6)
-            .unique()
-        )
+        nips_validos = df["nip"].astype(str).str.zfill(6).unique()
 
         if nip_input in nips_validos:
             st.session_state.nip = nip_input
@@ -69,7 +56,7 @@ if st.session_state.nip is None:
     st.stop()
 
 # --------------------------------------------------
-# CABECERA PRINCIPAL
+# CABECERA
 # --------------------------------------------------
 st.title("📅 Cuadrante 2026")
 
@@ -79,7 +66,7 @@ if st.button("🚪 Cerrar sesión"):
     st.rerun()
 
 # --------------------------------------------------
-# SELECTOR DE MES (para CSV)
+# SELECTOR DE MES
 # --------------------------------------------------
 meses = sorted(df["mes"].unique())
 mes_sel = st.selectbox(
@@ -88,7 +75,7 @@ mes_sel = st.selectbox(
     format_func=lambda x: datetime(2026, x, 1).strftime("%B 2026")
 )
 
-df_mes = df[df["mes"] == mes_sel]
+df_mes = df[df["mes"] == mes_sel].copy()
 
 # --------------------------------------------------
 # PESTAÑAS
@@ -98,25 +85,34 @@ tab_general, tab_personal = st.tabs(
 )
 
 # --------------------------------------------------
-# PESTAÑA 1 – CUADRANTE GENERAL (EXCEL VISUAL)
+# FUNCIÓN DE COLORES
+# --------------------------------------------------
+def color_turno(turno):
+    colores = {
+        "1": "#B7DEE8",      # Mañana
+        "2": "#FCD5B4",      # Tarde
+        "3": "#D9D2E9",      # Noche
+        "D": "#E7E6E6",      # Descanso
+        "Vac": "#C6EFCE",    # Vacaciones
+        "Baja": "#F4CCCC",   # Baja
+        "Ts": "#FFF2CC",     # Tiempo sindical
+    }
+    return colores.get(str(turno), "#FFFFFF")
+
+# --------------------------------------------------
+# PESTAÑA 1 – CUADRANTE GENERAL
 # --------------------------------------------------
 with tab_general:
-    st.subheader("📋 Cuadrante general (generado)")
+    st.subheader("📋 Cuadrante general")
 
-    # Datos solo del mes seleccionado
-    df_mes = df[df["mes"] == mes_sel].copy()
-
-    # Día del mes
     df_mes["dia_mes"] = df_mes["fecha"].dt.day
 
-    # Obtener orden original según aparecen en el CSV
     orden = (
         df_mes[["nombre", "categoria", "nip"]]
         .drop_duplicates()
         .reset_index(drop=True)
     )
 
-    # Pivotar usando índice múltiple
     cuadrante = df_mes.pivot_table(
         index=["nombre", "categoria", "nip"],
         columns="dia_mes",
@@ -124,77 +120,24 @@ with tab_general:
         aggfunc="first"
     )
 
-    # Reaplicar el orden original del Excel
     cuadrante = cuadrante.reindex(
         pd.MultiIndex.from_frame(orden)
     )
 
-    # Ordenar columnas por día
     cuadrante = cuadrante.reindex(
         sorted(cuadrante.columns),
         axis=1
     )
 
-    st.dataframe(
-        cuadrante,
-        use_container_width=True,
-        height=800
-    )
+    # Construcción HTML con colores
+    html = "<div style='overflow-x:auto'><table border='1' style='border-collapse:collapse; font-size:14px'>"
 
-# --------------------------------------------------
-# PESTAÑA 2 – MI CUADRANTE (CALENDARIO)
-# --------------------------------------------------
-with tab_personal:
-    st.subheader("📆 Mi cuadrante")
+    # Cabecera
+    html += "<tr>"
+    html += "<th>Nombre y Apellidos</th><th>Categoría</th><th>NIP</th>"
+    for dia in cuadrante.columns:
+        html += f"<th>{dia}</th>"
+    html += "</tr>"
 
-    df_persona = df_mes[df_mes["nip"].astype(str) == st.session_state.nip]
-
-    cal = calendar.Calendar(firstweekday=0)
-    mes_cal = cal.monthdatescalendar(2026, mes_sel)
-
-    for semana in mes_cal:
-        cols = st.columns(7)
-        for i, dia in enumerate(semana):
-            with cols[i]:
-                if dia.month != mes_sel:
-                    st.write(" ")
-                    continue
-
-                dato = df_persona[df_persona["fecha"] == pd.Timestamp(dia)]
-                if not dato.empty:
-                    turno = dato.iloc[0]["turno"]
-
-                    st.markdown(
-                        f"""
-                        <div style="
-                            background-color:#E7E6E6;
-                            padding:10px;
-                            border-radius:10px;
-                            text-align:center;
-                            min-height:80px;
-                        ">
-                        <b>{dia.day}</b><br>{turno}
-                        </div>
-                        """,
-                        unsafe_allow_html=True
-                    )
-                else:
-                    st.markdown(f"<b>{dia.day}</b>", unsafe_allow_html=True)
-
-# --------------------------------------------------
-# EDICIÓN ADMINISTRADOR
-# --------------------------------------------------
-if st.session_state.is_admin:
-    st.markdown("---")
-    st.subheader("✏️ Edición administrador")
-
-    edited_df = st.data_editor(
-        df,
-        num_rows="dynamic",
-        use_container_width=True
-    )
-
-    if st.button("💾 Guardar cambios"):
-        edited_df.to_csv(DATA_FILE, index=False)
-        st.cache_data.clear()
-        st.success("Cambios guardados correctamente")
+    # Filas
+    for (nombre, categoria, nip), fila in cuadrant
