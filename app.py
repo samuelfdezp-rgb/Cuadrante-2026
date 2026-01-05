@@ -85,14 +85,13 @@ def es_dia_especial(fecha):
     return fecha in festivos or fecha.weekday() == 6
 
 # ==================================================
-# ESTILOS DE TURNO (NORMALIZADOS)
+# ESTILOS DE TURNO
 # ==================================================
 def estilo_turno(turno):
     if pd.isna(turno):
         return {"bg": "#FFFFFF", "fg": "#000000"}
 
     t = str(turno).strip()
-
     if t.lower() == "baja":
         t = "BAJA"
     if t.lower() == "perm":
@@ -134,7 +133,7 @@ def estilo_turno(turno):
     return estilos.get(t, {"bg": "#FFFFFF", "fg": "#000000"})
 
 # ==================================================
-# CUADRANTE GENERAL (CON GELADO CORRECTO)
+# CUADRANTE GENERAL (STICKY CORRECTO)
 # ==================================================
 st.subheader("📋 Cuadrante general")
 
@@ -152,25 +151,25 @@ html = """
 <table border="1" style="border-collapse:collapse">
 <thead>
 <tr>
-<th style="position:sticky;top:0;left:0;background:#DDD;z-index:5">Nombre y Apellidos</th>
-<th style="position:sticky;top:0;left:0;background:#DDD;z-index:4">Categoría</th>
-<th style="position:sticky;top:0;left:0;background:#DDD;z-index:3">NIP</th>
+<th style="position:sticky;top:0;left:0;background:#FFF;color:#000;font-weight:bold;z-index:5">Nombre y Apellidos</th>
+<th style="position:sticky;top:0;left:260px;background:#FFF;color:#000;font-weight:bold;z-index:5">Categoría</th>
+<th style="position:sticky;top:0;left:380px;background:#FFF;color:#000;font-weight:bold;z-index:5">NIP</th>
 """
 
 for d in cuadrante.columns:
     fecha = date(2026, mes_sel, d)
     if es_dia_especial(fecha):
-        html += f"<th style='position:sticky;top:0;background:#92D050;color:#FF0000;font-weight:bold;z-index:2'>{d}</th>"
+        html += f"<th style='position:sticky;top:0;background:#92D050;color:#FF0000;font-weight:bold;z-index:4'>{d}</th>"
     else:
-        html += f"<th style='position:sticky;top:0;background:#FFFFFF;color:#000000;font-weight:bold;z-index:2'>{d}</th>"
+        html += f"<th style='position:sticky;top:0;background:#FFFFFF;color:#000000;font-weight:bold;z-index:4'>{d}</th>"
 
 html += "</tr></thead><tbody>"
 
 for (nombre, categoria, nip), fila in cuadrante.iterrows():
     html += "<tr>"
-    html += f"<td style='position:sticky;left:0;background:#FFF;white-space:nowrap;z-index:3'>{nombre}</td>"
-    html += f"<td style='position:sticky;left:0;background:#FFF;white-space:nowrap;z-index:2'>{categoria}</td>"
-    html += f"<td style='position:sticky;left:0;background:#FFF;white-space:nowrap;z-index:1'>{nip}</td>"
+    html += f"<td style='position:sticky;left:0;background:#FFF;color:#000;white-space:nowrap;z-index:3'>{nombre}</td>"
+    html += f"<td style='position:sticky;left:260px;background:#FFF;color:#000;white-space:nowrap;z-index:3'>{categoria}</td>"
+    html += f"<td style='position:sticky;left:380px;background:#FFF;color:#000;white-space:nowrap;z-index:3'>{nip}</td>"
 
     for v in fila:
         e = estilo_turno(v)
