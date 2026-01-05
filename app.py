@@ -118,7 +118,7 @@ def estilo_turno(turno):
     return estilos.get(t, {"bg": "#FFFFFF", "fg": "#000000"})
 
 # ==================================================
-# CUADRANTE
+# CUADRANTE (DOS TABLAS)
 # ==================================================
 orden = df_mes[["nombre", "categoria", "nip"]].drop_duplicates()
 
@@ -129,9 +129,6 @@ tabla = df_mes.pivot_table(
     aggfunc="first"
 ).reindex(pd.MultiIndex.from_frame(orden))
 
-# ==================================================
-# HTML (DOS TABLAS)
-# ==================================================
 html = """
 <style>
 .container {
@@ -147,11 +144,11 @@ th, td {
     padding: 4px;
     white-space: nowrap;
 }
-thead th {
-    position: sticky;
-    top: 0;
-    background: #FFF;
-    z-index: 5;
+th {
+    background: #FFFFFF;
+    color: #000000;
+    font-weight: bold;
+    text-align: center;
 }
 .fija {
     border-right: 3px solid #000;
@@ -192,13 +189,17 @@ html += """
 for d in tabla.columns:
     fecha = date(2026, mes, d)
     if es_especial(fecha):
-        html += f"<th style='background:#92D050;color:#FF0000;font-weight:bold'>{d}</th>"
+        html += (
+            "<th style='background:#92D050;color:#FF0000;"
+            "font-weight:bold;text-align:center'>"
+            f"{d}</th>"
+        )
     else:
-        html += f"<th style='font-weight:bold'>{d}</th>"
+        html += f"<th>{d}</th>"
 
 html += "</tr></thead><tbody>"
 
-for (_, _, _), fila in tabla.iterrows():
+for fila in tabla.itertuples(index=False):
     html += "<tr>"
     for v in fila:
         e = estilo_turno(v)
