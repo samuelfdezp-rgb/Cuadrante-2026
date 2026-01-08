@@ -128,18 +128,15 @@ def estilo_turno(turno):
         "L": {"bg": "#BDD7EE", "fg": "#0070C0"},
         "2": {"bg": "#FFE699", "fg": "#0070C0"},
         "3": {"bg": "#F8CBAD", "fg": "#FF0000"},
-
         "1ex": {"bg": "#00B050", "fg": "#FF0000", "bold": True},
         "2ex": {"bg": "#00B050", "fg": "#FF0000", "bold": True},
         "3ex": {"bg": "#00B050", "fg": "#FF0000", "bold": True},
-
         "D": {"bg": "#C6E0B4", "fg": "#00B050"},
         "Dc": {"bg": "#C6E0B4", "fg": "#00B050"},
         "Dcv": {"bg": "#C6E0B4", "fg": "#00B050"},
         "Dcc": {"bg": "#C6E0B4", "fg": "#00B050"},
         "Dct": {"bg": "#C6E0B4", "fg": "#00B050"},
         "Dcj": {"bg": "#C6E0B4", "fg": "#00B050"},
-
         "Vac": {"bg": "#FFFFFF", "fg": "#FF0000", "bold": True, "italic": True},
         "Perm": {"bg": "#FFFFFF", "fg": "#FF0000", "bold": True},
         "BAJA": {"bg": "#FFFFFF", "fg": "#FF0000", "bold": True},
@@ -174,7 +171,7 @@ tab_general, tab_mis_turnos, tab_resumen = st.tabs(
 )
 
 # ==================================================
-# TAB 1 — CUADRANTE GENERAL
+# TAB 1 — CUADRANTE GENERAL (COMPACTADO)
 # ==================================================
 with tab_general:
     st.subheader("📋 Cuadrante general")
@@ -190,20 +187,24 @@ with tab_general:
 
     html = """
     <style>
-    table { border-collapse: collapse; }
+    table {
+        border-collapse: collapse;
+        width: 100%;
+        font-size: 11px;
+        line-height: 1.1;
+    }
     th, td {
         border: 1px solid #000;
-        padding: 4px;
+        padding: 2px;
         white-space: nowrap;
         text-align: center;
     }
     th { font-weight: bold; }
     </style>
-    <div style="overflow:auto; max-height:80vh">
     <table>
     <tr>
-    <th>Nombre y Apellidos</th>
-    <th>Categoría</th>
+    <th>Nombre</th>
+    <th>Cat</th>
     <th>NIP</th>
     """
 
@@ -227,7 +228,8 @@ with tab_general:
                 f"{texto}</td>"
             )
         html += "</tr>"
-    html += "</table></div>"
+    html += "</table>"
+
     st.markdown(html, unsafe_allow_html=True)
 
 # ==================================================
@@ -337,7 +339,7 @@ with tab_resumen:
         sub = separar_resumen(turno)
 
         for t in sub:
-            if t in {"1", "L"}: resumen["Mañanas"][m] += 1
+            if t in {"1","L"}: resumen["Mañanas"][m] += 1
             if t == "2": resumen["Tardes"][m] += 1
             if t == "3": resumen["Noches"][m] += 1
             resumen["Horas trabajadas"][m] += HORAS.get(t, 0)
