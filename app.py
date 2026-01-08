@@ -77,7 +77,7 @@ HORAS = {
     "1": 8,
     "2": 8,
     "3": 11.875,
-    "L": 7.5,
+    "L": 8,
     "AP": 7.5,
     "Ts": 7.5,
     "JuB": 4,
@@ -91,11 +91,11 @@ NOMBRES_TURNO = {
     "1": "Mañana",
     "2": "Tarde",
     "3": "Noche",
+    "L": "Laborable",
     "1ex": "Mañana extra",
     "2ex": "Tarde extra",
     "3ex": "Noche extra",
     "D": "Descanso",
-    "L": "Laborable",
     "Vac": "Vacaciones",
     "Perm": "Permiso",
     "BAJA": "Baja",
@@ -111,40 +111,35 @@ def nombre_turno(codigo):
     return NOMBRES_TURNO.get(codigo, codigo)
 
 # ==================================================
-# ESTILOS DE TURNOS (ACTUALIZADO)
+# ESTILOS DE TURNOS
 # ==================================================
 def estilo_turno(turno):
     if pd.isna(turno):
         return {"bg": "#FFFFFF", "fg": "#000000"}
 
     t = str(turno).strip()
-
     if t.lower() == "baja":
         t = "BAJA"
     if t.lower() == "perm":
         t = "Perm"
 
-    # --- TURNOS BASE ---
     estilos = {
         "1": {"bg": "#BDD7EE", "fg": "#0070C0"},
+        "L": {"bg": "#BDD7EE", "fg": "#0070C0"},
         "2": {"bg": "#FFE699", "fg": "#0070C0"},
         "3": {"bg": "#F8CBAD", "fg": "#FF0000"},
-        "L": {"bg": "#BDD7EE", "fg": "#0070C0"},
 
-        # Extras
         "1ex": {"bg": "#00B050", "fg": "#FF0000", "bold": True},
         "2ex": {"bg": "#00B050", "fg": "#FF0000", "bold": True},
         "3ex": {"bg": "#00B050", "fg": "#FF0000", "bold": True},
 
-        # Descanso y descansos compensados
-        "D":   {"bg": "#C6E0B4", "fg": "#00B050"},
-        "Dc":  {"bg": "#C6E0B4", "fg": "#00B050"},
+        "D": {"bg": "#C6E0B4", "fg": "#00B050"},
+        "Dc": {"bg": "#C6E0B4", "fg": "#00B050"},
         "Dcv": {"bg": "#C6E0B4", "fg": "#00B050"},
         "Dcc": {"bg": "#C6E0B4", "fg": "#00B050"},
         "Dct": {"bg": "#C6E0B4", "fg": "#00B050"},
         "Dcj": {"bg": "#C6E0B4", "fg": "#00B050"},
 
-        # Especiales
         "Vac": {"bg": "#FFFFFF", "fg": "#FF0000", "bold": True, "italic": True},
         "Perm": {"bg": "#FFFFFF", "fg": "#FF0000", "bold": True},
         "BAJA": {"bg": "#FFFFFF", "fg": "#FF0000", "bold": True},
@@ -152,11 +147,9 @@ def estilo_turno(turno):
         "AP": {"bg": "#FFFFFF", "fg": "#0070C0", "bold": True},
     }
 
-    # --- DOBLES SIN EXTRA ---
     if t in {"1y2", "1y3", "2y3"}:
         return {"bg": "#DBDBDB", "fg": "#FF0000", "bold": True}
 
-    # --- DOBLES CON EXTRA ---
     if "ex" in t and ("y" in t or "|" in t):
         return {"bg": "#00B050", "fg": "#FF0000", "bold": True}
 
@@ -235,7 +228,6 @@ with tab_general:
             )
         html += "</tr>"
     html += "</table></div>"
-
     st.markdown(html, unsafe_allow_html=True)
 
 # ==================================================
@@ -246,8 +238,7 @@ with tab_mis_turnos:
 
     df_user = df_mes[df_mes["nip"] == st.session_state.nip]
     cal = calendar.Calendar()
-
-    TURNOS_TRABAJO = {"1", "2", "3", "1ex", "2ex", "3ex"}
+    TURNOS_TRABAJO = {"1", "2", "3", "1ex", "2ex", "3ex", "L"}
 
     def separar(turno):
         if "y" in turno:
@@ -255,6 +246,13 @@ with tab_mis_turnos:
         if "|" in turno:
             return turno.split("|")
         return [turno]
+
+    def formatear_nombre(nombre_completo):
+        partes = nombre_completo.split()
+        nombre = partes[0]
+        if nombre in {"Iago", "Javier"} and len(partes) > 1:
+            return f"{nombre} {partes[1][0]}."
+        return nombre
 
     def compañeros(fecha, subturno):
         if subturno not in TURNOS_TRABAJO:
@@ -265,7 +263,7 @@ with tab_mis_turnos:
                 (df_mes["turno"].str.contains(subturno)) &
                 (df_mes["nip"] != st.session_state.nip)
             ]["nombre"]
-            .apply(lambda x: x.split()[0])
+            .apply(formatear_nombre)
             .tolist()
         )
 
@@ -339,7 +337,7 @@ with tab_resumen:
         sub = separar_resumen(turno)
 
         for t in sub:
-            if t == "1": resumen["Mañanas"][m] += 1
+            if t in {"1", "L"}: resumen["Mañanas"][m] += 1
             if t == "2": resumen["Tardes"][m] += 1
             if t == "3": resumen["Noches"][m] += 1
             resumen["Horas trabajadas"][m] += HORAS.get(t, 0)
@@ -349,27 +347,27 @@ with tab_resumen:
         if turno == "AP": resumen["APs"][m] += 1
         if turno == "Ts": resumen["Trabajo sindical"][m] += 1
         if turno == "BAJA": resumen["Días de Baja"][m] += 1
-        if turno in ["JuB","JuC"]: resumen["Días de Juicio"][m] += 1
+        if turno in {"JuB","JuC"}: resumen["Días de Juicio"][m] += 1
         if turno == "Perm": resumen["Permisos"][m] += 1
         if turno == "Curso": resumen["Cursos"][m] += 1
         if turno.startswith("Dc"): resumen["Descansos compensados"][m] += 1
         if turno == "Indisp": resumen["Indisposiciones"][m] += 1
 
-        if fecha.day in [1,16] and "1" in sub:
+        if fecha.day in {1,16} and any(t in {"1","L"} for t in sub):
             resumen["Ferias"][m] += 1
 
-        if es_festivo(fecha) and any(t in ["1","2","3"] for t in sub):
+        if es_festivo(fecha) and any(t in {"1","2","3","L"} for t in sub):
             resumen["Festivos trabajados"][m] += 1
 
-        if dia_sem in [5,6] and any(t in ["1","2","3"] for t in sub):
+        if dia_sem in {5,6} and any(t in {"1","2","3","L"} for t in sub):
             resumen["Fines de semana trabajados"][m] += 0.5
             if dia_sem == 6:
                 resumen["Domingos trabajados"][m] += 1
 
         for t in sub:
-            if t not in ["1","2","3"]:
+            if t not in {"1","2","3","L"}:
                 continue
-            cand = df[(df["fecha"]==fecha) & (df["turno"].str.contains(t))]
+            cand = df[(df["fecha"] == fecha) & (df["turno"].str.contains(t))]
             cand = cand.merge(orden_general, on=["nombre","nip"])
             if not cand.empty and cand.iloc[0]["nip"] == nip:
                 resumen["Jefaturas de servicio"][m] += 1
