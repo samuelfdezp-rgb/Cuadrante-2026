@@ -26,7 +26,7 @@ df = pd.read_csv(DATA_FILE, parse_dates=["fecha"])
 df["dia"] = df["fecha"].dt.day
 
 # ==================================================
-# HORAS MANUALES (CSV AUXILIAR)
+# HORAS MANUALES
 # ==================================================
 if not os.path.exists(HORAS_MANUALES_FILE):
     pd.DataFrame(columns=["nip", "mes", "tipo", "horas"]).to_csv(
@@ -110,32 +110,53 @@ def nombre_turno(codigo):
     return NOMBRES_TURNO.get(codigo, codigo)
 
 # ==================================================
-# ESTILOS DE TURNOS
+# ESTILOS DE TURNOS (ACTUALIZADO)
 # ==================================================
 def estilo_turno(turno):
     if pd.isna(turno):
         return {"bg": "#FFFFFF", "fg": "#000000"}
 
     t = str(turno).strip()
+
     if t.lower() == "baja":
         t = "BAJA"
     if t.lower() == "perm":
         t = "Perm"
 
+    # --- TURNOS BASE ---
     estilos = {
         "1": {"bg": "#BDD7EE", "fg": "#0070C0"},
         "2": {"bg": "#FFE699", "fg": "#0070C0"},
         "3": {"bg": "#F8CBAD", "fg": "#FF0000"},
+
+        # Extras
         "1ex": {"bg": "#00B050", "fg": "#FF0000", "bold": True},
         "2ex": {"bg": "#00B050", "fg": "#FF0000", "bold": True},
         "3ex": {"bg": "#00B050", "fg": "#FF0000", "bold": True},
-        "D": {"bg": "#C6E0B4", "fg": "#00B050"},
+
+        # Descanso y descansos compensados
+        "D":   {"bg": "#C6E0B4", "fg": "#00B050"},
+        "Dc":  {"bg": "#C6E0B4", "fg": "#00B050"},
+        "Dcv": {"bg": "#C6E0B4", "fg": "#00B050"},
+        "Dcc": {"bg": "#C6E0B4", "fg": "#00B050"},
+        "Dct": {"bg": "#C6E0B4", "fg": "#00B050"},
+        "Dcj": {"bg": "#C6E0B4", "fg": "#00B050"},
+
+        # Especiales
         "Vac": {"bg": "#FFFFFF", "fg": "#FF0000", "bold": True, "italic": True},
         "Perm": {"bg": "#FFFFFF", "fg": "#FF0000", "bold": True},
         "BAJA": {"bg": "#FFFFFF", "fg": "#FF0000", "bold": True},
         "Ts": {"bg": "#FFFFFF", "fg": "#FF0000", "bold": True},
         "AP": {"bg": "#FFFFFF", "fg": "#0070C0", "bold": True},
     }
+
+    # --- DOBLES SIN EXTRA ---
+    if t in {"1y2", "1y3", "2y3"}:
+        return {"bg": "#DBDBDB", "fg": "#FF0000", "bold": True}
+
+    # --- DOBLES CON EXTRA ---
+    if "ex" in t and ("y" in t or "|" in t):
+        return {"bg": "#00B050", "fg": "#FF0000", "bold": True}
 
     return estilos.get(t, {"bg": "#FFFFFF", "fg": "#000000"})
 
@@ -216,7 +237,7 @@ with tab_general:
     st.markdown(html, unsafe_allow_html=True)
 
 # ==================================================
-# TAB 2 — MIS TURNOS (SOLO TURNOS REALES)
+# TAB 2 — MIS TURNOS
 # ==================================================
 with tab_mis_turnos:
     st.subheader("📆 Mis turnos")
@@ -275,7 +296,7 @@ with tab_mis_turnos:
                 st.markdown(html, unsafe_allow_html=True)
 
 # ==================================================
-# TAB 3 — RESUMEN (SIN CAMBIOS)
+# TAB 3 — RESUMEN
 # ==================================================
 with tab_resumen:
     st.subheader("📊 Resumen año 2026")
