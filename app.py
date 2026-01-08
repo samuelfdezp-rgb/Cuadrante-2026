@@ -228,16 +228,22 @@ with tab_mis_turnos:
             return turno.split("|")
         return [turno]
 
-    def compañeros(fecha, subturno):
-        return (
-            df_mes[
-                (df_mes["fecha"] == fecha) &
-                (df_mes["turno"].str.contains(subturno)) &
-                (df_mes["nip"] != st.session_state.nip)
-            ]["nombre"]
-            .apply(lambda x: x.split()[0])
-            .tolist()
-        )
+    TURNOS_TRABAJO = {"1", "2", "3", "1ex", "2ex", "3ex"}
+
+def compañeros(fecha, subturno):
+    # Solo mostrar compañeros en turnos reales de trabajo
+    if subturno not in TURNOS_TRABAJO:
+        return []
+
+    return (
+        df_mes[
+            (df_mes["fecha"] == fecha) &
+            (df_mes["turno"].str.contains(subturno)) &
+            (df_mes["nip"] != st.session_state.nip)
+        ]["nombre"]
+        .apply(lambda x: x.split()[0])
+        .tolist()
+    )
 
     for semana in cal.monthdatescalendar(2026, mes):
         cols = st.columns(7)
