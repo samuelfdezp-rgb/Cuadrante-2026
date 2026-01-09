@@ -144,7 +144,7 @@ with tab_general:
 
     zoom = 1.0
     if modo_movil:
-        zoom = st.slider("🔍 Zoom", 0.6, 1.5, 1.0, 0.05)
+        zoom = st.slider("🔍 Zoom", 0.3, 0.6, 1.5, 1.0, 0.05)
 
     if modo_movil:
         index_cols = ["nip"]
