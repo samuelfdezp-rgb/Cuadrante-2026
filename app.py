@@ -24,6 +24,7 @@ if "nip" not in st.session_state:
 # ==================================================
 df = pd.read_csv(DATA_FILE, parse_dates=["fecha"])
 df["dia"] = df["fecha"].dt.day
+df["nip"] = df["nip"].astype(str)
 
 # ==================================================
 # HORAS MANUALES
@@ -47,7 +48,7 @@ if st.session_state.nip is None:
             st.rerun()
 
         nip = nip_raw.zfill(6)
-        if nip in df["nip"].astype(str).str.zfill(6).unique():
+        if nip in df["nip"].str.zfill(6).unique():
             st.session_state.nip = nip
             st.rerun()
         else:
@@ -71,77 +72,51 @@ def es_festivo(fecha):
     return fecha in festivos
 
 # ==================================================
-# HORAS AUTOMÁTICAS
-# ==================================================
-HORAS = {
-    "1": 8,
-    "2": 8,
-    "3": 11.875,
-    "L": 8,
-    "AP": 7.5,
-    "Ts": 7.5,
-    "JuB": 4,
-    "JuC": 7.5,
-}
-
-# ==================================================
 # NOMBRES DE TURNOS
 # ==================================================
 NOMBRES_TURNO = {
-    "1": "Mañana",
-    "2": "Tarde",
-    "3": "Noche",
-    "L": "Laborable",
-    "1ex": "Mañana extra",
-    "2ex": "Tarde extra",
-    "3ex": "Noche extra",
-    "D": "Descanso",
-    "Vac": "Vacaciones",
-    "Perm": "Permiso",
-    "BAJA": "Baja",
-    "Ts": "Tiempo sindical",
-    "AP": "Asuntos particulares",
-    "JuB": "Juicio Betanzos",
-    "JuC": "Juicio Coruña",
-    "Curso": "Curso",
-    "Indisp": "Indisposición",
+    "1": "Mañana", "2": "Tarde", "3": "Noche", "L": "Laborable",
+    "1ex": "Mañana extra", "2ex": "Tarde extra", "3ex": "Noche extra",
+    "D": "Descanso", "Vac": "Vacaciones", "Perm": "Permiso",
+    "BAJA": "Baja", "Ts": "Tiempo sindical", "AP": "Asuntos particulares",
+    "JuB": "Juicio Betanzos", "JuC": "Juicio Coruña",
+    "Curso": "Curso", "Indisp": "Indisposición",
+    "Dc": "Descanso compensado", "Dcv": "Descanso comp. verano",
+    "Dcc": "Descanso comp. curso", "Dct": "Descanso comp. tiro",
+    "Dcj": "Descanso comp. juicio"
 }
 
-def nombre_turno(codigo):
-    return NOMBRES_TURNO.get(codigo, codigo)
+def nombre_turno(c):
+    return NOMBRES_TURNO.get(c, c)
 
 # ==================================================
-# ESTILOS DE TURNOS
+# ESTILO DE TURNOS
 # ==================================================
-def estilo_turno(turno):
-    if pd.isna(turno):
+def estilo_turno(t):
+    if pd.isna(t):
         return {"bg": "#FFFFFF", "fg": "#000000"}
 
-    t = str(turno).strip()
-    if t.lower() == "baja":
-        t = "BAJA"
-    if t.lower() == "perm":
-        t = "Perm"
+    t = str(t)
 
-    estilos = {
-        "1": {"bg": "#BDD7EE", "fg": "#0070C0"},
-        "L": {"bg": "#BDD7EE", "fg": "#0070C0"},
-        "2": {"bg": "#FFE699", "fg": "#0070C0"},
-        "3": {"bg": "#F8CBAD", "fg": "#FF0000"},
-        "1ex": {"bg": "#00B050", "fg": "#FF0000", "bold": True},
-        "2ex": {"bg": "#00B050", "fg": "#FF0000", "bold": True},
-        "3ex": {"bg": "#00B050", "fg": "#FF0000", "bold": True},
-        "D": {"bg": "#C6E0B4", "fg": "#00B050"},
-        "Dc": {"bg": "#C6E0B4", "fg": "#00B050"},
-        "Dcv": {"bg": "#C6E0B4", "fg": "#00B050"},
-        "Dcc": {"bg": "#C6E0B4", "fg": "#00B050"},
-        "Dct": {"bg": "#C6E0B4", "fg": "#00B050"},
-        "Dcj": {"bg": "#C6E0B4", "fg": "#00B050"},
-        "Vac": {"bg": "#FFFFFF", "fg": "#FF0000", "bold": True, "italic": True},
-        "Perm": {"bg": "#FFFFFF", "fg": "#FF0000", "bold": True},
-        "BAJA": {"bg": "#FFFFFF", "fg": "#FF0000", "bold": True},
-        "Ts": {"bg": "#FFFFFF", "fg": "#FF0000", "bold": True},
-        "AP": {"bg": "#FFFFFF", "fg": "#0070C0", "bold": True},
+    base = {
+        "1": ("#BDD7EE", "#0070C0"),
+        "L": ("#BDD7EE", "#0070C0"),
+        "2": ("#FFE699", "#0070C0"),
+        "3": ("#F8CBAD", "#FF0000"),
+        "1ex": ("#00B050", "#FF0000"),
+        "2ex": ("#00B050", "#FF0000"),
+        "3ex": ("#00B050", "#FF0000"),
+        "D": ("#C6E0B4", "#00B050"),
+        "Dc": ("#C6E0B4", "#00B050"),
+        "Dcv": ("#C6E0B4", "#00B050"),
+        "Dcc": ("#C6E0B4", "#00B050"),
+        "Dct": ("#C6E0B4", "#00B050"),
+        "Dcj": ("#C6E0B4", "#00B050"),
+        "Vac": ("#FFFFFF", "#FF0000"),
+        "Perm": ("#FFFFFF", "#FF0000"),
+        "BAJA": ("#FFFFFF", "#FF0000"),
+        "Ts": ("#FFFFFF", "#FF0000"),
+        "AP": ("#FFFFFF", "#0070C0"),
     }
 
     if t in {"1y2", "1y3", "2y3"}:
@@ -150,15 +125,15 @@ def estilo_turno(turno):
     if "ex" in t and ("y" in t or "|" in t):
         return {"bg": "#00B050", "fg": "#FF0000", "bold": True}
 
-    return estilos.get(t, {"bg": "#FFFFFF", "fg": "#000000"})
+    bg, fg = base.get(t, ("#FFFFFF", "#000000"))
+    return {"bg": bg, "fg": fg}
 
 # ==================================================
 # SELECCIÓN DE MES
 # ==================================================
-meses = sorted(df["mes"].unique())
 mes = st.selectbox(
     "Selecciona mes",
-    meses,
+    sorted(df["mes"].unique()),
     format_func=lambda x: datetime(2026, x, 1).strftime("%B 2026"),
 )
 df_mes = df[df["mes"] == mes]
@@ -171,77 +146,52 @@ tab_general, tab_mis_turnos, tab_resumen = st.tabs(
 )
 
 # ==================================================
-# TAB 1 — CUADRANTE GENERAL (NORMAL / ULTRA-MÓVIL)
+# TAB 1 — CUADRANTE GENERAL (NORMAL + ULTRA-MÓVIL)
 # ==================================================
 with tab_general:
     st.subheader("📋 Cuadrante general")
+    modo_movil = st.checkbox("📱 Modo móvil")
 
-    modo_movil = st.checkbox("📱 Modo móvil", value=False)
-
-    if not modo_movil:
-        columnas_index = ["nombre", "categoria", "nip"]
-        encabezados = ["Nombre", "Cat", "NIP"]
+    if modo_movil:
+        index_cols = ["nip"]
+        orden = df_mes["nip"].drop_duplicates()
     else:
-        columnas_index = ["nip"]
-        encabezados = ["NIP"]
-
-    orden = df_mes[columnas_index].drop_duplicates()
+        index_cols = ["nombre", "categoria", "nip"]
+        orden = df_mes[index_cols].drop_duplicates()
 
     tabla = df_mes.pivot_table(
-        index=columnas_index,
+        index=index_cols,
         columns="dia",
         values="turno",
         aggfunc="first"
-    ).reindex(pd.MultiIndex.from_frame(orden))
+    )
 
-    html = """
-    <style>
-    table {
-        border-collapse: collapse;
-        width: 100%;
-        font-size: 10px;
-        line-height: 1.05;
-    }
-    th, td {
-        border: 1px solid #000;
-        padding: 1px;
-        white-space: nowrap;
-        text-align: center;
-    }
-    th { font-weight: bold; }
-    </style>
-    <table>
-    <tr>
-    """
+    tabla = tabla.reindex(orden)
 
-    for h in encabezados:
-        html += f"<th>{h}</th>"
+    html = "<table style='border-collapse:collapse;width:100%;font-size:10px'>"
+    html += "<tr>"
+    html += "<th>NIP</th>" if modo_movil else "<th>Nombre</th><th>Categoría</th><th>NIP</th>"
 
     for d in tabla.columns:
-        fecha = date(2026, mes, d)
-        if es_festivo(fecha) or fecha.weekday() == 6:
+        f = date(2026, mes, d)
+        if es_festivo(f) or f.weekday() == 6:
             html += f"<th style='background:#92D050;color:#FF0000'>{d}</th>"
         else:
             html += f"<th>{d}</th>"
     html += "</tr>"
 
     for idx, fila in tabla.iterrows():
-        if not modo_movil:
-            nombre, categoria, nip = idx
-            html += f"<tr><td>{nombre}</td><td>{categoria}</td><td>{nip}</td>"
+        html += "<tr>"
+        if modo_movil:
+            html += f"<td>{idx}</td>"
         else:
-            nip = idx
-            html += f"<tr><td>{nip}</td>"
+            nombre, cat, nip = idx
+            html += f"<td>{nombre}</td><td>{cat}</td><td>{nip}</td>"
 
         for v in fila:
             e = estilo_turno(v)
-            texto = "" if pd.isna(v) else v
-            html += (
-                f"<td style='background:{e['bg']};color:{e['fg']};"
-                f"{'font-weight:bold;' if e.get('bold') else ''}"
-                f"{'font-style:italic;' if e.get('italic') else ''}'>"
-                f"{texto}</td>"
-            )
+            txt = "" if pd.isna(v) else v
+            html += f"<td style='background:{e['bg']};color:{e['fg']};text-align:center'>{txt}</td>"
         html += "</tr>"
 
     html += "</table>"
@@ -257,32 +207,25 @@ with tab_mis_turnos:
     cal = calendar.Calendar()
     TURNOS_TRABAJO = {"1", "2", "3", "1ex", "2ex", "3ex", "L"}
 
-    def separar(turno):
-        if "y" in turno:
-            return turno.split("y")
-        if "|" in turno:
-            return turno.split("|")
-        return [turno]
+    def separar(t):
+        if "y" in t: return t.split("y")
+        if "|" in t: return t.split("|")
+        return [t]
 
-    def formatear_nombre(nombre_completo):
-        partes = nombre_completo.split()
-        nombre = partes[0]
-        if nombre in {"Iago", "Javier"} and len(partes) > 1:
-            return f"{nombre} {partes[1][0]}."
-        return nombre
+    def formatear_nombre(n):
+        p = n.split()
+        if p[0] in {"Iago", "Javier"} and len(p) > 1:
+            return f"{p[0]} {p[1][0]}."
+        return p[0]
 
-    def compañeros(fecha, subturno):
-        if subturno not in TURNOS_TRABAJO:
+    def compañeros(fecha, sub):
+        if sub not in TURNOS_TRABAJO:
             return []
-        return (
-            df_mes[
-                (df_mes["fecha"] == fecha) &
-                (df_mes["turno"].str.contains(subturno)) &
-                (df_mes["nip"] != st.session_state.nip)
-            ]["nombre"]
-            .apply(formatear_nombre)
-            .tolist()
-        )
+        return df_mes[
+            (df_mes["fecha"] == fecha) &
+            (df_mes["turno"].str.contains(sub)) &
+            (df_mes["nip"] != st.session_state.nip)
+        ]["nombre"].apply(formatear_nombre).tolist()
 
     for semana in cal.monthdatescalendar(2026, mes):
         cols = st.columns(7)
@@ -293,18 +236,13 @@ with tab_mis_turnos:
                     continue
 
                 fila = df_user[df_user["fecha"] == pd.Timestamp(d)]
-                html = "<div style='border:1px solid #999;border-radius:6px'>"
-                html += f"<div style='text-align:center;font-weight:bold'>{d.day}</div>"
+                html = f"<div style='border:1px solid #999'><b>{d.day}</b><br>"
 
                 if not fila.empty:
-                    turno = str(fila.iloc[0]["turno"])
-                    for p in separar(turno):
+                    for p in separar(str(fila.iloc[0]["turno"])):
                         e = estilo_turno(p)
-                        html += (
-                            f"<div style='background:{e['bg']};color:{e['fg']};"
-                            f"text-align:center;padding:6px'>"
-                            f"<b>{nombre_turno(p)}</b><br>"
-                        )
+                        html += f"<div style='background:{e['bg']};color:{e['fg']};text-align:center'>"
+                        html += f"<b>{nombre_turno(p)}</b><br>"
                         for c in compañeros(pd.Timestamp(d), p):
                             html += f"{c}<br>"
                         html += "</div>"
