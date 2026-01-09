@@ -64,28 +64,15 @@ def es_festivo(fecha):
 # NOMBRES DE TURNOS
 # ==================================================
 NOMBRES_TURNO = {
-    "1": "Mañana",
-    "2": "Tarde",
-    "3": "Noche",
-    "L": "Laborable",
-    "1ex": "Mañana extra",
-    "2ex": "Tarde extra",
-    "3ex": "Noche extra",
-    "D": "Descanso",
-    "Dc": "Descanso compensado",
-    "Dcv": "Descanso comp. verano",
-    "Dcc": "Descanso comp. curso",
-    "Dct": "Descanso comp. tiro",
-    "Dcj": "Descanso comp. juicio",
-    "Vac": "Vacaciones",
-    "Perm": "Permiso",
-    "BAJA": "Baja",
-    "Ts": "Tiempo sindical",
-    "AP": "Asuntos particulares",
-    "JuB": "Juicio Betanzos",
-    "JuC": "Juicio Coruña",
-    "Curso": "Curso",
-    "Indisp": "Indisposición",
+    "1": "Mañana", "2": "Tarde", "3": "Noche", "L": "Laborable",
+    "1ex": "Mañana extra", "2ex": "Tarde extra", "3ex": "Noche extra",
+    "D": "Descanso", "Dc": "Descanso compensado",
+    "Dcv": "Desc. comp. verano", "Dcc": "Desc. comp. curso",
+    "Dct": "Desc. comp. tiro", "Dcj": "Desc. comp. juicio",
+    "Vac": "Vacaciones", "Perm": "Permiso", "BAJA": "Baja",
+    "Ts": "Tiempo sindical", "AP": "Asuntos particulares",
+    "JuB": "Juicio Betanzos", "JuC": "Juicio Coruña",
+    "Curso": "Curso", "Indisp": "Indisposición",
 }
 
 def nombre_turno(c):
@@ -115,7 +102,7 @@ def estilo_turno(t):
         "Dct": ("#C6E0B4", "#00B050"),
         "Dcj": ("#C6E0B4", "#00B050"),
         "Vac": ("#FFFFFF", "#FF0000"),
-        "perm": ("#FFFFFF", "#FF0000"),
+        "Perm": ("#FFFFFF", "#FF0000"),
         "BAJA": ("#FFFFFF", "#FF0000"),
         "Ts": ("#FFFFFF", "#FF0000"),
         "AP": ("#FFFFFF", "#0070C0"),
@@ -128,7 +115,7 @@ def estilo_turno(t):
         return {"bg": "#00B050", "fg": "#FF0000", "bold": True}
 
     bg, fg = base.get(t, ("#FFFFFF", "#000000"))
-    return {"bg": bg, "fg": fg, "bold": t == "perm"}
+    return {"bg": bg, "fg": fg, "bold": t == "Perm"}
 
 # ==================================================
 # SELECCIÓN DE MES
@@ -148,11 +135,16 @@ tab_general, tab_mis_turnos = st.tabs(
 )
 
 # ==================================================
-# TAB 1 — CUADRANTE GENERAL
+# TAB 1 — CUADRANTE GENERAL (CON ZOOM)
 # ==================================================
 with tab_general:
     st.subheader("📋 Cuadrante general")
+
     modo_movil = st.checkbox("📱 Modo móvil")
+
+    zoom = 1.0
+    if modo_movil:
+        zoom = st.slider("🔍 Zoom", 0.6, 1.5, 1.0, 0.05)
 
     if modo_movil:
         index_cols = ["nip"]
@@ -168,13 +160,27 @@ with tab_general:
         aggfunc="first"
     ).reindex(orden)
 
-    html = """
+    html = f"""
     <style>
-    table { border-collapse:collapse; width:100%; font-size:10px; }
-    th, td { border:1px solid #000; padding:2px; text-align:center; white-space:nowrap; }
-    td.nombre { white-space:nowrap; }
+    table {{
+        border-collapse: collapse;
+        font-size: 10px;
+        transform: scale({zoom});
+        transform-origin: top left;
+    }}
+    th, td {{
+        border: 1px solid #000;
+        padding: 2px;
+        text-align: center;
+        white-space: nowrap;
+    }}
+    td.nombre {{
+        white-space: nowrap;
+    }}
     </style>
-    <table><tr>
+    <div style="overflow:auto">
+    <table>
+    <tr>
     """
 
     html += "<th>NIP</th>" if modo_movil else "<th>Nombre y apellidos</th><th>Categoría</th><th>NIP</th>"
@@ -204,11 +210,11 @@ with tab_general:
             )
         html += "</tr>"
 
-    html += "</table>"
+    html += "</table></div>"
     st.markdown(html, unsafe_allow_html=True)
 
 # ==================================================
-# TAB 2 — MIS TURNOS
+# TAB 2 — MIS TURNOS (CON SEPARACIÓN DE SEMANAS)
 # ==================================================
 with tab_mis_turnos:
     st.subheader("📆 Mis turnos")
@@ -222,19 +228,19 @@ with tab_mis_turnos:
         if "|" in turno: return turno.split("|")
         return [turno]
 
-    def formatear_nombre(nombre_completo):
-        partes = nombre_completo.split()
+    def formatear_nombre(nombre):
+        partes = nombre.split()
         if partes[0] in {"Iago", "Javier"} and len(partes) > 1:
             return f"{partes[0]} {partes[1][0]}."
         return partes[0]
 
-    def compañeros(fecha, subturno):
-        if subturno not in TURNOS_TRABAJO:
+    def compañeros(fecha, sub):
+        if sub not in TURNOS_TRABAJO:
             return []
         return (
             df_mes[
                 (df_mes["fecha"] == fecha) &
-                (df_mes["turno"].str.contains(subturno)) &
+                (df_mes["turno"].str.contains(sub)) &
                 (df_mes["nip"] != st.session_state.nip)
             ]["nombre"]
             .apply(formatear_nombre)
@@ -253,7 +259,7 @@ with tab_mis_turnos:
                 html = f"<div style='border:1px solid #999'><b>{d.day}</b><br>"
 
                 if not fila.empty:
-                    for p in separar(str(fila.iloc[0]['turno'])):
+                    for p in separar(str(fila.iloc[0]["turno"])):
                         e = estilo_turno(p)
                         html += (
                             f"<div style='background:{e['bg']};color:{e['fg']};text-align:center'>"
@@ -265,5 +271,5 @@ with tab_mis_turnos:
 
                 html += "</div>"
                 st.markdown(html, unsafe_allow_html=True)
-                st.markdown("<div style='height:25px'></div>", unsafe_allow_html=True)
 
+        st.markdown("<div style='height:25px'></div>", unsafe_allow_html=True)
