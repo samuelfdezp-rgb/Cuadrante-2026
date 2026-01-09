@@ -171,15 +171,24 @@ tab_general, tab_mis_turnos, tab_resumen = st.tabs(
 )
 
 # ==================================================
-# TAB 1 — CUADRANTE GENERAL (COMPACTADO)
+# TAB 1 — CUADRANTE GENERAL (NORMAL / ULTRA-MÓVIL)
 # ==================================================
 with tab_general:
     st.subheader("📋 Cuadrante general")
 
-    orden = df_mes[["nombre", "categoria", "nip"]].drop_duplicates()
+    modo_movil = st.checkbox("📱 Modo móvil", value=False)
+
+    if not modo_movil:
+        columnas_index = ["nombre", "categoria", "nip"]
+        encabezados = ["Nombre", "Cat", "NIP"]
+    else:
+        columnas_index = ["nip"]
+        encabezados = ["NIP"]
+
+    orden = df_mes[columnas_index].drop_duplicates()
 
     tabla = df_mes.pivot_table(
-        index=["nombre", "categoria", "nip"],
+        index=columnas_index,
         columns="dia",
         values="turno",
         aggfunc="first"
@@ -190,12 +199,12 @@ with tab_general:
     table {
         border-collapse: collapse;
         width: 100%;
-        font-size: 11px;
-        line-height: 1.1;
+        font-size: 10px;
+        line-height: 1.05;
     }
     th, td {
         border: 1px solid #000;
-        padding: 2px;
+        padding: 1px;
         white-space: nowrap;
         text-align: center;
     }
@@ -203,10 +212,10 @@ with tab_general:
     </style>
     <table>
     <tr>
-    <th>Nombre</th>
-    <th>Cat</th>
-    <th>NIP</th>
     """
+
+    for h in encabezados:
+        html += f"<th>{h}</th>"
 
     for d in tabla.columns:
         fecha = date(2026, mes, d)
@@ -216,8 +225,14 @@ with tab_general:
             html += f"<th>{d}</th>"
     html += "</tr>"
 
-    for (nombre, categoria, nip), fila in tabla.iterrows():
-        html += f"<tr><td>{nombre}</td><td>{categoria}</td><td>{nip}</td>"
+    for idx, fila in tabla.iterrows():
+        if not modo_movil:
+            nombre, categoria, nip = idx
+            html += f"<tr><td>{nombre}</td><td>{categoria}</td><td>{nip}</td>"
+        else:
+            nip = idx
+            html += f"<tr><td>{nip}</td>"
+
         for v in fila:
             e = estilo_turno(v)
             texto = "" if pd.isna(v) else v
@@ -228,8 +243,8 @@ with tab_general:
                 f"{texto}</td>"
             )
         html += "</tr>"
-    html += "</table>"
 
+    html += "</table>"
     st.markdown(html, unsafe_allow_html=True)
 
 # ==================================================
