@@ -1,7 +1,7 @@
+import streamlit as st
 import pandas as pd
 import calendar
 from datetime import datetime, date
-import os
 
 # ==================================================
 # CONFIGURACIÓN GENERAL
@@ -10,7 +10,6 @@ st.set_page_config(page_title="Cuadrante 2026", layout="wide")
 
 ADMIN_NIP = "ADMIN"
 DATA_FILE = "cuadrante_2026.csv"
-HORAS_MANUALES_FILE = "horas_manuales.csv"
 
 # ==================================================
 # SESIÓN
@@ -24,15 +23,6 @@ if "nip" not in st.session_state:
 df = pd.read_csv(DATA_FILE, parse_dates=["fecha"])
 df["dia"] = df["fecha"].dt.day
 df["nip"] = df["nip"].astype(str)
-
-# ==================================================
-# HORAS MANUALES
-# ==================================================
-if not os.path.exists(HORAS_MANUALES_FILE):
-    pd.DataFrame(columns=["nip", "mes", "tipo", "horas"]).to_csv(
-        HORAS_MANUALES_FILE, index=False
-    )
-df_horas_manual = pd.read_csv(HORAS_MANUALES_FILE)
 
 # ==================================================
 # LOGIN
@@ -71,20 +61,6 @@ def es_festivo(fecha):
     return fecha in festivos
 
 # ==================================================
-# HORAS AUTOMÁTICAS (CORREGIDO)
-# ==================================================
-HORAS = {
-    "1": 8,
-    "2": 8,
-    "3": 11.875,   # 9,5 × 1,25
-    "L": 8,
-    "AP": 7.5,
-    "Ts": 7.5,
-    "JuB": 4,
-    "JuC": 7.5,
-}
-
-# ==================================================
 # NOMBRES DE TURNOS
 # ==================================================
 NOMBRES_TURNO = {
@@ -112,17 +88,17 @@ NOMBRES_TURNO = {
     "Indisp": "Indisposición",
 }
 
-def nombre_turno(codigo):
-    return NOMBRES_TURNO.get(codigo, codigo)
+def nombre_turno(c):
+    return NOMBRES_TURNO.get(c, c)
 
 # ==================================================
-# ESTILOS DE TURNOS (CORREGIDOS)
+# ESTILOS DE TURNOS
 # ==================================================
-def estilo_turno(turno):
-    if pd.isna(turno):
+def estilo_turno(t):
+    if pd.isna(t):
         return {"bg": "#FFFFFF", "fg": "#000000", "bold": False}
 
-    t = str(turno)
+    t = str(t)
 
     base = {
         "1": ("#BDD7EE", "#0070C0"),
@@ -152,7 +128,7 @@ def estilo_turno(turno):
         return {"bg": "#00B050", "fg": "#FF0000", "bold": True}
 
     bg, fg = base.get(t, ("#FFFFFF", "#000000"))
-    return {"bg": bg, "fg": fg, "bold": t in {"Perm"}}
+    return {"bg": bg, "fg": fg, "bold": t == "Perm"}
 
 # ==================================================
 # SELECCIÓN DE MES
@@ -167,8 +143,8 @@ df_mes = df[df["mes"] == mes]
 # ==================================================
 # PESTAÑAS
 # ==================================================
-tab_general, tab_mis_turnos, tab_resumen = st.tabs(
-    ["📋 Cuadrante general", "📆 Mis turnos", "📊 Resumen"]
+tab_general, tab_mis_turnos = st.tabs(
+    ["📋 Cuadrante general", "📆 Mis turnos"]
 )
 
 # ==================================================
@@ -246,19 +222,19 @@ with tab_mis_turnos:
         if "|" in turno: return turno.split("|")
         return [turno]
 
-    def formatear_nombre(n):
-        p = n.split()
-        if p[0] in {"Iago", "Javier"} and len(p) > 1:
-            return f"{p[0]} {p[1][0]}."
-        return p[0]
+    def formatear_nombre(nombre_completo):
+        partes = nombre_completo.split()
+        if partes[0] in {"Iago", "Javier"} and len(partes) > 1:
+            return f"{partes[0]} {partes[1][0]}."
+        return partes[0]
 
-    def compañeros(fecha, sub):
-        if sub not in TURNOS_TRABAJO:
+    def compañeros(fecha, subturno):
+        if subturno not in TURNOS_TRABAJO:
             return []
         return (
             df_mes[
                 (df_mes["fecha"] == fecha) &
-                (df_mes["turno"].str.contains(sub)) &
+                (df_mes["turno"].str.contains(subturno)) &
                 (df_mes["nip"] != st.session_state.nip)
             ]["nombre"]
             .apply(formatear_nombre)
@@ -277,7 +253,7 @@ with tab_mis_turnos:
                 html = f"<div style='border:1px solid #999'><b>{d.day}</b><br>"
 
                 if not fila.empty:
-                    for p in separar(str(fila.iloc[0]["turno"])):
+                    for p in separar(str(fila.iloc[0]['turno'])):
                         e = estilo_turno(p)
                         html += (
                             f"<div style='background:{e['bg']};color:{e['fg']};text-align:center'>"
@@ -289,96 +265,3 @@ with tab_mis_turnos:
 
                 html += "</div>"
                 st.markdown(html, unsafe_allow_html=True)
-
-# ==================================================
-# TAB 3 — RESUMEN
-# ==================================================
-with tab_resumen:
-    st.subheader("📊 Resumen año 2026")
-
-    df_user_all = df[df["nip"] == st.session_state.nip]
-    nombre = df_user_all["nombre"].iloc[0]
-    nip = st.session_state.nip
-
-    st.markdown(
-        f"<h3 style='text-align:center'>RESUMEN 2026<br>{nombre} – {nip}</h3>",
-        unsafe_allow_html=True,
-    )
-
-    filas = [
-        "Mañanas","Tardes","Noches","Vacaciones","APs","Ferias",
-        "Trabajo sindical","Días de Baja","Días de Juicio",
-        "Permisos","Cursos","Descansos compensados","Indisposiciones",
-        "Jefaturas de servicio","Festivos trabajados",
-        "Fines de semana trabajados","Domingos trabajados",
-        "Horas trabajadas",
-    ]
-
-    resumen = {f: [0]*12 for f in filas}
-    orden_general = df[["nombre","nip"]].drop_duplicates().reset_index(drop=True)
-
-    def separar_resumen(turno):
-        if "y" in turno:
-            return turno.split("y")
-        if "|" in turno:
-            return turno.split("|")
-        return [turno]
-
-    for _, r in df_user_all.iterrows():
-        m = r["mes"] - 1
-        turno = str(r["turno"])
-        fecha = r["fecha"]
-        dia_sem = fecha.weekday()
-        sub = separar_resumen(turno)
-
-        for t in sub:
-            if t in {"1","L"}: resumen["Mañanas"][m] += 1
-            if t == "2": resumen["Tardes"][m] += 1
-            if t == "3": resumen["Noches"][m] += 1
-            resumen["Horas trabajadas"][m] += HORAS.get(t, 0)
-
-        if turno == "Vac" and dia_sem < 5 and not es_festivo(fecha):
-            resumen["Vacaciones"][m] += 1
-        if turno == "AP": resumen["APs"][m] += 1
-        if turno == "Ts": resumen["Trabajo sindical"][m] += 1
-        if turno == "BAJA": resumen["Días de Baja"][m] += 1
-        if turno in {"JuB","JuC"}: resumen["Días de Juicio"][m] += 1
-        if turno == "Perm": resumen["Permisos"][m] += 1
-        if turno == "Curso": resumen["Cursos"][m] += 1
-        if turno.startswith("Dc"): resumen["Descansos compensados"][m] += 1
-        if turno == "Indisp": resumen["Indisposiciones"][m] += 1
-
-        if fecha.day in {1,16} and any(t in {"1","L"} for t in sub):
-            resumen["Ferias"][m] += 1
-
-        if es_festivo(fecha) and any(t in {"1","2","3","L"} for t in sub):
-            resumen["Festivos trabajados"][m] += 1
-
-        if dia_sem in {5,6} and any(t in {"1","2","3","L"} for t in sub):
-            resumen["Fines de semana trabajados"][m] += 0.5
-            if dia_sem == 6:
-                resumen["Domingos trabajados"][m] += 1
-
-        for t in sub:
-            if t not in {"1","2","3","L"}:
-                continue
-            cand = df[(df["fecha"] == fecha) & (df["turno"].str.contains(t))]
-            cand = cand.merge(orden_general, on=["nombre","nip"])
-            if not cand.empty and cand.iloc[0]["nip"] == nip:
-                resumen["Jefaturas de servicio"][m] += 1
-
-    for _, r in df_horas_manual[df_horas_manual["nip"] == nip].iterrows():
-        resumen["Horas trabajadas"][r["mes"]-1] += r["horas"]
-
-    meses_txt = [
-        "Enero","Febrero","Marzo","Abril","Mayo","Junio",
-        "Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"
-    ]
-
-    df_res = pd.DataFrame(
-        {meses_txt[i]: [resumen[f][i] for f in filas] for i in range(12)},
-        index=filas
-    )
-    df_res["Total"] = df_res.sum(axis=1)
-
-    st.dataframe(df_res, use_container_width=True)import streamlit as st
