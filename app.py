@@ -265,3 +265,5 @@ with tab_mis_turnos:
 
                 html += "</div>"
                 st.markdown(html, unsafe_allow_html=True)
+                st.markdown("<div style='height:25px'></div>", unsafe_allow_html=True)
+
