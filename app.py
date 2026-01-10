@@ -72,7 +72,7 @@ st.set_page_config(page_title="Cuadrante 2026", layout="wide")
 
 ADMIN_USER = "ADMIN"
 ADMIN_PASS = "PoliciaLocal2021!"
-DATA_FILE = "cuadrante_base.csv"
+BASE_FILE = "cuadrante_base.csv"
 HISTORIAL_FILE = "historial_cambios.csv"
 USERS_FILE = "usuarios.csv"
 ESCUDO_FILE = "Placa.png"
@@ -582,7 +582,7 @@ if st.session_state.is_admin:
             df.loc[len(df)] = nueva
 
         # Guardar cuadrante
-        guardar_cambio(df, DATA_FILE)
+        guardar_cambio(df, BASE_FILE)
 
         # Registrar historial
         registro = {
