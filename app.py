@@ -99,6 +99,13 @@ usuarios["nip"] = usuarios["nip"].apply(normalizar_nip)
 usuarios["dni"] = usuarios["dni"].astype(str)
 
 # ==================================================
+# FUNCIONES AUXILIARES
+# ==================================================
+
+def guardar_cambio(df, data_file):
+    df.to_csv(data_file, index=False)
+
+# ==================================================
 # LOGIN
 # ==================================================
 if st.session_state.nip is None:
