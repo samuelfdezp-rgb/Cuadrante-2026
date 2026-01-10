@@ -336,30 +336,54 @@ with tab_general:
     # --------------------------------------------------
     # Pintar filas resumen (Mañanas / Tardes / Noches)
     # --------------------------------------------------
-    COLUMNAS_FIJAS = 3  # Nombre, Categoría, NIP
-    
-    # Mañanas
-    html += "<tr>"
-    html += "<td></td><td></td><td></td>"  # columnas fijas SIN colspan
-    for d in tabla.columns:
-        html += f"<td style='background:#BDD7EE;color:#0070C0;text-align:center;font-weight:bold'>{resumen_turnos[d]['1']}</td>"
-    html += "</tr>"
+    st.markdown("### 📊 Resumen diario de turnos")
 
-    # Tardes
-    html += "<tr>"
-    html += "<td></td><td></td><td></td>"
-    for d in tabla.columns:
-        html += f"<td style='background:#FFE699;color:#0070C0;text-align:center;font-weight:bold'>{resumen_turnos[d]['2']}</td>"
-    html += "</tr>"
+html = """
+<style>
+.resumen-table {
+    border-collapse: collapse;
+    font-size: 12px;
+}
+.resumen-table th, .resumen-table td {
+    border: 1px solid #000;
+    padding: 4px;
+    text-align: center;
+    font-weight: bold;
+}
+</style>
 
-    # Nocheshtml += "<tr>"
-    html += "<td></td><td></td><td></td>"
-    for d in tabla.columns:
-        html += f"<td style='background:#F8CBAD;color:#FF0000;text-align:center;font-weight:bold'>{resumen_turnos[d]['3']}</td>"
-    html += "</tr>"
+<div style="overflow-x:auto">
+<table class="resumen-table">
+<tr>
+    <th>Turno</th>
+"""
 
-    html += "</table></div>"
-    st.markdown(html, unsafe_allow_html=True)
+for d in tabla.columns:
+    html += f"<th>{d}</th>"
+
+html += "</tr>"
+
+# Mañanas
+html += "<tr><td style='background:#BDD7EE;color:#0070C0'>Mañanas</td>"
+for d in tabla.columns:
+    html += f"<td style='background:#BDD7EE;color:#0070C0'>{resumen_turnos[d]['1']}</td>"
+html += "</tr>"
+
+# Tardes
+html += "<tr><td style='background:#FFE699;color:#0070C0'>Tardes</td>"
+for d in tabla.columns:
+    html += f"<td style='background:#FFE699;color:#0070C0'>{resumen_turnos[d]['2']}</td>"
+html += "</tr>"
+
+# Noches
+html += "<tr><td style='background:#F8CBAD;color:#FF0000'>Noches</td>"
+for d in tabla.columns:
+    html += f"<td style='background:#F8CBAD;color:#FF0000'>{resumen_turnos[d]['3']}</td>"
+html += "</tr>"
+
+html += "</table></div>"
+
+st.markdown(html, unsafe_allow_html=True)
     
 # ==================================================
 # TAB 2 — MIS TURNOS
