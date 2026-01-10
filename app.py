@@ -2,29 +2,36 @@ import streamlit as st
 import pandas as pd
 import calendar
 from datetime import datetime, date
-import base64
 
 # ==================================================
-# CONFIGURACIÓN
+# CONFIGURACIÓN GENERAL
 # ==================================================
 st.set_page_config(page_title="Cuadrante 2026", layout="wide")
 
+ADMIN_USER = "ADMIN"
+ADMIN_PASS = "PoliciaLocal2021!"
 DATA_FILE = "cuadrante_2026.csv"
 USERS_FILE = "usuarios.csv"
 ESCUDO_FILE = "Placa.png"
-CABECERA_FILE = "cabecera.png"
 
 # ==================================================
 # SESIÓN
 # ==================================================
-if "usuario" not in st.session_state:
-    st.session_state.usuario = None
+if "nip" not in st.session_state:
+    st.session_state.nip = None
+if "is_admin" not in st.session_state:
+    st.session_state.is_admin = False
 
 # ==================================================
 # CARGA DE DATOS
 # ==================================================
 df = pd.read_csv(DATA_FILE, parse_dates=["fecha"])
-usuarios = pd.read_csv(USERS_FILE, dtype=str)
+df["dia"] = df["fecha"].dt.day
+df["nip"] = df["nip"].astype(str)
+
+usuarios = pd.read_csv(USERS_FILE)
+usuarios["nip"] = usuarios["nip"].astype(str)
+usuarios["dni"] = usuarios["dni"].astype(str)
 
 # ==================================================
 # LOGIN
@@ -34,42 +41,54 @@ if st.session_state.nip is None:
         """
         <style>
         body, .stApp { background-color: white; }
+        .login-container {
+            max-width: 420px;
+            margin: auto;
+            text-align: center;
+        }
+        .login-title {
+            color: black;
+            font-size: 30px;
+            font-weight: 700;
+            margin: 20px 0 30px 0;
+        }
         </style>
         """,
         unsafe_allow_html=True
     )
 
-    with open(ESCUDO_FILE, "rb") as f:
-        escudo = base64.b64encode(f.read()).decode()
-
     st.markdown(
         f"""
-        <div style="display:flex;justify-content:center;margin-top:20px">
-            <img src="data:image/png;base64,{escudo}" width="220">
+        <div class="login-container">
+            <img src="{ESCUDO_FILE}" width="220">
+            <div class="login-title">🔐 Acceso al cuadrante</div>
         </div>
-        <h2 style="text-align:center;color:black">
-            🔒 Acceso al cuadrante
-        </h2>
         """,
         unsafe_allow_html=True
     )
 
-    nip = st.text_input("Usuario (NIP)")
-    pwd = st.text_input("Contraseña (DNI)", type="password")
+    usuario = st.text_input("Usuario (NIP)")
+    password = st.text_input("Contraseña (DNI)", type="password")
 
     if st.button("Entrar"):
-        fila = usuarios[
-            (usuarios["nip"] == nip) &
-            (usuarios["dni"] == pwd)
-        ]
-        if not fila.empty:
-            st.session_state.usuario = nip
+        # ADMIN
+        if usuario == ADMIN_USER and password == ADMIN_PASS:
+            st.session_state.nip = ADMIN_USER
+            st.session_state.is_admin = True
+            st.rerun()
+
+        # USUARIOS NORMALES
+        usuario_fmt = usuario.strip().zfill(6)
+        fila = usuarios[usuarios["nip"] == usuario_fmt]
+
+        if not fila.empty and fila.iloc[0]["dni"] == password.strip():
+            st.session_state.nip = usuario_fmt
+            st.session_state.is_admin = False
             st.rerun()
         else:
-            st.error("Credenciales incorrectas")
+            st.error("Usuario o contraseña incorrectos")
 
     st.stop()
-
 # ==================================================
 # CABECERA POST LOGIN
 # ==================================================
