@@ -350,18 +350,39 @@ with tab_general:
     # ============================
     html += "<br><table>"
 
+    # Columnas fantasma para alinear con el cuadrante
+    if not modo_movil:
+        html += "<th></th><th></th>"
+
+    html += "<th></th>"  # NIP (o única columna en móvil)
+
+    # Días
+    for d in tabla.columns:
+        html += f"<th>{d}</th>"
+
+    html += "</tr>"
+
     html += "<tr><th>Turno</th>"
     for d in tabla.columns:
         html += f"<th>{d}</th>"
     html += "</tr>"
 
     def fila_resumen(nombre, datos, bg):
-        fila = f"<tr><td style='font-weight:bold'>{nombre}</td>"
+        fila = "<tr>"
+
+        # Columnas fantasma
+        if not modo_movil:
+            fila += "<td></td><td></td>"
+
+        fila += f"<td style='font-weight:bold'>{nombre}</td>"
+
+        # Días
         for d in tabla.columns:
             fila += (
-                f"<td style='background:{bg};color:#000'>"
+                f"<td style='background:{bg};color:#000;text-align:center'>"
                 f"{datos[d]}</td>"
             )
+
         fila += "</tr>"
         return fila
 
@@ -369,7 +390,7 @@ with tab_general:
     html += fila_resumen("Tardes", conteo["Tardes"], "#FFE699")
     html += fila_resumen("Noches", conteo["Noches"], "#F8CBAD")
 
-    html += "</table></div>"
+    html += "</table>"
 
     st.markdown(html, unsafe_allow_html=True)
 
