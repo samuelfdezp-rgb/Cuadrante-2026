@@ -14,6 +14,7 @@ ADMIN_PASS = "PoliciaLocal2021!"
 DATA_FILE = "cuadrante_2026.csv"
 USERS_FILE = "usuarios.csv"
 ESCUDO_FILE = "Placa.png"
+CABECERA_FILE = "cabecera.png"
 
 # ==================================================
 # SESIÓN
