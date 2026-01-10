@@ -72,7 +72,7 @@ st.set_page_config(page_title="Cuadrante 2026", layout="wide")
 
 ADMIN_USER = "ADMIN"
 ADMIN_PASS = "PoliciaLocal2021!"
-BASE_FILE = "cuadrante_base.csv"
+DATA_FILE = "cuadrante_base.csv"
 HISTORIAL_FILE = "historial_cambios.csv"
 USERS_FILE = "usuarios.csv"
 ESCUDO_FILE = "Placa.png"
@@ -101,7 +101,6 @@ usuarios["dni"] = usuarios["dni"].astype(str)
 # ==================================================
 # FUNCIONES AUXILIARES
 # ==================================================
-
 def guardar_cambio(df, data_file):
     df.to_csv(data_file, index=False)
 
