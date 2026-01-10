@@ -576,7 +576,7 @@ if st.session_state.is_admin:
             df.loc[len(df)] = nueva
 
         # Guardar cuadrante
-        df.to_csv(DATA_FILE, index=False)
+        guardar_cambio(df, DATA_FILE)
 
         # Registrar historial
         registro = {
