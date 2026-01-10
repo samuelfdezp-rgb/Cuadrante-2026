@@ -282,37 +282,64 @@ with tab_general:
                 f"font-weight:{'bold' if e['bold'] else 'normal'}'>{txt}</td>"
             )
         html += "</tr>"
-    
-# ================= RESUMEN =================
-    resumen={d:{"1":0,"2":0,"3":0} for d in tabla.columns}
 
-    def contar(t):
-        if pd.isna(t): return []
-        t=str(t)
-        excluir=["D","Dc","Dcc","Dcv","Dcj","Dct","Vac","Perm","AP","Ts","BAJA","L"]
-        if any(x in t for x in excluir): return []
-        t=t.replace("ex","")
-        if "y" in t: return t.split("y")
-        if "|" in t: return t.split("|")
-        return [t]
+# ============================================
+# CONTABILIZACIÓN DE AGENTES POR TURNO
+# ============================================
+turnos_mañana = ["1", "1ex"]
+turnos_tarde = ["2", "2ex"]
+turnos_noche = ["3", "3ex"]
 
-    for _,fila in tabla.iterrows():
-        for d,t in fila.items():
-            for p in contar(t):
-                if p in resumen[d]: resumen[d][p]+=1
+conteo = {
+    "Mañanas": {},
+    "Tardes": {},
+    "Noches": {}
+}
 
-    for label,color,key in [
-        ("Mañanas","#BDD7EE","1"),
-        ("Tardes","#FFE699","2"),
-        ("Noches","#F8CBAD","3")
-    ]:
-        html+=f"<tr><td colspan='3' style='font-weight:bold;background:{color}'>{label}</td>"
-        for d in tabla.columns:
-            html+=f"<td style='background:{color};text-align:center;font-weight:bold'>{resumen[d][key]}</td>"
-        html+="</tr>"
+for d in tabla.columns:
+    df_dia = df_mes[df_mes["dia"] == d]
 
-    html+="</table></div>"
-    st.markdown(html,unsafe_allow_html=True)
+    conteo["Mañanas"][d] = df_dia["turno"].apply(
+        lambda x: any(t in str(x) for t in turnos_mañana)
+    ).sum()
+
+    conteo["Tardes"][d] = df_dia["turno"].apply(
+        lambda x: any(t in str(x) for t in turnos_tarde)
+    ).sum()
+
+    conteo["Noches"][d] = df_dia["turno"].apply(
+        lambda x: any(t in str(x) for t in turnos_noche)
+    ).sum()
+
+html_resumen = """
+<table style="border-collapse:collapse; margin-top:6px;">
+<tr>
+  <th style="border:1px solid #000; padding:4px;">Turno</th>
+"""
+
+for d in tabla.columns:
+    html_resumen += f"<th style='border:1px solid #000; padding:4px'>{d}</th>"
+
+html_resumen += "</tr>"
+
+def fila_resumen(nombre, datos, bg):
+    fila = f"<tr><td style='border:1px solid #000; font-weight:bold'>{nombre}</td>"
+    for d in tabla.columns:
+        fila += (
+            f"<td style='border:1px solid #000; "
+            f"background:{bg}; color:#000; text-align:center'>"
+            f"{datos[d]}</td>"
+        )
+    fila += "</tr>"
+    return fila
+
+html_resumen += fila_resumen("Mañanas", conteo["Mañanas"], "#BDD7EE")
+html_resumen += fila_resumen("Tardes", conteo["Tardes"], "#FFE699")
+html_resumen += fila_resumen("Noches", conteo["Noches"], "#F8CBAD")
+
+html_resumen += "</table>"
+
+st.markdown(html_resumen, unsafe_allow_html=True)
 
 # ==================================================
 # TAB 2 — MIS TURNOS
