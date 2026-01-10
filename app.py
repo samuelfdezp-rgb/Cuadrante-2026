@@ -228,13 +228,13 @@ from openpyxl.styles.colors import Color
 
 with tab_general:
 
-    st.subheader("📋 Cuadrante general (Excel real)")
+    st.subheader("📋 Cuadrante general")
 
     EXCEL_FILE = "01 - Cuadrante Enero 2026.xlsx"
     SHEET_NAME = "Enero"
 
     wb = load_workbook(EXCEL_FILE, data_only=True)
-    ws = wb[SHEET_NAME]
+    ws = wb.active
 
     # Rango EXACTO
     start_row, end_row = 4, 49
