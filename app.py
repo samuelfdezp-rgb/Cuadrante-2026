@@ -41,31 +41,30 @@ if st.session_state.nip is None:
         """
         <style>
         body, .stApp { background-color: white; }
-        .login-container {
-            max-width: 420px;
-            margin: auto;
-            text-align: center;
+
+        label {
+            color: black !important;
+            font-weight: 600;
         }
+
         .login-title {
             color: black;
-            font-size: 30px;
+            font-size: 32px;
             font-weight: 700;
             margin: 20px 0 30px 0;
+            text-align: center;
         }
         </style>
         """,
         unsafe_allow_html=True
     )
 
-    st.markdown(
-        f"""
-        <div class="login-container">
-            <img src="{ESCUDO_FILE}" width="220">
-            <div class="login-title">🔐 Acceso al cuadrante</div>
-        </div>
-        """,
-        unsafe_allow_html=True
-    )
+    # Escudo centrado (FORMA CORRECTA)
+    col1, col2, col3 = st.columns([1, 2, 1])
+    with col2:
+        st.image(ESCUDO_FILE, width=220)
+
+    st.markdown("<div class='login-title'>🔐 Acceso al cuadrante</div>", unsafe_allow_html=True)
 
     usuario = st.text_input("Usuario (NIP)")
     password = st.text_input("Contraseña (DNI)", type="password")
@@ -89,6 +88,7 @@ if st.session_state.nip is None:
             st.error("Usuario o contraseña incorrectos")
 
     st.stop()
+
 # ==================================================
 # CABECERA POST LOGIN
 # ==================================================
