@@ -336,7 +336,6 @@ with tab_general:
     # --------------------------------------------------
     # Pintar filas resumen (Mañanas / Tardes / Noches)
     # --------------------------------------------------
-    COLUMNAS_FIJAS = 3  # Nombre, Categoría, NIP
     
     # Mañanas
     html += "<tr>"
