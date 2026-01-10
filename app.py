@@ -140,12 +140,21 @@ df_mes = df[df["mes"] == mes].copy()
 df_mes["dia"] = df_mes["fecha"].dt.day
 
 # ==================================================
-# FESTIVOS
+# FESTIVOS Y DOMINGOS
 # ==================================================
-festivos = {date(2026, 1, 1), date(2026, 1, 6)}
+from datetime import date
 
-def es_festivo(fecha):
-    return fecha in festivos
+FESTIVOS_2026 = {
+    date(2026, 1, 1),   # Año nuevo
+    date(2026, 1, 6),   # Reyes
+    # aquí puedes añadir más si quieres
+}
+
+def es_especial(fecha):
+    """
+    Devuelve True si la fecha es domingo o festivo
+    """
+    return fecha.weekday() == 6 or fecha in FESTIVOS_2026
 
 # ==================================================
 # NOMBRES DE TURNOS
