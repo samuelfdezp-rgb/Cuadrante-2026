@@ -203,16 +203,6 @@ def estilo_turno(t):
     return {"bg": bg, "fg": fg, "bold": t == "perm"}
 
 # ==================================================
-# SELECCIÓN DE MES
-# ==================================================
-mes = st.selectbox(
-    "Selecciona mes",
-    sorted(df["mes"].unique()),
-    format_func=lambda x: datetime(2026, x, 1).strftime("%B 2026"),
-)
-df_mes = df[df["mes"] == mes]
-
-# ==================================================
 # PESTAÑAS
 # ==================================================
 tab_general, tab_mis_turnos = st.tabs(
