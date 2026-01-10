@@ -348,10 +348,6 @@ with tab_general:
     <table>
     """
 
-    <div style="overflow:auto">
-    <table>
-    """
-
     html += "<th>NIP</th>" if modo_movil else "<th>Nombre y apellidos</th><th>Categoría</th><th>NIP</th>"
 
     for d in tabla.columns:
