@@ -473,41 +473,47 @@ if st.session_state.is_admin:
     # ---- Botón guardar
     if st.button("💾 Guardar cambio"):
         fecha_sel = date(2026, mes, dia_sel)
-
+    
         mask = (
             (df["nip"] == nip_sel) &
             (df["fecha"] == pd.Timestamp(fecha_sel))
         )
 
-    # Turno anterior
     if mask.any():
         turno_anterior = df.loc[mask, "turno"].iloc[0]
+        nombre_afectado = df.loc[mask, "nombre"].iloc[0]
+        categoria_afectado = df.loc[mask, "categoria"].iloc[0]
+
         df.loc[mask, "turno"] = turno_sel
     else:
         turno_anterior = ""
         fila_base = df_mes[df_mes["nip"] == nip_sel].iloc[0]
+
+        nombre_afectado = fila_base["nombre"]
+        categoria_afectado = fila_base["categoria"]
+
         nueva = {
             "anio": 2026,
             "mes": mes,
             "fecha": fecha_sel,
             "dia": dia_sel,
             "nip": nip_sel,
-            "nombre": fila_base["nombre"],
-            "categoria": fila_base["categoria"],
+            "nombre": nombre_afectado,
+            "categoria": categoria_afectado,
             "turno": turno_sel,
             "tipo": ""
         }
         df.loc[len(df)] = nueva
 
-    # ---- GUARDAR CUADRANTE
+    # Guardar cuadrante
     df.to_csv(DATA_FILE, index=False)
 
-    # ---- REGISTRAR HISTORIAL
+    # Registrar historial
     registro = {
         "fecha_hora": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
         "usuario_admin": st.session_state.nip,
         "nip_afectado": nip_sel,
-        "nombre_afectado": fila_base["nombre"],
+        "nombre_afectado": nombre_afectado,
         "fecha_turno": fecha_sel.strftime("%Y-%m-%d"),
         "turno_anterior": turno_anterior,
         "turno_nuevo": turno_sel,
@@ -516,7 +522,10 @@ if st.session_state.is_admin:
 
     try:
         df_hist = pd.read_csv(HISTORIAL_FILE)
-        df_hist = pd.concat([df_hist, pd.DataFrame([registro])], ignore_index=True)
+        df_hist = pd.concat(
+            [df_hist, pd.DataFrame([registro])],
+            ignore_index=True
+        )
     except FileNotFoundError:
         df_hist = pd.DataFrame([registro])
 
@@ -524,3 +533,5 @@ if st.session_state.is_admin:
 
     st.success("✅ Turno actualizado y registrado en el historial")
     st.rerun()
+
+    
