@@ -21,6 +21,7 @@ CABECERA_FILE = "cabecera.png"
 # ==================================================
 if "nip" not in st.session_state:
     st.session_state.nip = None
+    
 if "is_admin" not in st.session_state:
     st.session_state.is_admin = False
 
@@ -117,7 +118,8 @@ st.markdown(
 st.title("📅 Cuadrante 2026")
 
 if st.button("🚪 Cerrar sesión"):
-    st.session_state.usuario = None
+    st.session_state.nip = None
+    st.session_state.is_admin = False
     st.rerun()
 
 # ==================================================
