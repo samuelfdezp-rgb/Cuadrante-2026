@@ -228,7 +228,7 @@ with tab_general:
     modo_movil = st.checkbox("📱 Modo móvil")
     zoom = 1.0
     if modo_movil:
-        zoom = st.slider("🔍 Zoom", 0.6, 1.5, 1.0, 0.05)
+        zoom = st.slider("🔍 Zoom", 0.3, 1.5, 0.5, 0.05)
 
     if modo_movil:
         index_cols = ["nip"]
@@ -294,37 +294,6 @@ with tab_general:
     html += "</table></div>"
     st.markdown(html, unsafe_allow_html=True)
     
-    # ================= RESUMEN =================
-    resumen={d:{"1":0,"2":0,"3":0} for d in tabla.columns}
-
-    def contar(t):
-        if pd.isna(t): return []
-        t=str(t)
-        excluir=["D","Dc","Dcc","Dcv","Dcj","Dct","Vac","Perm","AP","Ts","BAJA","L"]
-        if any(x in t for x in excluir): return []
-        t=t.replace("ex","")
-        if "y" in t: return t.split("y")
-        if "|" in t: return t.split("|")
-        return [t]
-
-    for _,fila in tabla.iterrows():
-        for d,t in fila.items():
-            for p in contar(t):
-                if p in resumen[d]: resumen[d][p]+=1
-
-    for label,color,key in [
-        ("Mañanas","#BDD7EE","1"),
-        ("Tardes","#FFE699","2"),
-        ("Noches","#F8CBAD","3")
-    ]:
-        html+=f"<tr><td colspan='3' style='font-weight:bold;background:{color}'>{label}</td>"
-        for d in tabla.columns:
-            html+=f"<td style='background:{color};text-align:center;font-weight:bold'>{resumen[d][key]}</td>"
-        html+="</tr>"
-
-    html+="</table></div>"
-    st.markdown(html,unsafe_allow_html=True)
-
 # ==================================================
 # TAB 2 — MIS TURNOS
 # ==================================================
