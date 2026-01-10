@@ -99,14 +99,42 @@ if st.session_state.nip is None:
     st.stop()
 
 # ==================================================
-# CABECERA
+# CABECERA POST LOGIN
 # ==================================================
+with open(CABECERA_FILE, "rb") as f:
+    cabecera = base64.b64encode(f.read()).decode()
+
+st.markdown(
+    f"""
+    <div style="width:100%;margin-bottom:10px">
+        <img src="data:image/png;base64,{cabecera}" style="width:100%">
+    </div>
+    """,
+    unsafe_allow_html=True
+)
+
 st.title("📅 Cuadrante 2026")
 
 if st.button("🚪 Cerrar sesión"):
-    st.session_state.nip = None
-    st.session_state.is_admin = False
+    st.session_state.usuario = None
     st.rerun()
+
+# ==================================================
+# MESES EN CASTELLANO
+# ==================================================
+MESES = {
+    1:"Enero",2:"Febrero",3:"Marzo",4:"Abril",5:"Mayo",6:"Junio",
+    7:"Julio",8:"Agosto",9:"Septiembre",10:"Octubre",11:"Noviembre",12:"Diciembre"
+}
+
+mes = st.selectbox(
+    "Selecciona mes",
+    sorted(df["mes"].unique()),
+    format_func=lambda m: f"{MESES[m]} 2026"
+)
+
+df_mes = df[df["mes"] == mes].copy()
+df_mes["dia"] = df_mes["fecha"].dt.day
 
 # ==================================================
 # FESTIVOS
@@ -125,7 +153,7 @@ NOMBRES_TURNO = {
     "D": "Descanso", "Dc": "Descanso compensado",
     "Dcv": "Desc. comp. verano", "Dcc": "Desc. comp. curso",
     "Dct": "Desc. comp. tiro", "Dcj": "Desc. comp. juicio",
-    "Vac": "Vacaciones", "Perm": "Permiso", "BAJA": "Baja",
+    "Vac": "Vacaciones", "perm": "Permiso", "BAJA": "Baja",
     "Ts": "Tiempo sindical", "AP": "Asuntos particulares",
     "JuB": "Juicio Betanzos", "JuC": "Juicio Coruña",
     "Curso": "Curso", "Indisp": "Indisposición",
@@ -158,7 +186,7 @@ def estilo_turno(t):
         "Dct": ("#C6E0B4", "#00B050"),
         "Dcj": ("#C6E0B4", "#00B050"),
         "Vac": ("#FFFFFF", "#FF0000"),
-        "Perm": ("#FFFFFF", "#FF0000"),
+        "perm": ("#FFFFFF", "#FF0000"),
         "BAJA": ("#FFFFFF", "#FF0000"),
         "Ts": ("#FFFFFF", "#FF0000"),
         "AP": ("#FFFFFF", "#0070C0"),
@@ -171,7 +199,7 @@ def estilo_turno(t):
         return {"bg": "#00B050", "fg": "#FF0000", "bold": True}
 
     bg, fg = base.get(t, ("#FFFFFF", "#000000"))
-    return {"bg": bg, "fg": fg, "bold": t == "Perm"}
+    return {"bg": bg, "fg": fg, "bold": t == "perm"}
 
 # ==================================================
 # SELECCIÓN DE MES
@@ -264,6 +292,37 @@ with tab_general:
 
     html += "</table></div>"
     st.markdown(html, unsafe_allow_html=True)
+    
+    # ================= RESUMEN =================
+    resumen={d:{"1":0,"2":0,"3":0} for d in tabla.columns}
+
+    def contar(t):
+        if pd.isna(t): return []
+        t=str(t)
+        excluir=["D","Dc","Dcc","Dcv","Dcj","Dct","Vac","Perm","AP","Ts","BAJA","L"]
+        if any(x in t for x in excluir): return []
+        t=t.replace("ex","")
+        if "y" in t: return t.split("y")
+        if "|" in t: return t.split("|")
+        return [t]
+
+    for _,fila in tabla.iterrows():
+        for d,t in fila.items():
+            for p in contar(t):
+                if p in resumen[d]: resumen[d][p]+=1
+
+    for label,color,key in [
+        ("Mañanas","#BDD7EE","1"),
+        ("Tardes","#FFE699","2"),
+        ("Noches","#F8CBAD","3")
+    ]:
+        html+=f"<tr><td colspan='3' style='font-weight:bold;background:{color}'>{label}</td>"
+        for d in tabla.columns:
+            html+=f"<td style='background:{color};text-align:center;font-weight:bold'>{resumen[d][key]}</td>"
+        html+="</tr>"
+
+    html+="</table></div>"
+    st.markdown(html,unsafe_allow_html=True)
 
 # ==================================================
 # TAB 2 — MIS TURNOS
