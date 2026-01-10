@@ -332,20 +332,21 @@ with tab_general:
 
     html = f"""
     <style>
-    table {
+    table {{
         border-collapse: collapse;
-        font-size: 12px;   /* ⬅️ antes 10px */
-        transform: scale({zoom});
-        transform-origin: top left;
-    }
-    th, td {
+        font-size: 12px;
+    }}
+    th, td {{
         border: 1px solid #000;
-        padding: 4px;      /* ⬅️ antes 2px */
+        padding: 4px;
         text-align: center;
         white-space: nowrap;
-    }
+    }}
     </style>
 
+    <div style="overflow-x:auto; overflow-y:auto; width:100%; touch-action: pinch-zoom;">
+    <table>
+    """
 
     <div style="overflow:auto">
     <table>
