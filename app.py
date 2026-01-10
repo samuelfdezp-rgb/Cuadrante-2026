@@ -60,14 +60,14 @@ if st.session_state.nip is None:
     )
 
     # Escudo perfectamente centrado
-st.markdown(
-    f"""
-    <div style="display:flex; justify-content:center; margin-top:20px;">
-        <img src="data:image/png;base64,{open(ESCUDO_FILE,'rb').read().encode('base64').decode()}" width="220">
-    </div>
-    """,
-    unsafe_allow_html=True
-)
+    st.markdown(
+        f"""
+        <div style="display:flex; justify-content:center; margin-top:20px;">
+            <img src="data:image/png;base64,{open(ESCUDO_FILE,'rb').read().encode('base64').decode()}" width="220">
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
 
     st.markdown("<div class='login-title'>🔐 Acceso al cuadrante</div>", unsafe_allow_html=True)
 
