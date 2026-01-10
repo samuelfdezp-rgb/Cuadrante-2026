@@ -479,59 +479,57 @@ if st.session_state.is_admin:
             (df["fecha"] == pd.Timestamp(fecha_sel))
         )
 
-    if mask.any():
-        turno_anterior = df.loc[mask, "turno"].iloc[0]
-        nombre_afectado = df.loc[mask, "nombre"].iloc[0]
-        categoria_afectado = df.loc[mask, "categoria"].iloc[0]
+        if mask.any():
+            turno_anterior = df.loc[mask, "turno"].iloc[0]
+            nombre_afectado = df.loc[mask, "nombre"].iloc[0]
+            categoria_afectado = df.loc[mask, "categoria"].iloc[0]
 
-        df.loc[mask, "turno"] = turno_sel
-    else:
-        turno_anterior = ""
-        fila_base = df_mes[df_mes["nip"] == nip_sel].iloc[0]
+            df.loc[mask, "turno"] = turno_sel
+        else:
+            turno_anterior = ""
+            fila_base = df_mes[df_mes["nip"] == nip_sel].iloc[0]
 
-        nombre_afectado = fila_base["nombre"]
-        categoria_afectado = fila_base["categoria"]
-
-        nueva = {
-            "anio": 2026,
-            "mes": mes,
-            "fecha": fecha_sel,
-            "dia": dia_sel,
-            "nip": nip_sel,
-            "nombre": nombre_afectado,
-            "categoria": categoria_afectado,
-            "turno": turno_sel,
-            "tipo": ""
-        }
-        df.loc[len(df)] = nueva
-
-    # Guardar cuadrante
-    df.to_csv(DATA_FILE, index=False)
-
-    # Registrar historial
-    registro = {
-        "fecha_hora": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
-        "usuario_admin": st.session_state.nip,
-        "nip_afectado": nip_sel,
-        "nombre_afectado": nombre_afectado,
-        "fecha_turno": fecha_sel.strftime("%Y-%m-%d"),
-        "turno_anterior": turno_anterior,
-        "turno_nuevo": turno_sel,
-        "observaciones": observaciones.strip()
-    }
-
-    try:
-        df_hist = pd.read_csv(HISTORIAL_FILE)
-        df_hist = pd.concat(
-            [df_hist, pd.DataFrame([registro])],
-            ignore_index=True
-        )
-    except FileNotFoundError:
-        df_hist = pd.DataFrame([registro])
-
-    df_hist.to_csv(HISTORIAL_FILE, index=False)
-
-    st.success("✅ Turno actualizado y registrado en el historial")
-    st.rerun()
-
+            nombre_afectado = fila_base["nombre"]
+            categoria_afectado = fila_base["categoria"]
     
+            nueva = {
+                "anio": 2026,
+                "mes": mes,
+                "fecha": fecha_sel,
+                "dia": dia_sel,
+                "nip": nip_sel,
+                "nombre": nombre_afectado,
+                "categoria": categoria_afectado,
+                "turno": turno_sel,
+                "tipo": ""
+            }
+            df.loc[len(df)] = nueva
+
+        # Guardar cuadrante
+        df.to_csv(DATA_FILE, index=False)
+
+        # Registrar historial
+        registro = {
+            "fecha_hora": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+            "usuario_admin": st.session_state.nip,
+            "nip_afectado": nip_sel,
+            "nombre_afectado": nombre_afectado,
+            "fecha_turno": fecha_sel.strftime("%Y-%m-%d"),
+            "turno_anterior": turno_anterior,
+            "turno_nuevo": turno_sel,
+            "observaciones": observaciones.strip()
+        }
+
+        try:
+            df_hist = pd.read_csv(HISTORIAL_FILE)
+            df_hist = pd.concat(
+                [df_hist, pd.DataFrame([registro])],
+                ignore_index=True
+            )
+        except FileNotFoundError:
+            df_hist = pd.DataFrame([registro])
+
+        df_hist.to_csv(HISTORIAL_FILE, index=False)
+
+        st.success("✅ Turno actualizado y registrado en el historial")
+        st.rerun()
