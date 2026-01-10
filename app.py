@@ -472,12 +472,12 @@ if st.session_state.is_admin:
 
     # ---- Botón guardar
     if st.button("💾 Guardar cambio"):
-    fecha_sel = date(2026, mes, dia_sel)
+        fecha_sel = date(2026, mes, dia_sel)
 
-    mask = (
-        (df["nip"] == nip_sel) &
-        (df["fecha"] == pd.Timestamp(fecha_sel))
-    )
+        mask = (
+            (df["nip"] == nip_sel) &
+            (df["fecha"] == pd.Timestamp(fecha_sel))
+        )
 
     # Turno anterior
     if mask.any():
