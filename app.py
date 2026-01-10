@@ -340,23 +340,23 @@ with tab_general:
     
     # Mañanas
     html += "<tr>"
-    html += f"<td colspan='{COLUMNAS_FIJAS}' style='background:#BDD7EE;color:#0070C0;font-weight:bold'>Mañanas</td>"
+    html += f"<td colspan='{COLUMNAS_FIJAS}' style='background:#BDD7EE;color:#0070C0;text-align:right;font-weight:bold'>Mañanas</td>"
     for dia in tabla.columns:
-        html += f"<td style='background:#BDD7EE;color:#0070C0;text-align:right;font-weight:bold'>{resumen_turnos[dia]['1']}</td>"
+        html += f"<td style='background:#BDD7EE;color:#0070C0;text-align:center;font-weight:bold'>{resumen_turnos[dia]['1']}</td>"
     html += "</tr>"
 
     # Tardes
     html += "<tr>"
-    html += f"<td colspan='{COLUMNAS_FIJAS}' style='background:#FFE699;color:#0070C0;font-weight:bold'>Tardes</td>"
+    html += f"<td colspan='{COLUMNAS_FIJAS}' style='background:#FFE699;color:#0070C0;text-align:right;font-weight:bold'>Tardes</td>"
     for dia in tabla.columns:
-        html += f"<td style='background:#FFE699;color:#0070C0;text-align:right;font-weight:bold'>{resumen_turnos[dia]['2']}</td>"
+        html += f"<td style='background:#FFE699;color:#0070C0;text-align:center;font-weight:bold'>{resumen_turnos[dia]['2']}</td>"
     html += "</tr>"
 
     # Noches
     html += "<tr>"
-    html += f"<td colspan='{COLUMNAS_FIJAS}' style='background:#F8CBAD;color:#FF0000;font-weight:bold'>Noches</td>"
+    html += f"<td colspan='{COLUMNAS_FIJAS}' style='background:#F8CBAD;color:#FF0000;text-align:right;font-weight:bold'>Noches</td>"
     for dia in tabla.columns:
-        html += f"<td style='background:#F8CBAD;color:#FF0000;text-align:right;font-weight:bold'>{resumen_turnos[dia]['3']}</td>"
+        html += f"<td style='background:#F8CBAD;color:#FF0000;text-align:center;font-weight:bold'>{resumen_turnos[dia]['3']}</td>"
     html += "</tr>"
 
     html += "</table></div>"
