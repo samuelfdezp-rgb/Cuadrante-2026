@@ -468,7 +468,7 @@ if st.session_state.is_admin:
         observaciones = st.text_input(
         "📝 Observaciones (opcional)",
         placeholder="Ej.: Cambio por enfermedad, ajuste de servicio…"
-    )
+        )
 
     # ---- Botón guardar
     if st.button("💾 Guardar cambio"):
