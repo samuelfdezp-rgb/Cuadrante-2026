@@ -207,7 +207,7 @@ def estilo_turno(t):
 
     # ---- NEGRITA
     bold = (
-        t in {"perm", "Ts", "JuB", "JuC", "AP", "Ts" "Vac", "BAJA", "indisp", "curso"} or
+        t in {"perm", "Ts", "JuB", "JuC", "AP", "Ts", "Vac", "BAJA", "indisp", "curso"} or
         "ex" in t or               # cualquier extra
         t in {"1y2", "1y3", "2y3"}
     )
@@ -304,8 +304,10 @@ with tab_general:
             txt = "" if pd.isna(v) else v
             html += (
                 f"<td style='background:{e['bg']};color:{e['fg']};"
-                f"font-weight:{'bold' if e['bold'] else 'normal'}'>{txt}</td>"
-                )
+                f"font-weight:{'bold' if e['bold'] else 'normal'};"
+                f"font-style:{'italic' if e['italic'] else 'normal'}'>"
+                f"{txt}</td>"
+            )
         html += "</tr>"
 
     # ==================================================
