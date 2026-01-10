@@ -170,6 +170,13 @@ def estilo_turno(t):
     if pd.isna(t):
         return {"bg": "#FFFFFF", "fg": "#000000", "bold": False, "italic": False}
 
+html += (
+    f"<td style='background:{e['bg']};color:{e['fg']};"
+    f"font-weight:{'bold' if e['bold'] else 'normal'};"
+    f"font-style:{'italic' if e['italic'] else 'normal'}'>"
+    f"{txt}</td>"
+)
+
     t = str(t)
 
     base = {
