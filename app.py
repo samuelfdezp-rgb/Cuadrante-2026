@@ -4,10 +4,13 @@ import calendar
 from datetime import datetime, date
 import base64
 
+def normalizar_nip(nip):
+    return str(nip).strip().zfill(6)
+
 def cargar_cuadrante_actual():
     # 1. Cargar cuadrante base
     df = pd.read_csv(BASE_FILE, parse_dates=["fecha"])
-    df["nip"] = df["nip"].astype(str)
+    df["nip"] = df["nip"].apply(normalizar_nip)
     df["dia"] = df["fecha"].dt.day
 
     # 2. Cargar historial si existe
@@ -24,7 +27,7 @@ def cargar_cuadrante_actual():
 
     # Aplicar cambios
     for _, r in hist.iterrows():
-        nip = str(r["nip_afectado"])
+        nip = normalizar_nip(r["nip_afectado"])
         fecha_turno = pd.Timestamp(r["fecha_turno"])
 
         mask = (df["nip"] == nip) & (df["fecha"] == fecha_turno)
@@ -89,10 +92,10 @@ if "is_admin" not in st.session_state:
 # ==================================================
 df = cargar_cuadrante_actual()
 df["dia"] = df["fecha"].dt.day
-df["nip"] = df["nip"].astype(str)
+df["nip"] = df["nip"].apply(normalizar_nip)
 
 usuarios = pd.read_csv(USERS_FILE)
-usuarios["nip"] = usuarios["nip"].astype(str)
+usuarios["nip"] = usuarios["nip"].apply(normalizar_nip)
 usuarios["dni"] = usuarios["dni"].astype(str)
 
 # ==================================================
@@ -579,7 +582,7 @@ if st.session_state.is_admin:
         registro = {
             "fecha_hora": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
             "usuario_admin": st.session_state.nip,
-            "nip_afectado": nip_sel,
+            nip_afectado = normalizar_nip(nip_afectado),
             "nombre_afectado": nombre_afectado,
             "fecha_turno": fecha_sel.strftime("%Y-%m-%d"),
             "turno_anterior": turno_anterior,
