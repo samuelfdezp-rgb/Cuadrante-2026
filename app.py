@@ -206,7 +206,7 @@ def estilo_turno(t):
     return {
         "bg": bg,
         "fg": fg,
-        "bold": t in {"perm", "Vac", "BAJA", "AP"},
+        "bold": t in {"perm", "Vac", "BAJA", "AP", "Ts"},
         "italic": t in {"Vac", "BAJA"}
     }
 
