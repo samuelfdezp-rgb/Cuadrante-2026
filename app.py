@@ -250,7 +250,7 @@ with tab_general:
     }
     th {
         font-weight: bold;
-    }}
+    }
     td.nombre {{ white-space: nowrap; }}
     </style>
     <div style="overflow:auto">
