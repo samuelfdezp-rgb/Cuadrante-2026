@@ -157,7 +157,7 @@ NOMBRES_TURNO = {
     "Vac": "Vacaciones", "perm": "Permiso", "BAJA": "Baja",
     "Ts": "Tiempo sindical", "AP": "Asuntos particulares",
     "JuB": "Juicio Betanzos", "JuC": "Juicio Coruña",
-    "Curso": "Curso", "Indisp": "Indisposición",
+    "Curso": "Curso", "indisp": "Indisposición",
 }
 
 def nombre_turno(c):
@@ -188,6 +188,8 @@ def estilo_turno(t):
         "Dcj": ("#C6E0B4", "#00B050"),
         "Vac": ("#FFFFFF", "#FF0000"),
         "perm": ("#FFFFFF", "#FF0000"),
+        "indisp": ("#FFFFFF", "#FF0000"),
+        "curso": ("#FFFFFF", "#FF0000"),
         "BAJA": ("#FFFFFF", "#FF0000"),
         "Ts": ("#FFFFFF", "#FF0000"),
         "AP": ("#FFFFFF", "#0070C0"),
@@ -205,7 +207,7 @@ def estilo_turno(t):
 
     # ---- NEGRITA
     bold = (
-        t in {"perm", "Ts", "JuB", "JuC"} or
+        t in {"perm", "Ts", "JuB", "JuC", "AP", "Ts" "Vac", "BAJA", "indisp", "curso"} or
         "ex" in t or               # cualquier extra
         t in {"1y2", "1y3", "2y3"}
     )
@@ -303,7 +305,7 @@ with tab_general:
             html += (
                 f"<td style='background:{e['bg']};color:{e['fg']};"
                 f"font-weight:{'bold' if e['bold'] else 'normal'}'>{txt}</td>"
-            )
+                )
         html += "</tr>"
 
     # ==================================================
