@@ -41,31 +41,30 @@ if st.session_state.nip is None:
         """
         <style>
         body, .stApp { background-color: white; }
-        .login-container {
-            max-width: 420px;
-            margin: auto;
-            text-align: center;
+
+        label {
+            color: black !important;
+            font-weight: 600;
         }
+
         .login-title {
             color: black;
-            font-size: 30px;
+            font-size: 32px;
             font-weight: 700;
             margin: 20px 0 30px 0;
+            text-align: center;
         }
         </style>
         """,
         unsafe_allow_html=True
     )
 
-    st.markdown(
-        f"""
-        <div class="login-container">
-            <img src="{ESCUDO_FILE}" width="220">
-            <div class="login-title">🔐 Acceso al cuadrante</div>
-        </div>
-        """,
-        unsafe_allow_html=True
-    )
+    # Escudo centrado (FORMA CORRECTA)
+    col1, col2, col3 = st.columns([1, 2, 1])
+    with col2:
+        st.image(ESCUDO_FILE, width=220)
+
+    st.markdown("<div class='login-title'>🔐 Acceso al cuadrante</div>", unsafe_allow_html=True)
 
     usuario = st.text_input("Usuario (NIP)")
     password = st.text_input("Contraseña (DNI)", type="password")
@@ -183,7 +182,7 @@ tab_general, tab_mis_turnos = st.tabs(
 )
 
 # ==================================================
-# TAB 1 — CUADRANTE GENERAL (CON MODO MÓVIL + ZOOM)
+# TAB 1 — CUADRANTE GENERAL (MODO MÓVIL + ZOOM)
 # ==================================================
 with tab_general:
     st.subheader("📋 Cuadrante general")
@@ -258,7 +257,7 @@ with tab_general:
     st.markdown(html, unsafe_allow_html=True)
 
 # ==================================================
-# TAB 2 — MIS TURNOS (CON ESPACIO ENTRE SEMANAS)
+# TAB 2 — MIS TURNOS
 # ==================================================
 with tab_mis_turnos:
     st.subheader("📆 Mis turnos")
@@ -303,7 +302,7 @@ with tab_mis_turnos:
                 html = f"<div style='border:1px solid #999'><b>{d.day}</b><br>"
 
                 if not fila.empty:
-                    for p in separar(str(fila.iloc[0]['turno'])):
+                    for p in separar(str(fila.iloc[0]["turno"])):
                         e = estilo_turno(p)
                         html += (
                             f"<div style='background:{e['bg']};color:{e['fg']};text-align:center'>"
