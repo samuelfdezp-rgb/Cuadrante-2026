@@ -228,9 +228,14 @@ def estilo_turno(t):
 # ==================================================
 # PESTAÑAS
 # ==================================================
-tab_general, tab_mis_turnos = st.tabs(
-    ["📋 Cuadrante general", "📆 Mis turnos"]
-)
+if st.session_state.is_admin:
+    tab_general, tab_mis_turnos, tab_historial = st.tabs(
+        ["📋 Cuadrante general", "📆 Mis turnos", "📜 Historial"]
+    )
+else:
+    tab_general, tab_mis_turnos = st.tabs(
+        ["📋 Cuadrante general", "📆 Mis turnos"]
+    )
 
 # ==================================================
 # TAB 1 — CUADRANTE GENERAL (MODO MÓVIL + ZOOM)
@@ -536,3 +541,25 @@ if st.session_state.is_admin:
 
         st.success("✅ Turno actualizado y registrado en el historial")
         st.rerun()
+
+# ==================================================
+# TAB HISTORIAL — SOLO ADMIN
+# ==================================================
+if st.session_state.is_admin:
+    with tab_historial:
+        st.subheader("📜 Historial de cambios del cuadrante")
+
+        try:
+            df_hist = pd.read_csv(HISTORIAL_FILE)
+
+            df_hist["fecha_hora"] = pd.to_datetime(df_hist["fecha_hora"])
+            df_hist = df_hist.sort_values("fecha_hora", ascending=False)
+
+            st.dataframe(
+                df_hist,
+                use_container_width=True,
+                hide_index=True
+            )
+
+        except FileNotFoundError:
+            st.info("Todavía no hay cambios registrados en el historial.")
