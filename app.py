@@ -244,7 +244,7 @@ with tab_general:
     # ============================
     # CONTENEDOR CON SCROLL + ZOOM
     # ============================
-    zoom = "0.7" if modo_movil else "1"
+    zoom = "0.5" if modo_movil else "1"
 
     html = f"""
     <style>
