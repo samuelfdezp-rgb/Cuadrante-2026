@@ -10,38 +10,54 @@ def cargar_cuadrante_actual():
     df["nip"] = df["nip"].astype(str)
     df["dia"] = df["fecha"].dt.day
 
-    # 2. Aplicar historial si existe
+    # 2. Cargar historial si existe
     try:
-        hist = pd.read_csv(HISTORIAL_FILE, parse_dates=["fecha_turno", "fecha_hora"])
+        hist = pd.read_csv(
+            HISTORIAL_FILE,
+            parse_dates=["fecha_turno", "fecha_hora"]
+        )
     except FileNotFoundError:
         return df
 
-    # Ordenar historial cronológicamente
+    # Orden cronológico
     hist = hist.sort_values("fecha_hora")
 
-    # Aplicar cambios uno a uno
+    # Aplicar cambios
     for _, r in hist.iterrows():
-        mask = (
-            (df["nip"] == str(r["nip_afectado"])) &
-            (df["fecha"] == pd.Timestamp(r["fecha_turno"]))
-        )
+        nip = str(r["nip_afectado"])
+        fecha_turno = pd.Timestamp(r["fecha_turno"])
+
+        mask = (df["nip"] == nip) & (df["fecha"] == fecha_turno)
 
         if mask.any():
             df.loc[mask, "turno"] = r["turno_nuevo"]
         else:
-            # crear fila si no existía
-            fila_base = df[df["nip"] == str(r["nip_afectado"])].iloc[0]
+            # Intentar obtener datos base del trabajador
+            filas_nip = df[df["nip"] == nip]
+
+            if not filas_nip.empty:
+                fila_base = filas_nip.iloc[0]
+                nombre = fila_base["nombre"]
+                categoria = fila_base["categoria"]
+                anio = fila_base["anio"]
+            else:
+                # Último recurso: sacar nombre del historial
+                nombre = r.get("nombre_afectado", "")
+                categoria = ""
+                anio = fecha_turno.year
+
             nueva = {
-                "anio": fila_base["anio"],
-                "mes": r["fecha_turno"].month,
-                "fecha": r["fecha_turno"],
-                "dia": r["fecha_turno"].day,
-                "nip": str(r["nip_afectado"]),
-                "nombre": fila_base["nombre"],
-                "categoria": fila_base["categoria"],
+                "anio": anio,
+                "mes": fecha_turno.month,
+                "fecha": fecha_turno,
+                "dia": fecha_turno.day,
+                "nip": nip,
+                "nombre": nombre,
+                "categoria": categoria,
                 "turno": r["turno_nuevo"],
                 "tipo": ""
             }
+
             df.loc[len(df)] = nueva
 
     return df
