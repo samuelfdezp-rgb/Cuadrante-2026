@@ -240,31 +240,30 @@ with tab_general:
 
     html = f"""
     <style>
-    table {
+    table {{
         border-collapse: collapse;
         font-size: 10px;
-    }
+    }}
 
-    th {
+    th {{
         border: 1px solid #000;
         padding: 2px;
         text-align: center !important;
         vertical-align: middle !important;
         white-space: nowrap;
-    }
+    }}
 
-    td {
+    td {{
         border: 1px solid #000;
         padding: 2px;
         text-align: center;
         vertical-align: middle;
         white-space: nowrap;
-    }
+    }}
     </style>
 
     <div style="overflow:auto">
     <table>
-    <tr>
     """
 
     html += "<th>NIP</th>" if modo_movil else "<th>Nombre y apellidos</th><th>Categoría</th><th>NIP</th>"
