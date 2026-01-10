@@ -168,7 +168,12 @@ def nombre_turno(c):
 # ==================================================
 def estilo_turno(t):
     if pd.isna(t):
-        return {"bg": "#FFFFFF", "fg": "#000000", "bold": False}
+        return {
+            "bg": "#FFFFFF",
+            "fg": "#000000",
+            "bold": False,
+            "italic": False
+        }
 
     t = str(t)
 
@@ -191,25 +196,31 @@ def estilo_turno(t):
         "BAJA": ("#FFFFFF", "#FF0000"),
         "Ts": ("#FFFFFF", "#FF0000"),
         "AP": ("#FFFFFF", "#0070C0"),
+        "JuB": ("#FFFFFF", "#FF0000"),
+        "JuC": ("#FFFFFF", "#FF0000"),
+        "Curso": ("#FFFFFF", "#FF0000"),
+        "Indisp": ("#FFFFFF", "#FF0000"),
     }
 
-    # Turnos dobles normales
-    if t in {"1y2", "1y3", "2y3"}:
-        return {"bg": "#DBDBDB", "fg": "#FF0000", "bold": True, "italic": False}
-
-    # Turnos dobles con extra
-    if "ex" in t and ("y" in t or "|" in t):
-        return {"bg": "#00B050", "fg": "#FF0000", "bold": True, "italic": False}
-
+    # Colores base
     bg, fg = base.get(t, ("#FFFFFF", "#000000"))
+
+    # ---- NEGRITA
+    bold = (
+        t in {"perm", "Ts", "JuB", "JuC"} or
+        "ex" in t or               # cualquier extra
+        t in {"1y2", "1y3", "2y3"}
+    )
+
+    # ---- CURSIVA
+    italic = t in {"Vac", "BAJA"}
 
     return {
         "bg": bg,
         "fg": fg,
-        "bold": t in {"perm", "Vac", "BAJA", "AP", "Ts"},
-        "italic": t in {"Vac", "BAJA"}
+        "bold": bold,
+        "italic": italic
     }
-
 
 # ==================================================
 # PESTAÑAS
