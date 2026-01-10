@@ -290,9 +290,6 @@ with tab_general:
                 f"font-weight:{'bold' if e['bold'] else 'normal'}'>{txt}</td>"
             )
         html += "</tr>"
-
-    html += "</table></div>"
-    st.markdown(html, unsafe_allow_html=True)
     
     # ==================================================
     # RESUMEN DIARIO DE TRABAJADORES POR TURNO
@@ -369,6 +366,8 @@ with tab_general:
         html += f"<td style='background:#F8CBAD;color:#FF0000;text-align:center;font-weight:bold'>{resumen_turnos[dia]['3']}</td>"
     html += "</tr>"
 
+    html += "</table></div>"
+        st.markdown(html, unsafe_allow_html=True)
     
 # ==================================================
 # TAB 2 — MIS TURNOS
