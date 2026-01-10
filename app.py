@@ -21,7 +21,6 @@ CABECERA_FILE = "cabecera.png"
 # ==================================================
 if "nip" not in st.session_state:
     st.session_state.nip = None
-    
 if "is_admin" not in st.session_state:
     st.session_state.is_admin = False
 
@@ -101,7 +100,7 @@ if st.session_state.nip is None:
     st.stop()
 
 # ==================================================
-# CABECERA POST LOGIN
+# CABECERA
 # ==================================================
 with open(CABECERA_FILE, "rb") as f:
     cabecera = base64.b64encode(f.read()).decode()
@@ -118,8 +117,7 @@ st.markdown(
 st.title("📅 Cuadrante 2026")
 
 if st.button("🚪 Cerrar sesión"):
-    st.session_state.nip = None
-    st.session_state.is_admin = False
+    st.session_state.usuario = None
     st.rerun()
 
 # ==================================================
@@ -140,21 +138,12 @@ df_mes = df[df["mes"] == mes].copy()
 df_mes["dia"] = df_mes["fecha"].dt.day
 
 # ==================================================
-# FESTIVOS Y DOMINGOS
+# FESTIVOS
 # ==================================================
-from datetime import date
+festivos = {date(2026, 1, 1), date(2026, 1, 6)}
 
-FESTIVOS_2026 = {
-    date(2026, 1, 1),   # Año nuevo
-    date(2026, 1, 6),   # Reyes
-    # aquí puedes añadir más si quieres
-}
-
-def es_especial(fecha):
-    """
-    Devuelve True si la fecha es domingo o festivo
-    """
-    return fecha.weekday() == 6 or fecha in FESTIVOS_2026
+def es_festivo(fecha):
+    return fecha in festivos
 
 # ==================================================
 # NOMBRES DE TURNOS
@@ -221,85 +210,78 @@ tab_general, tab_mis_turnos = st.tabs(
 )
 
 # ==================================================
-# TAB — CUADRANTE GENERAL (EXCEL REAL A4:AM49)
+# TAB 1 — CUADRANTE GENERAL (MODO MÓVIL + ZOOM)
 # ==================================================
-from openpyxl import load_workbook
-from openpyxl.styles.colors import Color
-
 with tab_general:
-
     st.subheader("📋 Cuadrante general")
 
-    EXCEL_FILE = "01 - Cuadrante Enero 2026.xlsx"
-    SHEET_NAME = "Enero"
+    modo_movil = st.checkbox("📱 Modo móvil")
+    zoom = 1.0
+    if modo_movil:
+        zoom = st.slider("🔍 Zoom", 0.6, 1.5, 1.0, 0.05)
 
-    wb = load_workbook(EXCEL_FILE, data_only=True)
-    ws = wb.active
+    if modo_movil:
+        index_cols = ["nip"]
+        orden = df_mes["nip"].drop_duplicates()
+    else:
+        index_cols = ["nombre", "categoria", "nip"]
+        orden = df_mes[index_cols].drop_duplicates()
 
-    # Rango EXACTO
-    start_row, end_row = 4, 49
-    start_col, end_col = 1, 39   # A=1, AM=39
+    tabla = (
+        df_mes
+        .pivot_table(index=index_cols, columns="dia", values="turno", aggfunc="first")
+        .reindex(orden)
+    )
 
-    def excel_color(cell_color):
-        if cell_color is None:
-            return None
-        if isinstance(cell_color, Color):
-            if cell_color.type == "rgb" and cell_color.rgb:
-                return f"#{cell_color.rgb[-6:]}"
-        return None
-
-    html = """
+    html = f"""
     <style>
-    .excel-wrap {
-        overflow-x: auto;
-    }
-    table.excel {
+    table {{
         border-collapse: collapse;
-        font-size: 11px;
-        white-space: nowrap;
-    }
-    table.excel td {
+        font-size: 10px;
+        transform: scale({zoom});
+        transform-origin: top left;
+    }}
+    th, td {{
         border: 1px solid #000;
-        padding: 3px;
+        padding: 2px;
         text-align: center;
-        min-width: 26px;
-    }
+        white-space: nowrap;
+    }}
+    td.nombre {{ white-space: nowrap; }}
     </style>
-
-    <div class="excel-wrap">
-    <table class="excel">
+    <div style="overflow:auto">
+    <table>
+    <tr>
     """
 
-    for r in range(start_row, end_row + 1):
+    html += "<th>NIP</th>" if modo_movil else "<th>Nombre y apellidos</th><th>Categoría</th><th>NIP</th>"
+
+    for d in tabla.columns:
+        f = date(2026, mes, d)
+        if es_festivo(f) or f.weekday() == 6:
+            html += f"<th style='background:#92D050;color:#FF0000'>{d}</th>"
+        else:
+            html += f"<th>{d}</th>"
+    html += "</tr>"
+
+    for idx, fila in tabla.iterrows():
         html += "<tr>"
-        for c in range(start_col, end_col + 1):
-            cell = ws.cell(row=r, column=c)
+        if modo_movil:
+            html += f"<td>{idx}</td>"
+        else:
+            nombre, cat, nip = idx
+            html += f"<td class='nombre'>{nombre}</td><td>{cat}</td><td>{nip}</td>"
 
-            value = "" if cell.value is None else cell.value
-
-            # Colores
-            bg = excel_color(cell.fill.fgColor)
-            fg = excel_color(cell.font.color)
-
-            styles = ""
-            if bg:
-                styles += f"background:{bg};"
-            if fg:
-                styles += f"color:{fg};"
-            if cell.font.bold:
-                styles += "font-weight:bold;"
-            if cell.font.italic:
-                styles += "font-style:italic;"
-
-            # Alineación izquierda para nombres
-            if c == 1:
-                styles += "text-align:left; padding-left:6px;"
-
-            html += f"<td style='{styles}'>{value}</td>"
+        for v in fila:
+            e = estilo_turno(v)
+            txt = "" if pd.isna(v) else v
+            html += (
+                f"<td style='background:{e['bg']};color:{e['fg']};"
+                f"font-weight:{'bold' if e['bold'] else 'normal'}'>{txt}</td>"
+            )
         html += "</tr>"
 
     html += "</table></div>"
-
     st.markdown(html, unsafe_allow_html=True)
 
 # ==================================================
