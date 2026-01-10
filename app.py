@@ -61,17 +61,17 @@ if st.session_state.nip is None:
     )
 
     # Escudo perfectamente centrado (FORMA CORRECTA)
-with open(ESCUDO_FILE, "rb") as f:
-    escudo_base64 = base64.b64encode(f.read()).decode()
+    with open(ESCUDO_FILE, "rb") as f:
+        escudo_base64 = base64.b64encode(f.read()).decode()
 
-st.markdown(
-    f"""
-    <div style="display:flex; justify-content:center; margin-top:20px;">
-        <img src="data:image/png;base64,{escudo_base64}" width="220">
-    </div>
-    """,
-    unsafe_allow_html=True
-)
+    st.markdown(
+        f"""
+        <div style="display:flex; justify-content:center; margin-top:20px;">
+            <img src="data:image/png;base64,{escudo_base64}" width="220">
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
 
     st.markdown("<div class='login-title'>🔐 Acceso al cuadrante</div>", unsafe_allow_html=True)
 
