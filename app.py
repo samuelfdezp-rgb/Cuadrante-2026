@@ -294,6 +294,82 @@ with tab_general:
     html += "</table></div>"
     st.markdown(html, unsafe_allow_html=True)
     
+    # ==================================================
+    # RESUMEN DIARIO DE TRABAJADORES POR TURNO
+    # ==================================================
+
+    def extraer_turnos_validos(turno):
+        """
+        Devuelve una lista de turnos reales ('1','2','3')
+        contenidos en una celda de turno.
+        """
+        if pd.isna(turno):
+            return []
+
+        t = str(turno)
+
+        # Turnos que NO cuentan
+        excluir = [
+            "L", "D", "Dc", "Dcc", "Dcv", "Dcj", "Dct",
+            "Vac", "Perm", "AP", "Ts", "JuB", "JuC",
+            "Curso", "Indisp", "BAJA"
+        ]
+
+        for x in excluir:
+            if x in t:
+                return []
+
+        # Normalizar extras (1ex -> 1, etc.)
+        t = t.replace("ex", "")
+
+        # Separar turnos dobles
+        if "y" in t:
+            return t.split("y")
+        if "|" in t:
+            return t.split("|")
+
+        return [t]
+
+    # Inicializar contadores por día
+    resumen_turnos = {
+        dia: {"1": 0, "2": 0, "3": 0}
+        for dia in tabla.columns
+    }
+
+    # Recorrer toda la tabla de turnos
+    for _, fila in tabla.iterrows():
+        for dia, turno in fila.items():
+            turnos = extraer_turnos_validos(turno)
+            for t in turnos:
+                if t in resumen_turnos[dia]:
+                    resumen_turnos[dia][t] += 1
+
+    # --------------------------------------------------
+    # Pintar filas resumen (Mañanas / Tardes / Noches)
+    # --------------------------------------------------
+
+    # Mañanas
+    html += "<tr>"
+    html += "<td colspan='3' style='background:#BDD7EE;color:#0070C0;font-weight:bold'>Mañanas</td>"
+    for dia in tabla.columns:
+        html += f"<td style='background:#BDD7EE;color:#0070C0;text-align:center;font-weight:bold'>{resumen_turnos[dia]['1']}</td>"
+    html += "</tr>"
+
+    # Tardes
+    html += "<tr>"
+    html += "<td colspan='3' style='background:#FFE699;color:#0070C0;font-weight:bold'>Tardes</td>"
+    for dia in tabla.columns:
+        html += f"<td style='background:#FFE699;color:#0070C0;text-align:center;font-weight:bold'>{resumen_turnos[dia]['2']}</td>"
+    html += "</tr>"
+
+    # Noches
+    html += "<tr>"
+    html += "<td colspan='3' style='background:#F8CBAD;color:#FF0000;font-weight:bold'>Noches</td>"
+    for dia in tabla.columns:
+        html += f"<td style='background:#F8CBAD;color:#FF0000;text-align:center;font-weight:bold'>{resumen_turnos[dia]['3']}</td>"
+    html += "</tr>"
+
+    
 # ==================================================
 # TAB 2 — MIS TURNOS
 # ==================================================
