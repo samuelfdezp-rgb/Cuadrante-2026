@@ -4,6 +4,48 @@ import calendar
 from datetime import datetime, date
 import base64
 
+def cargar_cuadrante_actual():
+    # 1. Cargar cuadrante base
+    df = pd.read_csv(BASE_FILE, parse_dates=["fecha"])
+    df["nip"] = df["nip"].astype(str)
+    df["dia"] = df["fecha"].dt.day
+
+    # 2. Aplicar historial si existe
+    try:
+        hist = pd.read_csv(HISTORIAL_FILE, parse_dates=["fecha_turno", "fecha_hora"])
+    except FileNotFoundError:
+        return df
+
+    # Ordenar historial cronológicamente
+    hist = hist.sort_values("fecha_hora")
+
+    # Aplicar cambios uno a uno
+    for _, r in hist.iterrows():
+        mask = (
+            (df["nip"] == str(r["nip_afectado"])) &
+            (df["fecha"] == pd.Timestamp(r["fecha_turno"]))
+        )
+
+        if mask.any():
+            df.loc[mask, "turno"] = r["turno_nuevo"]
+        else:
+            # crear fila si no existía
+            fila_base = df[df["nip"] == str(r["nip_afectado"])].iloc[0]
+            nueva = {
+                "anio": fila_base["anio"],
+                "mes": r["fecha_turno"].month,
+                "fecha": r["fecha_turno"],
+                "dia": r["fecha_turno"].day,
+                "nip": str(r["nip_afectado"]),
+                "nombre": fila_base["nombre"],
+                "categoria": fila_base["categoria"],
+                "turno": r["turno_nuevo"],
+                "tipo": ""
+            }
+            df.loc[len(df)] = nueva
+
+    return df
+
 # ==================================================
 # CONFIGURACIÓN GENERAL
 # ==================================================
@@ -11,7 +53,8 @@ st.set_page_config(page_title="Cuadrante 2026", layout="wide")
 
 ADMIN_USER = "ADMIN"
 ADMIN_PASS = "PoliciaLocal2021!"
-DATA_FILE = "cuadrante_2026.csv"
+BASE_FILE = "cuadrante_base.csv"
+HISTORIAL_FILE = "historial_cambios.csv"
 USERS_FILE = "usuarios.csv"
 ESCUDO_FILE = "Placa.png"
 CABECERA_FILE = "cabecera.png"
@@ -28,7 +71,7 @@ if "is_admin" not in st.session_state:
 # ==================================================
 # CARGA DE DATOS
 # ==================================================
-df = pd.read_csv(DATA_FILE, parse_dates=["fecha"])
+df = cargar_cuadrante_actual()
 df["dia"] = df["fecha"].dt.day
 df["nip"] = df["nip"].astype(str)
 
