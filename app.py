@@ -367,7 +367,7 @@ with tab_general:
     html += "</tr>"
 
     html += "</table></div>"
-        st.markdown(html, unsafe_allow_html=True)
+    st.markdown(html, unsafe_allow_html=True)
     
 # ==================================================
 # TAB 2 — MIS TURNOS
