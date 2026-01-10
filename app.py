@@ -283,107 +283,37 @@ with tab_general:
             )
         html += "</tr>"
     
-    # ==================================================
-    # RESUMEN DIARIO DE TRABAJADORES POR TURNO
-    # ==================================================
+# ================= RESUMEN =================
+    resumen={d:{"1":0,"2":0,"3":0} for d in tabla.columns}
 
-    def extraer_turnos_validos(turno):
-        """
-        Devuelve una lista de turnos reales ('1','2','3')
-        contenidos en una celda de turno.
-        """
-        if pd.isna(turno):
-            return []
-
-        t = str(turno)
-
-        # Turnos que NO cuentan
-        excluir = [
-            "L", "D", "Dc", "Dcc", "Dcv", "Dcj", "Dct",
-            "Vac", "Perm", "AP", "Ts", "JuB", "JuC",
-            "Curso", "Indisp", "BAJA"
-        ]
-
-        for x in excluir:
-            if x in t:
-                return []
-
-        # Normalizar extras (1ex -> 1, etc.)
-        t = t.replace("ex", "")
-
-        # Separar turnos dobles
-        if "y" in t:
-            return t.split("y")
-        if "|" in t:
-            return t.split("|")
-
+    def contar(t):
+        if pd.isna(t): return []
+        t=str(t)
+        excluir=["D","Dc","Dcc","Dcv","Dcj","Dct","Vac","Perm","AP","Ts","BAJA","L"]
+        if any(x in t for x in excluir): return []
+        t=t.replace("ex","")
+        if "y" in t: return t.split("y")
+        if "|" in t: return t.split("|")
         return [t]
 
-    # Inicializar contadores por día
-    resumen_turnos = {
-        dia: {"1": 0, "2": 0, "3": 0}
-        for dia in tabla.columns
-    }
+    for _,fila in tabla.iterrows():
+        for d,t in fila.items():
+            for p in contar(t):
+                if p in resumen[d]: resumen[d][p]+=1
 
-    # Recorrer toda la tabla de turnos
-    for _, fila in tabla.iterrows():
-        for dia, turno in fila.items():
-            turnos = extraer_turnos_validos(turno)
-            for t in turnos:
-                if t in resumen_turnos[dia]:
-                    resumen_turnos[dia][t] += 1
+    for label,color,key in [
+        ("Mañanas","#BDD7EE","1"),
+        ("Tardes","#FFE699","2"),
+        ("Noches","#F8CBAD","3")
+    ]:
+        html+=f"<tr><td colspan='3' style='font-weight:bold;background:{color}'>{label}</td>"
+        for d in tabla.columns:
+            html+=f"<td style='background:{color};text-align:center;font-weight:bold'>{resumen[d][key]}</td>"
+        html+="</tr>"
 
-# --------------------------------------------------
-# Pintar filas resumen (Mañanas / Tardes / Noches)
-# --------------------------------------------------
-st.markdown("### 📊 Resumen diario de turnos")
+    html+="</table></div>"
+    st.markdown(html,unsafe_allow_html=True)
 
-html = """
-<style>
-.resumen-table {
-    border-collapse: collapse;
-    font-size: 12px;
-}
-.resumen-table th, .resumen-table td {
-    border: 1px solid #000;
-    padding: 4px;
-    text-align: center;
-    font-weight: bold;
-}
-</style>
-
-<div style="overflow-x:auto">
-<table class="resumen-table">
-<tr>
-    <th>Turno</th>
-"""
-
-for d in tabla.columns:
-    html += f"<th>{d}</th>"
-
-html += "</tr>"
-
-# Mañanas
-html += "<tr><td style='background:#BDD7EE;color:#0070C0'>Mañanas</td>"
-for d in tabla.columns:
-    html += f"<td style='background:#BDD7EE;color:#0070C0'>{resumen_turnos[d]['1']}</td>"
-html += "</tr>"
-
-# Tardes
-html += "<tr><td style='background:#FFE699;color:#0070C0'>Tardes</td>"
-for d in tabla.columns:
-    html += f"<td style='background:#FFE699;color:#0070C0'>{resumen_turnos[d]['2']}</td>"
-html += "</tr>"
-
-# Noches
-html += "<tr><td style='background:#F8CBAD;color:#FF0000'>Noches</td>"
-for d in tabla.columns:
-    html += f"<td style='background:#F8CBAD;color:#FF0000'>{resumen_turnos[d]['3']}</td>"
-html += "</tr>"
-
-html += "</table></div>"
-
-st.markdown(html, unsafe_allow_html=True)
 # ==================================================
 # TAB 2 — MIS TURNOS
 # ==================================================
