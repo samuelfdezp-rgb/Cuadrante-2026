@@ -2,7 +2,6 @@ import streamlit as st
 import pandas as pd
 import calendar
 from datetime import datetime, date
-from pathlib import Path
 
 # ==================================================
 # CONFIGURACIÓN GENERAL
@@ -42,13 +41,31 @@ if st.session_state.nip is None:
         """
         <style>
         body, .stApp { background-color: white; }
+        .login-container {
+            max-width: 420px;
+            margin: auto;
+            text-align: center;
+        }
+        .login-title {
+            color: black;
+            font-size: 30px;
+            font-weight: 700;
+            margin: 20px 0 30px 0;
+        }
         </style>
         """,
         unsafe_allow_html=True
     )
 
-    st.image(ESCUDO_FILE, width=220)
-    st.markdown("## Acceso al cuadrante")
+    st.markdown(
+        f"""
+        <div class="login-container">
+            <img src="{ESCUDO_FILE}" width="220">
+            <div class="login-title">🔐 Acceso al cuadrante</div>
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
 
     usuario = st.text_input("Usuario (NIP)")
     password = st.text_input("Contraseña (DNI)", type="password")
@@ -61,11 +78,11 @@ if st.session_state.nip is None:
             st.rerun()
 
         # USUARIOS NORMALES
-        usuario = usuario.strip().zfill(6)
-        fila = usuarios[usuarios["nip"] == usuario]
+        usuario_fmt = usuario.strip().zfill(6)
+        fila = usuarios[usuarios["nip"] == usuario_fmt]
 
         if not fila.empty and fila.iloc[0]["dni"] == password.strip():
-            st.session_state.nip = usuario
+            st.session_state.nip = usuario_fmt
             st.session_state.is_admin = False
             st.rerun()
         else:
@@ -133,7 +150,7 @@ def estilo_turno(t):
         "Dct": ("#C6E0B4", "#00B050"),
         "Dcj": ("#C6E0B4", "#00B050"),
         "Vac": ("#FFFFFF", "#FF0000"),
-        "perm": ("#FFFFFF", "#FF0000"),
+        "Perm": ("#FFFFFF", "#FF0000"),
         "BAJA": ("#FFFFFF", "#FF0000"),
         "Ts": ("#FFFFFF", "#FF0000"),
         "AP": ("#FFFFFF", "#0070C0"),
@@ -146,7 +163,7 @@ def estilo_turno(t):
         return {"bg": "#00B050", "fg": "#FF0000", "bold": True}
 
     bg, fg = base.get(t, ("#FFFFFF", "#000000"))
-    return {"bg": bg, "fg": fg, "bold": t == "perm"}
+    return {"bg": bg, "fg": fg, "bold": t == "Perm"}
 
 # ==================================================
 # SELECCIÓN DE MES
@@ -241,7 +258,7 @@ with tab_general:
     st.markdown(html, unsafe_allow_html=True)
 
 # ==================================================
-# TAB 2 — MIS TURNOS
+# TAB 2 — MIS TURNOS (CON ESPACIO ENTRE SEMANAS)
 # ==================================================
 with tab_mis_turnos:
     st.subheader("📆 Mis turnos")
