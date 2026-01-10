@@ -334,11 +334,11 @@ with tab_general:
     <style>
     table {{
         border-collapse: collapse;
-        font-size: 12px;
+        font-size: 14px;
     }}
     th, td {{
         border: 1px solid #000;
-        padding: 4px;
+        padding: 6px;
         text-align: center;
         white-space: nowrap;
     }}
