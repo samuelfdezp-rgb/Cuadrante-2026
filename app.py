@@ -290,42 +290,42 @@ with tab_general:
             )
         html += "</tr>"
 
-# ==================================================
-# FILAS RESUMEN POR TURNO (ESTILO EXCEL)
-# ==================================================
+    # ==================================================
+    # FILAS RESUMEN POR TURNO (ESTILO EXCEL)
+    # ==================================================
 
-def contar(dia, turnos):
-    return df_mes[
-        (df_mes["dia"] == dia) &
-        (df_mes["turno"].notna()) &
-        (df_mes["turno"].apply(lambda x: any(t in str(x) for t in turnos)))
-    ]["nip"].nunique()
+    def contar(dia, turnos):
+        return df_mes[
+            (df_mes["dia"] == dia) &
+            (df_mes["turno"].notna()) &
+            (df_mes["turno"].apply(lambda x: any(t in str(x) for t in turnos)))
+        ]["nip"].nunique()
 
-dias = list(tabla.columns)
+    dias = list(tabla.columns)
 
-resumen_filas = [
-    ("Mañanas", ["1", "1ex", "L"], estilo_turno("1")["bg"]),
-    ("Tardes",  ["2", "2ex"],      estilo_turno("2")["bg"]),
-    ("Noches",  ["3", "3ex"],      estilo_turno("3")["bg"]),
-]
+    resumen_filas = [
+        ("Mañanas", ["1", "1ex", "L"], estilo_turno("1")["bg"]),
+        ("Tardes",  ["2", "2ex"],      estilo_turno("2")["bg"]),
+        ("Noches",  ["3", "3ex"],      estilo_turno("3")["bg"]),
+    ]
 
-for nombre, turnos, color in resumen_filas:
-    html += "<tr>"
-    # columnas fijas
-    if modo_movil:
-        html += f"<td><b>{nombre}</b></td>"
-    else:
-        html += f"<td></td><td><b>{nombre}</b></td><td></td>"
+    for nombre, turnos, color in resumen_filas:
+        html += "<tr>"
+        # columnas fijas
+        if modo_movil:
+            html += f"<td><b>{nombre}</b></td>"
+        else:
+            html += f"<td></td><td><b>{nombre}</b></td><td></td>"
 
-    # columnas de días
-    for d in dias:
-        total = contar(d, turnos)
-        html += (
-            f"<td style='background:{color};"
-            f"color:#000;font-weight:bold;text-align:center;"
-            f"vertical-align:middle'>{total}</td>"
-        )
-    html += "</tr>"
+        # columnas de días
+        for d in dias:
+            total = contar(d, turnos)
+            html += (
+                f"<td style='background:{color};"
+                f"color:#000;font-weight:bold;text-align:center;"
+                f"vertical-align:middle'>{total}</td>"
+            )
+        html += "</tr>"
 
     html += "</table></div>"
     st.markdown(html, unsafe_allow_html=True)
