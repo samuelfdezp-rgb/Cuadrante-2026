@@ -274,7 +274,8 @@ with tab_general:
     """
     
     if not modo_movil:
-    html += "<th>Nombre y Apellidos</th><th>Categoría</th>"
+        html += "<th>Nombre y Apellidos</th>"
+        html += "<th>Categoría</th>"
 
     html += "<th>NIP</th>"
 
