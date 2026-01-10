@@ -170,14 +170,14 @@ def estilo_turno(t):
         "Dcj":("#C6E0B4","#00B050",""),
         "Dct":("#C6E0B4","#00B050",""),
         "Ts":("#FFFFFF","#FF0000","font-weight:bold;"),
-        "Perm":("#FFFFFF","#FF0000","font-weight:bold;"),
+        "perm":("#FFFFFF","#FF0000","font-weight:bold;"),
         "AP":("#FFFFFF","#0070C0","font-weight:bold;"),
         "Vac":("#FFFFFF","#FF0000","font-weight:bold;font-style:italic;"),
         "BAJA":("#FFFFFF","#FF0000","font-weight:bold;"),
         "L":("#BDD7EE","#0070C0",""),
     }
     return colores.get(t,("#fff","#000",""))
-
+    
 # ==================================================
 # PESTAÑAS
 # ==================================================
