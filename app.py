@@ -290,87 +290,45 @@ with tab_general:
             )
         html += "</tr>"
 
+# ==================================================
+# FILAS RESUMEN POR TURNO (ESTILO EXCEL)
+# ==================================================
+
+def contar(dia, turnos):
+    return df_mes[
+        (df_mes["dia"] == dia) &
+        (df_mes["turno"].notna()) &
+        (df_mes["turno"].apply(lambda x: any(t in str(x) for t in turnos)))
+    ]["nip"].nunique()
+
+dias = list(tabla.columns)
+
+resumen_filas = [
+    ("Mañanas", ["1", "1ex", "L"], estilo_turno("1")["bg"]),
+    ("Tardes",  ["2", "2ex"],      estilo_turno("2")["bg"]),
+    ("Noches",  ["3", "3ex"],      estilo_turno("3")["bg"]),
+]
+
+for nombre, turnos, color in resumen_filas:
+    html += "<tr>"
+    # columnas fijas
+    if modo_movil:
+        html += f"<td><b>{nombre}</b></td>"
+    else:
+        html += f"<td></td><td><b>{nombre}</b></td><td></td>"
+
+    # columnas de días
+    for d in dias:
+        total = contar(d, turnos)
+        html += (
+            f"<td style='background:{color};"
+            f"color:#000;font-weight:bold;text-align:center;"
+            f"vertical-align:middle'>{total}</td>"
+        )
+    html += "</tr>"
+
     html += "</table></div>"
     st.markdown(html, unsafe_allow_html=True)
-
-# ==================================================
-# RESUMEN DIARIO DE TRABAJADORES POR TURNO
-# ==================================================
-st.markdown("### 📊 Resumen diario de trabajadores por turno")
-
-TURNOS_M = {"1", "1ex", "L"}
-TURNOS_T = {"2", "2ex"}
-TURNOS_N = {"3", "3ex"}
-
-dias = sorted(df_mes["dia"].unique())
-
-def cuenta_turnos(dia, conjunto):
-    return (
-        df_mes[
-            (df_mes["dia"] == dia) &
-            (df_mes["turno"].apply(
-                lambda x: any(t == str(x) or str(x).startswith(t) for t in conjunto)
-                if pd.notna(x) else False
-            ))
-        ]["nip"]
-        .nunique()
-    )
-
-resumen = {
-    "Mañanas": [cuenta_turnos(d, TURNOS_M) for d in dias],
-    "Tardes":  [cuenta_turnos(d, TURNOS_T) for d in dias],
-    "Noches":  [cuenta_turnos(d, TURNOS_N) for d in dias],
-}
-
-# Estilos iguales a los turnos
-est_m = estilo_turno("1")["bg"]
-est_t = estilo_turno("2")["bg"]
-est_n = estilo_turno("3")["bg"]
-
-html_res = """
-<style>
-.resumen-table {
-    border-collapse: collapse;
-    margin-top: 10px;
-}
-.resumen-table th, .resumen-table td {
-    border: 1px solid #000;
-    padding: 4px;
-    text-align: center;
-    font-size: 11px;
-    color: #000;
-}
-</style>
-
-<table class="resumen-table">
-<tr>
-<th>Turno</th>
-"""
-
-for d in dias:
-    html_res += f"<th>{d}</th>"
-html_res += "</tr>"
-
-# Mañanas
-html_res += "<tr><td><b>Mañanas</b></td>"
-for v in resumen["Mañanas"]:
-    html_res += f"<td style='background:{est_m}'>{v}</td>"
-html_res += "</tr>"
-
-# Tardes
-html_res += "<tr><td><b>Tardes</b></td>"
-for v in resumen["Tardes"]:
-    html_res += f"<td style='background:{est_t}'>{v}</td>"
-html_res += "</tr>"
-
-# Noches
-html_res += "<tr><td><b>Noches</b></td>"
-for v in resumen["Noches"]:
-    html_res += f"<td style='background:{est_n}'>{v}</td>"
-html_res += "</tr></table>"
-
-st.markdown(html_res, unsafe_allow_html=True)
-
 
 # ==================================================
 # TAB 2 — MIS TURNOS
