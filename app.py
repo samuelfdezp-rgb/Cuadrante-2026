@@ -193,17 +193,21 @@ def estilo_turno(t):
         "AP": ("#FFFFFF", "#0070C0"),
     }
 
+    # Turnos dobles normales
     if t in {"1y2", "1y3", "2y3"}:
-        return {"bg": "#DBDBDB", "fg": "#FF0000", "bold": True}
+        return {"bg": "#DBDBDB", "fg": "#FF0000", "bold": True, "italic": False}
 
+    # Turnos dobles con extra
     if "ex" in t and ("y" in t or "|" in t):
-        return {"bg": "#00B050", "fg": "#FF0000", "bold": True}
+        return {"bg": "#00B050", "fg": "#FF0000", "bold": True, "italic": False}
 
     bg, fg = base.get(t, ("#FFFFFF", "#000000"))
+
     return {
         "bg": bg,
         "fg": fg,
-        "bold": t in {"perm", "Ts", "AP"}
+        "bold": t in {"perm", "Vac", "BAJA", "AP"},
+        "italic": t in {"Vac", "BAJA"}
     }
 
 
@@ -307,7 +311,7 @@ with tab_general:
     dias = list(tabla.columns)
 
     resumen_filas = [
-        ("Mañanas", ["1", "1ex", "L"], estilo_turno("1")["bg"]),
+        ("Mañanas", ["1", "1ex"],      estilo_turno("1")["bg"]),
         ("Tardes",  ["2", "2ex"],      estilo_turno("2")["bg"]),
         ("Noches",  ["3", "3ex"],      estilo_turno("3")["bg"]),
     ]
