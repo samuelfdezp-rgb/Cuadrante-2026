@@ -215,131 +215,148 @@ tab_general, tab_mis_turnos = st.tabs(
 # TAB 1 — CUADRANTE GENERAL (MODO MÓVIL + ZOOM)
 # ==================================================
 with tab_general:
+
     st.subheader("📋 Cuadrante general")
 
-    modo_movil = st.checkbox("📱 Modo móvil")
-    zoom = 1.0
-    if modo_movil:
-        zoom = st.slider("🔍 Zoom", 0.3, 1.5, 0.5, 0.05)
+    modo_movil = st.checkbox("📱 Modo móvil", value=False)
 
-    if modo_movil:
-        index_cols = ["nip"]
-        orden = df_mes["nip"].drop_duplicates()
-    else:
-        index_cols = ["nombre", "categoria", "nip"]
-        orden = df_mes[index_cols].drop_duplicates()
+    # ============================
+    # ORDEN ORIGINAL DEL EXCEL
+    # ============================
+    orden = df_mes[["nombre", "categoria", "nip"]].drop_duplicates()
 
-    tabla = (
-        df_mes
-        .pivot_table(index=index_cols, columns="dia", values="turno", aggfunc="first")
-        .reindex(orden)
-    )
+    tabla = df_mes.pivot_table(
+        index=["nombre", "categoria", "nip"],
+        columns="dia",
+        values="turno",
+        aggfunc="first"
+    ).reindex(pd.MultiIndex.from_frame(orden))
+
+    # ============================
+    # CONTENEDOR CON SCROLL + ZOOM
+    # ============================
+    zoom = "0.7" if modo_movil else "1"
 
     html = f"""
     <style>
-    table {{
-        border-collapse: collapse;
-        font-size: 10px;
+    .contenedor-cuadrante {{
+        overflow-x: auto;
         transform: scale({zoom});
         transform-origin: top left;
     }}
-    th, td {{
-        border: 1px solid #000;
-        padding: 2px;
-        text-align: center;
+    table {{
+        border-collapse: collapse;
         white-space: nowrap;
     }}
-    td.nombre {{ white-space: nowrap; }}
+    th, td {{
+        border: 1px solid #000;
+        padding: 4px;
+        text-align: center;
+        font-size: 12px;
+    }}
+    th {{
+        font-weight: bold;
+    }}
     </style>
-    <div style="overflow:auto">
+
+    <div class="contenedor-cuadrante">
     <table>
     <tr>
+        <th>Nombre y Apellidos</th>
+        <th>Categoría</th>
+        <th>NIP</th>
     """
 
-    html += "<th>NIP</th>" if modo_movil else "<th>Nombre y apellidos</th><th>Categoría</th><th>NIP</th>"
-
+    # ============================
+    # CABECERA DE DÍAS
+    # ============================
     for d in tabla.columns:
-        f = date(2026, mes, d)
-        if es_festivo(f) or f.weekday() == 6:
-            html += f"<th style='background:#92D050;color:#FF0000'>{d}</th>"
+        fecha = date(2026, mes, d)
+        if es_especial(fecha):
+            html += f"<th style='background:#92D050;color:#FF0000;font-weight:bold'>{d}</th>"
         else:
             html += f"<th>{d}</th>"
+
     html += "</tr>"
 
-    for idx, fila in tabla.iterrows():
-        html += "<tr>"
-        if modo_movil:
-            html += f"<td>{idx}</td>"
-        else:
-            nombre, cat, nip = idx
-            html += f"<td class='nombre'>{nombre}</td><td>{cat}</td><td>{nip}</td>"
+    # ============================
+    # FILAS DE TRABAJADORES
+    # ============================
+    for (nombre, categoria, nip), fila in tabla.iterrows():
+        html += f"<tr>"
+        html += f"<td style='text-align:left'>{nombre}</td>"
+        html += f"<td>{categoria}</td>"
+        html += f"<td>{nip}</td>"
 
         for v in fila:
             e = estilo_turno(v)
-            txt = "" if pd.isna(v) else v
+            texto = "" if pd.isna(v) else v
             html += (
                 f"<td style='background:{e['bg']};color:{e['fg']};"
-                f"font-weight:{'bold' if e['bold'] else 'normal'}'>{txt}</td>"
+                f"{'font-weight:bold;' if e.get('bold') else ''}"
+                f"{'font-style:italic;' if e.get('italic') else ''}'>"
+                f"{texto}</td>"
             )
         html += "</tr>"
 
-# ============================================
-# CONTABILIZACIÓN DE AGENTES POR TURNO
-# ============================================
-turnos_mañana = ["1", "1ex"]
-turnos_tarde = ["2", "2ex"]
-turnos_noche = ["3", "3ex"]
+    html += "</table>"
 
-conteo = {
-    "Mañanas": {},
-    "Tardes": {},
-    "Noches": {}
-}
+    # ==================================================
+    # CONTABILIZACIÓN DE AGENTES POR TURNO (DEBAJO)
+    # ==================================================
 
-for d in tabla.columns:
-    df_dia = df_mes[df_mes["dia"] == d]
+    turnos_mañana = ["1", "L", "1ex"]
+    turnos_tarde = ["2", "2ex"]
+    turnos_noche = ["3", "3ex"]
 
-    conteo["Mañanas"][d] = df_dia["turno"].apply(
-        lambda x: any(t in str(x) for t in turnos_mañana)
-    ).sum()
+    conteo = {
+        "Mañanas": {},
+        "Tardes": {},
+        "Noches": {}
+    }
 
-    conteo["Tardes"][d] = df_dia["turno"].apply(
-        lambda x: any(t in str(x) for t in turnos_tarde)
-    ).sum()
-
-    conteo["Noches"][d] = df_dia["turno"].apply(
-        lambda x: any(t in str(x) for t in turnos_noche)
-    ).sum()
-
-html_resumen = """
-<table style="border-collapse:collapse; margin-top:6px;">
-<tr>
-  <th style="border:1px solid #000; padding:4px;">Turno</th>
-"""
-
-for d in tabla.columns:
-    html_resumen += f"<th style='border:1px solid #000; padding:4px'>{d}</th>"
-
-html_resumen += "</tr>"
-
-def fila_resumen(nombre, datos, bg):
-    fila = f"<tr><td style='border:1px solid #000; font-weight:bold'>{nombre}</td>"
     for d in tabla.columns:
-        fila += (
-            f"<td style='border:1px solid #000; "
-            f"background:{bg}; color:#000; text-align:center'>"
-            f"{datos[d]}</td>"
-        )
-    fila += "</tr>"
-    return fila
+        df_dia = df_mes[df_mes["dia"] == d]
 
-html_resumen += fila_resumen("Mañanas", conteo["Mañanas"], "#BDD7EE")
-html_resumen += fila_resumen("Tardes", conteo["Tardes"], "#FFE699")
-html_resumen += fila_resumen("Noches", conteo["Noches"], "#F8CBAD")
+        conteo["Mañanas"][d] = df_dia["turno"].apply(
+            lambda x: any(t in str(x) for t in turnos_mañana)
+        ).sum()
 
-html_resumen += "</table>"
+        conteo["Tardes"][d] = df_dia["turno"].apply(
+            lambda x: any(t in str(x) for t in turnos_tarde)
+        ).sum()
 
-st.markdown(html_resumen, unsafe_allow_html=True)
+        conteo["Noches"][d] = df_dia["turno"].apply(
+            lambda x: any(t in str(x) for t in turnos_noche)
+        ).sum()
+
+    # ============================
+    # TABLA RESUMEN
+    # ============================
+    html += "<br><table>"
+
+    html += "<tr><th>Turno</th>"
+    for d in tabla.columns:
+        html += f"<th>{d}</th>"
+    html += "</tr>"
+
+    def fila_resumen(nombre, datos, bg):
+        fila = f"<tr><td style='font-weight:bold'>{nombre}</td>"
+        for d in tabla.columns:
+            fila += (
+                f"<td style='background:{bg};color:#000'>"
+                f"{datos[d]}</td>"
+            )
+        fila += "</tr>"
+        return fila
+
+    html += fila_resumen("Mañanas", conteo["Mañanas"], "#BDD7EE")
+    html += fila_resumen("Tardes", conteo["Tardes"], "#FFE699")
+    html += fila_resumen("Noches", conteo["Noches"], "#F8CBAD")
+
+    html += "</table></div>"
+
+    st.markdown(html, unsafe_allow_html=True)
 
 # ==================================================
 # TAB 2 — MIS TURNOS
