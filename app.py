@@ -397,3 +397,88 @@ with tab_mis_turnos:
                 st.markdown(html, unsafe_allow_html=True)
 
         st.markdown("<div style='height:25px'></div>", unsafe_allow_html=True)
+
+# ==================================================
+# PANEL DE EDICIÓN (SOLO ADMIN)
+# ==================================================
+if st.session_state.is_admin:
+
+    st.markdown("---")
+    st.subheader("🛠️ Edición de turnos (ADMIN)")
+
+    # ---- Selección de trabajador
+    df_trab = (
+        df_mes[["nombre", "nip"]]
+        .drop_duplicates()
+        .sort_values("nombre")
+    )
+
+    opciones_trab = {
+        f"{row['nombre']} ({row['nip']})": row["nip"]
+        for _, row in df_trab.iterrows()
+    }
+
+    col1, col2, col3 = st.columns(3)
+
+    with col1:
+        trabajador_sel = st.selectbox(
+            "👮 Trabajador",
+            options=list(opciones_trab.keys())
+        )
+        nip_sel = opciones_trab[trabajador_sel]
+
+    # ---- Selección de día
+    with col2:
+        dia_sel = st.selectbox(
+            "📅 Día del mes",
+            sorted(df_mes["dia"].unique())
+        )
+
+    # ---- Selección de turno
+    TURNOS_EDITABLES = [
+        "1", "2", "3", "L",
+        "1ex", "2ex", "3ex",
+        "D", "Dc", "Dcv", "Dcc", "Dct", "Dcj",
+        "Vac", "BAJA", "perm", "Ts", "AP",
+        "JuB", "JuC", "Curso", "Indisp",
+        "1y2", "1y3", "2y3",
+        "1|2ex", "1|3ex", "2|3ex"
+    ]
+
+    with col3:
+        turno_sel = st.selectbox(
+            "🔁 Nuevo turno",
+            TURNOS_EDITABLES
+        )
+
+    # ---- Botón guardar
+    if st.button("💾 Guardar cambio"):
+        fecha_sel = date(2026, mes, dia_sel)
+
+        mask = (
+            (df["nip"] == nip_sel) &
+            (df["fecha"] == pd.Timestamp(fecha_sel))
+        )
+
+        if mask.any():
+            df.loc[mask, "turno"] = turno_sel
+        else:
+            # crear fila nueva si no existe
+            fila_base = df_mes[df_mes["nip"] == nip_sel].iloc[0]
+            nueva = {
+                "anio": 2026,
+                "mes": mes,
+                "fecha": fecha_sel,
+                "dia": dia_sel,
+                "nip": nip_sel,
+                "nombre": fila_base["nombre"],
+                "categoria": fila_base["categoria"],
+                "turno": turno_sel,
+                "tipo": ""
+            }
+            df.loc[len(df)] = nueva
+
+        df.to_csv(DATA_FILE, index=False)
+        st.success("✅ Turno actualizado correctamente")
+        st.rerun()
+
