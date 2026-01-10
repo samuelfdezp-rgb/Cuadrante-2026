@@ -241,16 +241,16 @@ with tab_general:
         transform: scale({zoom});
         transform-origin: top left;
     }}
-    th, td {
+    th, td {{
         border: 1px solid #000;
         padding: 2px;
         text-align: center;
         vertical-align: middle;
         white-space: nowrap;
-    }
-    th {
+    }}
+    th {{
         font-weight: bold;
-    }
+    }}
     td.nombre {{ white-space: nowrap; }}
     </style>
     <div style="overflow:auto">
