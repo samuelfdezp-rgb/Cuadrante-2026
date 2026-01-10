@@ -99,187 +99,229 @@ if st.session_state.nip is None:
     st.stop()
 
 # ==================================================
-# CABECERA POST LOGIN
+# CABECERA
 # ==================================================
-with open(CABECERA_FILE, "rb") as f:
-    cabecera = base64.b64encode(f.read()).decode()
-
-st.markdown(
-    f"""
-    <div style="width:100%;margin-bottom:10px">
-        <img src="data:image/png;base64,{cabecera}" style="width:100%">
-    </div>
-    """,
-    unsafe_allow_html=True
-)
-
 st.title("📅 Cuadrante 2026")
 
 if st.button("🚪 Cerrar sesión"):
-    st.session_state.usuario = None
+    st.session_state.nip = None
+    st.session_state.is_admin = False
     st.rerun()
-
-# ==================================================
-# MESES EN CASTELLANO
-# ==================================================
-MESES = {
-    1:"Enero",2:"Febrero",3:"Marzo",4:"Abril",5:"Mayo",6:"Junio",
-    7:"Julio",8:"Agosto",9:"Septiembre",10:"Octubre",11:"Noviembre",12:"Diciembre"
-}
-
-mes = st.selectbox(
-    "Selecciona mes",
-    sorted(df["mes"].unique()),
-    format_func=lambda m: f"{MESES[m]} 2026"
-)
-
-df_mes = df[df["mes"] == mes].copy()
-df_mes["dia"] = df_mes["fecha"].dt.day
 
 # ==================================================
 # FESTIVOS
 # ==================================================
-festivos = {date(2026,1,1), date(2026,1,6)}
-def es_especial(f): return f in festivos or f.weekday()==6
+festivos = {date(2026, 1, 1), date(2026, 1, 6)}
+
+def es_festivo(fecha):
+    return fecha in festivos
 
 # ==================================================
-# ESTILO TURNOS
+# NOMBRES DE TURNOS
+# ==================================================
+NOMBRES_TURNO = {
+    "1": "Mañana", "2": "Tarde", "3": "Noche", "L": "Laborable",
+    "1ex": "Mañana extra", "2ex": "Tarde extra", "3ex": "Noche extra",
+    "D": "Descanso", "Dc": "Descanso compensado",
+    "Dcv": "Desc. comp. verano", "Dcc": "Desc. comp. curso",
+    "Dct": "Desc. comp. tiro", "Dcj": "Desc. comp. juicio",
+    "Vac": "Vacaciones", "Perm": "Permiso", "BAJA": "Baja",
+    "Ts": "Tiempo sindical", "AP": "Asuntos particulares",
+    "JuB": "Juicio Betanzos", "JuC": "Juicio Coruña",
+    "Curso": "Curso", "Indisp": "Indisposición",
+}
+
+def nombre_turno(c):
+    return NOMBRES_TURNO.get(c, c)
+
+# ==================================================
+# ESTILOS DE TURNOS
 # ==================================================
 def estilo_turno(t):
-    if pd.isna(t): return "#fff","#000",""
-    t=str(t)
+    if pd.isna(t):
+        return {"bg": "#FFFFFF", "fg": "#000000", "bold": False}
 
-    if t.lower()=="perm": t="Perm"
-    if t.lower()=="baja": t="BAJA"
+    t = str(t)
 
-    dobles_gris = ["1y2","1y3","2y3"]
-    if t in dobles_gris:
-        return "#DBDBDB","#FF0000","font-weight:bold;"
-
-    if "ex" in t:
-        return "#00B050","#FF0000","font-weight:bold;"
-
-    colores={
-        "1":("#BDD7EE","#0070C0",""),
-        "2":("#FFE699","#0070C0",""),
-        "3":("#F8CBAD","#FF0000",""),
-        "D":("#C6E0B4","#00B050",""),
-        "Dc":("#C6E0B4","#00B050",""),
-        "Dcc":("#C6E0B4","#00B050",""),
-        "Dcv":("#C6E0B4","#00B050",""),
-        "Dcj":("#C6E0B4","#00B050",""),
-        "Dct":("#C6E0B4","#00B050",""),
-        "Ts":("#FFFFFF","#FF0000","font-weight:bold;"),
-        "perm":("#FFFFFF","#FF0000","font-weight:bold;"),
-        "AP":("#FFFFFF","#0070C0","font-weight:bold;"),
-        "Vac":("#FFFFFF","#FF0000","font-weight:bold;font-style:italic;"),
-        "BAJA":("#FFFFFF","#FF0000","font-weight:bold;"),
-        "L":("#BDD7EE","#0070C0",""),
+    base = {
+        "1": ("#BDD7EE", "#0070C0"),
+        "L": ("#BDD7EE", "#0070C0"),
+        "2": ("#FFE699", "#0070C0"),
+        "3": ("#F8CBAD", "#FF0000"),
+        "1ex": ("#00B050", "#FF0000"),
+        "2ex": ("#00B050", "#FF0000"),
+        "3ex": ("#00B050", "#FF0000"),
+        "D": ("#C6E0B4", "#00B050"),
+        "Dc": ("#C6E0B4", "#00B050"),
+        "Dcv": ("#C6E0B4", "#00B050"),
+        "Dcc": ("#C6E0B4", "#00B050"),
+        "Dct": ("#C6E0B4", "#00B050"),
+        "Dcj": ("#C6E0B4", "#00B050"),
+        "Vac": ("#FFFFFF", "#FF0000"),
+        "Perm": ("#FFFFFF", "#FF0000"),
+        "BAJA": ("#FFFFFF", "#FF0000"),
+        "Ts": ("#FFFFFF", "#FF0000"),
+        "AP": ("#FFFFFF", "#0070C0"),
     }
-    return colores.get(t,("#fff","#000",""))
-    
+
+    if t in {"1y2", "1y3", "2y3"}:
+        return {"bg": "#DBDBDB", "fg": "#FF0000", "bold": True}
+
+    if "ex" in t and ("y" in t or "|" in t):
+        return {"bg": "#00B050", "fg": "#FF0000", "bold": True}
+
+    bg, fg = base.get(t, ("#FFFFFF", "#000000"))
+    return {"bg": bg, "fg": fg, "bold": t == "Perm"}
+
+# ==================================================
+# SELECCIÓN DE MES
+# ==================================================
+mes = st.selectbox(
+    "Selecciona mes",
+    sorted(df["mes"].unique()),
+    format_func=lambda x: datetime(2026, x, 1).strftime("%B 2026"),
+)
+df_mes = df[df["mes"] == mes]
+
 # ==================================================
 # PESTAÑAS
 # ==================================================
-tab_general, tab_mis = st.tabs(["📋 Cuadrante general","📆 Mis turnos"])
+tab_general, tab_mis_turnos = st.tabs(
+    ["📋 Cuadrante general", "📆 Mis turnos"]
+)
 
 # ==================================================
-# TAB GENERAL
+# TAB 1 — CUADRANTE GENERAL (MODO MÓVIL + ZOOM)
 # ==================================================
 with tab_general:
-    orden = df_mes[["nombre","categoria","nip"]].drop_duplicates()
+    st.subheader("📋 Cuadrante general")
 
-    tabla = df_mes.pivot_table(
-        index=["nombre","categoria","nip"],
-        columns="dia",
-        values="turno",
-        aggfunc="first"
-    ).reindex(pd.MultiIndex.from_frame(orden))
+    modo_movil = st.checkbox("📱 Modo móvil")
+    zoom = 1.0
+    if modo_movil:
+        zoom = st.slider("🔍 Zoom", 0.6, 1.5, 1.0, 0.05)
 
-    html = """
+    if modo_movil:
+        index_cols = ["nip"]
+        orden = df_mes["nip"].drop_duplicates()
+    else:
+        index_cols = ["nombre", "categoria", "nip"]
+        orden = df_mes[index_cols].drop_duplicates()
+
+    tabla = (
+        df_mes
+        .pivot_table(index=index_cols, columns="dia", values="turno", aggfunc="first")
+        .reindex(orden)
+    )
+
+    html = f"""
     <style>
-    table{border-collapse:collapse;font-size:12px}
-    th,td{border:1px solid #000;padding:3px;white-space:nowrap}
-    th{text-align:center;font-weight:bold}
+    table {{
+        border-collapse: collapse;
+        font-size: 10px;
+        transform: scale({zoom});
+        transform-origin: top left;
+    }}
+    th, td {{
+        border: 1px solid #000;
+        padding: 2px;
+        text-align: center;
+        white-space: nowrap;
+    }}
+    td.nombre {{ white-space: nowrap; }}
     </style>
-    <div style="overflow:auto;max-height:80vh">
+    <div style="overflow:auto">
     <table>
     <tr>
-    <th>Nombre y Apellidos</th><th>Categoría</th><th>NIP</th>
     """
 
+    html += "<th>NIP</th>" if modo_movil else "<th>Nombre y apellidos</th><th>Categoría</th><th>NIP</th>"
+
     for d in tabla.columns:
-        f=date(2026,mes,d)
-        if es_especial(f):
-            html+=f"<th style='background:#92D050;color:#FF0000'>{d}</th>"
+        f = date(2026, mes, d)
+        if es_festivo(f) or f.weekday() == 6:
+            html += f"<th style='background:#92D050;color:#FF0000'>{d}</th>"
         else:
-            html+=f"<th>{d}</th>"
-    html+="</tr>"
+            html += f"<th>{d}</th>"
+    html += "</tr>"
 
-    for (n,c,nip),fila in tabla.iterrows():
-        html+=f"<tr><td>{n}</td><td>{c}</td><td>{nip}</td>"
+    for idx, fila in tabla.iterrows():
+        html += "<tr>"
+        if modo_movil:
+            html += f"<td>{idx}</td>"
+        else:
+            nombre, cat, nip = idx
+            html += f"<td class='nombre'>{nombre}</td><td>{cat}</td><td>{nip}</td>"
+
         for v in fila:
-            bg,fg,extra=estilo_turno(v)
-            txt="" if pd.isna(v) else v
-            html+=f"<td style='background:{bg};color:{fg};text-align:center;{extra}'>{txt}</td>"
-        html+="</tr>"
+            e = estilo_turno(v)
+            txt = "" if pd.isna(v) else v
+            html += (
+                f"<td style='background:{e['bg']};color:{e['fg']};"
+                f"font-weight:{'bold' if e['bold'] else 'normal'}'>{txt}</td>"
+            )
+        html += "</tr>"
 
-    # ================= RESUMEN =================
-    resumen={d:{"1":0,"2":0,"3":0} for d in tabla.columns}
-
-    def contar(t):
-        if pd.isna(t): return []
-        t=str(t)
-        excluir=["D","Dc","Dcc","Dcv","Dcj","Dct","Vac","Perm","AP","Ts","BAJA","L"]
-        if any(x in t for x in excluir): return []
-        t=t.replace("ex","")
-        if "y" in t: return t.split("y")
-        if "|" in t: return t.split("|")
-        return [t]
-
-    for _,fila in tabla.iterrows():
-        for d,t in fila.items():
-            for p in contar(t):
-                if p in resumen[d]: resumen[d][p]+=1
-
-    for label,color,key in [
-        ("Mañanas","#BDD7EE","1"),
-        ("Tardes","#FFE699","2"),
-        ("Noches","#F8CBAD","3")
-    ]:
-        html+=f"<tr><td colspan='3' style='font-weight:bold;background:{color}'>{label}</td>"
-        for d in tabla.columns:
-            html+=f"<td style='background:{color};text-align:center;font-weight:bold'>{resumen[d][key]}</td>"
-        html+="</tr>"
-
-    html+="</table></div>"
-    st.markdown(html,unsafe_allow_html=True)
+    html += "</table></div>"
+    st.markdown(html, unsafe_allow_html=True)
 
 # ==================================================
-# TAB MIS TURNOS
+# TAB 2 — MIS TURNOS
 # ==================================================
-with tab_mis:
-    df_u=df_mes[df_mes["nip"]==st.session_state.usuario]
-    cal=calendar.Calendar()
+with tab_mis_turnos:
+    st.subheader("📆 Mis turnos")
 
-    NOMBRES={
-        "1":"Mañana","2":"Tarde","3":"Noche","D":"Descanso",
-        "1ex":"Mañana extra","2ex":"Tarde extra","3ex":"Noche extra"
-    }
+    df_user = df_mes[df_mes["nip"] == st.session_state.nip]
+    cal = calendar.Calendar()
+    TURNOS_TRABAJO = {"1", "2", "3", "1ex", "2ex", "3ex", "L"}
 
-    for semana in cal.monthdatescalendar(2026,mes):
-        cols=st.columns(7)
-        for i,d in enumerate(semana):
+    def separar(turno):
+        if "y" in turno: return turno.split("y")
+        if "|" in turno: return turno.split("|")
+        return [turno]
+
+    def formatear_nombre(nombre):
+        partes = nombre.split()
+        if partes[0] in {"Iago", "Javier"} and len(partes) > 1:
+            return f"{partes[0]} {partes[1][0]}."
+        return partes[0]
+
+    def compañeros(fecha, sub):
+        if sub not in TURNOS_TRABAJO:
+            return []
+        return (
+            df_mes[
+                (df_mes["fecha"] == fecha) &
+                (df_mes["turno"].str.contains(sub)) &
+                (df_mes["nip"] != st.session_state.nip)
+            ]["nombre"]
+            .apply(formatear_nombre)
+            .tolist()
+        )
+
+    for semana in cal.monthdatescalendar(2026, mes):
+        cols = st.columns(7)
+        for i, d in enumerate(semana):
             with cols[i]:
-                if d.month!=mes: st.write(""); continue
-                fila=df_u[df_u["fecha"]==pd.Timestamp(d)]
-                html=f"<div style='border:1px solid #aaa;border-radius:6px'>"
-                html+=f"<div style='text-align:center;font-weight:bold'>{d.day}</div>"
+                if d.month != mes:
+                    st.write("")
+                    continue
+
+                fila = df_user[df_user["fecha"] == pd.Timestamp(d)]
+                html = f"<div style='border:1px solid #999'><b>{d.day}</b><br>"
+
                 if not fila.empty:
-                    t=fila.iloc[0]["turno"]
-                    partes=contar(t)
-                    for p in partes:
-                        bg,fg,_=estilo_turno(p)
-                        html+=f"<div style='background:{bg};color:{fg};text-align:center'>{NOMBRES.get(p,p)}</div>"
-                html+="</div>"
-                st.markdown(html,unsafe_allow_html=True)
+                    for p in separar(str(fila.iloc[0]["turno"])):
+                        e = estilo_turno(p)
+                        html += (
+                            f"<div style='background:{e['bg']};color:{e['fg']};text-align:center'>"
+                            f"<b>{nombre_turno(p)}</b><br>"
+                        )
+                        for c in compañeros(pd.Timestamp(d), p):
+                            html += f"{c}<br>"
+                        html += "</div>"
+
+                html += "</div>"
+                st.markdown(html, unsafe_allow_html=True)
+
+        st.markdown("<div style='height:25px'></div>", unsafe_allow_html=True)
