@@ -2,20 +2,26 @@ import streamlit as st
 import pandas as pd
 import calendar
 from datetime import datetime, date
+from pathlib import Path
 
 # ==================================================
 # CONFIGURACIÓN GENERAL
 # ==================================================
 st.set_page_config(page_title="Cuadrante 2026", layout="wide")
 
-ADMIN_NIP = "ADMIN"
+ADMIN_USER = "ADMIN"
+ADMIN_PASS = "PoliciaLocal2021!"
 DATA_FILE = "cuadrante_2026.csv"
+USERS_FILE = "usuarios.csv"
+ESCUDO_FILE = "Placa.png"
 
 # ==================================================
 # SESIÓN
 # ==================================================
 if "nip" not in st.session_state:
     st.session_state.nip = None
+if "is_admin" not in st.session_state:
+    st.session_state.is_admin = False
 
 # ==================================================
 # CARGA DE DATOS
@@ -24,32 +30,57 @@ df = pd.read_csv(DATA_FILE, parse_dates=["fecha"])
 df["dia"] = df["fecha"].dt.day
 df["nip"] = df["nip"].astype(str)
 
+usuarios = pd.read_csv(USERS_FILE)
+usuarios["nip"] = usuarios["nip"].astype(str)
+usuarios["dni"] = usuarios["dni"].astype(str)
+
 # ==================================================
 # LOGIN
 # ==================================================
 if st.session_state.nip is None:
-    st.title("🔐 Acceso al Cuadrante")
-    nip_raw = st.text_input("Introduce tu NIP").strip()
+    st.markdown(
+        """
+        <style>
+        body, .stApp { background-color: white; }
+        </style>
+        """,
+        unsafe_allow_html=True
+    )
+
+    st.image(ESCUDO_FILE, width=220)
+    st.markdown("## Acceso al cuadrante")
+
+    usuario = st.text_input("Usuario (NIP)")
+    password = st.text_input("Contraseña (DNI)", type="password")
 
     if st.button("Entrar"):
-        if nip_raw == ADMIN_NIP:
-            st.session_state.nip = ADMIN_NIP
+        # ADMIN
+        if usuario == ADMIN_USER and password == ADMIN_PASS:
+            st.session_state.nip = ADMIN_USER
+            st.session_state.is_admin = True
             st.rerun()
 
-        nip = nip_raw.zfill(6)
-        if nip in df["nip"].str.zfill(6).unique():
-            st.session_state.nip = nip
+        # USUARIOS NORMALES
+        usuario = usuario.strip().zfill(6)
+        fila = usuarios[usuarios["nip"] == usuario]
+
+        if not fila.empty and fila.iloc[0]["dni"] == password.strip():
+            st.session_state.nip = usuario
+            st.session_state.is_admin = False
             st.rerun()
         else:
-            st.error("NIP no válido")
+            st.error("Usuario o contraseña incorrectos")
+
     st.stop()
 
 # ==================================================
 # CABECERA
 # ==================================================
 st.title("📅 Cuadrante 2026")
+
 if st.button("🚪 Cerrar sesión"):
     st.session_state.nip = None
+    st.session_state.is_admin = False
     st.rerun()
 
 # ==================================================
@@ -102,7 +133,7 @@ def estilo_turno(t):
         "Dct": ("#C6E0B4", "#00B050"),
         "Dcj": ("#C6E0B4", "#00B050"),
         "Vac": ("#FFFFFF", "#FF0000"),
-        "perm": ("#FFFFFF", "#FF0000"),
+        "Perm": ("#FFFFFF", "#FF0000"),
         "BAJA": ("#FFFFFF", "#FF0000"),
         "Ts": ("#FFFFFF", "#FF0000"),
         "AP": ("#FFFFFF", "#0070C0"),
@@ -135,16 +166,15 @@ tab_general, tab_mis_turnos = st.tabs(
 )
 
 # ==================================================
-# TAB 1 — CUADRANTE GENERAL (CON ZOOM)
+# TAB 1 — CUADRANTE GENERAL (CON MODO MÓVIL + ZOOM)
 # ==================================================
 with tab_general:
     st.subheader("📋 Cuadrante general")
 
     modo_movil = st.checkbox("📱 Modo móvil")
-
     zoom = 1.0
     if modo_movil:
-        zoom = st.slider("🔍 Zoom", 0.3, 1.5, 1.0, 0.05)
+        zoom = st.slider("🔍 Zoom", 0.6, 1.5, 1.0, 0.05)
 
     if modo_movil:
         index_cols = ["nip"]
@@ -153,12 +183,11 @@ with tab_general:
         index_cols = ["nombre", "categoria", "nip"]
         orden = df_mes[index_cols].drop_duplicates()
 
-    tabla = df_mes.pivot_table(
-        index=index_cols,
-        columns="dia",
-        values="turno",
-        aggfunc="first"
-    ).reindex(orden)
+    tabla = (
+        df_mes
+        .pivot_table(index=index_cols, columns="dia", values="turno", aggfunc="first")
+        .reindex(orden)
+    )
 
     html = f"""
     <style>
@@ -174,9 +203,7 @@ with tab_general:
         text-align: center;
         white-space: nowrap;
     }}
-    td.nombre {{
-        white-space: nowrap;
-    }}
+    td.nombre {{ white-space: nowrap; }}
     </style>
     <div style="overflow:auto">
     <table>
@@ -214,7 +241,7 @@ with tab_general:
     st.markdown(html, unsafe_allow_html=True)
 
 # ==================================================
-# TAB 2 — MIS TURNOS (CON SEPARACIÓN DE SEMANAS)
+# TAB 2 — MIS TURNOS
 # ==================================================
 with tab_mis_turnos:
     st.subheader("📆 Mis turnos")
@@ -259,7 +286,7 @@ with tab_mis_turnos:
                 html = f"<div style='border:1px solid #999'><b>{d.day}</b><br>"
 
                 if not fila.empty:
-                    for p in separar(str(fila.iloc[0]["turno"])):
+                    for p in separar(str(fila.iloc[0]['turno'])):
                         e = estilo_turno(p)
                         html += (
                             f"<div style='background:{e['bg']};color:{e['fg']};text-align:center'>"
