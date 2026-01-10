@@ -15,6 +15,7 @@ DATA_FILE = "cuadrante_2026.csv"
 USERS_FILE = "usuarios.csv"
 ESCUDO_FILE = "Placa.png"
 CABECERA_FILE = "cabecera.png"
+HISTORIAL_FILE = "historial_cambios.csv"
 
 # ==================================================
 # SESIÓN
@@ -455,7 +456,7 @@ if st.session_state.is_admin:
         "Vac", "BAJA", "perm", "Ts", "AP",
         "JuB", "JuC", "Curso", "Indisp",
         "1y2", "1y3", "2y3",
-        "1|2ex", "1|3ex", "2|3ex"
+        "1|2ex", "1|3ex", "2|3ex", "L|2ex"
     ]
 
     with col3:
@@ -463,35 +464,69 @@ if st.session_state.is_admin:
             "🔁 Nuevo turno",
             TURNOS_EDITABLES
         )
+        
+    with col3:
+    turno_sel = st.selectbox(
+        "🔁 Nuevo turno",
+        TURNOS_EDITABLES
+    )
+    observaciones = st.text_input(
+        "📝 Observaciones (opcional)",
+        placeholder="Ej.: Cambio por enfermedad, ajuste de servicio…"
+    )
+
 
     # ---- Botón guardar
     if st.button("💾 Guardar cambio"):
-        fecha_sel = date(2026, mes, dia_sel)
+    fecha_sel = date(2026, mes, dia_sel)
 
-        mask = (
-            (df["nip"] == nip_sel) &
-            (df["fecha"] == pd.Timestamp(fecha_sel))
-        )
+    mask = (
+        (df["nip"] == nip_sel) &
+        (df["fecha"] == pd.Timestamp(fecha_sel))
+    )
 
-        if mask.any():
-            df.loc[mask, "turno"] = turno_sel
-        else:
-            # crear fila nueva si no existe
-            fila_base = df_mes[df_mes["nip"] == nip_sel].iloc[0]
-            nueva = {
-                "anio": 2026,
-                "mes": mes,
-                "fecha": fecha_sel,
-                "dia": dia_sel,
-                "nip": nip_sel,
-                "nombre": fila_base["nombre"],
-                "categoria": fila_base["categoria"],
-                "turno": turno_sel,
-                "tipo": ""
-            }
-            df.loc[len(df)] = nueva
+    # Turno anterior
+    if mask.any():
+        turno_anterior = df.loc[mask, "turno"].iloc[0]
+        df.loc[mask, "turno"] = turno_sel
+    else:
+        turno_anterior = ""
+        fila_base = df_mes[df_mes["nip"] == nip_sel].iloc[0]
+        nueva = {
+            "anio": 2026,
+            "mes": mes,
+            "fecha": fecha_sel,
+            "dia": dia_sel,
+            "nip": nip_sel,
+            "nombre": fila_base["nombre"],
+            "categoria": fila_base["categoria"],
+            "turno": turno_sel,
+            "tipo": ""
+        }
+        df.loc[len(df)] = nueva
 
-        df.to_csv(DATA_FILE, index=False)
-        st.success("✅ Turno actualizado correctamente")
-        st.rerun()
+    # ---- GUARDAR CUADRANTE
+    df.to_csv(DATA_FILE, index=False)
 
+    # ---- REGISTRAR HISTORIAL
+    registro = {
+        "fecha_hora": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+        "usuario_admin": st.session_state.nip,
+        "nip_afectado": nip_sel,
+        "nombre_afectado": fila_base["nombre"],
+        "fecha_turno": fecha_sel.strftime("%Y-%m-%d"),
+        "turno_anterior": turno_anterior,
+        "turno_nuevo": turno_sel,
+        "observaciones": observaciones.strip()
+    }
+
+    try:
+        df_hist = pd.read_csv(HISTORIAL_FILE)
+        df_hist = pd.concat([df_hist, pd.DataFrame([registro])], ignore_index=True)
+    except FileNotFoundError:
+        df_hist = pd.DataFrame([registro])
+
+    df_hist.to_csv(HISTORIAL_FILE, index=False)
+
+    st.success("✅ Turno actualizado y registrado en el historial")
+    st.rerun()
