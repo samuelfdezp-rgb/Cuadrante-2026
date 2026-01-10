@@ -30,7 +30,33 @@ usuarios = pd.read_csv(USERS_FILE, dtype=str)
 # LOGIN
 # ==================================================
 if st.session_state.usuario is None:
-    st.markdown("<style>body{background:white}</style>", unsafe_allow_html=True)
+    st.markdown(
+    """
+    <style>
+    /* Fondo blanco real */
+    [data-testid="stAppViewContainer"] {
+        background-color: white;
+    }
+
+    /* Quitar gradientes y fondos oscuros */
+    [data-testid="stHeader"] {
+        background: white;
+    }
+
+    /* Texto negro por defecto */
+    html, body, p, label, span {
+        color: black !important;
+    }
+
+    /* Inputs fondo blanco */
+    input {
+        background-color: #f5f5f5 !important;
+        color: black !important;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
 
     with open(ESCUDO_FILE, "rb") as f:
         escudo = base64.b64encode(f.read()).decode()
