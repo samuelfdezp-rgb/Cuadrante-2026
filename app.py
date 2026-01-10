@@ -271,10 +271,12 @@ with tab_general:
     <div class="contenedor-cuadrante">
     <table>
     <tr>
-        <th>Nombre y Apellidos</th>
-        <th>Categoría</th>
-        <th>NIP</th>
     """
+    
+    if not modo_movil:
+    html += "<th>Nombre y Apellidos</th><th>Categoría</th>"
+
+    html += "<th>NIP</th>"
 
     # ============================
     # CABECERA DE DÍAS
@@ -282,7 +284,7 @@ with tab_general:
     for d in tabla.columns:
         fecha = date(2026, mes, d)
         if es_especial(fecha):
-            html += f"<th style='background:#92D050;color:#FF0000;font-weight:bold'>{d}</th>"
+            html += f"<th style='background:#92D050;color:#FF0000;text-align:center;font-weight:bold'>{d}</th>"
         else:
             html += f"<th>{d}</th>"
 
@@ -292,9 +294,12 @@ with tab_general:
     # FILAS DE TRABAJADORES
     # ============================
     for (nombre, categoria, nip), fila in tabla.iterrows():
-        html += f"<tr>"
-        html += f"<td style='text-align:left'>{nombre}</td>"
-        html += f"<td>{categoria}</td>"
+        html += "<tr>"
+
+        if not modo_movil:
+            html += f"<td style='text-align:left'>{nombre}</td>"
+            html += f"<td>{categoria}</td>"
+
         html += f"<td>{nip}</td>"
 
         for v in fila:
