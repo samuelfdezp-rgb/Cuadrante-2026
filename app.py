@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 import calendar
 from datetime import datetime, date
+import base64
 
 # ==================================================
 # CONFIGURACIÓN GENERAL
@@ -59,10 +60,18 @@ if st.session_state.nip is None:
         unsafe_allow_html=True
     )
 
-    # Escudo centrado (FORMA CORRECTA)
-    col1, col2, col3 = st.columns([1, 2, 1])
-    with col2:
-        st.image(ESCUDO_FILE, width=220)
+    # Escudo perfectamente centrado (FORMA CORRECTA)
+with open(ESCUDO_FILE, "rb") as f:
+    escudo_base64 = base64.b64encode(f.read()).decode()
+
+st.markdown(
+    f"""
+    <div style="display:flex; justify-content:center; margin-top:20px;">
+        <img src="data:image/png;base64,{escudo_base64}" width="220">
+    </div>
+    """,
+    unsafe_allow_html=True
+)
 
     st.markdown("<div class='login-title'>🔐 Acceso al cuadrante</div>", unsafe_allow_html=True)
 
