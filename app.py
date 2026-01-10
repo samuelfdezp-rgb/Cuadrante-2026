@@ -125,7 +125,7 @@ NOMBRES_TURNO = {
     "D": "Descanso", "Dc": "Descanso compensado",
     "Dcv": "Desc. comp. verano", "Dcc": "Desc. comp. curso",
     "Dct": "Desc. comp. tiro", "Dcj": "Desc. comp. juicio",
-    "Vac": "Vacaciones", "Perm": "Permiso", "BAJA": "Baja",
+    "Vac": "Vacaciones", "perm": "Permiso", "BAJA": "Baja",
     "Ts": "Tiempo sindical", "AP": "Asuntos particulares",
     "JuB": "Juicio Betanzos", "JuC": "Juicio Coruña",
     "Curso": "Curso", "Indisp": "Indisposición",
@@ -158,7 +158,7 @@ def estilo_turno(t):
         "Dct": ("#C6E0B4", "#00B050"),
         "Dcj": ("#C6E0B4", "#00B050"),
         "Vac": ("#FFFFFF", "#FF0000"),
-        "Perm": ("#FFFFFF", "#FF0000"),
+        "perm": ("#FFFFFF", "#FF0000"),
         "BAJA": ("#FFFFFF", "#FF0000"),
         "Ts": ("#FFFFFF", "#FF0000"),
         "AP": ("#FFFFFF", "#0070C0"),
@@ -171,7 +171,7 @@ def estilo_turno(t):
         return {"bg": "#00B050", "fg": "#FF0000", "bold": True}
 
     bg, fg = base.get(t, ("#FFFFFF", "#000000"))
-    return {"bg": bg, "fg": fg, "bold": t == "Perm"}
+    return {"bg": bg, "fg": fg, "bold": t == "perm"}
 
 # ==================================================
 # SELECCIÓN DE MES
@@ -199,7 +199,7 @@ with tab_general:
     modo_movil = st.checkbox("📱 Modo móvil")
     zoom = 1.0
     if modo_movil:
-        zoom = st.slider("🔍 Zoom", 0.6, 1.5, 1.0, 0.05)
+        zoom = st.slider("🔍 Zoom", 0.3, 1.5, 0.5, 0.05)
 
     if modo_movil:
         index_cols = ["nip"]
