@@ -221,129 +221,86 @@ tab_general, tab_mis_turnos = st.tabs(
 )
 
 # ==================================================
-# TAB 1 — CUADRANTE GENERAL (MODO MÓVIL + ZOOM)
+# TAB — CUADRANTE GENERAL (EXCEL REAL A4:AM49)
 # ==================================================
+from openpyxl import load_workbook
+from openpyxl.styles.colors import Color
+
 with tab_general:
 
-    st.subheader("📋 Cuadrante general")
+    st.subheader("📋 Cuadrante general (Excel real)")
 
-    modo_movil = st.checkbox("📱 Modo móvil", value=False)
+    EXCEL_FILE = "01 - Cuadrante Enero 2026.xlsx"
+    SHEET_NAME = "Enero"
 
-    # ============================
-    # ORDEN ORIGINAL DEL EXCEL
-    # ============================
-    orden = df_mes[["nombre", "categoria", "nip"]].drop_duplicates()
+    wb = load_workbook(EXCEL_FILE, data_only=True)
+    ws = wb[SHEET_NAME]
 
-    tabla = df_mes.pivot_table(
-        index=["nombre", "categoria", "nip"],
-        columns="dia",
-        values="turno",
-        aggfunc="first"
-    ).reindex(pd.MultiIndex.from_frame(orden))
+    # Rango EXACTO
+    start_row, end_row = 4, 49
+    start_col, end_col = 1, 39   # A=1, AM=39
 
-    # ============================
-    # CONTENEDOR CON SCROLL + ZOOM
-    # ============================
-    zoom = "0.5" if modo_movil else "1"
+    def excel_color(cell_color):
+        if cell_color is None:
+            return None
+        if isinstance(cell_color, Color):
+            if cell_color.type == "rgb" and cell_color.rgb:
+                return f"#{cell_color.rgb[-6:]}"
+        return None
 
-    html = f"""
+    html = """
     <style>
-    .contenedor-cuadrante {{
+    .excel-wrap {
         overflow-x: auto;
-        transform: scale({zoom});
-        transform-origin: top left;
-    }}
-    table {{
+    }
+    table.excel {
         border-collapse: collapse;
+        font-size: 11px;
         white-space: nowrap;
-    }}
-    th, td {{
+    }
+    table.excel td {
         border: 1px solid #000;
-        padding: 4px;
+        padding: 3px;
         text-align: center;
-        font-size: 12px;
-    }}
-    th {{
-        font-weight: bold;
-    }}
+        min-width: 26px;
+    }
     </style>
 
-    <div class="contenedor-cuadrante">
-    <table>
-    <tr>
+    <div class="excel-wrap">
+    <table class="excel">
     """
-    
-    if not modo_movil:
-        html += "<th>Nombre y Apellidos</th>"
-        html += "<th>Categoría</th>"
 
-    html += "<th>NIP</th>"
-
-    # ============================
-    # CABECERA DE DÍAS
-    # ============================
-    for d in tabla.columns:
-        fecha = date(2026, mes, d)
-        if es_especial(fecha):
-            html += f"<th style='background:#92D050;color:#FF0000;text-align:center;font-weight:bold'>{d}</th>"
-        else:
-            html += f"<th>{d}</th>"
-
-    html += "</tr>"
-
-    # ============================
-    # FILAS DE TRABAJADORES
-    # ============================
-    for (nombre, categoria, nip), fila in tabla.iterrows():
+    for r in range(start_row, end_row + 1):
         html += "<tr>"
+        for c in range(start_col, end_col + 1):
+            cell = ws.cell(row=r, column=c)
 
-        if not modo_movil:
-            html += f"<td style='text-align:left'>{nombre}</td>"
-            html += f"<td>{categoria}</td>"
+            value = "" if cell.value is None else cell.value
 
-        html += f"<td>{nip}</td>"
+            # Colores
+            bg = excel_color(cell.fill.fgColor)
+            fg = excel_color(cell.font.color)
 
-        for v in fila:
-            e = estilo_turno(v)
-            texto = "" if pd.isna(v) else v
-            html += (
-                f"<td style='background:{e['bg']};color:{e['fg']};"
-                f"{'font-weight:bold;' if e.get('bold') else ''}"
-                f"{'font-style:italic;' if e.get('italic') else ''}'>"
-                f"{texto}</td>"
-            )
+            styles = ""
+            if bg:
+                styles += f"background:{bg};"
+            if fg:
+                styles += f"color:{fg};"
+            if cell.font.bold:
+                styles += "font-weight:bold;"
+            if cell.font.italic:
+                styles += "font-style:italic;"
+
+            # Alineación izquierda para nombres
+            if c == 1:
+                styles += "text-align:left; padding-left:6px;"
+
+            html += f"<td style='{styles}'>{value}</td>"
         html += "</tr>"
 
-    html += "</table>"
+    html += "</table></div>"
 
-    # ==================================================
-    # CONTABILIZACIÓN DE AGENTES POR TURNO (DEBAJO)
-    # ==================================================
-
-    turnos_mañana = ["1", "L", "1ex"]
-    turnos_tarde = ["2", "2ex"]
-    turnos_noche = ["3", "3ex"]
-
-    conteo = {
-        "Mañanas": {},
-        "Tardes": {},
-        "Noches": {}
-    }
-
-    for d in tabla.columns:
-        df_dia = df_mes[df_mes["dia"] == d]
-
-        conteo["Mañanas"][d] = df_dia["turno"].apply(
-            lambda x: any(t in str(x) for t in turnos_mañana)
-        ).sum()
-
-        conteo["Tardes"][d] = df_dia["turno"].apply(
-            lambda x: any(t in str(x) for t in turnos_tarde)
-        ).sum()
-
-        conteo["Noches"][d] = df_dia["turno"].apply(
-            lambda x: any(t in str(x) for t in turnos_noche)
-        ).sum()
+    st.markdown(html, unsafe_allow_html=True)
 
 # ==================================================
 # TAB 2 — MIS TURNOS
