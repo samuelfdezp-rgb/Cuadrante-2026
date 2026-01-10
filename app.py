@@ -582,7 +582,7 @@ if st.session_state.is_admin:
         registro = {
             "fecha_hora": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
             "usuario_admin": st.session_state.nip,
-            nip_afectado = normalizar_nip(nip_afectado),
+            "nip_afectado": normalizar_nip(nip_afectado),
             "nombre_afectado": nombre_afectado,
             "fecha_turno": fecha_sel.strftime("%Y-%m-%d"),
             "turno_anterior": turno_anterior,
