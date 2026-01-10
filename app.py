@@ -200,7 +200,7 @@ def estilo_turno(t):
         return {"bg": "#00B050", "fg": "#FF0000", "bold": True}
 
     bg, fg = base.get(t, ("#FFFFFF", "#000000"))
-    return {"bg": bg, "fg": fg, "bold": t == "perm"}
+    return {"bg": bg, "fg": fg, "bold": t == "perm" and "Ts"}
 
 # ==================================================
 # PESTAÑAS
