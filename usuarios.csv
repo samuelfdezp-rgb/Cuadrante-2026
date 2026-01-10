@@ -2,7 +2,7 @@ nip,dni,nombre
 032001,76355630T,Xosé Henrique Fidalgo García
 032018,32799252X,Javier Fernández Seijo
 032015,34890166V,Pedro Rodríguez Pedreira
-032016,12345678X,Víctor Mendez Vázquez,Policía,
+032016,12345678X,Víctor Mendez Vázquez
 032022,79328600J,Miguel Naveiras Picos
 032023,32710281A,Javier Plana Costoya
 032025,71462236V,Samuel Fernández Pérez
@@ -16,4 +16,5 @@ nip,dni,nombre
 032019,76363293G,Juan Rozados Saya
 A032099,76411606V,Ricardo Fariña Vidal
 032017,76363201,Francisco Fernández Otero
+
 
