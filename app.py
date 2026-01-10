@@ -465,16 +465,10 @@ if st.session_state.is_admin:
             TURNOS_EDITABLES
         )
         
-    with col3:
-    turno_sel = st.selectbox(
-        "🔁 Nuevo turno",
-        TURNOS_EDITABLES
-    )
-    observaciones = st.text_input(
+        observaciones = st.text_input(
         "📝 Observaciones (opcional)",
         placeholder="Ej.: Cambio por enfermedad, ajuste de servicio…"
     )
-
 
     # ---- Botón guardar
     if st.button("💾 Guardar cambio"):
