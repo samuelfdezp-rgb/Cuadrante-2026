@@ -477,7 +477,6 @@ with tab_general:
 
     st.markdown(html, unsafe_allow_html=True)
 
-ç
 # ==================================================
 # TAB 2 — MIS TURNOS
 # ==================================================
