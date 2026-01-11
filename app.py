@@ -321,10 +321,11 @@ with tab_general:
             "🔍 Zoom",
             min_value=0.3,
             max_value=1.5,
-            value=0.5,      # ⬅️ valor por defecto
+            value=0.5,     # ← valor por defecto correcto
             step=0.05
         )
 
+    # Columnas índice
     if modo_movil:
         index_cols = ["nip"]
         orden = df_mes["nip"].drop_duplicates()
@@ -343,30 +344,40 @@ with tab_general:
         .reindex(orden)
     )
 
-    # CSS dinámico según modo
-    escala_css = f"""
-        transform: scale({zoom});
-        transform-origin: top left;
-    """ if modo_movil else ""
-
+    # ================= HTML =================
     html = f"""
     <style>
-    table {{
-        border-collapse: collapse;
-        font-size: 14px;
-        {escala_css}
-    }}
-    th, td {{
-        border: 1px solid #000;
-        padding: 6px;
-        text-align: center;
-        white-space: nowrap;
-    }}
+        .tabla-wrapper {{
+            transform: scale({zoom});
+            transform-origin: top left;
+            width: fit-content;
+        }}
+
+        table {{
+            border-collapse: collapse;
+            font-size: 14px;
+        }}
+
+        th, td {{
+            border: 1px solid #000;
+            padding: 6px;
+            text-align: center;
+            white-space: nowrap;
+        }}
+
+        th {{
+            font-weight: bold;
+        }}
+
+        td.nombre {{
+            text-align: left;
+        }}
     </style>
 
-    <div style="overflow-x:auto; overflow-y:auto; width:100%; touch-action: pinch-zoom;">
-    <table>
-    <tr>
+    <div style="overflow-x:auto; overflow-y:auto;">
+        <div class="tabla-wrapper">
+            <table>
+                <tr>
     """
 
     # Cabecera fija
@@ -375,17 +386,17 @@ with tab_general:
     else:
         html += "<th>Nombre y apellidos</th><th>Categoría</th><th>NIP</th>"
 
-    # Días del mes
+    # Días
     for d in tabla.columns:
-        f = date(2026, mes, d)
-        if es_festivo(f) or f.weekday() == 6:
+        fecha = date(2026, mes, d)
+        if es_festivo(fecha) or fecha.weekday() == 6:
             html += f"<th style='background:#92D050;color:#FF0000'>{d}</th>"
         else:
             html += f"<th>{d}</th>"
 
     html += "</tr>"
 
-    # Filas de trabajadores
+    # Filas
     for idx, fila in tabla.iterrows():
         html += "<tr>"
 
@@ -393,21 +404,31 @@ with tab_general:
             html += f"<td>{idx}</td>"
         else:
             nombre, cat, nip = idx
-            html += f"<td>{nombre}</td><td>{cat}</td><td>{nip}</td>"
+            html += (
+                f"<td class='nombre'>{nombre}</td>"
+                f"<td>{cat}</td>"
+                f"<td>{nip}</td>"
+            )
 
         for v in fila:
             e = estilo_turno(v)
             txt = "" if pd.isna(v) else v
             html += (
-                f"<td style='background:{e['bg']};color:{e['fg']};"
-                f"font-weight:{'bold' if e['bold'] else 'normal'};"
-                f"font-style:{'italic' if e['italic'] else 'normal'}'>"
+                f"<td style='background:{e['bg']};"
+                f"color:{e['fg']};"
+                f"font-weight:{'bold' if e.get('bold') else 'normal'};"
+                f"font-style:{'italic' if e.get('italic') else 'normal'}'>"
                 f"{txt}</td>"
             )
 
         html += "</tr>"
 
-    html += "</table></div>"
+    # CIERRES CORRECTOS (CLAVE)
+    html += """
+            </table>
+        </div>
+    </div>
+    """
 
     st.markdown(html, unsafe_allow_html=True)
 
