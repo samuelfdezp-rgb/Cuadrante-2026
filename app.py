@@ -419,9 +419,25 @@ with tab_general:
     def fila_resumen(titulo, datos, color):
         fila = "<tr>"
         if modo_movil:
-            fila += f"<td><b>{titulo}</b></td>"
+            fila += (
+                f"<td style='background:{color};"
+                f"color:#000;font-weight:bold'>"
+                f"{titulo}</td>"
+            )
         else:
-            fila += f"<td colspan='3'><b>{titulo}</b></td>"
+            fila += (
+                f"<td colspan='3' style='background:{color};"
+                f"color:#000;font-weight:bold'>"
+                f"{titulo}</td>"
+            )
+
+        for v in datos:
+            fila += (
+                f"<td style='background:{color};"
+                f"color:#000;font-weight:bold'>"
+                f"{v}</td>"
+            )
+        return fila + "</tr>"
 
         for v in datos:
             fila += (
@@ -442,45 +458,6 @@ with tab_general:
     """
 
     st.markdown(html, unsafe_allow_html=True)
-
-    # ---------- RESUMEN POR TURNOS (TABLA SEPARADA) ----------
-    st.markdown("### 📊 Resumen diario de turnos")
-
-    dias = sorted(df_mes["dia"].unique())
-
-    def cuenta(turnos):
-        return df_mes[
-            df_mes["turno"].astype(str).str.contains(turnos, regex=True)
-        ].groupby("dia").size().reindex(dias, fill_value=0)
-
-    man = cuenta(r"^1$|^L$|1ex")
-    tar = cuenta(r"^2$|2ex")
-    noc = cuenta(r"^3$|3ex")
-
-    resumen_html = """
-    <table style="border-collapse:collapse;font-size:14px;margin-top:10px">
-      <tr>
-        <th>Turno</th>
-    """
-
-    for d in dias:
-        resumen_html += f"<th>{d}</th>"
-
-    resumen_html += "</tr>"
-
-    def fila(nombre, datos, bg):
-        fila = f"<tr><td><b>{nombre}</b></td>"
-        for v in datos:
-            fila += f"<td style='background:{bg};color:#000'>{v}</td>"
-        return fila + "</tr>"
-
-    resumen_html += fila("Mañanas", man, "#BDD7EE")
-    resumen_html += fila("Tardes", tar, "#FFE699")
-    resumen_html += fila("Noches", noc, "#F8CBAD")
-
-    resumen_html += "</table>"
-
-    st.markdown(resumen_html, unsafe_allow_html=True)
 
 # ==================================================
 # TAB 2 — MIS TURNOS
