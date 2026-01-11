@@ -379,6 +379,20 @@ with tab_general:
 
     html += "</tr>"
 
+    dias = list(tabla.columns)
+
+    def contar_turnos(regex):
+        return (
+            df_mes[df_mes["turno"].astype(str).str.contains(regex, regex=True)]
+            .groupby("dia")
+            .size()
+            .reindex(dias, fill_value=0)
+        )
+
+    conteo_man = contar_turnos(r"^1$|1ex")
+    conteo_tar = contar_turnos(r"^2$|2ex")
+    conteo_noc = contar_turnos(r"^3$|3ex")
+
     for idx, fila in tabla.iterrows():
         html += "<tr>"
 
@@ -400,6 +414,26 @@ with tab_general:
             )
 
         html += "</tr>"
+
+    # ----- FILAS RESUMEN (MISMA TABLA) -----
+    def fila_resumen(titulo, datos, color):
+        fila = "<tr>"
+        if modo_movil:
+            fila += f"<td><b>{titulo}</b></td>"
+        else:
+            fila += f"<td colspan='3'><b>{titulo}</b></td>"
+
+        for v in datos:
+            fila += (
+                f"<td style='background:{color};"
+                f"color:#000;font-weight:bold'>"
+                f"{v}</td>"
+            )
+        return fila + "</tr>"
+
+    html += fila_resumen("Mañanas", conteo_man, "#BDD7EE")
+    html += fila_resumen("Tardes", conteo_tar, "#FFE699")
+    html += fila_resumen("Noches", conteo_noc, "#F8CBAD")
 
     html += """
         </table>
