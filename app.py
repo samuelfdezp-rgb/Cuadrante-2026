@@ -313,9 +313,17 @@ with tab_general:
     st.subheader("📋 Cuadrante general")
 
     modo_movil = st.checkbox("📱 Modo móvil")
+
+    # Zoom SOLO en modo móvil
     zoom = 1.0
     if modo_movil:
-        zoom = st.slider("🔍 Zoom", 0.3, 1.5, 0.5, 0.05)
+        zoom = st.slider(
+            "🔍 Zoom",
+            min_value=0.3,
+            max_value=1.5,
+            value=0.5,      # ⬅️ valor por defecto
+            step=0.05
+        )
 
     if modo_movil:
         index_cols = ["nip"]
@@ -326,15 +334,27 @@ with tab_general:
 
     tabla = (
         df_mes
-        .pivot_table(index=index_cols, columns="dia", values="turno", aggfunc="first")
+        .pivot_table(
+            index=index_cols,
+            columns="dia",
+            values="turno",
+            aggfunc="first"
+        )
         .reindex(orden)
     )
+
+    # CSS dinámico según modo
+    escala_css = f"""
+        transform: scale({zoom});
+        transform-origin: top left;
+    """ if modo_movil else ""
 
     html = f"""
     <style>
     table {{
         border-collapse: collapse;
         font-size: 14px;
+        {escala_css}
     }}
     th, td {{
         border: 1px solid #000;
@@ -346,25 +366,34 @@ with tab_general:
 
     <div style="overflow-x:auto; overflow-y:auto; width:100%; touch-action: pinch-zoom;">
     <table>
+    <tr>
     """
 
-    html += "<th>NIP</th>" if modo_movil else "<th>Nombre y apellidos</th><th>Categoría</th><th>NIP</th>"
+    # Cabecera fija
+    if modo_movil:
+        html += "<th>NIP</th>"
+    else:
+        html += "<th>Nombre y apellidos</th><th>Categoría</th><th>NIP</th>"
 
+    # Días del mes
     for d in tabla.columns:
         f = date(2026, mes, d)
         if es_festivo(f) or f.weekday() == 6:
             html += f"<th style='background:#92D050;color:#FF0000'>{d}</th>"
         else:
             html += f"<th>{d}</th>"
+
     html += "</tr>"
 
+    # Filas de trabajadores
     for idx, fila in tabla.iterrows():
         html += "<tr>"
+
         if modo_movil:
             html += f"<td>{idx}</td>"
         else:
             nombre, cat, nip = idx
-            html += f"<td class='nombre'>{nombre}</td><td>{cat}</td><td>{nip}</td>"
+            html += f"<td>{nombre}</td><td>{cat}</td><td>{nip}</td>"
 
         for v in fila:
             e = estilo_turno(v)
@@ -375,7 +404,12 @@ with tab_general:
                 f"font-style:{'italic' if e['italic'] else 'normal'}'>"
                 f"{txt}</td>"
             )
+
         html += "</tr>"
+
+    html += "</table></div>"
+
+    st.markdown(html, unsafe_allow_html=True)
 
     # ==================================================
     # FILAS RESUMEN POR TURNO (ESTILO EXCEL)
