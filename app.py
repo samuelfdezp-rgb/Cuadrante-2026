@@ -439,8 +439,21 @@ with tab_general:
         if modo_movil:
             html += f"<td>{idx}</td>"
         else:
-            nombre, cat, nip = idx
-            html += f"<td class='nombre'>{nombre}</td><td>{cat}</td><td>{nip}</td>"
+            # Protección absoluta contra índices corruptos
+            if isinstance(idx, tuple) and len(idx) == 3:
+                nombre, cat, nip = idx
+            else:
+                # fallback seguro (no rompe la tabla)
+                nombre = ""
+                cat = ""
+                nip = str(idx)
+
+            html += (
+                f"<td class='nombre'>{nombre}</td>"
+                f"<td>{cat}</td>"
+                f"<td>{nip}</td>"
+            )
+
 
         for v in fila:
             e = estilo_turno(v)
