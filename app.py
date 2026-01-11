@@ -415,13 +415,27 @@ with tab_general:
 
         return turnos
 
-    conteo_man = contar_turnos(r"^1$|1ex")
-    conteo_tar = contar_turnos(r"^2$|2ex")
-    conteo_noc = contar_turnos(r"^3$|3ex")
+    conteo_manana = []
+    conteo_tarde = []
+    conteo_noche = []
 
-    for idx, fila in tabla.iterrows():
-        html += "<tr>"
+    for dia in tabla.columns:
+        m = t = n = 0
 
+        for _, fila in tabla.iterrows():
+            turnos = contar_turnos(fila[dia])
+
+            if "M" in turnos:
+                m += 1
+            if "T" in turnos:
+                t += 1
+            if "N" in turnos:
+                n += 1
+
+        conteo_manana.append(m)
+        conteo_tarde.append(t)
+        conteo_noche.append(n)
+    
         if modo_movil:
             html += f"<td>{idx}</td>"
         else:
