@@ -314,18 +314,14 @@ with tab_general:
 
     modo_movil = st.checkbox("📱 Modo móvil")
 
-    # Zoom SOLO en modo móvil
     zoom = 1.0
     if modo_movil:
         zoom = st.slider(
             "🔍 Zoom",
-            min_value=0.3,
-            max_value=1.5,
-            value=0.5,     # ← valor por defecto correcto
-            step=0.05
+            0.3, 1.5, 0.5, 0.05
         )
 
-    # Columnas índice
+    # ---------- CUADRANTE ----------
     if modo_movil:
         index_cols = ["nip"]
         orden = df_mes["nip"].drop_duplicates()
@@ -344,49 +340,36 @@ with tab_general:
         .reindex(orden)
     )
 
-    # ================= HTML =================
     html = f"""
     <style>
-        .tabla-wrapper {{
+        .wrapper {{
             transform: scale({zoom});
             transform-origin: top left;
             width: fit-content;
         }}
-
         table {{
             border-collapse: collapse;
             font-size: 14px;
         }}
-
         th, td {{
             border: 1px solid #000;
             padding: 6px;
             text-align: center;
             white-space: nowrap;
         }}
-
-        th {{
-            font-weight: bold;
-        }}
-
-        td.nombre {{
-            text-align: left;
-        }}
     </style>
 
-    <div style="overflow-x:auto; overflow-y:auto;">
-        <div class="tabla-wrapper">
-            <table>
-                <tr>
+    <div style="overflow:auto">
+      <div class="wrapper">
+        <table>
+          <tr>
     """
 
-    # Cabecera fija
     if modo_movil:
         html += "<th>NIP</th>"
     else:
         html += "<th>Nombre y apellidos</th><th>Categoría</th><th>NIP</th>"
 
-    # Días
     for d in tabla.columns:
         fecha = date(2026, mes, d)
         if es_festivo(fecha) or fecha.weekday() == 6:
@@ -396,7 +379,6 @@ with tab_general:
 
     html += "</tr>"
 
-    # Filas
     for idx, fila in tabla.iterrows():
         html += "<tr>"
 
@@ -404,11 +386,7 @@ with tab_general:
             html += f"<td>{idx}</td>"
         else:
             nombre, cat, nip = idx
-            html += (
-                f"<td class='nombre'>{nombre}</td>"
-                f"<td>{cat}</td>"
-                f"<td>{nip}</td>"
-            )
+            html += f"<td>{nombre}</td><td>{cat}</td><td>{nip}</td>"
 
         for v in fila:
             e = estilo_turno(v)
@@ -423,54 +401,52 @@ with tab_general:
 
         html += "</tr>"
 
-    # CIERRES CORRECTOS (CLAVE)
     html += """
-            </table>
-        </div>
+        </table>
+      </div>
     </div>
     """
 
     st.markdown(html, unsafe_allow_html=True)
 
-    # ==================================================
-    # FILAS RESUMEN POR TURNO (ESTILO EXCEL)
-    # ==================================================
+    # ---------- RESUMEN POR TURNOS (TABLA SEPARADA) ----------
+    st.markdown("### 📊 Resumen diario de turnos")
 
-    def contar(dia, turnos):
+    dias = sorted(df_mes["dia"].unique())
+
+    def cuenta(turnos):
         return df_mes[
-            (df_mes["dia"] == dia) &
-            (df_mes["turno"].notna()) &
-            (df_mes["turno"].apply(lambda x: any(t in str(x) for t in turnos)))
-        ]["nip"].nunique()
+            df_mes["turno"].astype(str).str.contains(turnos, regex=True)
+        ].groupby("dia").size().reindex(dias, fill_value=0)
 
-    dias = list(tabla.columns)
+    man = cuenta(r"^1$|^L$|1ex")
+    tar = cuenta(r"^2$|2ex")
+    noc = cuenta(r"^3$|3ex")
 
-    resumen_filas = [
-        ("Mañanas", ["1", "1ex"],      estilo_turno("1")["bg"]),
-        ("Tardes",  ["2", "2ex"],      estilo_turno("2")["bg"]),
-        ("Noches",  ["3", "3ex"],      estilo_turno("3")["bg"]),
-    ]
+    resumen_html = """
+    <table style="border-collapse:collapse;font-size:14px;margin-top:10px">
+      <tr>
+        <th>Turno</th>
+    """
 
-    for nombre, turnos, color in resumen_filas:
-        html += "<tr>"
-        # columnas fijas
-        if modo_movil:
-            html += f"<td><b>{nombre}</b></td>"
-        else:
-            html += f"<td></td><td><b>{nombre}</b></td><td></td>"
+    for d in dias:
+        resumen_html += f"<th>{d}</th>"
 
-        # columnas de días
-        for d in dias:
-            total = contar(d, turnos)
-            html += (
-                f"<td style='background:{color};"
-                f"color:#000;font-weight:bold;text-align:center;"
-                f"vertical-align:middle'>{total}</td>"
-            )
-        html += "</tr>"
+    resumen_html += "</tr>"
 
-    html += "</table></div>"
-    st.markdown(html, unsafe_allow_html=True)
+    def fila(nombre, datos, bg):
+        fila = f"<tr><td><b>{nombre}</b></td>"
+        for v in datos:
+            fila += f"<td style='background:{bg};color:#000'>{v}</td>"
+        return fila + "</tr>"
+
+    resumen_html += fila("Mañanas", man, "#BDD7EE")
+    resumen_html += fila("Tardes", tar, "#FFE699")
+    resumen_html += fila("Noches", noc, "#F8CBAD")
+
+    resumen_html += "</table>"
+
+    st.markdown(resumen_html, unsafe_allow_html=True)
 
 # ==================================================
 # TAB 2 — MIS TURNOS
