@@ -3,29 +3,55 @@ import pandas as pd
 import calendar
 from datetime import datetime, date
 import base64
+import os
 
+# ==================================================
+# CONFIGURACIÓN GENERAL
+# ==================================================
+st.set_page_config(page_title="Cuadrante 2026", layout="wide")
+
+ADMIN_USER = "ADMIN"
+ADMIN_PASS = "PoliciaLocal2021!"
+
+BASE_FILE = "cuadrante_base.csv"          # CSV base (no se modifica)
+HISTORIAL_FILE = "historial_cambios.csv"  # Cambios ADMIN persistentes
+USERS_FILE = "usuarios.csv"
+
+ESCUDO_FILE = "Placa.png"
+CABECERA_FILE = "cabecera.png"
+
+# ==================================================
+# FUNCIONES BASE
+# ==================================================
 def normalizar_nip(nip):
     return str(nip).strip().zfill(6)
 
 def cargar_cuadrante_actual():
-    # 1. Cargar cuadrante base
+    """
+    Carga el cuadrante base y aplica encima
+    todos los cambios del historial.
+    """
+    # ---- 1. Cargar cuadrante base ----
+    if not os.path.exists(BASE_FILE):
+        st.error("No existe el archivo base del cuadrante")
+        st.stop()
+
     df = pd.read_csv(BASE_FILE, parse_dates=["fecha"])
     df["nip"] = df["nip"].apply(normalizar_nip)
     df["dia"] = df["fecha"].dt.day
 
-    # 2. Cargar historial si existe
-    try:
-        hist = pd.read_csv(
-            HISTORIAL_FILE,
-            parse_dates=["fecha_turno", "fecha_hora"]
-        )
-    except FileNotFoundError:
+    # ---- 2. Cargar historial ----
+    if not os.path.exists(HISTORIAL_FILE):
         return df
 
-    # Orden cronológico
+    hist = pd.read_csv(
+        HISTORIAL_FILE,
+        parse_dates=["fecha_turno", "fecha_hora"]
+    )
+
     hist = hist.sort_values("fecha_hora")
 
-    # Aplicar cambios
+    # ---- 3. Aplicar cambios ----
     for _, r in hist.iterrows():
         nip = normalizar_nip(r["nip_afectado"])
         fecha_turno = pd.Timestamp(r["fecha_turno"])
@@ -35,21 +61,19 @@ def cargar_cuadrante_actual():
         if mask.any():
             df.loc[mask, "turno"] = r["turno_nuevo"]
         else:
-            # Intentar obtener datos base del trabajador
             filas_nip = df[df["nip"] == nip]
 
             if not filas_nip.empty:
-                fila_base = filas_nip.iloc[0]
-                nombre = fila_base["nombre"]
-                categoria = fila_base["categoria"]
-                anio = fila_base["anio"]
+                base = filas_nip.iloc[0]
+                nombre = base["nombre"]
+                categoria = base["categoria"]
+                anio = base["anio"]
             else:
-                # Último recurso: sacar nombre del historial
                 nombre = r.get("nombre_afectado", "")
                 categoria = ""
                 anio = fecha_turno.year
 
-            nueva = {
+            df.loc[len(df)] = {
                 "anio": anio,
                 "mes": fecha_turno.month,
                 "fecha": fecha_turno,
@@ -61,23 +85,33 @@ def cargar_cuadrante_actual():
                 "tipo": ""
             }
 
-            df.loc[len(df)] = nueva
-
     return df
 
-# ==================================================
-# CONFIGURACIÓN GENERAL
-# ==================================================
-st.set_page_config(page_title="Cuadrante 2026", layout="wide")
+def guardar_cambio_historial(
+    nip_afectado,
+    fecha_turno,
+    turno_anterior,
+    turno_nuevo,
+    observaciones,
+    admin_user
+):
+    nuevo = {
+        "fecha_hora": datetime.now(),
+        "fecha_turno": fecha_turno,
+        "nip_afectado": normalizar_nip(nip_afectado),
+        "turno_anterior": turno_anterior,
+        "turno_nuevo": turno_nuevo,
+        "observaciones": observaciones,
+        "admin": admin_user
+    }
 
-ADMIN_USER = "ADMIN"
-ADMIN_PASS = "PoliciaLocal2021!"
-BASE_FILE = "cuadrante_base.csv"
-HISTORIAL_FILE = "historial_cambios.csv"
-USERS_FILE = "usuarios.csv"
-ESCUDO_FILE = "Placa.png"
-CABECERA_FILE = "cabecera.png"
-HISTORIAL_FILE = "historial_cambios.csv"
+    if os.path.exists(HISTORIAL_FILE):
+        hist = pd.read_csv(HISTORIAL_FILE, parse_dates=["fecha_turno", "fecha_hora"])
+        hist = pd.concat([hist, pd.DataFrame([nuevo])], ignore_index=True)
+    else:
+        hist = pd.DataFrame([nuevo])
+
+    hist.to_csv(HISTORIAL_FILE, index=False)
 
 # ==================================================
 # SESIÓN
@@ -91,7 +125,6 @@ if "is_admin" not in st.session_state:
 # CARGA DE DATOS
 # ==================================================
 df = cargar_cuadrante_actual()
-df["dia"] = df["fecha"].dt.day
 df["nip"] = df["nip"].apply(normalizar_nip)
 
 usuarios = pd.read_csv(USERS_FILE)
