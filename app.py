@@ -340,6 +340,7 @@ with tab_general:
         .reindex(orden)
     )
 
+    # ---------- HTML + CSS ----------
     html = f"""
     <style>
         .wrapper {{
@@ -379,37 +380,23 @@ with tab_general:
 
     html += "</tr>"
 
-    dias = list(tabla.columns)
-
+    # ---------- FUNCIÓN CONTEO ----------
     def contar_turnos(codigo):
-        """
-        Devuelve un set con los turnos que cuenta un código:
-        'M' = Mañana
-        'T' = Tarde
-        'N' = Noche
-        """
         if pd.isna(codigo):
             return set()
 
         c = str(codigo)
 
-        # Turnos que NO cuentan
         NO_CUENTAN = ["D", "Vac", "BAJA", "perm", "AP", "Ts", "Dc", "Dct", "Dcc", "Dcv"]
         for x in NO_CUENTAN:
             if x in c:
                 return set()
 
         turnos = set()
-
-        # Mañana
         if "1" in c:
             turnos.add("M")
-    
-        # Tarde
         if "2" in c:
             turnos.add("T")
-
-        # Noche
         if "3" in c:
             turnos.add("N")
 
@@ -421,10 +408,8 @@ with tab_general:
 
     for dia in tabla.columns:
         m = t = n = 0
-
         for _, fila in tabla.iterrows():
             turnos = contar_turnos(fila[dia])
-
             if "M" in turnos:
                 m += 1
             if "T" in turnos:
@@ -435,25 +420,24 @@ with tab_general:
         conteo_manana.append(m)
         conteo_tarde.append(t)
         conteo_noche.append(n)
-    
+
+    # ---------- FILAS DEL CUADRANTE ----------
+    for idx, fila in tabla.iterrows():
+        html += "<tr>"
+
         if modo_movil:
             html += f"<td>{idx}</td>"
         else:
-            # Protección absoluta contra índices corruptos
             if isinstance(idx, tuple) and len(idx) == 3:
                 nombre, cat, nip = idx
             else:
-                # fallback seguro (no rompe la tabla)
-                nombre = ""
-                cat = ""
-                nip = str(idx)
+                nombre, cat, nip = "", "", str(idx)
 
             html += (
                 f"<td class='nombre'>{nombre}</td>"
                 f"<td>{cat}</td>"
                 f"<td>{nip}</td>"
             )
-
 
         for v in fila:
             e = estilo_turno(v)
@@ -468,41 +452,22 @@ with tab_general:
 
         html += "</tr>"
 
-    # ----- FILAS RESUMEN (MISMA TABLA) -----
+    # ---------- FILAS RESUMEN ----------
     def fila_resumen(titulo, datos, color):
         fila = "<tr>"
         if modo_movil:
-            fila += (
-                f"<td style='background:{color};"
-                f"color:#000;font-weight:bold'>"
-                f"{titulo}</td>"
-            )
+            fila += f"<td style='background:{color};color:#000;font-weight:bold'>{titulo}</td>"
         else:
-            fila += (
-                f"<td colspan='3' style='background:{color};"
-                f"color:#000;font-weight:bold'>"
-                f"{titulo}</td>"
-            )
+            fila += f"<td colspan='3' style='background:{color};color:#000;font-weight:bold'>{titulo}</td>"
 
         for v in datos:
-            fila += (
-                f"<td style='background:{color};"
-                f"color:#000;font-weight:bold'>"
-                f"{v}</td>"
-            )
+            fila += f"<td style='background:{color};color:#000;font-weight:bold'>{v}</td>"
+
         return fila + "</tr>"
 
-        for v in datos:
-            fila += (
-                f"<td style='background:{color};"
-                f"color:#000;font-weight:bold'>"
-                f"{v}</td>"
-            )
-        return fila + "</tr>"
-
-    html += fila_resumen("Mañanas", conteo_man, "#BDD7EE")
-    html += fila_resumen("Tardes", conteo_tar, "#FFE699")
-    html += fila_resumen("Noches", conteo_noc, "#F8CBAD")
+    html += fila_resumen("Mañanas", conteo_manana, "#BDD7EE")
+    html += fila_resumen("Tardes", conteo_tarde, "#FFE699")
+    html += fila_resumen("Noches", conteo_noche, "#F8CBAD")
 
     html += """
         </table>
@@ -512,6 +477,7 @@ with tab_general:
 
     st.markdown(html, unsafe_allow_html=True)
 
+ç
 # ==================================================
 # TAB 2 — MIS TURNOS
 # ==================================================
