@@ -440,7 +440,7 @@ with tab_general:
             html += f"<td>{idx}</td>"
         else:
             nombre, cat, nip = idx
-            html += f"<td>{nombre}</td><td>{cat}</td><td>{nip}</td>"
+            html += f"<td class='nombre'>{nombre}</td><td>{cat}</td><td>{nip}</td>"
 
         for v in fila:
             e = estilo_turno(v)
