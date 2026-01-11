@@ -381,13 +381,39 @@ with tab_general:
 
     dias = list(tabla.columns)
 
-    def contar_turnos(regex):
-        return (
-            df_mes[df_mes["turno"].astype(str).str.contains(regex, regex=True)]
-            .groupby("dia")
-            .size()
-            .reindex(dias, fill_value=0)
-        )
+    def contar_turnos(codigo):
+        """
+        Devuelve un set con los turnos que cuenta un código:
+        'M' = Mañana
+        'T' = Tarde
+        'N' = Noche
+        """
+        if pd.isna(codigo):
+            return set()
+
+        c = str(codigo)
+
+        # Turnos que NO cuentan
+        NO_CUENTAN = ["D", "Vac", "BAJA", "perm", "AP", "Ts", "Dc", "Dct", "Dcc", "Dcv"]
+        for x in NO_CUENTAN:
+            if x in c:
+                return set()
+
+        turnos = set()
+
+        # Mañana
+        if "1" in c:
+            turnos.add("M")
+    
+        # Tarde
+        if "2" in c:
+            turnos.add("T")
+
+        # Noche
+        if "3" in c:
+            turnos.add("N")
+
+        return turnos
 
     conteo_man = contar_turnos(r"^1$|1ex")
     conteo_tar = contar_turnos(r"^2$|2ex")
