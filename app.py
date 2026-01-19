@@ -493,12 +493,27 @@ with tab_general:
     def fila_resumen(titulo, datos, color):
         fila = "<tr>"
         if modo_movil:
-            fila += f"<td style='background:{color};font-weight:bold'>{titulo}</td>"
+            fila += (
+                f"<td style='background:{color};"
+                f"font-weight:bold;"
+                f"color:#000;'>"
+                f"{titulo}</td>"
+            )
         else:
-            fila += f"<td colspan='3' style='background:{color};font-weight:bold'>{titulo}</td>"
+            fila += (
+                f"<td colspan='3' style='background:{color};"
+                f"font-weight:bold;"
+                f"color:#000;'>"
+                f"{titulo}</td>"
+            )
 
         for v in datos:
-            fila += f"<td style='background:{color};font-weight:bold'>{v}</td>"
+            fila += (
+                f"<td style='background:{color};"
+                f"font-weight:bold;"
+                f"color:#000;'>"
+                f"{v}</td>"
+            )
 
         return fila + "</tr>"
 
