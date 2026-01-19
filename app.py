@@ -336,6 +336,14 @@ with tab_general:
     # ---------- HTML + CSS ----------
     html = f"""
     <style>
+        /* CONTENEDOR SCROLL */
+        .scroll-container {{
+            overflow: auto;
+            max-height: 80vh;
+            position: relative;
+        }}
+
+        /* ZOOM SOLO AL CONTENIDO */
         .wrapper {{
             transform: scale({zoom});
             transform-origin: top left;
@@ -344,12 +352,7 @@ with tab_general:
 
         table {{
             border-collapse: collapse;
-            font-size: 16px;   /* tamaño general */
-        }}
-
-        td {{
-            font-size: 16px;   /* turnos */
-            font-weight: 600;  /* un poco más legible */
+            font-size: 14px;
         }}
 
         th, td {{
@@ -359,31 +362,38 @@ with tab_general:
             white-space: nowrap;
         }}
 
-        /* CABECERA FIJA */
+        /* CABECERA FIJA (PC + MÓVIL) */
         thead th {{
             position: sticky;
             top: 0;
-            z-index: 5;
             background: #111;
-            color: white;
+            z-index: 10;
         }}
 
-        /* FILA USUARIO */
-        tr.usuario td {{
-            border-top: 3px solid #000 !important;
-            border-bottom: 3px solid #000 !important;
+        /* PRIMERAS COLUMNAS FIJAS (Nombre / Categoría / NIP) */
+        .col-fija {{
+            position: sticky;
+            left: 0;
+            background: #111;
+            z-index: 9;
         }}
 
-        tr.usuario td:first-child {{
-            border-left: 3px solid #000 !important;
+        .col-fija-2 {{
+            position: sticky;
+            left: 120px;
+            background: #111;
+            z-index: 9;
         }}
 
-        tr.usuario td:last-child {{
-            border-right: 3px solid #000 !important;
+        .col-fija-3 {{
+            position: sticky;
+            left: 240px;
+            background: #111;
+            z-index: 9;
         }}
     </style>
 
-    <div style="overflow:auto; max-height:75vh">
+    <div class="scroll-container">
       <div class="wrapper">
         <table>
           <thead>
