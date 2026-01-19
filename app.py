@@ -447,7 +447,7 @@ with tab_general:
 
         return fila + "</tr>"
 
-    html += fila_resumen("Mañanas", conteo_mañana, "#BDD7EE")
+    html += fila_resumen("Mañanas", conteo_manana, "#BDD7EE")
     html += fila_resumen("Tardes", conteo_tarde, "#FFE699")
     html += fila_resumen("Noches", conteo_noche, "#F8CBAD")
 
