@@ -1,4 +1,4 @@
-Año,Mes,Fecha,Día,NIP,Nombre y Apellidos,Categoría,turno,tipo
+Año,Mes,Fecha,Día,NIP,Nombre y Apellidos,Categoría,Turno,Tipo
 2026,2,46054,Domingo,032001,Xosé Henrique Fidalgo García,Inspector,D,Descanso
 2026,2,46055,Lunes,032001,Xosé Henrique Fidalgo García,Inspector,L,Laborable
 2026,2,46056,Martes,032001,Xosé Henrique Fidalgo García,Inspector,L,Laborable
@@ -475,3 +475,4 @@ Año,Mes,Fecha,Día,NIP,Nombre y Apellidos,Categoría,turno,tipo
 2026,2,46079,Jueves,032017,Francisco Fernández Otero,Policía,L,Laborable
 2026,2,46080,Viernes,032017,Francisco Fernández Otero,Policía,L,Laborable
 2026,2,46081,Sábado,032017,Francisco Fernández Otero,Policía,D,Descanso
+
