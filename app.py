@@ -366,7 +366,7 @@ with tab_general:
         html += "<th>Nombre y apellidos</th><th>Categoría</th><th>NIP</th>"
 
     for d in tabla.columns:
-        fecha = date(2026, mes, d)
+        fecha = date(2026, mes_sel, d)
         if es_festivo(fecha) or fecha.weekday() == 6:
             html += f"<th style='background:#92D050;color:#FF0000'>{d}</th>"
         else:
