@@ -101,6 +101,15 @@ def guardar_historial(registro):
     df.to_csv(HISTORIAL_FILE, index=False)
 
 # ==================================================
+# CARGA DE DATOS
+# ==================================================
+df["nip"] = df["nip"].apply(normalizar_nip)
+
+usuarios = pd.read_csv(USERS_FILE)
+usuarios["nip"] = usuarios["nip"].apply(normalizar_nip)
+usuarios["dni"] = usuarios["dni"].astype(str)
+
+# ==================================================
 # SESIÓN
 # ==================================================
 if "nip" not in st.session_state:
