@@ -80,13 +80,15 @@ def cargar_cuadrantes():
         )
 
         df_tmp = df_tmp.rename(columns={
-            "Nombre y Apellidos": "nombre",
-            "Categoría": "categoria",
-            "NIP": "nip",
-            "Fecha": "fecha",
-            "Año": "anio",
-            "Mes": "mes",
-            "Código turno": "turno"
+            "Año": "Año",
+            "Mes": "Mes",
+            "Fecha": "Fecha",
+            "Día": "Día",
+            "NIP": "NIP",
+            "Nombre y Apellidos": "Nombre y Apellidos",
+            "Categoría": "Categoría",
+            "Código turno": "Turno",
+            "Tipo": "Tipo"
         })
 
         df_tmp["nip"] = df_tmp["nip"].apply(normalizar_nip)
