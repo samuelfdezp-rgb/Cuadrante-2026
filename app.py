@@ -109,15 +109,6 @@ if "is_admin" not in st.session_state:
     st.session_state.is_admin = False
 
 # ==================================================
-# CARGA DE DATOS
-# ==================================================
-df["nip"] = df["nip"].apply(normalizar_nip)
-
-usuarios = pd.read_csv(USERS_FILE)
-usuarios["nip"] = usuarios["nip"].apply(normalizar_nip)
-usuarios["dni"] = usuarios["dni"].astype(str)
-
-# ==================================================
 # FUNCIONES AUXILIARES
 # ==================================================
 def guardar_cambio(df, data_file):
