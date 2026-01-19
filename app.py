@@ -111,7 +111,6 @@ if "is_admin" not in st.session_state:
 # ==================================================
 # CARGA DE DATOS
 # ==================================================
-df = cargar_cuadrante_actual()
 df["nip"] = df["nip"].apply(normalizar_nip)
 
 usuarios = pd.read_csv(USERS_FILE)
