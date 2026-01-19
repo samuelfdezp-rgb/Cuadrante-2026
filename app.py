@@ -342,15 +342,15 @@ with tab_general:
             width: fit-content;
         }}
 
-        table {
+        table {{
             border-collapse: collapse;
             font-size: 16px;   /* tamaño general */
-        }
+        }}
 
-        td {
+        td {{
             font-size: 16px;   /* turnos */
             font-weight: 600;  /* un poco más legible */
-        }
+        }}
 
         th, td {{
             border: 1px solid #000;
