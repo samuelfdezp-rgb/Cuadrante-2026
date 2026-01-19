@@ -346,18 +346,7 @@ with tab_general:
             border-collapse: collapse;
             font-size: 14px;
         }}
-        th {{
-            border: 1px solid #000;
-            padding: 0;
-            height: 38px;              /* ajustable */
-            font-weight: bold;
-
-            /* 🔑 CENTRADO REAL */
-            display: flex;
-            align-items: center;       /* vertical */
-            justify-content: center;   /* horizontal */  
-        }},
-        td {{    
+        th, td {{    
             border: 1px solid #000;
             padding: 6px;
             text-align: center;
