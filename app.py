@@ -310,10 +310,7 @@ with tab_general:
 
     zoom = 1.0
     if modo_movil:
-        zoom = st.slider(
-            "🔍 Zoom",
-            0.3, 1.5, 0.5, 0.05
-        )
+        zoom = st.slider("🔍 Zoom", 0.3, 1.5, 0.5, 0.05)
 
     # ---------- CUADRANTE ----------
     if modo_movil:
@@ -334,6 +331,8 @@ with tab_general:
         .reindex(orden)
     )
 
+    nip_usuario = st.session_state.nip
+
     # ---------- HTML + CSS ----------
     html = f"""
     <style>
@@ -342,23 +341,48 @@ with tab_general:
             transform-origin: top left;
             width: fit-content;
         }}
+
         table {{
             border-collapse: collapse;
             font-size: 14px;
         }}
-        th, td {{    
+
+        th, td {{
             border: 1px solid #000;
             padding: 6px;
             text-align: center;
-            justify-content: center;
             white-space: nowrap;
+        }}
+
+        /* CABECERA FIJA */
+        thead th {{
+            position: sticky;
+            top: 0;
+            z-index: 5;
+            background: #111;
+            color: white;
+        }}
+
+        /* FILA USUARIO */
+        tr.usuario td {{
+            border-top: 3px solid #000 !important;
+            border-bottom: 3px solid #000 !important;
+        }}
+
+        tr.usuario td:first-child {{
+            border-left: 3px solid #000 !important;
+        }}
+
+        tr.usuario td:last-child {{
+            border-right: 3px solid #000 !important;
         }}
     </style>
 
-    <div style="overflow:auto">
+    <div style="overflow:auto; max-height:75vh">
       <div class="wrapper">
         <table>
-          <tr>
+          <thead>
+            <tr>
     """
 
     if modo_movil:
@@ -373,66 +397,29 @@ with tab_general:
         else:
             html += f"<th>{d}</th>"
 
-    html += "</tr>"
-
-    # ---------- FUNCIÓN CONTEO ----------
-    def contar_turnos(codigo):
-        if pd.isna(codigo):
-            return set()
-
-        c = str(codigo)
-
-        NO_CUENTAN = ["D", "Vac", "BAJA", "perm", "AP", "Ts", "Dc", "Dct", "Dcc", "Dcv"]
-        for x in NO_CUENTAN:
-            if x in c:
-                return set()
-
-        turnos = set()
-        if "1" in c:
-            turnos.add("M")
-        if "2" in c:
-            turnos.add("T")
-        if "3" in c:
-            turnos.add("N")
-
-        return turnos
-
-    conteo_manana = []
-    conteo_tarde = []
-    conteo_noche = []
-
-    for dia in tabla.columns:
-        m = t = n = 0
-        for _, fila in tabla.iterrows():
-            turnos = contar_turnos(fila[dia])
-            if "M" in turnos:
-                m += 1
-            if "T" in turnos:
-                t += 1
-            if "N" in turnos:
-                n += 1
-
-        conteo_manana.append(m)
-        conteo_tarde.append(t)
-        conteo_noche.append(n)
+    html += """
+            </tr>
+          </thead>
+          <tbody>
+    """
 
     # ---------- FILAS DEL CUADRANTE ----------
     for idx, fila in tabla.iterrows():
-        html += "<tr>"
 
         if modo_movil:
-            html += f"<td>{idx}</td>"
+            nip_fila = str(idx)
         else:
-            if isinstance(idx, tuple) and len(idx) == 3:
-                nombre, cat, nip = idx
-            else:
-                nombre, cat, nip = "", "", str(idx)
+            nip_fila = idx[2] if isinstance(idx, tuple) else str(idx)
 
-            html += (
-                f"<td class='nombre'>{nombre}</td>"
-                f"<td>{cat}</td>"
-                f"<td>{nip}</td>"
-            )
+        clase_usuario = "usuario" if nip_fila == nip_usuario else ""
+
+        html += f"<tr class='{clase_usuario}'>"
+
+        if modo_movil:
+            html += f"<td>{nip_fila}</td>"
+        else:
+            nombre, cat, nip = idx if isinstance(idx, tuple) else ("", "", nip_fila)
+            html += f"<td>{nombre}</td><td>{cat}</td><td>{nip}</td>"
 
         for v in fila:
             e = estilo_turno(v)
@@ -451,12 +438,12 @@ with tab_general:
     def fila_resumen(titulo, datos, color):
         fila = "<tr>"
         if modo_movil:
-            fila += f"<td style='background:{color};color:#000;font-weight:bold'>{titulo}</td>"
+            fila += f"<td style='background:{color};font-weight:bold'>{titulo}</td>"
         else:
-            fila += f"<td colspan='3' style='background:{color};color:#000;font-weight:bold'>{titulo}</td>"
+            fila += f"<td colspan='3' style='background:{color};font-weight:bold'>{titulo}</td>"
 
         for v in datos:
-            fila += f"<td style='background:{color};color:#000;font-weight:bold'>{v}</td>"
+            fila += f"<td style='background:{color};font-weight:bold'>{v}</td>"
 
         return fila + "</tr>"
 
@@ -465,6 +452,7 @@ with tab_general:
     html += fila_resumen("Noches", conteo_noche, "#F8CBAD")
 
     html += """
+          </tbody>
         </table>
       </div>
     </div>
