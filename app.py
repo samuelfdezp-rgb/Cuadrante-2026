@@ -505,7 +505,7 @@ with tab_mis_turnos:
             .tolist()
         )
 
-    for semana in cal.monthdatescalendar(2026, mes):
+    for semana in cal.monthdatescalendar(2026, mes_sel):
         cols = st.columns(7)
         for i, d in enumerate(semana):
             with cols[i]:
