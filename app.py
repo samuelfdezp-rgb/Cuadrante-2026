@@ -350,7 +350,7 @@ with tab_general:
             border: 1px solid #000;
             padding: 6px;
             text-align: center;
-            vertical-align: middle;
+            justify-content: center;
             white-space: nowrap;
         }}
     </style>
