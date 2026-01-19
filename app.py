@@ -434,6 +434,56 @@ with tab_general:
 
         html += "</tr>"
 
+    # ---------- CONTEO TURNOS ----------
+    def contar_123(codigo):
+        """
+        Devuelve un set con {'1','2','3'} según lo que aparezca en el código.
+        """
+        if pd.isna(codigo):
+            return set()
+
+        c = str(codigo)
+
+        # Turnos que NO cuentan nunca
+        NO_CUENTAN = [
+            "D", "Vac", "BAJA", "perm", "AP", "Ts",
+            "Dc", "Dct", "Dcc", "Dcv", "JuB", "JuC", "Curso", "indisp"
+        ]
+        for x in NO_CUENTAN:
+            if x in c:
+                return set()
+
+        encontrados = set()
+        if "1" in c:
+            encontrados.add("1")
+        if "2" in c:
+            encontrados.add("2")
+        if "3" in c:
+            encontrados.add("3")
+
+        return encontrados
+
+    conteo_1 = []
+    conteo_2 = []
+    conteo_3 = []
+
+    for dia in tabla.columns:
+        c1 = c2 = c3 = 0
+
+        for _, fila in tabla.iterrows():
+            turnos = contar_123(fila[dia])
+
+            if "1" in turnos:
+                c1 += 1
+            if "2" in turnos:
+                c2 += 1
+            if "3" in turnos:
+                c3 += 1
+
+        conteo_1.append(c1)
+        conteo_2.append(c2)
+        conteo_3.append(c3)
+
     # ---------- FILAS RESUMEN ----------
     def fila_resumen(titulo, datos, color):
         fila = "<tr>"
@@ -447,9 +497,9 @@ with tab_general:
 
         return fila + "</tr>"
 
-    html += fila_resumen("Mañanas", conteo_manana, "#BDD7EE")
-    html += fila_resumen("Tardes", conteo_tarde, "#FFE699")
-    html += fila_resumen("Noches", conteo_noche, "#F8CBAD")
+    html += fila_resumen("Mañanas", conteo_1, "#BDD7EE")
+    html += fila_resumen("Tardes", conteo_2, "#FFE699")
+    html += fila_resumen("Noches", conteo_3, "#F8CBAD")
 
     html += """
           </tbody>
