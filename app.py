@@ -203,7 +203,7 @@ st.success(f"Mostrando cuadrante de {mes_label}")
 # ==================================================
 # FESTIVOS
 # ==================================================
-festivos = {date(2026, 1, 1), date(2026, 1, 6)}
+festivos = {date(2026, 1, 1), date(2026, 1, 6), date(2026, 2, 17)}
 
 def es_festivo(fecha):
     return fecha in festivos
