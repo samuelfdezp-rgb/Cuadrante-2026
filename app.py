@@ -47,46 +47,83 @@ def listar_cuadrantes():
 
     return resultado
 
-def cargar_cuadrante_actual(base_file):
-    df = pd.read_csv(base_file, parse_dates=["fecha"])
-    df["nip"] = df["nip"].apply(normalizar_nip)
-    df["dia"] = df["fecha"].dt.day
+def cargar_cuadrantes():
+    """
+    Carga TODOS los CSV de la carpeta /cuadrantes
+    y devuelve un DataFrame unificado.
+    """
+    carpeta = "cuadrantes"
 
+    if not os.path.exists(carpeta):
+        st.error("No existe la carpeta /cuadrantes")
+        st.stop()
+
+    archivos = [
+        f for f in os.listdir(carpeta)
+        if f.endswith(".csv")
+    ]
+
+    if not archivos:
+        st.error("No hay cuadrantes disponibles")
+        st.stop()
+
+    dfs = []
+
+    for archivo in archivos:
+        ruta = os.path.join(carpeta, archivo)
+
+        df_tmp = pd.read_csv(
+            ruta,
+            sep=";",
+            parse_dates=["Fecha"],
+            dayfirst=True
+        )
+
+        df_tmp = df_tmp.rename(columns={
+            "Nombre y Apellidos": "nombre",
+            "Categoría": "categoria",
+            "NIP": "nip",
+            "Fecha": "fecha",
+            "Año": "anio",
+            "Mes": "mes",
+            "Código turno": "turno"
+        })
+
+        df_tmp["nip"] = df_tmp["nip"].apply(normalizar_nip)
+        df_tmp["dia"] = df_tmp["fecha"].dt.day
+
+        dfs.append(df_tmp)
+
+    df = pd.concat(dfs, ignore_index=True)
+    return df
+
+def aplicar_historial(df):
     if not os.path.exists(HISTORIAL_FILE):
         return df
 
     hist = pd.read_csv(
         HISTORIAL_FILE,
         parse_dates=["fecha_turno", "fecha_hora"]
-    )
-
-    hist = hist[hist["cuadrante"] == base_file]
-    hist = hist.sort_values("fecha_hora")
+    ).sort_values("fecha_hora")
 
     for _, r in hist.iterrows():
         nip = normalizar_nip(r["nip_afectado"])
-        fecha_turno = pd.Timestamp(r["fecha_turno"])
+        fecha = pd.Timestamp(r["fecha_turno"])
 
-        mask = (df["nip"] == nip) & (df["fecha"] == fecha_turno)
+        mask = (df["nip"] == nip) & (df["fecha"] == fecha)
 
         if mask.any():
             df.loc[mask, "turno"] = r["turno_nuevo"]
         else:
-            filas = df[df["nip"] == nip]
-            if filas.empty:
-                continue
-
-            base = filas.iloc[0]
             df.loc[len(df)] = {
-                "anio": base["anio"],
-                "mes": fecha_turno.month,
-                "fecha": fecha_turno,
-                "dia": fecha_turno.day,
+                "anio": fecha.year,
+                "mes": fecha.month,
+                "fecha": fecha,
+                "dia": fecha.day,
                 "nip": nip,
-                "nombre": base["nombre"],
-                "categoria": base["categoria"],
+                "nombre": r.get("nombre_afectado", ""),
+                "categoria": "",
                 "turno": r["turno_nuevo"],
-                "tipo": ""
             }
 
     return df
