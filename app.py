@@ -21,16 +21,17 @@ CUADRANTES_DIR = "cuadrantes"
 ESCUDO_FILE = "Placa.png"
 CABECERA_FILE = "cabecera.png"
 
+MESES = {
+    1: "Enero", 2: "Febrero", 3: "Marzo", 4: "Abril",
+    5: "Mayo", 6: "Junio", 7: "Julio", 8: "Agosto",
+    9: "Septiembre", 10: "Octubre", 11: "Noviembre", 12: "Diciembre"
+}
+
 # ==================================================
 # FUNCIONES BASE
 # ==================================================
 def normalizar_nip(nip):
     return str(nip).strip().zfill(6)
-
-MESES = {
-    1:"Enero",2:"Febrero",3:"Marzo",4:"Abril",5:"Mayo",6:"Junio",
-    7:"Julio",8:"Agosto",9:"Septiembre",10:"Octubre",11:"Noviembre",12:"Diciembre"
-}
 
 def listar_cuadrantes():
     archivos = sorted(glob.glob(f"{CUADRANTES_DIR}/*.csv"))
@@ -39,7 +40,7 @@ def listar_cuadrantes():
     for f in archivos:
         nombre = os.path.basename(f).replace(".csv", "")
         try:
-            anio, mes = nombre.split("-")
+            anio, mes = nombre.split("_")
             mes = int(mes)
             resultado[f"{MESES[mes]} {anio}"] = f
         except:
@@ -48,56 +49,34 @@ def listar_cuadrantes():
     return resultado
 
 def cargar_cuadrantes():
-    """
-    Carga TODOS los CSV de la carpeta /cuadrantes
-    y devuelve un DataFrame unificado.
-    """
-    carpeta = "cuadrantes"
-
-    if not os.path.exists(carpeta):
-        st.error("No existe la carpeta /cuadrantes")
-        st.stop()
-
-    archivos = [
-        f for f in os.listdir(carpeta)
-        if f.endswith(".csv")
-    ]
-
+    archivos = glob.glob(f"{CUADRANTES_DIR}/*.csv")
     if not archivos:
         st.error("No hay cuadrantes disponibles")
         st.stop()
 
     dfs = []
 
-    for archivo in archivos:
-        ruta = os.path.join(carpeta, archivo)
-
+    for ruta in archivos:
         df_tmp = pd.read_csv(
             ruta,
-            sep=";",
-            parse_dates=["Fecha"],
-            dayfirst=True
+            parse_dates=["Fecha"]
         )
 
-        df_tmp = df_tmp.rename(columns={
-            "Año": "Año",
-            "Mes": "Mes",
-            "Fecha": "Fecha",
-            "Día": "Día",
-            "NIP": "NIP",
-            "Nombre y Apellidos": "Nombre y Apellidos",
-            "Categoría": "Categoría",
-            "Código turno": "Turno",
-            "Tipo": "Tipo"
-        })
-
-        df_tmp["nip"] = df_tmp["nip"].apply(normalizar_nip)
+        df_tmp["nip"] = df_tmp["NIP"].apply(normalizar_nip)
+        df_tmp["fecha"] = df_tmp["Fecha"]
         df_tmp["dia"] = df_tmp["fecha"].dt.day
+        df_tmp["mes"] = df_tmp["Mes"]
+        df_tmp["anio"] = df_tmp["Año"]
+
+        df_tmp = df_tmp.rename(columns={
+            "Nombre y Apellidos": "nombre",
+            "Categoría": "categoria",
+            "Turno": "turno"
+        })
 
         dfs.append(df_tmp)
 
-    df = pd.concat(dfs, ignore_index=True)
-    return df
+    return pd.concat(dfs, ignore_index=True)
 
 def aplicar_historial(df):
     if not os.path.exists(HISTORIAL_FILE):
@@ -148,32 +127,9 @@ if "is_admin" not in st.session_state:
     st.session_state.is_admin = False
 
 # ==================================================
-# FUNCIONES AUXILIARES
-# ==================================================
-def guardar_cambio(df, data_file):
-    df.to_csv(data_file, index=False)
-
-# ==================================================
 # LOGIN
 # ==================================================
 if st.session_state.nip is None:
-    st.markdown(
-        """
-        <style>
-        body, .stApp { background-color: white; }
-        label { color: black !important; font-weight: 600; }
-        .login-title {
-            color: black;
-            font-size: 32px;
-            font-weight: 700;
-            margin: 20px 0 30px 0;
-            text-align: center;
-        }
-        </style>
-        """,
-        unsafe_allow_html=True
-    )
-
     with open(ESCUDO_FILE, "rb") as f:
         escudo = base64.b64encode(f.read()).decode()
 
@@ -182,14 +138,13 @@ if st.session_state.nip is None:
         unsafe_allow_html=True
     )
 
-    st.markdown("<div class='login-title'>🔐 Acceso al cuadrante</div>", unsafe_allow_html=True)
+    st.markdown("<h2 style='text-align:center'>🔐 Acceso al cuadrante</h2>", unsafe_allow_html=True)
 
     usuario = st.text_input("Usuario (NIP)")
     password = st.text_input("Contraseña (DNI)", type="password")
 
     usuarios = pd.read_csv(USERS_FILE)
     usuarios["nip"] = usuarios["nip"].apply(normalizar_nip)
-    usuarios["dni"] = usuarios["dni"].astype(str)
 
     if st.button("Entrar"):
         if usuario == ADMIN_USER and password == ADMIN_PASS:
@@ -228,36 +183,22 @@ if st.button("🚪 Cerrar sesión"):
     st.rerun()
 
 # ==================================================
-# SELECCIÓN DE MES
+# CARGA DE CUADRANTES
 # ==================================================
 cuadrantes = listar_cuadrantes()
-
 if not cuadrantes:
     st.error("No hay cuadrantes disponibles")
     st.stop()
 
 mes_label = st.selectbox("📅 Selecciona mes", list(cuadrantes.keys()))
-BASE_FILE = cuadrantes[mes_label]
+df = cargar_cuadrantes()
+df = aplicar_historial(df)
 
-df = cargar_cuadrante_actual(BASE_FILE)
-df_mes = df.copy()
+anio_sel, mes_sel = mes_label.split()
+mes_sel = list(MESES.keys())[list(MESES.values()).index(anio_sel)]
+df_mes = df[df["mes"] == mes_sel]
 
-# ==================================================
-# MESES EN CASTELLANO
-# ==================================================
-MESES = {
-    1:"Enero",2:"Febrero",3:"Marzo",4:"Abril",5:"Mayo",6:"Junio",
-    7:"Julio",8:"Agosto",9:"Septiembre",10:"Octubre",11:"Noviembre",12:"Diciembre"
-}
-
-mes = st.selectbox(
-    "Selecciona mes",
-    sorted(df["mes"].unique()),
-    format_func=lambda m: f"{MESES[m]} 2026"
-)
-
-df_mes = df[df["mes"] == mes].copy()
-df_mes["dia"] = df_mes["fecha"].dt.day
+st.success(f"Mostrando cuadrante de {mes_label}")
 
 # ==================================================
 # FESTIVOS
