@@ -342,10 +342,15 @@ with tab_general:
             width: fit-content;
         }}
 
-        table {{
+        table {
             border-collapse: collapse;
-            font-size: 14px;
-        }}
+            font-size: 16px;   /* tamaño general */
+        }
+
+        td {
+            font-size: 16px;   /* turnos */
+            font-weight: 600;  /* un poco más legible */
+        }
 
         th, td {{
             border: 1px solid #000;
@@ -488,12 +493,29 @@ with tab_general:
     def fila_resumen(titulo, datos, color):
         fila = "<tr>"
         if modo_movil:
-            fila += f"<td style='background:{color};font-weight:bold'>{titulo}</td>"
+             fila += (
+                f"<td style='background:{color};"
+                f"color:#000;"
+                f"font-weight:bold;"
+                f"font-size:14px;'>"
+                f"{titulo}</td>"
+             )
         else:
-            fila += f"<td colspan='3' style='background:{color};font-weight:bold'>{titulo}</td>"
-
+            fila += (
+                f"<td colspan='3' style='background:{color};"
+                f"color:#000;"
+                f"font-weight:bold;"
+                f"font-size:14px;'>"
+                f"{titulo}</td>"
+            )
         for v in datos:
-            fila += f"<td style='background:{color};font-weight:bold'>{v}</td>"
+            fila += (
+                f"<td colspan='3' style='background:{color};"
+                f"color:#000;"
+                f"font-weight:bold;"
+                f"font-size:14px;'>"
+                f"{titulo}</td>"
+            )
 
         return fila + "</tr>"
 
