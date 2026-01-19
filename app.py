@@ -509,7 +509,7 @@ with tab_mis_turnos:
         cols = st.columns(7)
         for i, d in enumerate(semana):
             with cols[i]:
-                if d.month != mes:
+                if d.month != mes_sel:
                     st.write("")
                     continue
 
