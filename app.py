@@ -346,16 +346,7 @@ with tab_general:
             border-collapse: collapse;
             font-size: 14px;
         }}
-        th {{
-            border: 1px solid #000;
-            padding: 0;
-            text-align: center;
-            vertical-align: middle;
-            height: 38px;        /* ← ajusta si quieres */
-            line-height: 38px;  /* ← CLAVE: centra el número */
-            font-weight: bold;
-        }}
-        td {{
+        th, td {{
             border: 1px solid #000;
             padding: 6px;
             text-align: center;
