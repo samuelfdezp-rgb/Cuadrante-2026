@@ -4,6 +4,7 @@ import calendar
 from datetime import datetime, date
 import base64
 import os
+import glob
 
 # ==================================================
 # CONFIGURACIÓN GENERAL
@@ -13,9 +14,9 @@ st.set_page_config(page_title="Cuadrante 2026", layout="wide")
 ADMIN_USER = "ADMIN"
 ADMIN_PASS = "PoliciaLocal2021!"
 
-BASE_FILE = "cuadrante_base.csv"          # CSV base (no se modifica)
-HISTORIAL_FILE = "historial_cambios.csv"  # Cambios ADMIN persistentes
 USERS_FILE = "usuarios.csv"
+HISTORIAL_FILE = "historial_cambios.csv"
+CUADRANTES_DIR = "cuadrantes"
 
 ESCUDO_FILE = "Placa.png"
 CABECERA_FILE = "cabecera.png"
@@ -26,21 +27,31 @@ CABECERA_FILE = "cabecera.png"
 def normalizar_nip(nip):
     return str(nip).strip().zfill(6)
 
-def cargar_cuadrante_actual():
-    """
-    Carga el cuadrante base y aplica encima
-    todos los cambios del historial.
-    """
-    # ---- 1. Cargar cuadrante base ----
-    if not os.path.exists(BASE_FILE):
-        st.error("No existe el archivo base del cuadrante")
-        st.stop()
+MESES = {
+    1:"Enero",2:"Febrero",3:"Marzo",4:"Abril",5:"Mayo",6:"Junio",
+    7:"Julio",8:"Agosto",9:"Septiembre",10:"Octubre",11:"Noviembre",12:"Diciembre"
+}
 
-    df = pd.read_csv(BASE_FILE, parse_dates=["fecha"])
+def listar_cuadrantes():
+    archivos = sorted(glob.glob(f"{CUADRANTES_DIR}/*.csv"))
+    resultado = {}
+
+    for f in archivos:
+        nombre = os.path.basename(f).replace(".csv", "")
+        try:
+            anio, mes = nombre.split("-")
+            mes = int(mes)
+            resultado[f"{MESES[mes]} {anio}"] = f
+        except:
+            continue
+
+    return resultado
+
+def cargar_cuadrante_actual(base_file):
+    df = pd.read_csv(base_file, parse_dates=["fecha"])
     df["nip"] = df["nip"].apply(normalizar_nip)
     df["dia"] = df["fecha"].dt.day
 
-    # ---- 2. Cargar historial ----
     if not os.path.exists(HISTORIAL_FILE):
         return df
 
@@ -49,9 +60,9 @@ def cargar_cuadrante_actual():
         parse_dates=["fecha_turno", "fecha_hora"]
     )
 
+    hist = hist[hist["cuadrante"] == base_file]
     hist = hist.sort_values("fecha_hora")
 
-    # ---- 3. Aplicar cambios ----
     for _, r in hist.iterrows():
         nip = normalizar_nip(r["nip_afectado"])
         fecha_turno = pd.Timestamp(r["fecha_turno"])
@@ -61,57 +72,33 @@ def cargar_cuadrante_actual():
         if mask.any():
             df.loc[mask, "turno"] = r["turno_nuevo"]
         else:
-            filas_nip = df[df["nip"] == nip]
+            filas = df[df["nip"] == nip]
+            if filas.empty:
+                continue
 
-            if not filas_nip.empty:
-                base = filas_nip.iloc[0]
-                nombre = base["nombre"]
-                categoria = base["categoria"]
-                anio = base["anio"]
-            else:
-                nombre = r.get("nombre_afectado", "")
-                categoria = ""
-                anio = fecha_turno.year
-
+            base = filas.iloc[0]
             df.loc[len(df)] = {
-                "anio": anio,
+                "anio": base["anio"],
                 "mes": fecha_turno.month,
                 "fecha": fecha_turno,
                 "dia": fecha_turno.day,
                 "nip": nip,
-                "nombre": nombre,
-                "categoria": categoria,
+                "nombre": base["nombre"],
+                "categoria": base["categoria"],
                 "turno": r["turno_nuevo"],
                 "tipo": ""
             }
 
     return df
 
-def guardar_cambio_historial(
-    nip_afectado,
-    fecha_turno,
-    turno_anterior,
-    turno_nuevo,
-    observaciones,
-    admin_user
-):
-    nuevo = {
-        "fecha_hora": datetime.now(),
-        "fecha_turno": fecha_turno,
-        "nip_afectado": normalizar_nip(nip_afectado),
-        "turno_anterior": turno_anterior,
-        "turno_nuevo": turno_nuevo,
-        "observaciones": observaciones,
-        "admin": admin_user
-    }
-
+def guardar_historial(registro):
     if os.path.exists(HISTORIAL_FILE):
-        hist = pd.read_csv(HISTORIAL_FILE, parse_dates=["fecha_turno", "fecha_hora"])
-        hist = pd.concat([hist, pd.DataFrame([nuevo])], ignore_index=True)
+        df = pd.read_csv(HISTORIAL_FILE)
+        df = pd.concat([df, pd.DataFrame([registro])], ignore_index=True)
     else:
-        hist = pd.DataFrame([nuevo])
+        df = pd.DataFrame([registro])
 
-    hist.to_csv(HISTORIAL_FILE, index=False)
+    df.to_csv(HISTORIAL_FILE, index=False)
 
 # ==================================================
 # SESIÓN
@@ -145,12 +132,7 @@ if st.session_state.nip is None:
         """
         <style>
         body, .stApp { background-color: white; }
-
-        label {
-            color: black !important;
-            font-weight: 600;
-        }
-
+        label { color: black !important; font-weight: 600; }
         .login-title {
             color: black;
             font-size: 32px;
@@ -163,16 +145,11 @@ if st.session_state.nip is None:
         unsafe_allow_html=True
     )
 
-    # Escudo perfectamente centrado (FORMA CORRECTA)
     with open(ESCUDO_FILE, "rb") as f:
-        escudo_base64 = base64.b64encode(f.read()).decode()
+        escudo = base64.b64encode(f.read()).decode()
 
     st.markdown(
-        f"""
-        <div style="display:flex; justify-content:center; margin-top:20px;">
-            <img src="data:image/png;base64,{escudo_base64}" width="220">
-        </div>
-        """,
+        f"<div style='display:flex;justify-content:center'><img src='data:image/png;base64,{escudo}' width='220'></div>",
         unsafe_allow_html=True
     )
 
@@ -181,23 +158,25 @@ if st.session_state.nip is None:
     usuario = st.text_input("Usuario (NIP)")
     password = st.text_input("Contraseña (DNI)", type="password")
 
+    usuarios = pd.read_csv(USERS_FILE)
+    usuarios["nip"] = usuarios["nip"].apply(normalizar_nip)
+    usuarios["dni"] = usuarios["dni"].astype(str)
+
     if st.button("Entrar"):
-        # ADMIN
         if usuario == ADMIN_USER and password == ADMIN_PASS:
             st.session_state.nip = ADMIN_USER
             st.session_state.is_admin = True
             st.rerun()
 
-        # USUARIOS NORMALES
-        usuario_fmt = usuario.strip().zfill(6)
-        fila = usuarios[usuarios["nip"] == usuario_fmt]
+        nip = normalizar_nip(usuario)
+        fila = usuarios[usuarios["nip"] == nip]
 
-        if not fila.empty and fila.iloc[0]["dni"] == password.strip():
-            st.session_state.nip = usuario_fmt
+        if not fila.empty and fila.iloc[0]["dni"] == password:
+            st.session_state.nip = nip
             st.session_state.is_admin = False
             st.rerun()
-        else:
-            st.error("Usuario o contraseña incorrectos")
+
+        st.error("Usuario o contraseña incorrectos")
 
     st.stop()
 
@@ -208,19 +187,31 @@ with open(CABECERA_FILE, "rb") as f:
     cabecera = base64.b64encode(f.read()).decode()
 
 st.markdown(
-    f"""
-    <div style="width:100%;margin-bottom:10px">
-        <img src="data:image/png;base64,{cabecera}" style="width:100%">
-    </div>
-    """,
+    f"<img src='data:image/png;base64,{cabecera}' style='width:100%;margin-bottom:10px'>",
     unsafe_allow_html=True
 )
 
 st.title("📅 Cuadrante 2026")
 
 if st.button("🚪 Cerrar sesión"):
-    st.session_state.usuario = None
+    st.session_state.nip = None
+    st.session_state.is_admin = False
     st.rerun()
+
+# ==================================================
+# SELECCIÓN DE MES
+# ==================================================
+cuadrantes = listar_cuadrantes()
+
+if not cuadrantes:
+    st.error("No hay cuadrantes disponibles")
+    st.stop()
+
+mes_label = st.selectbox("📅 Selecciona mes", list(cuadrantes.keys()))
+BASE_FILE = cuadrantes[mes_label]
+
+df = cargar_cuadrante_actual(BASE_FILE)
+df_mes = df.copy()
 
 # ==================================================
 # MESES EN CASTELLANO
