@@ -356,7 +356,7 @@ with tab_general:
             display: flex;
             align-items: center;       /* vertical */
             justify-content: center;   /* horizontal */  
-        }}
+        }},
         td {{    
             border: 1px solid #000;
             padding: 6px;
