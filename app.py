@@ -355,7 +355,7 @@ with tab_general:
             /* 🔑 CENTRADO REAL */
             display: flex;
             align-items: center;       /* vertical */
-            justify-content: center;   /* horizontal */, td {{
+            justify-content: center;   /* horizontal */  
         }}
         td {{    
             border: 1px solid #000;
