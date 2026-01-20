@@ -652,7 +652,7 @@ if st.session_state.is_admin:
 
     # ---- Botón guardar
     if st.button("💾 Guardar cambio"):
-        fecha_sel = date(2026, mes, dia_sel)
+        fecha_sel = date(2026, mes_sel, dia_sel)
     
         mask = (
             (df["nip"] == nip_sel) &
@@ -674,7 +674,7 @@ if st.session_state.is_admin:
     
             nueva = {
                 "anio": 2026,
-                "mes": mes,
+                "mes": mes_sel,
                 "fecha": fecha_sel,
                 "dia": dia_sel,
                 "nip": nip_sel,
