@@ -600,14 +600,12 @@ if st.session_state.is_admin:
         )
         nip_sel = opciones_trab[trabajador_sel]
 
-    # ---- Selección de día
     with col2:
         dia_sel = st.selectbox(
             "📅 Día del mes",
             sorted(df_mes["dia"].unique())
         )
 
-    # ---- Selección de turno
     TURNOS_EDITABLES = [
         "1", "2", "3", "L",
         "1ex", "2ex", "3ex",
@@ -624,51 +622,30 @@ if st.session_state.is_admin:
             "🔁 Nuevo turno",
             TURNOS_EDITABLES
         )
-        
+
         observaciones = st.text_input(
-        "📝 Observaciones (opcional)",
-        placeholder="Ej.: Cambio por enfermedad, ajuste de servicio…"
+            "📝 Observaciones (opcional)",
+            placeholder="Ej.: Cambio por enfermedad, ajuste de servicio…"
         )
 
-    # ---- Botón guardar
+    # ---- Guardar cambio (SOLO HISTORIAL)
     if st.button("💾 Guardar cambio"):
+
         fecha_sel = date(2026, mes_sel, dia_sel)
-    
-        mask = (
-            (df["nip"] == nip_sel) &
-            (df["fecha"] == pd.Timestamp(fecha_sel))
-        )
 
-        if mask.any():
-            turno_anterior = df.loc[mask, "turno"].iloc[0]
-            nombre_afectado = df.loc[mask, "nombre"].iloc[0]
-            categoria_afectado = df.loc[mask, "categoria"].iloc[0]
+        # Buscar turno anterior SOLO para el registro
+        fila_existente = df_mes[
+            (df_mes["nip"] == nip_sel) &
+            (df_mes["fecha"] == pd.Timestamp(fecha_sel))
+        ]
 
-            df.loc[mask, "turno"] = turno_sel
+        if not fila_existente.empty:
+            turno_anterior = fila_existente.iloc[0]["turno"]
+            nombre_afectado = fila_existente.iloc[0]["nombre"]
         else:
             turno_anterior = ""
-            fila_base = df_mes[df_mes["nip"] == nip_sel].iloc[0]
+            nombre_afectado = df_trab[df_trab["nip"] == nip_sel].iloc[0]["nombre"]
 
-            nombre_afectado = fila_base["nombre"]
-            categoria_afectado = fila_base["categoria"]
-    
-            nueva = {
-                "anio": 2026,
-                "mes": mes_sel,
-                "fecha": fecha_sel,
-                "dia": dia_sel,
-                "nip": nip_sel,
-                "nombre": nombre_afectado,
-                "categoria": categoria_afectado,
-                "turno": turno_sel,
-                "tipo": ""
-            }
-            df.loc[len(df)] = nueva
-
-        # Guardar cuadrante
-        guardar_cambio(df, BASE_FILE)
-
-        # Registrar historial
         registro = {
             "fecha_hora": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
             "usuario_admin": st.session_state.nip,
@@ -682,16 +659,13 @@ if st.session_state.is_admin:
 
         try:
             df_hist = pd.read_csv(HISTORIAL_FILE)
-            df_hist = pd.concat(
-                [df_hist, pd.DataFrame([registro])],
-                ignore_index=True
-            )
+            df_hist = pd.concat([df_hist, pd.DataFrame([registro])], ignore_index=True)
         except FileNotFoundError:
             df_hist = pd.DataFrame([registro])
 
         df_hist.to_csv(HISTORIAL_FILE, index=False)
 
-        st.success("✅ Turno actualizado y registrado en el historial")
+        st.success("✅ Cambio guardado correctamente")
         st.rerun()
 
 # ==================================================
