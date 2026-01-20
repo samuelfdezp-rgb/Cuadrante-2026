@@ -509,8 +509,10 @@ with tab_mis_turnos:
     TURNOS_TRABAJO = {"1", "2", "3", "1ex", "2ex", "3ex", "L"}
 
     def separar(turno):
-        if "y" in turno: return turno.split("y")
-        if "|" in turno: return turno.split("|")
+        if "y" in turno:
+            return turno.split("y")
+        if "|" in turno:
+            return turno.split("|")
         return [turno]
 
     def formatear_nombre(nombre):
@@ -534,6 +536,7 @@ with tab_mis_turnos:
 
     for semana in cal.monthdatescalendar(2026, mes_sel):
         cols = st.columns(7)
+
         for i, d in enumerate(semana):
             with cols[i]:
                 if d.month != mes_sel:
@@ -541,13 +544,22 @@ with tab_mis_turnos:
                     continue
 
                 fila = df_user[df_user["fecha"] == pd.Timestamp(d)]
-                html = f"<div style='border:1px solid #999'><b>{d.day}</b><br>"
+
+                # 🔹 CONTENEDOR CENTRADO
+                html = (
+                    "<div style='border:1px solid #999;"
+                    "text-align:center;"
+                    "padding:4px'>"
+                    f"<b>{d.day}</b><br>"
+                )
 
                 if not fila.empty:
                     for p in separar(str(fila.iloc[0]["turno"])):
                         e = estilo_turno(p)
                         html += (
-                            f"<div style='background:{e['bg']};color:{e['fg']};text-align:center'>"
+                            f"<div style='background:{e['bg']};"
+                            f"color:{e['fg']};"
+                            f"text-align:center'>"
                             f"<b>{nombre_turno(p)}</b><br>"
                         )
                         for c in compañeros(pd.Timestamp(d), p):
