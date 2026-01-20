@@ -666,7 +666,7 @@ if st.session_state.is_admin:
         df_hist.to_csv(HISTORIAL_FILE, index=False)
 
         st.success("✅ Cambio guardado correctamente")
-        st.rerun()
+        st.experimental_rerun()
 
 # ==================================================
 # TAB HISTORIAL — SOLO ADMIN
