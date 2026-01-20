@@ -334,14 +334,10 @@ with tab_general:
     nip_usuario = st.session_state.nip
 
     hoy = date.today()
-
-    es_hoy_mes = (
-        hoy.year == 2026 and
-        hoy.month == mes_sel
-    )
+    es_hoy_mes = (hoy.year == 2026 and hoy.month == mes_sel)
     dia_hoy = hoy.day if es_hoy_mes else None
 
-     # ---------- HTML + CSS ----------
+    # ---------- HTML + CSS ----------
     html = f"""
     <style>
         .wrapper {{
@@ -352,12 +348,7 @@ with tab_general:
 
         table {{
             border-collapse: collapse;
-            font-size: 16px;   /* tamaño general */
-        }}
-
-        td {{
-            font-size: 16px;   /* turnos */
-            font-weight: 600;  /* un poco más legible */
+            font-size: 16px;
         }}
 
         th, td {{
@@ -367,25 +358,24 @@ with tab_general:
             white-space: nowrap;
         }}
 
+        td {{
+            font-weight: 600;
+        }}
+
         /* CABECERA FIJA */
         thead th {{
             position: sticky;
             top: 0;
-            z-index: 5;
+            z-index: 10;
             background: #111;
             color: white;
         }}
 
-        /* DÍA ACTUAL */
+        /* SOLO CELDA DEL DÍA ACTUAL */
         .th-hoy {{
             background: #00B0F0 !important;
             color: #000 !important;
             font-weight: bold;
-        }}
-        
-        .td-hoy {{
-            background: #00B0F0 !important;
-            color: #000 !important;
         }}
 
         /* FILA USUARIO */
@@ -417,7 +407,6 @@ with tab_general:
 
     for d in tabla.columns:
         fecha = date(2026, mes_sel, d)
-
         clase_hoy = "th-hoy" if dia_hoy == d else ""
 
         if es_festivo(fecha) or fecha.weekday() == 6:
@@ -434,11 +423,7 @@ with tab_general:
     # ---------- FILAS DEL CUADRANTE ----------
     for idx, fila in tabla.iterrows():
 
-        if modo_movil:
-            nip_fila = str(idx)
-        else:
-            nip_fila = idx[2] if isinstance(idx, tuple) else str(idx)
-
+        nip_fila = str(idx) if modo_movil else idx[2]
         clase_usuario = "usuario" if nip_fila == nip_usuario else ""
 
         html += f"<tr class='{clase_usuario}'>"
@@ -446,18 +431,15 @@ with tab_general:
         if modo_movil:
             html += f"<td>{nip_fila}</td>"
         else:
-            nombre, cat, nip = idx if isinstance(idx, tuple) else ("", "", nip_fila)
+            nombre, cat, nip = idx
             html += f"<td>{nombre}</td><td>{cat}</td><td>{nip}</td>"
 
-        for d, v in zip(tabla.columns, fila):
+        for v in fila:
             e = estilo_turno(v)
             txt = "" if pd.isna(v) else v
 
-            clase_hoy = "td-hoy" if dia_hoy == d else ""
-
             html += (
-                f"<td class='{clase_hoy}' "
-                f"style='background:{e['bg']};"
+                f"<td style='background:{e['bg']};"
                 f"color:{e['fg']};"
                 f"font-weight:{'bold' if e.get('bold') else 'normal'};"
                 f"font-style:{'italic' if e.get('italic') else 'normal'}'>"
@@ -466,82 +448,41 @@ with tab_general:
 
         html += "</tr>"
 
-    # ---------- CONTEO TURNOS ----------
+    # ---------- CONTEO 1 / 2 / 3 ----------
     def contar_123(codigo):
-        """
-        Devuelve un set con {'1','2','3'} según lo que aparezca en el código.
-        """
         if pd.isna(codigo):
             return set()
 
         c = str(codigo)
+        NO_CUENTAN = ["D","Vac","BAJA","perm","AP","Ts","Dc","Dct","Dcc","Dcv","JuB","JuC","Curso","indisp"]
+        if any(x in c for x in NO_CUENTAN):
+            return set()
 
-        # Turnos que NO cuentan nunca
-        NO_CUENTAN = [
-            "D", "Vac", "BAJA", "perm", "AP", "Ts",
-            "Dc", "Dct", "Dcc", "Dcv", "JuB", "JuC", "Curso", "indisp"
-        ]
-        for x in NO_CUENTAN:
-            if x in c:
-                return set()
+        res = set()
+        if "1" in c: res.add("1")
+        if "2" in c: res.add("2")
+        if "3" in c: res.add("3")
+        return res
 
-        encontrados = set()
-        if "1" in c:
-            encontrados.add("1")
-        if "2" in c:
-            encontrados.add("2")
-        if "3" in c:
-            encontrados.add("3")
-
-        return encontrados
-
-    conteo_1 = []
-    conteo_2 = []
-    conteo_3 = []
+    conteo_1, conteo_2, conteo_3 = [], [], []
 
     for dia in tabla.columns:
         c1 = c2 = c3 = 0
-
         for _, fila in tabla.iterrows():
-            turnos = contar_123(fila[dia])
-
-            if "1" in turnos:
-                c1 += 1
-            if "2" in turnos:
-                c2 += 1
-            if "3" in turnos:
-                c3 += 1
+            t = contar_123(fila[dia])
+            c1 += "1" in t
+            c2 += "2" in t
+            c3 += "3" in t
 
         conteo_1.append(c1)
         conteo_2.append(c2)
         conteo_3.append(c3)
 
-    # ---------- FILAS RESUMEN ----------
     def fila_resumen(titulo, datos, color):
         fila = "<tr>"
-        if modo_movil:
-            fila += (
-                f"<td style='background:{color};"
-                f"font-weight:bold;"
-                f"color:#000;'>"
-                f"{titulo}</td>"
-            )
-        else:
-            fila += (
-                f"<td colspan='3' style='background:{color};"
-                f"font-weight:bold;"
-                f"color:#000;'>"
-                f"{titulo}</td>"
-            )
-
+        fila += f"<td colspan='{'1' if modo_movil else '3'}' style='background:{color};color:#000;font-weight:bold'>{titulo}</td>"
         for v in datos:
-            fila += (
-                f"<td style='background:{color};"
-                f"font-weight:bold;"
-                f"color:#000;'>"
-                f"{v}</td>"
-            )
-
+            fila += f"<td style='background:{color};color:#000;font-weight:bold'>{v}</td>"
         return fila + "</tr>"
 
     html += fila_resumen("Mañanas", conteo_1, "#BDD7EE")
