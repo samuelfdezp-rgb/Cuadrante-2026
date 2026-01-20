@@ -333,6 +333,14 @@ with tab_general:
 
     nip_usuario = st.session_state.nip
 
+    hoy = date.today()
+
+    es_hoy_mes = (
+        hoy.year == 2026 and
+        hoy.month == mes_sel
+    )
+    dia_hoy = hoy.day if es_hoy_mes else None
+
      # ---------- HTML + CSS ----------
     html = f"""
     <style>
@@ -368,6 +376,18 @@ with tab_general:
             color: white;
         }}
 
+        /* DÍA ACTUAL */
+        .th-hoy {{
+            background: #00B0F0 !important;
+            color: #000 !important;
+            font-weight: bold;
+        }}
+        
+        .td-hoy {{
+            background: #00B0F0 !important;
+            color: #000 !important;
+        }}
+
         /* FILA USUARIO */
         tr.usuario td {{
             border-top: 3px solid #000 !important;
@@ -397,10 +417,13 @@ with tab_general:
 
     for d in tabla.columns:
         fecha = date(2026, mes_sel, d)
+
+        clase_hoy = "th-hoy" if dia_hoy == d else ""
+
         if es_festivo(fecha) or fecha.weekday() == 6:
-            html += f"<th style='background:#92D050;color:#FF0000'>{d}</th>"
+            html += f"<th class='{clase_hoy}' style='background:#92D050;color:#FF0000'>{d}</th>"
         else:
-            html += f"<th>{d}</th>"
+            html += f"<th class='{clase_hoy}'>{d}</th>"
 
     html += """
             </tr>
@@ -426,11 +449,15 @@ with tab_general:
             nombre, cat, nip = idx if isinstance(idx, tuple) else ("", "", nip_fila)
             html += f"<td>{nombre}</td><td>{cat}</td><td>{nip}</td>"
 
-        for v in fila:
+        for d, v in zip(tabla.columns, fila):
             e = estilo_turno(v)
             txt = "" if pd.isna(v) else v
+
+            clase_hoy = "td-hoy" if dia_hoy == d else ""
+
             html += (
-                f"<td style='background:{e['bg']};"
+                f"<td class='{clase_hoy}' "
+                f"style='background:{e['bg']};"
                 f"color:{e['fg']};"
                 f"font-weight:{'bold' if e.get('bold') else 'normal'};"
                 f"font-style:{'italic' if e.get('italic') else 'normal'}'>"
