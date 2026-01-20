@@ -541,20 +541,7 @@ with tab_mis_turnos:
                     continue
 
                 fila = df_user[df_user["fecha"] == pd.Timestamp(d)]
-                html = (
-                    "<div style='"
-                    "border:1px solid #999;"
-                    "min-height:90px;"
-                    "display:flex;"
-                    "flex-direction:column;"
-                    "align-items:center;"
-                    "justify-content:flex-start;"
-                    "text-align:center;"
-                    "'>"
-                    f"<div style='font-weight:700;font-size:16px;margin-bottom:4px;'>"
-                    f"{d.day}"        
-                    "</div>"
-                )
+                html = f"<div style='border:1px solid #999'><b>{d.day}</b><br>"
 
                 if not fila.empty:
                     for p in separar(str(fila.iloc[0]["turno"])):
