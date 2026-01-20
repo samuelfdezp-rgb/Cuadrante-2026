@@ -618,33 +618,28 @@ if st.session_state.is_admin:
     ]
 
     with col3:
-        turno_sel = st.selectbox(
-            "🔁 Nuevo turno",
-            TURNOS_EDITABLES
-        )
-
+        turno_sel = st.selectbox("🔁 Nuevo turno", TURNOS_EDITABLES)
         observaciones = st.text_input(
             "📝 Observaciones (opcional)",
             placeholder="Ej.: Cambio por enfermedad, ajuste de servicio…"
         )
 
-    # ---- Guardar cambio (SOLO HISTORIAL)
+    # ---- Guardar cambio
     if st.button("💾 Guardar cambio"):
-
         fecha_sel = date(2026, mes_sel, dia_sel)
 
-        # Buscar turno anterior SOLO para el registro
-        fila_existente = df_mes[
-            (df_mes["nip"] == nip_sel) &
-            (df_mes["fecha"] == pd.Timestamp(fecha_sel))
-        ]
+        mask = (
+            (df["nip"] == nip_sel) &
+            (df["fecha"] == pd.Timestamp(fecha_sel))
+        )
 
-        if not fila_existente.empty:
-            turno_anterior = fila_existente.iloc[0]["turno"]
-            nombre_afectado = fila_existente.iloc[0]["nombre"]
+        if mask.any():
+            turno_anterior = df.loc[mask, "turno"].iloc[0]
+            nombre_afectado = df.loc[mask, "nombre"].iloc[0]
         else:
             turno_anterior = ""
-            nombre_afectado = df_trab[df_trab["nip"] == nip_sel].iloc[0]["nombre"]
+            fila_base = df_mes[df_mes["nip"] == nip_sel].iloc[0]
+            nombre_afectado = fila_base["nombre"]
 
         registro = {
             "fecha_hora": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
@@ -659,14 +654,17 @@ if st.session_state.is_admin:
 
         try:
             df_hist = pd.read_csv(HISTORIAL_FILE)
-            df_hist = pd.concat([df_hist, pd.DataFrame([registro])], ignore_index=True)
+            df_hist = pd.concat(
+                [df_hist, pd.DataFrame([registro])],
+                ignore_index=True
+            )
         except FileNotFoundError:
             df_hist = pd.DataFrame([registro])
 
         df_hist.to_csv(HISTORIAL_FILE, index=False)
 
-        st.success("✅ Cambio guardado correctamente")
-        st.experimental_rerun()
+        st.success("✅ Turno actualizado y guardado en el historial")
+        st.rerun()
 
 # ==================================================
 # TAB HISTORIAL — SOLO ADMIN
