@@ -677,23 +677,68 @@ if st.session_state.is_admin:
         st.rerun()
 
 # ==================================================
-# TAB HISTORIAL — SOLO ADMIN
+# TAB HISTORIAL — SOLO ADMIN (EDITAR / ELIMINAR)
 # ==================================================
 if st.session_state.is_admin:
     with tab_historial:
         st.subheader("📜 Historial de cambios del cuadrante")
 
-        try:
-            df_hist = pd.read_csv(HISTORIAL_FILE)
-
-            df_hist["fecha_hora"] = pd.to_datetime(df_hist["fecha_hora"])
-            df_hist = df_hist.sort_values("fecha_hora", ascending=False)
-
-            st.dataframe(
-                df_hist,
-                use_container_width=True,
-                hide_index=True
-            )
-
-        except FileNotFoundError:
+        if not os.path.exists(HISTORIAL_FILE):
             st.info("Todavía no hay cambios registrados en el historial.")
+            st.stop()
+
+        df_hist = pd.read_csv(HISTORIAL_FILE)
+        df_hist["fecha_hora"] = pd.to_datetime(df_hist["fecha_hora"])
+        df_hist = df_hist.sort_values("fecha_hora", ascending=False).reset_index(drop=True)
+
+        st.dataframe(df_hist, use_container_width=True, hide_index=True)
+
+        st.markdown("---")
+        st.subheader("✏️ Editar o eliminar registro")
+
+        # ----- Selección de registro
+        opciones = {
+            f"{row['fecha_hora']} | {row['nombre_afectado']} | {row['fecha_turno']}":
+            i
+            for i, row in df_hist.iterrows()
+        }
+
+        seleccion = st.selectbox(
+            "Selecciona un registro",
+            options=list(opciones.keys())
+        )
+
+        idx = opciones[seleccion]
+        registro = df_hist.loc[idx]
+
+        # ----- Campos editables
+        nuevo_turno = st.text_input(
+            "🔁 Turno nuevo",
+            value=registro["turno_nuevo"]
+        )
+
+        nuevas_obs = st.text_input(
+            "📝 Observaciones",
+            value=str(registro.get("observaciones", ""))
+        )
+
+        col1, col2 = st.columns(2)
+
+        # ----- BOTÓN GUARDAR CAMBIOS
+        with col1:
+            if st.button("💾 Guardar cambios"):
+                df_hist.loc[idx, "turno_nuevo"] = nuevo_turno
+                df_hist.loc[idx, "observaciones"] = nuevas_obs
+                df_hist.to_csv(HISTORIAL_FILE, index=False)
+
+                st.success("✅ Registro actualizado correctamente")
+                st.rerun()
+
+        # ----- BOTÓN ELIMINAR REGISTRO
+        with col2:
+            if st.button("🗑️ Eliminar registro"):
+                df_hist = df_hist.drop(index=idx).reset_index(drop=True)
+                df_hist.to_csv(HISTORIAL_FILE, index=False)
+
+                st.warning("🗑️ Registro eliminado del historial")
+                st.rerun()
