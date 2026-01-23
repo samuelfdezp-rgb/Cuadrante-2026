@@ -3,6 +3,7 @@ import pandas as pd
 import calendar
 from datetime import datetime, date
 import base64
+import requests
 import os
 import glob
 
@@ -26,6 +27,15 @@ MESES = {
     5: "Mayo", 6: "Junio", 7: "Julio", 8: "Agosto",
     9: "Septiembre", 10: "Octubre", 11: "Noviembre", 12: "Diciembre"
 }
+
+# ==================================================
+# GITHUB (PERSISTENCIA)
+# ==================================================
+GITHUB_USER = "TU_USUARIO_GITHUB"
+GITHUB_REPO = "NOMBRE_DEL_REPO"
+GITHUB_BRANCH = "main"
+
+GITHUB_TOKEN = st.secrets["GITHUB_TOKEN"]
 
 # ==================================================
 # FUNCIONES BASE
@@ -109,14 +119,41 @@ def aplicar_historial(df):
 
     return df
 
-def guardar_historial(registro):
-    if os.path.exists(HISTORIAL_FILE):
-        df = pd.read_csv(HISTORIAL_FILE)
-        df = pd.concat([df, pd.DataFrame([registro])], ignore_index=True)
-    else:
-        df = pd.DataFrame([registro])
+def guardar_csv_en_github(df, ruta_repo):
+    """
+    Guarda un DataFrame como CSV directamente en GitHub
+    ruta_repo ej: 'historial_cambios.csv' o 'cuadrantes/2026_02.csv'
+    """
 
-    df.to_csv(HISTORIAL_FILE, index=False)
+    url = f"https://api.github.com/repos/{GITHUB_USER}/{GITHUB_REPO}/contents/{ruta_repo}"
+
+    headers = {
+        "Authorization": f"token {GITHUB_TOKEN}",
+        "Accept": "application/vnd.github+json"
+    }
+
+    # 1️⃣ CSV en memoria
+    csv_content = df.to_csv(index=False)
+    content_b64 = base64.b64encode(csv_content.encode()).decode()
+
+    # 2️⃣ Ver si el archivo existe (para obtener SHA)
+    r = requests.get(url, headers=headers)
+    sha = r.json().get("sha") if r.status_code == 200 else None
+
+    payload = {
+        "message": f"Actualiza {ruta_repo}",
+        "content": content_b64,
+        "branch": GITHUB_BRANCH
+    }
+
+    if sha:
+        payload["sha"] = sha
+
+    r = requests.put(url, headers=headers, json=payload)
+
+    if r.status_code not in (200, 201):
+        st.error("❌ Error guardando en GitHub")
+        st.stop()
 
 # ==================================================
 # SESIÓN
@@ -671,7 +708,7 @@ if st.session_state.is_admin:
         except FileNotFoundError:
             df_hist = pd.DataFrame([registro])
 
-        df_hist.to_csv(HISTORIAL_FILE, index=False)
+        guardar_csv_en_github(df_hist, "historial_cambios.csv")
 
         st.success("✅ Turno actualizado y guardado en el historial")
         st.rerun()
@@ -729,7 +766,7 @@ if st.session_state.is_admin:
             if st.button("💾 Guardar cambios"):
                 df_hist.loc[idx, "turno_nuevo"] = nuevo_turno
                 df_hist.loc[idx, "observaciones"] = nuevas_obs
-                df_hist.to_csv(HISTORIAL_FILE, index=False)
+                guardar_csv_en_github(df_hist, "historial_cambios.csv")
 
                 st.success("✅ Registro actualizado correctamente")
                 st.rerun()
@@ -738,7 +775,7 @@ if st.session_state.is_admin:
         with col2:
             if st.button("🗑️ Eliminar registro"):
                 df_hist = df_hist.drop(index=idx).reset_index(drop=True)
-                df_hist.to_csv(HISTORIAL_FILE, index=False)
+                guardar_csv_en_github(df_hist, "historial_cambios.csv")
 
                 st.warning("🗑️ Registro eliminado del historial")
                 st.rerun()
