@@ -88,16 +88,13 @@ def cargar_cuadrantes():
 
     return pd.concat(dfs, ignore_index=True)
 
-def aplicar_historial(df):
-    if not os.path.exists(HISTORIAL_FILE):
+def aplicar_historial(df, df_hist):
+    if df_hist.empty:
         return df
 
-    hist = pd.read_csv(
-        HISTORIAL_FILE,
-        parse_dates=["fecha_turno", "fecha_hora"]
-    ).sort_values("fecha_hora")
+    df_hist = df_hist.sort_values("fecha_hora")
 
-    for _, r in hist.iterrows():
+    for _, r in df_hist.iterrows():
         nip = normalizar_nip(r["nip_afectado"])
         fecha = pd.Timestamp(r["fecha_turno"])
 
@@ -154,6 +151,36 @@ def guardar_csv_en_github(df, ruta_repo):
     if r.status_code not in (200, 201):
         st.error("❌ Error guardando en GitHub")
         st.stop()
+
+def cargar_historial_desde_github():
+    """
+    Descarga historial_cambios.csv desde GitHub y lo devuelve como DataFrame.
+    Si no existe todavía, devuelve DataFrame vacío.
+    """
+    url = f"https://api.github.com/repos/{GITHUB_USER}/{GITHUB_REPO}/contents/{HISTORIAL_FILE}"
+
+    headers = {
+        "Authorization": f"token {GITHUB_TOKEN}",
+        "Accept": "application/vnd.github+json"
+    }
+
+    r = requests.get(url, headers=headers)
+
+    if r.status_code == 200:
+        content_b64 = r.json()["content"]
+        csv_content = base64.b64decode(content_b64).decode()
+        from io import StringIO
+        return pd.read_csv(
+            StringIO(csv_content),
+            parse_dates=["fecha_turno", "fecha_hora"]
+        )
+
+    # No existe todavía
+    return pd.DataFrame(columns=[
+        "fecha_hora", "usuario_admin", "nip_afectado",
+        "nombre_afectado", "fecha_turno",
+        "turno_anterior", "turno_nuevo", "observaciones"
+    ])
 
 # ==================================================
 # SESIÓN
@@ -229,7 +256,10 @@ if not cuadrantes:
 
 mes_label = st.selectbox("📅 Selecciona mes", list(cuadrantes.keys()))
 df = cargar_cuadrantes()
-df = aplicar_historial(df)
+
+df_hist = cargar_historial_desde_github()
+df = aplicar_historial(df, df_hist)
+
 
 anio_sel, mes_sel = mes_label.split()
 mes_sel = list(MESES.keys())[list(MESES.values()).index(anio_sel)]
@@ -767,7 +797,6 @@ if st.session_state.is_admin:
                 df_hist.loc[idx, "turno_nuevo"] = nuevo_turno
                 df_hist.loc[idx, "observaciones"] = nuevas_obs
                 guardar_csv_en_github(df_hist, "historial_cambios.csv")
-
                 st.success("✅ Registro actualizado correctamente")
                 st.rerun()
 
