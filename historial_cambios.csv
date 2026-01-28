@@ -84,3 +84,4 @@ fecha_hora,usuario_admin,nip_afectado,nombre_afectado,fecha_turno,turno_anterior
 2026-01-28 11:14:19,ADMIN,32030,Martín Lago Fernández,2026-01-26,2,1,Cambio de turno con A099
 2026-01-28 11:14:40,ADMIN,A032099,Ricardo Fariña Vidal,2026-01-26,1,1,Cambio de turno con 030
 2026-01-28 11:15:47,ADMIN,032031,Carlota Tella Granda,2026-01-15,Dcc,2ex,
+2026-01-28 11:16:06,ADMIN,032031,Carlota Tella Granda,2026-01-20,2,1|2ex,
