@@ -334,14 +334,13 @@ def estilo_turno(t):
         "2|3ex": ("#00B050", "#FF0000"),
         "3|1ex": ("#00B050", "#FF0000"),
         "3|2ex": ("#00B050", "#FF0000"),
-        "3yJuC": ("#F8CBAD", "#FF0000"),
         "AP|1ex": ("#00B050", "#FF0000"),
         "AP|2ex": ("#00B050", "#FF0000"),
         "AP|3ex": ("#00B050", "#FF0000"),
     }
 
     # Turnos dobles normales
-    if t in {"1y2", "1y3", "2y3"}:
+    if t in {"1y2", "1y3", "2y3", "3yJuC", "1yJuB"}:
         return {"bg": "#DBDBDB", "fg": "#FF0000", "bold": True, "italic": False}
 
     # Turnos dobles con extra
