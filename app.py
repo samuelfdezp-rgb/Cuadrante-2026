@@ -352,7 +352,7 @@ def estilo_turno(t):
 
     # ---- NEGRITA
     bold = (
-        t in {"perm", "Ts", "JuB", "JuC", "AP", "Ts", "Vac", "BAJA", "indisp", "curso", "1yJuB"} or
+        t in {"perm", "Ts", "JuB", "JuC", "AP", "Ts", "Vac", "BAJA", "indisp", "curso", "1yJuB", "3yJuC"} or
         "ex" in t or               # cualquier extra
         t in {"1y2", "1y3", "2y3"}
     )
