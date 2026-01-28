@@ -75,4 +75,5 @@ fecha_hora,usuario_admin,nip_afectado,nombre_afectado,fecha_turno,turno_anterior
 2026-01-28 11:10:56,ADMIN,32029,Xoaquín Miguel Novo Vázquez,2026-01-13,2,AP,
 2026-01-28 11:11:15,ADMIN,32029,Xoaquín Miguel Novo Vázquez,2026-01-25,3,AP,
 2026-01-28 11:12:13,ADMIN,32030,Martín Lago Fernández,2026-01-13,2,2|3ex,
-2026-01-28 11:12:47,ADMIN,032030,Martín Lago Fernández,2026-01-15,1,perm,
+2026-01-28 11:12:47,ADMIN,32030,Martín Lago Fernández,2026-01-15,1,perm,
+2026-01-28 11:12:56,ADMIN,032030,Martín Lago Fernández,2026-01-16,1,perm,
