@@ -47,4 +47,5 @@ fecha_hora,usuario_admin,nip_afectado,nombre_afectado,fecha_turno,turno_anterior
 2026-01-28 08:58:54,ADMIN,32022,Miguel Naveiras Picos,2026-01-20,2,2,Cambio de turno con 031
 2026-01-28 08:59:36,ADMIN,32031,Carlota Tella Granda,2026-01-20,1,2,Cambio de turno con 022
 2026-01-28 10:07:09,ADMIN,32022,Miguel Naveiras Picos,2026-01-30,2,Ts,
-2026-01-28 10:07:47,ADMIN,032023,Javier Plana Costoya,2026-01-18,D,3ex,
+2026-01-28 10:07:47,ADMIN,32023,Javier Plana Costoya,2026-01-18,D,3ex,
+2026-01-28 10:08:01,ADMIN,032023,Javier Plana Costoya,2026-01-25,2,1ex,
