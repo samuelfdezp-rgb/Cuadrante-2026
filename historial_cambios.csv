@@ -62,4 +62,5 @@ fecha_hora,usuario_admin,nip_afectado,nombre_afectado,fecha_turno,turno_anterior
 2026-01-28 10:23:21,ADMIN,32025,Samuel Fernández Pérez,2026-01-29,D,3ex,
 2026-01-28 10:24:08,ADMIN,32026,Iago Blanco Muiño,2026-01-02,2,1,cambiado por 01
 2026-01-28 10:49:01,ADMIN,32026,Iago Blanco Muiño,2026-01-03,D,3ex,
-2026-01-28 10:49:11,ADMIN,032026,Iago Blanco Muiño,2026-01-07,D,3ex,
+2026-01-28 10:49:11,ADMIN,32026,Iago Blanco Muiño,2026-01-07,D,3ex,
+2026-01-28 10:53:43,ADMIN,032026,Iago Blanco Muiño,2026-01-24,D,1ex,
