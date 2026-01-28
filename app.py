@@ -31,8 +31,8 @@ MESES = {
 # ==================================================
 # GITHUB (PERSISTENCIA)
 # ==================================================
-GITHUB_USER = "TU_USUARIO_GITHUB"
-GITHUB_REPO = "NOMBRE_DEL_REPO"
+GITHUB_USER = "samuelfdezp-rgb"
+GITHUB_REPO = "Cuadrante-2026"
 GITHUB_BRANCH = "main"
 
 GITHUB_TOKEN = st.secrets["GITHUB_TOKEN"]
@@ -117,11 +117,6 @@ def aplicar_historial(df, df_hist):
     return df
 
 def guardar_csv_en_github(df, ruta_repo):
-    """
-    Guarda un DataFrame como CSV directamente en GitHub
-    ruta_repo ej: 'historial_cambios.csv' o 'cuadrantes/2026_02.csv'
-    """
-
     url = f"https://api.github.com/repos/{GITHUB_USER}/{GITHUB_REPO}/contents/{ruta_repo}"
 
     headers = {
@@ -129,13 +124,18 @@ def guardar_csv_en_github(df, ruta_repo):
         "Accept": "application/vnd.github+json"
     }
 
-    # 1️⃣ CSV en memoria
     csv_content = df.to_csv(index=False)
     content_b64 = base64.b64encode(csv_content.encode()).decode()
 
-    # 2️⃣ Ver si el archivo existe (para obtener SHA)
+    # Comprobar si existe
     r = requests.get(url, headers=headers)
-    sha = r.json().get("sha") if r.status_code == 200 else None
+
+    sha = None
+    if r.status_code == 200:
+        sha = r.json()["sha"]
+    elif r.status_code not in (200, 404):
+        st.error(f"❌ Error consultando GitHub: {r.status_code} - {r.text}")
+        st.stop()
 
     payload = {
         "message": f"Actualiza {ruta_repo}",
@@ -150,6 +150,7 @@ def guardar_csv_en_github(df, ruta_repo):
 
     if r.status_code not in (200, 201):
         st.error("❌ Error guardando en GitHub")
+        st.code(r.text)   # 🔥 AHORA VERÁS EL ERROR REAL
         st.stop()
 
 def cargar_historial_desde_github():
