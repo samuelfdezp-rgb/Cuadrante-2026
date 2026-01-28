@@ -532,7 +532,7 @@ with tab_general:
             return set()
 
         c = str(codigo)
-        NO_CUENTAN = ["D","Vac","BAJA","perm","AP","Ts","Dc","Dct","Dcc","Dcv","JuB","JuC","Curso","indisp"]
+        NO_CUENTAN = ["D","Vac","BAJA","perm","AP","Ts","Dc","Dct","Dcc","Dcv","Curso","indisp"]
         if any(x in c for x in NO_CUENTAN):
             return set()
 
