@@ -13,4 +13,5 @@ fecha_hora,usuario_admin,nip_afectado,nombre_afectado,fecha_turno,turno_anterior
 2026-01-28 08:32:02,ADMIN,32015,Pedro Rodríguez Pedreira,2026-01-08,1,D,Cambio con 022 por mañana del 28
 2026-01-28 08:32:10,ADMIN,32015,Pedro Rodríguez Pedreira,2026-01-09,1,D,Cambio con 022 por mañana del 29
 2026-01-28 08:32:54,ADMIN,32022,Miguel Naveiras Picos,2026-01-08,D,1,Cambio con 015 por mañana del 28
-2026-01-28 08:33:04,ADMIN,032022,Miguel Naveiras Picos,2026-01-09,D,1,Cambio con 015 por mañana del 29
+2026-01-28 08:33:04,ADMIN,32022,Miguel Naveiras Picos,2026-01-09,D,1,Cambio con 015 por mañana del 29
+2026-01-28 08:33:35,ADMIN,032015,Pedro Rodríguez Pedreira,2026-01-10,1,D,Cambio con 013 por mañana del 3
