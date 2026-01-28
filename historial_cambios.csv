@@ -53,4 +53,5 @@ fecha_hora,usuario_admin,nip_afectado,nombre_afectado,fecha_turno,turno_anterior
 2026-01-28 10:18:52,ADMIN,32025,Samuel Fernández Pérez,2026-01-07,D,2ex,
 2026-01-28 10:19:25,ADMIN,32025,Samuel Fernández Pérez,2026-01-14,1,2,cambiado por 01
 2026-01-28 10:19:42,ADMIN,32025,Samuel Fernández Pérez,2026-01-15,2,2|1ex,
-2026-01-28 10:20:01,ADMIN,032025,Samuel Fernández Pérez,2026-01-19,D,JuB,
+2026-01-28 10:20:01,ADMIN,32025,Samuel Fernández Pérez,2026-01-19,D,JuB,
+2026-01-28 10:20:59,ADMIN,032025,Samuel Fernández Pérez,2026-01-26,D,1,Cambio con 027 por mañana del 27
