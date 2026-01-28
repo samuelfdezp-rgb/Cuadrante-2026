@@ -1,4 +1,46 @@
 fecha_hora,usuario_admin,nip_afectado,nombre_afectado,fecha_turno,turno_anterior,turno_nuevo,observaciones
+2026-01-28 11:17:33,ADMIN,A032099,Ricardo Fariña Vidal,2026-01-13,3,AP,
+2026-01-28 11:17:24,ADMIN,A032099,Ricardo Fariña Vidal,2026-01-07,2,AP,
+2026-01-28 11:17:11,ADMIN,A032099,Ricardo Fariña Vidal,2026-01-05,D,3ex,
+2026-01-28 11:16:48,ADMIN,032013,Simeón Porto Fernández,2026-01-13,1,perm,
+2026-01-28 11:16:18,ADMIN,032031,Carlota Tella Granda,2026-01-26,D,3ex,
+2026-01-28 11:16:06,ADMIN,032031,Carlota Tella Granda,2026-01-20,2,1|2ex,
+2026-01-28 11:15:47,ADMIN,032031,Carlota Tella Granda,2026-01-15,Dcc,2ex,
+2026-01-28 11:14:40,ADMIN,A032099,Ricardo Fariña Vidal,2026-01-26,1,1,Cambio de turno con 030
+2026-01-28 11:14:19,ADMIN,32030,Martín Lago Fernández,2026-01-26,2,1,Cambio de turno con A099
+2026-01-28 11:13:34,ADMIN,32030,Martín Lago Fernández,2026-01-21,D,3ex,
+2026-01-28 11:13:18,ADMIN,32030,Martín Lago Fernández,2026-01-19,3,perm,
+2026-01-28 11:13:10,ADMIN,32030,Martín Lago Fernández,2026-01-18,3,perm,
+2026-01-28 11:13:01,ADMIN,32030,Martín Lago Fernández,2026-01-17,3,perm,
+2026-01-28 11:12:56,ADMIN,32030,Martín Lago Fernández,2026-01-16,1,perm,
+2026-01-28 11:12:47,ADMIN,32030,Martín Lago Fernández,2026-01-15,1,perm,
+2026-01-28 11:12:13,ADMIN,32030,Martín Lago Fernández,2026-01-13,2,2|3ex,
+2026-01-28 11:11:15,ADMIN,32029,Xoaquín Miguel Novo Vázquez,2026-01-25,3,AP,
+2026-01-28 11:10:56,ADMIN,32029,Xoaquín Miguel Novo Vázquez,2026-01-13,2,AP,
+2026-01-28 11:10:35,ADMIN,32029,Xoaquín Miguel Novo Vázquez,2026-01-10,D,1ex,
+2026-01-28 11:10:06,ADMIN,32029,Xoaquín Miguel Novo Vázquez,2026-01-03,D,3ex,
+2026-01-28 11:09:59,ADMIN,32029,Xoaquín Miguel Novo Vázquez,2026-01-02,D,3ex,
+2026-01-28 11:08:48,ADMIN,32028,Iker Díaz Villaverde,2026-01-13,D,2ex,
+2026-01-28 11:08:11,ADMIN,32028,Iker Díaz Villaverde,2026-01-03,D,1ex,
+2026-01-28 11:07:32,ADMIN,32027,Iago Romar Tajes,2026-01-20,2,AP|3ex,
+2026-01-28 11:06:47,ADMIN,32027,Iago Romar Tajes,2026-01-14,1,AP,
+2026-01-28 11:05:46,ADMIN,32027,Iago Romar Tajes,2026-01-02,D,2ex,
+2026-01-28 10:53:43,ADMIN,32026,Iago Blanco Muiño,2026-01-24,D,1ex,
+2026-01-28 10:49:11,ADMIN,32026,Iago Blanco Muiño,2026-01-07,D,3ex,
+2026-01-28 10:49:01,ADMIN,32026,Iago Blanco Muiño,2026-01-03,D,3ex,
+2026-01-28 10:24:08,ADMIN,32026,Iago Blanco Muiño,2026-01-02,2,1,cambiado por 01
+2026-01-28 10:23:21,ADMIN,32025,Samuel Fernández Pérez,2026-01-29,D,3ex,
+2026-01-28 10:23:03,ADMIN,32025,Samuel Fernández Pérez,2026-01-28,1,1|2ex,
+2026-01-28 10:22:06,ADMIN,32027,Iago Romar Tajes,2026-01-27,2,1y2,Cambio con 025 por mañana del 26
+2026-01-28 10:21:34,ADMIN,32027,Iago Romar Tajes,2026-01-26,1,D,Cambio con 025 por mañana del 27
+2026-01-28 10:21:14,ADMIN,32025,Samuel Fernández Pérez,2026-01-27,1,D,Cambio con 027 por mañana del 27
+2026-01-28 10:20:59,ADMIN,32025,Samuel Fernández Pérez,2026-01-26,D,1,Cambio con 027 por mañana del 27
+2026-01-28 10:20:01,ADMIN,32025,Samuel Fernández Pérez,2026-01-19,D,JuB,
+2026-01-28 10:19:42,ADMIN,32025,Samuel Fernández Pérez,2026-01-15,2,2|1ex,
+2026-01-28 10:19:25,ADMIN,32025,Samuel Fernández Pérez,2026-01-14,1,2,cambiado por 01
+2026-01-28 10:18:52,ADMIN,32025,Samuel Fernández Pérez,2026-01-07,D,2ex,
+2026-01-28 10:12:43,ADMIN,32023,Javier Plana Costoya,2026-01-29,3,AP,
+2026-01-28 10:12:27,ADMIN,32023,Javier Plana Costoya,2026-01-25,2,2|1ex,
 2026-01-28 10:07:47,ADMIN,32023,Javier Plana Costoya,2026-01-18,D,3ex,
 2026-01-28 10:07:09,ADMIN,32022,Miguel Naveiras Picos,2026-01-30,2,Ts,
 2026-01-28 08:59:36,ADMIN,32031,Carlota Tella Granda,2026-01-20,1,2,Cambio de turno con 022
@@ -48,46 +90,3 @@ fecha_hora,usuario_admin,nip_afectado,nombre_afectado,fecha_turno,turno_anterior
 2026-01-28 07:30:45,ADMIN,32018,Javier Fernández Seijo,2026-01-10,D,1ex,
 2026-01-28 07:30:31,ADMIN,32018,Javier Fernández Seijo,2026-01-05,L,L|2ex,
 2026-01-28 07:18:02,ADMIN,32018,Javier Fernández Seijo,2026-01-04,D,1ex,
-2026-01-28 10:12:27,ADMIN,32023,Javier Plana Costoya,2026-01-25,2,2|1ex,
-2026-01-28 10:12:43,ADMIN,32023,Javier Plana Costoya,2026-01-29,3,AP,
-2026-01-28 10:18:52,ADMIN,32025,Samuel Fernández Pérez,2026-01-07,D,2ex,
-2026-01-28 10:19:25,ADMIN,32025,Samuel Fernández Pérez,2026-01-14,1,2,cambiado por 01
-2026-01-28 10:19:42,ADMIN,32025,Samuel Fernández Pérez,2026-01-15,2,2|1ex,
-2026-01-28 10:20:01,ADMIN,32025,Samuel Fernández Pérez,2026-01-19,D,JuB,
-2026-01-28 10:20:59,ADMIN,32025,Samuel Fernández Pérez,2026-01-26,D,1,Cambio con 027 por mañana del 27
-2026-01-28 10:21:14,ADMIN,32025,Samuel Fernández Pérez,2026-01-27,1,D,Cambio con 027 por mañana del 27
-2026-01-28 10:21:34,ADMIN,32027,Iago Romar Tajes,2026-01-26,1,D,Cambio con 025 por mañana del 27
-2026-01-28 10:22:06,ADMIN,32027,Iago Romar Tajes,2026-01-27,2,1y2,Cambio con 025 por mañana del 26
-2026-01-28 10:23:03,ADMIN,32025,Samuel Fernández Pérez,2026-01-28,1,1|2ex,
-2026-01-28 10:23:21,ADMIN,32025,Samuel Fernández Pérez,2026-01-29,D,3ex,
-2026-01-28 10:24:08,ADMIN,32026,Iago Blanco Muiño,2026-01-02,2,1,cambiado por 01
-2026-01-28 10:49:01,ADMIN,32026,Iago Blanco Muiño,2026-01-03,D,3ex,
-2026-01-28 10:49:11,ADMIN,32026,Iago Blanco Muiño,2026-01-07,D,3ex,
-2026-01-28 10:53:43,ADMIN,32026,Iago Blanco Muiño,2026-01-24,D,1ex,
-2026-01-28 11:05:46,ADMIN,32027,Iago Romar Tajes,2026-01-02,D,2ex,
-2026-01-28 11:06:47,ADMIN,32027,Iago Romar Tajes,2026-01-14,1,AP,
-2026-01-28 11:07:32,ADMIN,32027,Iago Romar Tajes,2026-01-20,2,AP|3ex,
-2026-01-28 11:08:11,ADMIN,32028,Iker Díaz Villaverde,2026-01-03,D,1ex,
-2026-01-28 11:08:48,ADMIN,32028,Iker Díaz Villaverde,2026-01-13,D,2ex,
-2026-01-28 11:09:59,ADMIN,32029,Xoaquín Miguel Novo Vázquez,2026-01-02,D,3ex,
-2026-01-28 11:10:06,ADMIN,32029,Xoaquín Miguel Novo Vázquez,2026-01-03,D,3ex,
-2026-01-28 11:10:35,ADMIN,32029,Xoaquín Miguel Novo Vázquez,2026-01-10,D,1ex,
-2026-01-28 11:10:56,ADMIN,32029,Xoaquín Miguel Novo Vázquez,2026-01-13,2,AP,
-2026-01-28 11:11:15,ADMIN,32029,Xoaquín Miguel Novo Vázquez,2026-01-25,3,AP,
-2026-01-28 11:12:13,ADMIN,32030,Martín Lago Fernández,2026-01-13,2,2|3ex,
-2026-01-28 11:12:47,ADMIN,32030,Martín Lago Fernández,2026-01-15,1,perm,
-2026-01-28 11:12:56,ADMIN,32030,Martín Lago Fernández,2026-01-16,1,perm,
-2026-01-28 11:13:01,ADMIN,32030,Martín Lago Fernández,2026-01-17,3,perm,
-2026-01-28 11:13:10,ADMIN,32030,Martín Lago Fernández,2026-01-18,3,perm,
-2026-01-28 11:13:18,ADMIN,32030,Martín Lago Fernández,2026-01-19,3,perm,
-2026-01-28 11:13:34,ADMIN,32030,Martín Lago Fernández,2026-01-21,D,3ex,
-2026-01-28 11:14:19,ADMIN,32030,Martín Lago Fernández,2026-01-26,2,1,Cambio de turno con A099
-2026-01-28 11:14:40,ADMIN,A032099,Ricardo Fariña Vidal,2026-01-26,1,1,Cambio de turno con 030
-2026-01-28 11:15:47,ADMIN,032031,Carlota Tella Granda,2026-01-15,Dcc,2ex,
-2026-01-28 11:16:06,ADMIN,032031,Carlota Tella Granda,2026-01-20,2,1|2ex,
-2026-01-28 11:16:18,ADMIN,032031,Carlota Tella Granda,2026-01-26,D,3ex,
-2026-01-28 11:16:48,ADMIN,032013,Simeón Porto Fernández,2026-01-13,1,perm,
-2026-01-28 11:17:11,ADMIN,A032099,Ricardo Fariña Vidal,2026-01-05,D,3ex,
-2026-01-28 11:17:24,ADMIN,A032099,Ricardo Fariña Vidal,2026-01-07,2,AP,
-2026-01-28 11:17:33,ADMIN,A032099,Ricardo Fariña Vidal,2026-01-13,3,AP,
-2026-01-28 11:17:45,ADMIN,A032099,Ricardo Fariña Vidal,2026-01-22,D,3ex,
