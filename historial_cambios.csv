@@ -51,4 +51,5 @@ fecha_hora,usuario_admin,nip_afectado,nombre_afectado,fecha_turno,turno_anterior
 2026-01-28 10:12:27,ADMIN,32023,Javier Plana Costoya,2026-01-25,2,2|1ex,
 2026-01-28 10:12:43,ADMIN,32023,Javier Plana Costoya,2026-01-29,3,AP,
 2026-01-28 10:18:52,ADMIN,32025,Samuel Fernández Pérez,2026-01-07,D,2ex,
-2026-01-28 10:19:25,ADMIN,032025,Samuel Fernández Pérez,2026-01-14,1,2,cambiado por 01
+2026-01-28 10:19:25,ADMIN,32025,Samuel Fernández Pérez,2026-01-14,1,2,cambiado por 01
+2026-01-28 10:19:42,ADMIN,032025,Samuel Fernández Pérez,2026-01-15,2,2|1ex,
