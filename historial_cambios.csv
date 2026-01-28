@@ -1,42 +1,41 @@
 fecha_hora,usuario_admin,nip_afectado,nombre_afectado,fecha_turno,turno_anterior,turno_nuevo,observaciones
-2026-01-28 07:18:02,ADMIN,32018,Javier Fernández Seijo,2026-01-04,D,1ex,
-2026-01-28 07:30:31,ADMIN,32018,Javier Fernández Seijo,2026-01-05,L,L|2ex,
-2026-01-28 07:30:45,ADMIN,32018,Javier Fernández Seijo,2026-01-10,D,1ex,
-2026-01-28 07:30:54,ADMIN,32018,Javier Fernández Seijo,2026-01-12,D,1ex,
-2026-01-28 07:30:59,ADMIN,32018,Javier Fernández Seijo,2026-01-14,D,1ex,
-2026-01-28 07:31:47,ADMIN,32018,Javier Fernández Seijo,2026-01-28,D,3ex,
-2026-01-28 07:34:09,ADMIN,32018,Javier Fernández Seijo,2026-01-20,3,3yJuC,
-2026-01-28 08:30:08,ADMIN,32015,Pedro Rodríguez Pedreira,2026-01-03,D,1,Cambio con 013 por mañana del 10
-2026-01-28 08:30:19,ADMIN,32015,Pedro Rodríguez Pedreira,2026-01-04,D,1,Cambio con 013 por mañana del 11
-2026-01-28 08:30:35,ADMIN,32013,Simeón Porto Fernández,2026-01-03,1,D,Cambio con 015 por mañana del 10
-2026-01-28 08:30:41,ADMIN,32013,Simeón Porto Fernández,2026-01-04,1,D,Cambio con 015 por mañana del 11
-2026-01-28 08:32:02,ADMIN,32015,Pedro Rodríguez Pedreira,2026-01-08,1,D,Cambio con 022 por mañana del 28
-2026-01-28 08:32:10,ADMIN,32015,Pedro Rodríguez Pedreira,2026-01-09,1,D,Cambio con 022 por mañana del 29
-2026-01-28 08:32:54,ADMIN,32022,Miguel Naveiras Picos,2026-01-08,D,1,Cambio con 015 por mañana del 28
-2026-01-28 08:33:04,ADMIN,32022,Miguel Naveiras Picos,2026-01-09,D,1,Cambio con 015 por mañana del 29
-2026-01-28 08:33:35,ADMIN,32015,Pedro Rodríguez Pedreira,2026-01-10,1,D,Cambio con 013 por mañana del 3
-2026-01-28 08:33:47,ADMIN,32015,Pedro Rodríguez Pedreira,2026-01-11,1,D,Cambio con 013 por mañana del 4
-2026-01-28 08:34:20,ADMIN,32013,Simeón Porto Fernández,2026-01-10,D,1,Cambio con 015 por mañana del 3
-2026-01-28 08:34:29,ADMIN,32013,Simeón Porto Fernández,2026-01-11,D,1,Cambio con 015 por mañana del 4
-2026-01-28 08:35:18,ADMIN,32015,Pedro Rodríguez Pedreira,2026-01-12,D,D,Cambio con 022 por noche del 13
-2026-01-28 08:36:01,ADMIN,32015,Pedro Rodríguez Pedreira,2026-01-13,3,3,Cambio con 022 por noche del 12
-2026-01-28 08:36:35,ADMIN,32022,Miguel Naveiras Picos,2026-01-12,2y3,2y3,Cambio con 015 por noche del 13
-2026-01-28 08:36:47,ADMIN,32022,Miguel Naveiras Picos,2026-01-13,D,D,Cambio con 015 por noche del 12
-2026-01-28 08:37:19,ADMIN,32015,Pedro Rodríguez Pedreira,2026-01-17,D,3ex,
-2026-01-28 08:37:35,ADMIN,32015,Pedro Rodríguez Pedreira,2026-01-22,3,AP,
-2026-01-28 08:37:44,ADMIN,32015,Pedro Rodríguez Pedreira,2026-01-25,D,3ex,
-2026-01-28 08:38:03,ADMIN,32015,Pedro Rodríguez Pedreira,2026-01-28,D,1,Cambio con 022 por mañana del 8
-2026-01-28 08:38:14,ADMIN,32015,Pedro Rodríguez Pedreira,2026-01-29,Dct,1,Cambio con 022 por mañana del 9
-2026-01-28 08:38:37,ADMIN,32022,Miguel Naveiras Picos,2026-01-28,1,D,Cambio con 015 por mañana del 8
-2026-01-28 08:38:48,ADMIN,32022,Miguel Naveiras Picos,2026-01-29,1,D,Cambio con 015 por mañana del 9
-2026-01-28 08:43:01,ADMIN,32016,Víctor Mendez Vázquez,2026-01-02,1,perm,
-2026-01-28 08:43:37,ADMIN,32016,Víctor Mendez Vázquez,2026-01-10,3,perm,
-2026-01-28 08:43:44,ADMIN,32016,Víctor Mendez Vázquez,2026-01-11,3,perm,
-2026-01-28 08:47:27,ADMIN,32016,Víctor Mendez Vázquez,2026-01-14,2,AP,
-2026-01-28 08:47:31,ADMIN,32016,Víctor Mendez Vázquez,2026-01-14,AP,AP,
-2026-01-28 08:47:49,ADMIN,32016,Víctor Mendez Vázquez,2026-01-14,AP,perm,
-2026-01-28 08:48:04,ADMIN,32016,Víctor Mendez Vázquez,2026-01-23,1,perm,
-2026-01-28 08:48:09,ADMIN,32016,Víctor Mendez Vázquez,2026-01-24,1,perm,
-2026-01-28 08:48:15,ADMIN,32016,Víctor Mendez Vázquez,2026-01-25,1,perm,
 2026-01-28 08:48:29,ADMIN,32016,Víctor Mendez Vázquez,2026-01-15,2,AP,
-2026-01-28 08:48:39,ADMIN,032016,Víctor Mendez Vázquez,2026-01-14,perm,AP,
+2026-01-28 08:48:15,ADMIN,32016,Víctor Mendez Vázquez,2026-01-25,1,perm,
+2026-01-28 08:48:09,ADMIN,32016,Víctor Mendez Vázquez,2026-01-24,1,perm,
+2026-01-28 08:48:04,ADMIN,32016,Víctor Mendez Vázquez,2026-01-23,1,perm,
+2026-01-28 08:47:49,ADMIN,32016,Víctor Mendez Vázquez,2026-01-14,AP,perm,
+2026-01-28 08:47:31,ADMIN,32016,Víctor Mendez Vázquez,2026-01-14,AP,AP,
+2026-01-28 08:47:27,ADMIN,32016,Víctor Mendez Vázquez,2026-01-14,2,AP,
+2026-01-28 08:43:44,ADMIN,32016,Víctor Mendez Vázquez,2026-01-11,3,perm,
+2026-01-28 08:43:37,ADMIN,32016,Víctor Mendez Vázquez,2026-01-10,3,perm,
+2026-01-28 08:43:01,ADMIN,32016,Víctor Mendez Vázquez,2026-01-02,1,perm,
+2026-01-28 08:38:48,ADMIN,32022,Miguel Naveiras Picos,2026-01-29,1,D,Cambio con 015 por mañana del 9
+2026-01-28 08:38:37,ADMIN,32022,Miguel Naveiras Picos,2026-01-28,1,D,Cambio con 015 por mañana del 8
+2026-01-28 08:38:14,ADMIN,32015,Pedro Rodríguez Pedreira,2026-01-29,Dct,1,Cambio con 022 por mañana del 9
+2026-01-28 08:38:03,ADMIN,32015,Pedro Rodríguez Pedreira,2026-01-28,D,1,Cambio con 022 por mañana del 8
+2026-01-28 08:37:44,ADMIN,32015,Pedro Rodríguez Pedreira,2026-01-25,D,3ex,
+2026-01-28 08:37:35,ADMIN,32015,Pedro Rodríguez Pedreira,2026-01-22,3,AP,
+2026-01-28 08:37:19,ADMIN,32015,Pedro Rodríguez Pedreira,2026-01-17,D,3ex,
+2026-01-28 08:36:47,ADMIN,32022,Miguel Naveiras Picos,2026-01-13,D,D,Cambio con 015 por noche del 12
+2026-01-28 08:36:35,ADMIN,32022,Miguel Naveiras Picos,2026-01-12,2y3,2y3,Cambio con 015 por noche del 13
+2026-01-28 08:36:01,ADMIN,32015,Pedro Rodríguez Pedreira,2026-01-13,3,3,Cambio con 022 por noche del 12
+2026-01-28 08:35:18,ADMIN,32015,Pedro Rodríguez Pedreira,2026-01-12,D,D,Cambio con 022 por noche del 13
+2026-01-28 08:34:29,ADMIN,32013,Simeón Porto Fernández,2026-01-11,D,1,Cambio con 015 por mañana del 4
+2026-01-28 08:34:20,ADMIN,32013,Simeón Porto Fernández,2026-01-10,D,1,Cambio con 015 por mañana del 3
+2026-01-28 08:33:47,ADMIN,32015,Pedro Rodríguez Pedreira,2026-01-11,1,D,Cambio con 013 por mañana del 4
+2026-01-28 08:33:35,ADMIN,32015,Pedro Rodríguez Pedreira,2026-01-10,1,D,Cambio con 013 por mañana del 3
+2026-01-28 08:33:04,ADMIN,32022,Miguel Naveiras Picos,2026-01-09,D,1,Cambio con 015 por mañana del 29
+2026-01-28 08:32:54,ADMIN,32022,Miguel Naveiras Picos,2026-01-08,D,1,Cambio con 015 por mañana del 28
+2026-01-28 08:32:10,ADMIN,32015,Pedro Rodríguez Pedreira,2026-01-09,1,D,Cambio con 022 por mañana del 29
+2026-01-28 08:32:02,ADMIN,32015,Pedro Rodríguez Pedreira,2026-01-08,1,D,Cambio con 022 por mañana del 28
+2026-01-28 08:30:41,ADMIN,32013,Simeón Porto Fernández,2026-01-04,1,D,Cambio con 015 por mañana del 11
+2026-01-28 08:30:35,ADMIN,32013,Simeón Porto Fernández,2026-01-03,1,D,Cambio con 015 por mañana del 10
+2026-01-28 08:30:19,ADMIN,32015,Pedro Rodríguez Pedreira,2026-01-04,D,1,Cambio con 013 por mañana del 11
+2026-01-28 08:30:08,ADMIN,32015,Pedro Rodríguez Pedreira,2026-01-03,D,1,Cambio con 013 por mañana del 10
+2026-01-28 07:34:09,ADMIN,32018,Javier Fernández Seijo,2026-01-20,3,3yJuC,
+2026-01-28 07:31:47,ADMIN,32018,Javier Fernández Seijo,2026-01-28,D,3ex,
+2026-01-28 07:30:59,ADMIN,32018,Javier Fernández Seijo,2026-01-14,D,1ex,
+2026-01-28 07:30:54,ADMIN,32018,Javier Fernández Seijo,2026-01-12,D,1ex,
+2026-01-28 07:30:45,ADMIN,32018,Javier Fernández Seijo,2026-01-10,D,1ex,
+2026-01-28 07:30:31,ADMIN,32018,Javier Fernández Seijo,2026-01-05,L,L|2ex,
+2026-01-28 07:18:02,ADMIN,32018,Javier Fernández Seijo,2026-01-04,D,1ex,
