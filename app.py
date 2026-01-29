@@ -6,6 +6,11 @@ import base64
 import requests
 import os
 import glob
+from io import BytesIO
+from reportlab.lib.pagesizes import A4, landscape
+from reportlab.platypus import SimpleDocTemplate, Table, TableStyle
+from reportlab.lib import colors
+
 
 # ==================================================
 # CONFIGURACIÓN GENERAL
@@ -182,6 +187,86 @@ def cargar_historial_desde_github():
         "nombre_afectado", "fecha_turno",
         "turno_anterior", "turno_nuevo", "observaciones"
     ])
+
+def exportar_excel(df_mes, mes_sel):
+    columnas = [
+        "nombre", "categoria", "nip",
+        "fecha", "dia", "turno"
+    ]
+
+    df_excel = (
+        df_mes[columnas]
+        .sort_values(["nombre", "fecha"])
+        .copy()
+    )
+
+    output = BytesIO()
+
+    with pd.ExcelWriter(output, engine="xlsxwriter") as writer:
+        df_excel.to_excel(
+            writer,
+            index=False,
+            sheet_name=f"{MESES[mes_sel]} 2026"
+        )
+
+        workbook = writer.book
+        worksheet = writer.sheets[f"{MESES[mes_sel]} 2026"]
+
+        worksheet.set_column("A:A", 28)
+        worksheet.set_column("B:B", 15)
+        worksheet.set_column("C:C", 10)
+        worksheet.set_column("D:D", 12)
+        worksheet.set_column("E:E", 6)
+        worksheet.set_column("F:F", 12)
+
+        header = workbook.add_format({
+            "bold": True,
+            "align": "center",
+            "border": 1
+        })
+
+        for col, name in enumerate(df_excel.columns):
+            worksheet.write(0, col, name.upper(), header)
+
+    output.seek(0)
+    return output
+
+def exportar_pdf(df_mes, mes_sel):
+    columnas = ["nombre", "categoria", "dia", "turno"]
+
+    df_pdf = (
+        df_mes[columnas]
+        .sort_values(["nombre", "dia"])
+        .copy()
+    )
+
+    buffer = BytesIO()
+
+    doc = SimpleDocTemplate(
+        buffer,
+        pagesize=landscape(A4),
+        rightMargin=20,
+        leftMargin=20,
+        topMargin=20,
+        bottomMargin=20
+    )
+
+    data = [df_pdf.columns.tolist()] + df_pdf.values.tolist()
+
+    tabla = Table(data, repeatRows=1)
+    tabla.setStyle(TableStyle([
+        ("GRID", (0,0), (-1,-1), 0.5, colors.black),
+        ("BACKGROUND", (0,0), (-1,0), colors.lightgrey),
+        ("ALIGN", (2,1), (-1,-1), "CENTER"),
+        ("FONTNAME", (0,0), (-1,0), "Helvetica-Bold"),
+        ("FONTSIZE", (0,0), (-1,-1), 8),
+        ("BOTTOMPADDING", (0,0), (-1,0), 8),
+        ("TOPPADDING", (0,0), (-1,0), 8),
+    ]))
+
+    doc.build([tabla])
+    buffer.seek(0)
+    return buffer
 
 # ==================================================
 # SESIÓN
@@ -578,6 +663,28 @@ with tab_general:
     """
 
     st.markdown(html, unsafe_allow_html=True)
+
+st.markdown("### 📤 Exportar cuadrante")
+
+if st.session_state.is_admin:
+    excel_file = exportar_excel(df_mes, mes_sel)
+
+    st.download_button(
+        label="⬇️ Descargar Excel (ADMIN)",
+        data=excel_file,
+        file_name=f"Cuadrante_{MESES[mes_sel]}_2026.xlsx",
+        mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+    )
+
+else:
+    pdf_file = exportar_pdf(df_mes, mes_sel)
+
+    st.download_button(
+        label="⬇️ Descargar PDF",
+        data=pdf_file,
+        file_name=f"Cuadrante_{MESES[mes_sel]}_2026.pdf",
+        mime="application/pdf"
+    )
 
 # ==================================================
 # TAB 2 — MIS TURNOS
