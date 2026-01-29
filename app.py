@@ -584,9 +584,13 @@ with tab_mis_turnos:
 
     df_user = df_mes[df_mes["nip"] == st.session_state.nip]
     cal = calendar.Calendar()
-    TURNOS_TRABAJO = {"1", "2", "3", "1ex", "2ex", "3ex", "L"}
 
+    # -------------------------------
+    # FUNCIONES AUXILIARES
+    # -------------------------------
     def separar(turno):
+        if pd.isna(turno):
+            return []
         if "y" in turno:
             return turno.split("y")
         if "|" in turno:
@@ -599,19 +603,63 @@ with tab_mis_turnos:
             return f"{partes[0]} {partes[1][0]}."
         return partes[0]
 
-    def compañeros(fecha, sub):
-        if sub not in TURNOS_TRABAJO:
-            return []
-        return (
-            df_mes[
-                (df_mes["fecha"] == fecha) &
-                (df_mes["turno"].str.contains(sub)) &
-                (df_mes["nip"] != st.session_state.nip)
-            ]["nombre"]
-            .apply(formatear_nombre)
-            .tolist()
-        )
+    def extraer_franjas(turno):
+        """
+        Devuelve un set con {'1','2','3'} según el turno,
+        incluyendo extras y combinados.
+        """
+        if pd.isna(turno):
+            return set()
 
+        t = str(turno)
+
+        NO_CUENTAN = [
+            "D","Vac","BAJA","perm","AP","Ts",
+            "Dc","Dct","Dcc","Dcv","JuB","JuC",
+            "Curso","indisp"
+        ]
+
+        if any(x in t for x in NO_CUENTAN):
+            return set()
+
+        franjas = set()
+        if "1" in t:
+            franjas.add("1")
+        if "2" in t:
+            franjas.add("2")
+        if "3" in t:
+            franjas.add("3")
+
+        return franjas
+
+    def compañeros(fecha, turno_usuario):
+        """
+        Devuelve los compañeros que coinciden
+        en alguna franja del turno del usuario
+        (incluye extras)
+        """
+        franjas_usuario = extraer_franjas(turno_usuario)
+
+        if not franjas_usuario:
+            return []
+
+        df_dia = df_mes[
+            (df_mes["fecha"] == fecha) &
+            (df_mes["nip"] != st.session_state.nip)
+        ]
+
+        resultado = []
+
+        for _, r in df_dia.iterrows():
+            franjas_otro = extraer_franjas(r["turno"])
+            if franjas_usuario & franjas_otro:
+                resultado.append(formatear_nombre(r["nombre"]))
+
+        return resultado
+
+    # -------------------------------
+    # CALENDARIO
+    # -------------------------------
     for semana in cal.monthdatescalendar(2026, mes_sel):
         cols = st.columns(7)
 
@@ -623,7 +671,6 @@ with tab_mis_turnos:
 
                 fila = df_user[df_user["fecha"] == pd.Timestamp(d)]
 
-                # 🔹 CONTENEDOR CENTRADO
                 html = (
                     "<div style='border:1px solid #999;"
                     "text-align:center;"
@@ -632,7 +679,8 @@ with tab_mis_turnos:
                 )
 
                 if not fila.empty:
-                    for p in separar(str(fila.iloc[0]["turno"])):
+                    turno_dia = str(fila.iloc[0]["turno"])
+                    for p in separar(turno_dia):
                         e = estilo_turno(p)
                         html += (
                             f"<div style='background:{e['bg']};"
@@ -640,8 +688,11 @@ with tab_mis_turnos:
                             f"text-align:center'>"
                             f"<b>{nombre_turno(p)}</b><br>"
                         )
-                        for c in compañeros(pd.Timestamp(d), p):
+
+                        comps = compañeros(pd.Timestamp(d), p)
+                        for c in comps:
                             html += f"{c}<br>"
+
                         html += "</div>"
 
                 html += "</div>"
