@@ -188,7 +188,7 @@ Año,Mes,Fecha,Día,NIP,Nombre y Apellidos,Categoría,Turno,Tipo
 2026,3,2026-03-01,Domingo,032025,Samuel Fernández Pérez,Policía,Vac,Vacaciones
 2026,3,2026-03-02,Lunes,032025,Samuel Fernández Pérez,Policía,Vac,Vacaciones
 2026,3,2026-03-03,Martes,032025,Samuel Fernández Pérez,Policía,D,Descanso
-2026,3,2026-03-04,Miércoles,032025,Samuel Fernández Pérez,Policía,1,Mañana
+2026,3,2026-03-04,Miércoles,032025,Samuel Fernández Pérez,Policía,AP,Asuntos Particulares
 2026,3,2026-03-05,Jueves,032025,Samuel Fernández Pérez,Policía,3,Noche
 2026,3,2026-03-06,Viernes,032025,Samuel Fernández Pérez,Policía,3,Noche
 2026,3,2026-03-07,Sábado,032025,Samuel Fernández Pérez,Policía,3,Noche
@@ -526,3 +526,4 @@ Año,Mes,Fecha,Día,NIP,Nombre y Apellidos,Categoría,Turno,Tipo
 2026,3,2026-03-29,Domingo,032017,Francisco Fernández Otero,Policía,D,Descanso
 2026,3,2026-03-30,Lunes,032017,Francisco Fernández Otero,Policía,L,Laborable
 2026,3,2026-03-31,Martes,032017,Francisco Fernández Otero,Policía,L,Laborable
+
