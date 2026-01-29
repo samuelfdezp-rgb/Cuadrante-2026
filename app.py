@@ -328,6 +328,9 @@ def estilo_turno(t):
         "1yJuB": ("#BDD7EE", "#FF0000"),
         "3yJuC": ("#BDD7EE", "#FF0000"),
         "AP": ("#FFFFFF", "#0070C0"),
+        "1y2ex": ("#00B050", "#FF0000"),
+        "2y3ex": ("#00B050", "#FF0000"),
+        "1y3ex": ("#00B050", "#FF0000"),
         "1|2ex": ("#00B050", "#FF0000"),
         "1|3ex": ("#00B050", "#FF0000"),
         "2|1ex": ("#00B050", "#FF0000"),
@@ -742,6 +745,7 @@ if st.session_state.is_admin:
         "Vac", "BAJA", "perm", "Ts", "AP",
         "JuB", "JuC", "Curso", "Indisp",
         "1y2", "1y3", "2y3",
+        "1y2ex", "1y3ex", "2y3ex",
         "1|2ex", "1|3ex", "2|1ex", "2|3ex", "3|1ex", "3|2ex", "L|2ex",
         "1yJuB", "AP|1ex", "AP|2ex", "AP|3ex", "3yJuC"
     ]
