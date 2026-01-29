@@ -10,7 +10,9 @@ from io import BytesIO
 from reportlab.lib.pagesizes import A4, landscape
 from reportlab.platypus import SimpleDocTemplate, Table, TableStyle
 from reportlab.lib import colors
-
+from openpyxl import load_workbook
+import tempfile
+import shutil
 
 # ==================================================
 # CONFIGURACIÓN GENERAL
@@ -188,48 +190,46 @@ def cargar_historial_desde_github():
         "turno_anterior", "turno_nuevo", "observaciones"
     ])
 
-def exportar_excel(df_mes, mes_sel):
-    columnas = [
-        "nombre", "categoria", "nip",
-        "fecha", "dia", "turno"
-    ]
+def exportar_excel_desde_plantilla(df_mes, mes_label):
+    """
+    Usa Plantilla de exportación.xlsx
+    y devuelve un archivo Excel listo para descargar
+    """
 
-    df_excel = (
-        df_mes[columnas]
-        .sort_values(["nombre", "fecha"])
-        .copy()
-    )
+    PLANTILLA = "Plantilla de exportación.xlsx"
 
-    output = BytesIO()
+    if not os.path.exists(PLANTILLA):
+        st.error("❌ No se encuentra la plantilla Excel en el repositorio")
+        return None
 
-    with pd.ExcelWriter(output, engine="xlsxwriter") as writer:
-        df_excel.to_excel(
-            writer,
-            index=False,
-            sheet_name=f"{MESES[mes_sel]} 2026"
-        )
+    # ---- crear archivo temporal
+    tmp_dir = tempfile.mkdtemp()
+    nombre_salida = f"Cuadrante_{mes_label.replace(' ', '_')}.xlsx"
+    ruta_salida = os.path.join(tmp_dir, nombre_salida)
 
-        workbook = writer.book
-        worksheet = writer.sheets[f"{MESES[mes_sel]} 2026"]
+    # ---- copiar plantilla
+    shutil.copy(PLANTILLA, ruta_salida)
 
-        worksheet.set_column("A:A", 28)
-        worksheet.set_column("B:B", 15)
-        worksheet.set_column("C:C", 10)
-        worksheet.set_column("D:D", 12)
-        worksheet.set_column("E:E", 6)
-        worksheet.set_column("F:F", 12)
+    # ---- abrir Excel
+    wb = load_workbook(ruta_salida)
+    ws = wb.active   # o wb["Hoja1"] si sabes el nombre
 
-        header = workbook.add_format({
-            "bold": True,
-            "align": "center",
-            "border": 1
-        })
+    # ==================================================
+    # AQUÍ SOLO ESCRIBIMOS DATOS (NO CÁLCULOS)
+    # ==================================================
 
-        for col, name in enumerate(df_excel.columns):
-            worksheet.write(0, col, name.upper(), header)
+    fila_excel = 2  # empieza debajo de cabeceras
 
-    output.seek(0)
-    return output
+    for _, r in df_mes.iterrows():
+        ws.cell(row=fila_excel, column=1, value=r["fecha"])
+        ws.cell(row=fila_excel, column=2, value=r["nombre"])
+        ws.cell(row=fila_excel, column=3, value=r["categoria"])
+        ws.cell(row=fila_excel, column=4, value=r["nip"])
+        ws.cell(row=fila_excel, column=5, value=r["turno"])
+        fila_excel += 1
+
+    wb.save(ruta_salida)
+    return ruta_salida
 
 def exportar_pdf(df_mes, mes_sel):
     columnas = ["nombre", "categoria", "dia", "turno"]
