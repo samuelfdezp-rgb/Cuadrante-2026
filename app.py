@@ -234,83 +234,84 @@ def exportar_excel(df_mes, mes_sel):
     return output
 
 from reportlab.lib.pagesizes import A4, landscape
-from reportlab.platypus import SimpleDocTemplate, Table, TableStyle, Paragraph, Spacer
+from reportlab.platypus import (
+    SimpleDocTemplate, Table, TableStyle,
+    Paragraph, Spacer, Image
+)
 from reportlab.lib.styles import getSampleStyleSheet
 from reportlab.lib import colors
 from io import BytesIO
 import calendar
+import os
 
 def exportar_pdf_cuadrante(df_mes, mes_sel, mes_label):
-    """
-    Genera un PDF del cuadrante con formato tipo Excel oficial
-    (sin escudos, A4 apaisado)
-    """
-
     buffer = BytesIO()
 
     doc = SimpleDocTemplate(
         buffer,
         pagesize=landscape(A4),
-        leftMargin=20,
-        rightMargin=20,
-        topMargin=20,
-        bottomMargin=20
+        leftMargin=15,
+        rightMargin=15,
+        topMargin=15,
+        bottomMargin=15
     )
 
     styles = getSampleStyleSheet()
     elementos = []
 
-    # -------------------------------------------------
-    # TÍTULO
-    # -------------------------------------------------
+    # ==================================================
+    # CABECERA (IMAGEN)
+    # ==================================================
+    if os.path.exists("cabecera.png"):
+        img = Image("cabecera.png", width=760, height=80)
+        elementos.append(img)
+        elementos.append(Spacer(1, 8))
+
     titulo = Paragraph(
-        f"<b>CUADRANTE DE SERVICIO PARA EL MES DE {mes_label.upper()} DE 2026</b>",
-        styles["Title"]
+        f"<b>CUADRANTE DE SERVICIO PARA EL MES DE {mes_label.upper()}</b>",
+        styles["Heading2"]
     )
     elementos.append(titulo)
-    elementos.append(Spacer(1, 12))
+    elementos.append(Spacer(1, 10))
 
-    # -------------------------------------------------
+    # ==================================================
     # DÍAS DEL MES
-    # -------------------------------------------------
-    dias_mes = sorted(df_mes["dia"].unique())
+    # ==================================================
     num_dias = calendar.monthrange(2026, mes_sel)[1]
 
-    # -------------------------------------------------
+    # ==================================================
     # CABECERA TABLA
-    # -------------------------------------------------
+    # ==================================================
     cabecera = ["Nombre y Apellidos", "Categoría", "N.I.P."]
     cabecera += [f"{d:02d}" for d in range(1, num_dias + 1)]
 
     data = [cabecera]
 
-    # -------------------------------------------------
-    # CUERPO TABLA (AGENTES)
-    # -------------------------------------------------
-    agentes = (
+    # ==================================================
+    # ORDEN REAL DE LA APP (NO ALFABÉTICO)
+    # ==================================================
+    orden_agentes = (
         df_mes[["nombre", "categoria", "nip"]]
         .drop_duplicates()
-        .sort_values("nombre")
     )
 
-    for _, ag in agentes.iterrows():
-        fila = [
-            ag["nombre"],
-            ag["categoria"],
-            ag["nip"]
-        ]
+    # ==================================================
+    # FILAS
+    # ==================================================
+    for _, ag in orden_agentes.iterrows():
+        fila = [ag["nombre"], ag["categoria"], ag["nip"]]
 
-        df_agente = df_mes[df_mes["nip"] == ag["nip"]]
+        df_ag = df_mes[df_mes["nip"] == ag["nip"]]
 
         for d in range(1, num_dias + 1):
-            turno = df_agente[df_agente["dia"] == d]["turno"]
+            turno = df_ag[df_ag["dia"] == d]["turno"]
             fila.append(turno.iloc[0] if not turno.empty else "")
 
         data.append(fila)
 
-    # -------------------------------------------------
+    # ==================================================
     # TABLA
-    # -------------------------------------------------
+    # ==================================================
     tabla = Table(data, repeatRows=1)
 
     estilo = TableStyle([
@@ -324,8 +325,38 @@ def exportar_pdf_cuadrante(df_mes, mes_sel, mes_label):
         ("TOPPADDING", (0, 0), (-1, -1), 4),
     ])
 
-    # Anchos de columna (muy importante)
-    col_widths = [120, 60, 50] + [18] * num_dias
+    # ==================================================
+    # COLORES DE TURNOS (MISMA LÓGICA QUE LA APP)
+    # ==================================================
+    for fila_idx in range(1, len(data)):
+        for col_idx in range(3, len(data[0])):
+            turno = data[fila_idx][col_idx]
+            if turno:
+                e = estilo_turno(turno)
+                estilo.add(
+                    "BACKGROUND",
+                    (col_idx, fila_idx),
+                    (col_idx, fila_idx),
+                    colors.HexColor(e["bg"])
+                )
+                estilo.add(
+                    "TEXTCOLOR",
+                    (col_idx, fila_idx),
+                    (col_idx, fila_idx),
+                    colors.HexColor(e["fg"])
+                )
+                if e.get("bold"):
+                    estilo.add(
+                        "FONTNAME",
+                        (col_idx, fila_idx),
+                        (col_idx, fila_idx),
+                        "Helvetica-Bold"
+                    )
+
+    # ==================================================
+    # ANCHOS DE COLUMNA
+    # ==================================================
+    col_widths = [130, 60, 50] + [18] * num_dias
     tabla._argW = col_widths
 
     tabla.setStyle(estilo)
