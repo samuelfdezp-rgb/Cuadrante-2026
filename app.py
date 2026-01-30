@@ -6,13 +6,6 @@ import base64
 import requests
 import os
 import glob
-from io import BytesIO
-from reportlab.lib.pagesizes import A4, landscape
-from reportlab.platypus import SimpleDocTemplate, Table, TableStyle
-from reportlab.lib import colors
-from openpyxl import load_workbook
-import tempfile
-import shutil
 
 # ==================================================
 # CONFIGURACIÓN GENERAL
