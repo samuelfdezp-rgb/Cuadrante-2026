@@ -930,7 +930,21 @@ with tab_resumen:
         st.warning("⚠️ No hay resumen disponible para este trabajador.")
     else:
         html_resumen = excel_a_html(ruta_excel)
+
+        # 🔧 CSS para forzar texto negro en fondos claros
+        css_fix = """
+        <style>
+        td[style*="background-color:#DDEBF7"],
+        td[style*="background-color:#BDD7EE"],
+        td[style*="background-color:#DAE9F8"],
+        td[style*="background-color:#E7F3FF"],
+        td[style*="background-color:#DBE5F1"] {
+            color: #000000 !important;
+        }
+        </style>
+        """
+
         st.markdown(
-            f"<div style='overflow:auto; max-width:100%'>{html_resumen}</div>",
+            css_fix + f"<div style='overflow:auto; max-width:100%'>{html_resumen}</div>",
             unsafe_allow_html=True
         )
