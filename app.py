@@ -233,6 +233,18 @@ def exportar_excel(df_mes, mes_sel):
     output.seek(0)
     return output
 
+from datetime import date
+
+def es_festivo_pdf(fecha):
+    festivos = {
+        date(2026, 1, 1),
+        date(2026, 1, 6),
+        date(2026, 2, 17),
+        date(2026, 3, 19),
+    }
+    return fecha in festivos
+
+
 from reportlab.lib.pagesizes import A4, landscape
 from reportlab.platypus import (
     SimpleDocTemplate, Table, TableStyle,
@@ -492,7 +504,7 @@ st.success(f"Mostrando cuadrante de {mes_label}")
 # ==================================================
 # FESTIVOS
 # ==================================================
-festivos = {date(2026, 1, 1), date(2026, 1, 6), date(2026, 2, 17)}
+festivos = {date(2026, 1, 1), date(2026, 1, 6), date(2026, 2, 17), date(2026, 3, 19)}
 
 def es_festivo(fecha):
     return fecha in festivos
