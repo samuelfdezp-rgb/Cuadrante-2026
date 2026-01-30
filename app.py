@@ -190,53 +190,48 @@ def cargar_historial_desde_github():
         "turno_anterior", "turno_nuevo", "observaciones"
     ])
 
-def exportar_excel_desde_plantilla(df_mes, mes_label):
+def exportar_excel(df_mes, mes_sel):
+    columnas = [
+        "nombre", "categoria", "nip",
+        "fecha", "dia", "turno"
+    ]
 
-    PLANTILLA = "Plantilla de exportación.xlsx"
+    df_excel = (
+        df_mes[columnas]
+        .sort_values(["nombre", "fecha"])
+        .copy()
+    )
 
-    if not os.path.exists(PLANTILLA):
-        st.error("❌ No se encuentra la plantilla Excel")
-        return None
+    output = BytesIO()
 
-    tmp_dir = tempfile.mkdtemp()
-    nombre_salida = f"Cuadrante_{mes_label.replace(' ', '_')}.xlsx"
-    ruta_salida = os.path.join(tmp_dir, nombre_salida)
+    with pd.ExcelWriter(output, engine="xlsxwriter") as writer:
+        df_excel.to_excel(
+            writer,
+            index=False,
+            sheet_name=f"{MESES[mes_sel]} 2026"
+        )
 
-    shutil.copy(PLANTILLA, ruta_salida)
+        workbook = writer.book
+        worksheet = writer.sheets[f"{MESES[mes_sel]} 2026"]
 
-    wb = load_workbook(ruta_salida)
-    ws = wb.active   # o wb["Hoja 1"]
+        worksheet.set_column("A:A", 28)
+        worksheet.set_column("B:B", 15)
+        worksheet.set_column("C:C", 10)
+        worksheet.set_column("D:D", 12)
+        worksheet.set_column("E:E", 6)
+        worksheet.set_column("F:F", 12)
 
-    fila_excel = 2
+        header = workbook.add_format({
+            "bold": True,
+            "align": "center",
+            "border": 1
+        })
 
-    for _, r in df_mes.iterrows():
-    
-        # --- convertir TODO a tipos nativos ---
-        fecha = r["fecha"]
-        if pd.notna(fecha):
-            if isinstance(fecha, pd.Timestamp):
-                fecha = fecha.to_pydatetime()
-        else:
-            fecha = None
+        for col, name in enumerate(df_excel.columns):
+            worksheet.write(0, col, name.upper(), header)
 
-        nombre = str(r["nombre"]) if pd.notna(r["nombre"]) else ""
-        categoria = str(r["categoria"]) if pd.notna(r["categoria"]) else ""
-        nip = str(r["nip"]) if pd.notna(r["nip"]) else ""
-        turno = str(r["turno"]) if pd.notna(r["turno"]) else ""
-
-        # --- escribir celda por celda (SIN value= directo) ---
-        ws.cell(row=fila_excel, column=1).value = fecha
-        ws.cell(row=fila_excel, column=2).value = nombre
-        ws.cell(row=fila_excel, column=3).value = categoria
-        ws.cell(row=fila_excel, column=4).value = nip
-        ws.cell(row=fila_excel, column=5).value = turno
-    
-        fila_excel += 1
-
-    wb.save(ruta_salida)
-
-    with open(ruta_salida, "rb") as f:
-        return f.read()
+    output.seek(0)
+    return output
 
 def exportar_pdf(df_mes, mes_sel):
     columnas = ["nombre", "categoria", "dia", "turno"]
@@ -674,15 +669,14 @@ with tab_general:
 st.markdown("### 📤 Exportar cuadrante")
 
 if st.session_state.is_admin:
-    excel_bytes = exportar_excel_desde_plantilla(df_mes, mes_label)
+    excel_file = exportar_excel(df_mes, mes_sel)
 
-    if excel_bytes:
-        st.download_button(
-            label="⬇️ Descargar Excel (ADMIN)",
-            data=excel_bytes,
-            file_name=f"Cuadrante_{mes_label.replace(' ', '_')}.xlsx",
-            mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
-        )
+    st.download_button(
+        label="⬇️ Descargar Excel (ADMIN)",
+        data=excel_file,
+        file_name=f"Cuadrante_{MESES[mes_sel]}_2026.xlsx",
+        mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+    )
 
 else:
     pdf_file = exportar_pdf(df_mes, mes_sel)
