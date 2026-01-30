@@ -238,11 +238,13 @@ from reportlab.platypus import (
     SimpleDocTemplate, Table, TableStyle,
     Paragraph, Spacer, Image
 )
-from reportlab.lib.styles import getSampleStyleSheet
+from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
+from reportlab.lib.enums import TA_CENTER
 from reportlab.lib import colors
 from io import BytesIO
 import calendar
 import os
+from datetime import date
 
 def exportar_pdf_cuadrante(df_mes, mes_sel, mes_label):
     buffer = BytesIO()
@@ -265,12 +267,16 @@ def exportar_pdf_cuadrante(df_mes, mes_sel, mes_label):
     if os.path.exists("cabecera.png"):
         img = Image("cabecera.png", width=760, height=80)
         elementos.append(img)
-        elementos.append(Spacer(1, 8))
+        elementos.append(Spacer(1, 10))
 
-    from reportlab.lib.enums import TA_CENTER
-
-    titulo_style = styles["Heading2"]
-    titulo_style.alignment = TA_CENTER
+    # ==================================================
+    # TÍTULO CENTRADO (BIEN CENTRADO)
+    # ==================================================
+    titulo_style = ParagraphStyle(
+        name="TituloCentrado",
+        parent=styles["Heading2"],
+        alignment=TA_CENTER
+    )
 
     titulo = Paragraph(
         f"<b>CUADRANTE DE SERVICIO PARA EL MES DE {mes_label.upper()}</b>",
@@ -278,7 +284,7 @@ def exportar_pdf_cuadrante(df_mes, mes_sel, mes_label):
     )
 
     elementos.append(titulo)
-    elementos.append(Spacer(1, 10))
+    elementos.append(Spacer(1, 12))
 
     # ==================================================
     # DÍAS DEL MES
@@ -294,7 +300,7 @@ def exportar_pdf_cuadrante(df_mes, mes_sel, mes_label):
     data = [cabecera]
 
     # ==================================================
-    # ORDEN REAL DE LA APP (NO ALFABÉTICO)
+    # ORDEN REAL DE LA APP
     # ==================================================
     orden_agentes = (
         df_mes[["nombre", "categoria", "nip"]]
@@ -306,7 +312,6 @@ def exportar_pdf_cuadrante(df_mes, mes_sel, mes_label):
     # ==================================================
     for _, ag in orden_agentes.iterrows():
         fila = [ag["nombre"], ag["categoria"], ag["nip"]]
-
         df_ag = df_mes[df_mes["nip"] == ag["nip"]]
 
         for d in range(1, num_dias + 1):
@@ -332,17 +337,38 @@ def exportar_pdf_cuadrante(df_mes, mes_sel, mes_label):
     ])
 
     # ==================================================
-    # COLORES DE TURNOS (MISMA LÓGICA QUE LA APP)
+    # COLORES DE TURNOS + DOMINGOS / FESTIVOS
     # ==================================================
     for fila_idx in range(1, len(data)):
         for col_idx in range(3, len(data[0])):
             turno = data[fila_idx][col_idx]
-
-            # Día real
             dia = col_idx - 2
             fecha = date(2026, mes_sel, dia)
 
-            # ---- FESTIVOS
+            # ---- TURNO
+            if turno:
+                e = estilo_turno(turno)
+                estilo.add(
+                    "BACKGROUND",
+                    (col_idx, fila_idx),
+                    (col_idx, fila_idx),
+                    colors.HexColor(e["bg"])
+                )
+                estilo.add(
+                    "TEXTCOLOR",
+                    (col_idx, fila_idx),
+                    (col_idx, fila_idx),
+                    colors.HexColor(e["fg"])
+                )
+                if e.get("bold"):
+                    estilo.add(
+                        "FONTNAME",
+                        (col_idx, fila_idx),
+                        (col_idx, fila_idx),
+                        "Helvetica-Bold"
+                    )
+
+            # ---- FESTIVOS (PISAN EL TURNO)
             if es_festivo_pdf(fecha):
                 estilo.add(
                     "BACKGROUND",
@@ -366,34 +392,10 @@ def exportar_pdf_cuadrante(df_mes, mes_sel, mes_label):
                     colors.red
                 )
 
-            # ---- TURNOS NORMALES
-            if turno:
-                e = estilo_turno(turno)
-                estilo.add(
-                    "BACKGROUND",
-                    (col_idx, fila_idx),
-                    (col_idx, fila_idx),
-                    colors.HexColor(e["bg"])
-                )
-                estilo.add(
-                    "TEXTCOLOR",
-                    (col_idx, fila_idx),
-                    (col_idx, fila_idx),
-                    colors.HexColor(e["fg"])
-                )
-                if e.get("bold"):
-                    estilo.add(
-                        "FONTNAME",
-                        (col_idx, fila_idx),
-                        (col_idx, fila_idx),
-                        "Helvetica-Bold"
-                    )
-
     # ==================================================
     # ANCHOS DE COLUMNA
     # ==================================================
-    col_widths = [130, 60, 50] + [18] * num_dias
-    tabla._argW = col_widths
+    tabla._argW = [130, 60, 50] + [18] * num_dias
 
     tabla.setStyle(estilo)
     elementos.append(tabla)
@@ -401,14 +403,6 @@ def exportar_pdf_cuadrante(df_mes, mes_sel, mes_label):
     doc.build(elementos)
     buffer.seek(0)
     return buffer
-
-def es_festivo_pdf(fecha):
-    festivos = {
-        date(2026, 1, 1),
-        date(2026, 1, 6),
-        date(2026, 2, 17),
-    }
-    return fecha in festivos
 
 # ==================================================
 # SESIÓN
