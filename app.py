@@ -210,22 +210,27 @@ def exportar_excel_desde_plantilla(df_mes, mes_label):
     fila_excel = 2
 
     for _, r in df_mes.iterrows():
-
+    
+        # --- convertir TODO a tipos nativos ---
         fecha = r["fecha"]
-        nombre = "" if pd.isna(r["nombre"]) else str(r["nombre"])
-        categoria = "" if pd.isna(r["categoria"]) else str(r["categoria"])
-        nip = "" if pd.isna(r["nip"]) else str(r["nip"])
-        turno = "" if pd.isna(r["turno"]) else str(r["turno"])
+        if pd.notna(fecha):
+            if isinstance(fecha, pd.Timestamp):
+                fecha = fecha.to_pydatetime()
+        else:
+            fecha = None
 
-        if isinstance(fecha, pd.Timestamp):
-            fecha = fecha.to_pydatetime()
+        nombre = str(r["nombre"]) if pd.notna(r["nombre"]) else ""
+        categoria = str(r["categoria"]) if pd.notna(r["categoria"]) else ""
+        nip = str(r["nip"]) if pd.notna(r["nip"]) else ""
+        turno = str(r["turno"]) if pd.notna(r["turno"]) else ""
 
+        # --- escribir celda por celda (SIN value= directo) ---
         ws.cell(row=fila_excel, column=1).value = fecha
         ws.cell(row=fila_excel, column=2).value = nombre
         ws.cell(row=fila_excel, column=3).value = categoria
         ws.cell(row=fila_excel, column=4).value = nip
         ws.cell(row=fila_excel, column=5).value = turno
-
+    
         fila_excel += 1
 
     wb.save(ruta_salida)
