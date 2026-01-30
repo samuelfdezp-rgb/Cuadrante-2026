@@ -254,6 +254,16 @@ from datetime import date
 import calendar
 import os
 
+from reportlab.lib.pagesizes import A4, landscape
+from reportlab.platypus import SimpleDocTemplate, Table, TableStyle, Paragraph, Spacer, Image
+from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
+from reportlab.lib.enums import TA_CENTER
+from reportlab.lib import colors
+from io import BytesIO
+from datetime import date
+import calendar
+import os
+
 def exportar_pdf_cuadrante(df_mes, mes_sel, mes_label):
     buffer = BytesIO()
 
