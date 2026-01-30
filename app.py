@@ -586,20 +586,6 @@ with tab_general:
 
     st.markdown(html, unsafe_allow_html=True)
 
-st.markdown("### 📤 Exportar cuadrante")
-
-if st.session_state.is_admin:
-    st.info("ℹ️ El ADMIN exporta en Excel (PDF reservado para usuarios)")
-else:
-    pdf_file = exportar_pdf_cuadrante(df_mes, mes_sel, mes_label)
-
-    st.download_button(
-        label="⬇️ Descargar cuadrante en PDF",
-        data=pdf_file,
-        file_name=f"Cuadrante_{mes_label.replace(' ', '_')}.pdf",
-        mime="application/pdf"
-    )
-
 # ==================================================
 # TAB 2 — MIS TURNOS
 # ==================================================
