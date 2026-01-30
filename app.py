@@ -254,11 +254,12 @@ from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
 from reportlab.lib.enums import TA_CENTER
 from reportlab.lib import colors
 from io import BytesIO
+from datetime import date
 import calendar
 import os
-from datetime import date
 
 def exportar_pdf_cuadrante(df_mes, mes_sel, mes_label):
+
     buffer = BytesIO()
 
     doc = SimpleDocTemplate(
@@ -282,7 +283,7 @@ def exportar_pdf_cuadrante(df_mes, mes_sel, mes_label):
         elementos.append(Spacer(1, 10))
 
     # ==================================================
-    # TÍTULO CENTRADO (BIEN CENTRADO)
+    # TÍTULO CENTRADO
     # ==================================================
     titulo_style = ParagraphStyle(
         name="TituloCentrado",
@@ -351,84 +352,43 @@ def exportar_pdf_cuadrante(df_mes, mes_sel, mes_label):
     # ==================================================
     # COLORES DE TURNOS + DOMINGOS / FESTIVOS
     # ==================================================
-    from datetime import date
+    for fila_idx in range(1, len(data)):            # SOLO filas de agentes
+        for col_idx in range(3, len(data[0])):     # SOLO días
 
-for fila_idx in range(1, len(data)):
-    for col_idx in range(3, len(data[0])):
+            turno = data[fila_idx][col_idx]
+            dia = col_idx - 2                       # día REAL
+            fecha = date(2026, mes_sel, dia)
 
-        turno = data[fila_idx][col_idx]
+            # ---------------------------
+            # CELDA DE TURNO
+            # ---------------------------
+            if turno:
+                e = estilo_turno(turno)
 
-        # 🔹 día correcto
-        dia = col_idx - 3
-        fecha = date(2026, mes_sel, dia)
-
-        # ---------------------------
-        # CABECERA: FESTIVOS / DOMINGOS
-        # ---------------------------
-        if fila_idx == 1:  # SOLO cabecera
-            if es_festivo_pdf(fecha):
                 estilo.add(
                     "BACKGROUND",
-                    (col_idx, 0),
-                    (col_idx, 0),
-                    colors.HexColor("#92D050")
+                    (col_idx, fila_idx),
+                    (col_idx, fila_idx),
+                    colors.HexColor(e["bg"])
                 )
                 estilo.add(
                     "TEXTCOLOR",
-                    (col_idx, 0),
-                    (col_idx, 0),
-                    colors.red
-                )
-                estilo.add(
-                    "FONTNAME",
-                    (col_idx, 0),
-                    (col_idx, 0),
-                    "Helvetica-Bold"
-                )
-
-            elif fecha.weekday() == 6:  # domingo
-                estilo.add(
-                    "TEXTCOLOR",
-                    (col_idx, 0),
-                    (col_idx, 0),
-                    colors.red
-                )
-                estilo.add(
-                    "FONTNAME",
-                    (col_idx, 0),
-                    (col_idx, 0),
-                    "Helvetica-Bold"
-                )
-
-        # ---------------------------
-        # CELDA DE TURNO (SOLO ESA)
-        # ---------------------------
-        if turno:
-            e = estilo_turno(turno)
-
-            estilo.add(
-                "BACKGROUND",
-                (col_idx, fila_idx),
-                (col_idx, fila_idx),
-                colors.HexColor(e["bg"])
-            )
-
-            estilo.add(
-                "TEXTCOLOR",
-                (col_idx, fila_idx),
-                (col_idx, fila_idx),
-                colors.HexColor(e["fg"])
-            )
-
-            if e.get("bold"):
-                estilo.add(
-                    "FONTNAME",
                     (col_idx, fila_idx),
                     (col_idx, fila_idx),
-                    "Helvetica-Bold"
+                    colors.HexColor(e["fg"])
                 )
 
-            # ---- FESTIVOS (PISAN EL TURNO)
+                if e.get("bold"):
+                    estilo.add(
+                        "FONTNAME",
+                        (col_idx, fila_idx),
+                        (col_idx, fila_idx),
+                        "Helvetica-Bold"
+                    )
+
+            # ---------------------------
+            # FESTIVOS (SOLO ESA CELDA)
+            # ---------------------------
             if es_festivo_pdf(fecha):
                 estilo.add(
                     "BACKGROUND",
@@ -443,7 +403,9 @@ for fila_idx in range(1, len(data)):
                     colors.red
                 )
 
-            # ---- DOMINGOS
+            # ---------------------------
+            # DOMINGOS
+            # ---------------------------
             elif fecha.weekday() == 6:
                 estilo.add(
                     "TEXTCOLOR",
@@ -451,6 +413,47 @@ for fila_idx in range(1, len(data)):
                     (col_idx, fila_idx),
                     colors.red
                 )
+
+    # ==================================================
+    # CABECERA DE DÍAS (FESTIVOS / DOMINGOS)
+    # ==================================================
+    for col_idx in range(3, len(data[0])):
+        dia = col_idx - 2
+        fecha = date(2026, mes_sel, dia)
+
+        if es_festivo_pdf(fecha):
+            estilo.add(
+                "BACKGROUND",
+                (col_idx, 0),
+                (col_idx, 0),
+                colors.HexColor("#92D050")
+            )
+            estilo.add(
+                "TEXTCOLOR",
+                (col_idx, 0),
+                (col_idx, 0),
+                colors.red
+            )
+            estilo.add(
+                "FONTNAME",
+                (col_idx, 0),
+                (col_idx, 0),
+                "Helvetica-Bold"
+            )
+
+        elif fecha.weekday() == 6:
+            estilo.add(
+                "TEXTCOLOR",
+                (col_idx, 0),
+                (col_idx, 0),
+                colors.red
+            )
+            estilo.add(
+                "FONTNAME",
+                (col_idx, 0),
+                (col_idx, 0),
+                "Helvetica-Bold"
+            )
 
     # ==================================================
     # ANCHOS DE COLUMNA
@@ -462,7 +465,7 @@ for fila_idx in range(1, len(data)):
 
     doc.build(elementos)
     buffer.seek(0)
-return buffer
+    return buffer
 
 # ==================================================
 # SESIÓN
