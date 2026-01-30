@@ -193,29 +193,42 @@ def excel_a_html(ruta_excel):
 
     for fila in ws.iter_rows():
         html += "<tr>"
+
         for celda in fila:
             valor = "" if celda.value is None else celda.value
+            estilo = "border:1px solid #000;padding:4px;"
 
-            estilo = ""
+            # ---------- FONDO ----------
+            try:
+                if celda.fill and celda.fill.fgColor and celda.fill.fgColor.rgb:
+                    bg = celda.fill.fgColor.rgb
+                    if isinstance(bg, str):
+                        estilo += f"background-color:#{bg[-6:]};"
+            except:
+                pass
 
-            if celda.fill and celda.fill.fgColor and celda.fill.fgColor.rgb:
-                color = celda.fill.fgColor.rgb[-6:]
-                estilo += f"background-color:#{color};"
+            # ---------- TEXTO ----------
+            try:
+                if celda.font:
+                    if celda.font.bold:
+                        estilo += "font-weight:bold;"
 
-            if celda.font:
-                if celda.font.bold:
-                    estilo += "font-weight:bold;"
-                if celda.font.color and celda.font.color.rgb:
-                    color_txt = celda.font.color.rgb[-6:]
-                    estilo += f"color:#{color_txt};"
+                    if celda.font.color and celda.font.color.rgb:
+                        fg = celda.font.color.rgb
+                        if isinstance(fg, str):
+                            estilo += f"color:#{fg[-6:]};"
+            except:
+                pass
 
-            if celda.alignment:
-                if celda.alignment.horizontal:
+            # ---------- ALINEACIÓN ----------
+            try:
+                if celda.alignment and celda.alignment.horizontal:
                     estilo += f"text-align:{celda.alignment.horizontal};"
-
-            estilo += "border:1px solid #000;padding:4px;"
+            except:
+                pass
 
             html += f"<td style='{estilo}'>{valor}</td>"
+
         html += "</tr>"
 
     html += "</table>"
