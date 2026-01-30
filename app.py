@@ -233,40 +233,105 @@ def exportar_excel(df_mes, mes_sel):
     output.seek(0)
     return output
 
-def exportar_pdf(df_mes, mes_sel):
-    columnas = ["nombre", "categoria", "dia", "turno"]
+from reportlab.lib.pagesizes import A4, landscape
+from reportlab.platypus import SimpleDocTemplate, Table, TableStyle, Paragraph, Spacer
+from reportlab.lib.styles import getSampleStyleSheet
+from reportlab.lib import colors
+from io import BytesIO
+import calendar
 
-    df_pdf = (
-        df_mes[columnas]
-        .sort_values(["nombre", "dia"])
-        .copy()
-    )
+def exportar_pdf_cuadrante(df_mes, mes_sel, mes_label):
+    """
+    Genera un PDF del cuadrante con formato tipo Excel oficial
+    (sin escudos, A4 apaisado)
+    """
 
     buffer = BytesIO()
 
     doc = SimpleDocTemplate(
         buffer,
         pagesize=landscape(A4),
-        rightMargin=20,
         leftMargin=20,
+        rightMargin=20,
         topMargin=20,
         bottomMargin=20
     )
 
-    data = [df_pdf.columns.tolist()] + df_pdf.values.tolist()
+    styles = getSampleStyleSheet()
+    elementos = []
 
+    # -------------------------------------------------
+    # TÍTULO
+    # -------------------------------------------------
+    titulo = Paragraph(
+        f"<b>CUADRANTE DE SERVICIO PARA EL MES DE {mes_label.upper()} DE 2026</b>",
+        styles["Title"]
+    )
+    elementos.append(titulo)
+    elementos.append(Spacer(1, 12))
+
+    # -------------------------------------------------
+    # DÍAS DEL MES
+    # -------------------------------------------------
+    dias_mes = sorted(df_mes["dia"].unique())
+    num_dias = calendar.monthrange(2026, mes_sel)[1]
+
+    # -------------------------------------------------
+    # CABECERA TABLA
+    # -------------------------------------------------
+    cabecera = ["Nombre y Apellidos", "Categoría", "N.I.P."]
+    cabecera += [f"{d:02d}" for d in range(1, num_dias + 1)]
+
+    data = [cabecera]
+
+    # -------------------------------------------------
+    # CUERPO TABLA (AGENTES)
+    # -------------------------------------------------
+    agentes = (
+        df_mes[["nombre", "categoria", "nip"]]
+        .drop_duplicates()
+        .sort_values("nombre")
+    )
+
+    for _, ag in agentes.iterrows():
+        fila = [
+            ag["nombre"],
+            ag["categoria"],
+            ag["nip"]
+        ]
+
+        df_agente = df_mes[df_mes["nip"] == ag["nip"]]
+
+        for d in range(1, num_dias + 1):
+            turno = df_agente[df_agente["dia"] == d]["turno"]
+            fila.append(turno.iloc[0] if not turno.empty else "")
+
+        data.append(fila)
+
+    # -------------------------------------------------
+    # TABLA
+    # -------------------------------------------------
     tabla = Table(data, repeatRows=1)
-    tabla.setStyle(TableStyle([
-        ("GRID", (0,0), (-1,-1), 0.5, colors.black),
-        ("BACKGROUND", (0,0), (-1,0), colors.lightgrey),
-        ("ALIGN", (2,1), (-1,-1), "CENTER"),
-        ("FONTNAME", (0,0), (-1,0), "Helvetica-Bold"),
-        ("FONTSIZE", (0,0), (-1,-1), 8),
-        ("BOTTOMPADDING", (0,0), (-1,0), 8),
-        ("TOPPADDING", (0,0), (-1,0), 8),
-    ]))
 
-    doc.build([tabla])
+    estilo = TableStyle([
+        ("GRID", (0, 0), (-1, -1), 0.5, colors.black),
+        ("BACKGROUND", (0, 0), (-1, 0), colors.lightgrey),
+        ("FONTNAME", (0, 0), (-1, 0), "Helvetica-Bold"),
+        ("ALIGN", (3, 1), (-1, -1), "CENTER"),
+        ("VALIGN", (0, 0), (-1, -1), "MIDDLE"),
+        ("FONTSIZE", (0, 0), (-1, -1), 7),
+        ("BOTTOMPADDING", (0, 0), (-1, -1), 4),
+        ("TOPPADDING", (0, 0), (-1, -1), 4),
+    ])
+
+    # Anchos de columna (muy importante)
+    col_widths = [120, 60, 50] + [18] * num_dias
+    tabla._argW = col_widths
+
+    tabla.setStyle(estilo)
+    elementos.append(tabla)
+
+    doc.build(elementos)
     buffer.seek(0)
     return buffer
 
@@ -669,22 +734,14 @@ with tab_general:
 st.markdown("### 📤 Exportar cuadrante")
 
 if st.session_state.is_admin:
-    excel_file = exportar_excel(df_mes, mes_sel)
-
-    st.download_button(
-        label="⬇️ Descargar Excel (ADMIN)",
-        data=excel_file,
-        file_name=f"Cuadrante_{MESES[mes_sel]}_2026.xlsx",
-        mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
-    )
-
+    st.info("ℹ️ El ADMIN exporta en Excel (PDF reservado para usuarios)")
 else:
-    pdf_file = exportar_pdf(df_mes, mes_sel)
+    pdf_file = exportar_pdf_cuadrante(df_mes, mes_sel, mes_label)
 
     st.download_button(
-        label="⬇️ Descargar PDF",
+        label="⬇️ Descargar cuadrante en PDF",
         data=pdf_file,
-        file_name=f"Cuadrante_{MESES[mes_sel]}_2026.pdf",
+        file_name=f"Cuadrante_{mes_label.replace(' ', '_')}.pdf",
         mime="application/pdf"
     )
 
