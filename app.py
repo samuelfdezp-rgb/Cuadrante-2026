@@ -183,6 +183,44 @@ def cargar_historial_desde_github():
         "turno_anterior", "turno_nuevo", "observaciones"
     ])
 
+from openpyxl import load_workbook
+
+def excel_a_html(ruta_excel):
+    wb = load_workbook(ruta_excel, data_only=True)
+    ws = wb.active
+
+    html = "<table style='border-collapse:collapse'>"
+
+    for fila in ws.iter_rows():
+        html += "<tr>"
+        for celda in fila:
+            valor = "" if celda.value is None else celda.value
+
+            estilo = ""
+
+            if celda.fill and celda.fill.fgColor and celda.fill.fgColor.rgb:
+                color = celda.fill.fgColor.rgb[-6:]
+                estilo += f"background-color:#{color};"
+
+            if celda.font:
+                if celda.font.bold:
+                    estilo += "font-weight:bold;"
+                if celda.font.color and celda.font.color.rgb:
+                    color_txt = celda.font.color.rgb[-6:]
+                    estilo += f"color:#{color_txt};"
+
+            if celda.alignment:
+                if celda.alignment.horizontal:
+                    estilo += f"text-align:{celda.alignment.horizontal};"
+
+            estilo += "border:1px solid #000;padding:4px;"
+
+            html += f"<td style='{estilo}'>{valor}</td>"
+        html += "</tr>"
+
+    html += "</table>"
+    return html
+
 # ==================================================
 # SESIÓN
 # ==================================================
@@ -373,12 +411,12 @@ def estilo_turno(t):
 # PESTAÑAS
 # ==================================================
 if st.session_state.is_admin:
-    tab_general, tab_mis_turnos, tab_historial = st.tabs(
-        ["📋 Cuadrante general", "📆 Mis turnos", "📜 Historial"]
+    tab_general, tab_mis_turnos, tab_resumen, tab_historial = st.tabs(
+        ["📋 Cuadrante general", "📆 Mis turnos", "📊 Resumen", "📜 Historial"]
     )
 else:
-    tab_general, tab_mis_turnos = st.tabs(
-        ["📋 Cuadrante general", "📆 Mis turnos"]
+    tab_general, tab_mis_turnos, tab_resumen = st.tabs(
+        ["📋 Cuadrante general", "📆 Mis turnos", "📊 Resumen"]
     )
 
 # ==================================================
@@ -864,3 +902,22 @@ if st.session_state.is_admin:
 
                 st.warning("🗑️ Registro eliminado del historial")
                 st.rerun()
+
+# ==================================================
+# TAB RESUMEN
+# ==================================================
+
+with tab_resumen:
+    st.subheader("📊 Resumen personal")
+
+    nip = st.session_state.nip
+    ruta_excel = f"resumenes/{nip}.xlsx"
+
+    if not os.path.exists(ruta_excel):
+        st.warning("⚠️ No hay resumen disponible para este trabajador.")
+    else:
+        html_resumen = excel_a_html(ruta_excel)
+        st.markdown(
+            f"<div style='overflow:auto; max-width:100%'>{html_resumen}</div>",
+            unsafe_allow_html=True
+        )
