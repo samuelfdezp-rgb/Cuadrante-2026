@@ -462,7 +462,7 @@ for fila_idx in range(1, len(data)):
 
     doc.build(elementos)
     buffer.seek(0)
-    return buffer
+        return buffer
 
 # ==================================================
 # SESIÓN
