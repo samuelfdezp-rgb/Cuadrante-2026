@@ -192,14 +192,14 @@ def cargar_historial_desde_github():
 
 def exportar_excel_desde_plantilla(df_mes, mes_label):
     """
-    Usa Plantilla de exportación.xlsx
-    y devuelve un archivo Excel listo para descargar
+    Exporta el cuadrante usando la plantilla Excel
+    SIN romper formatos ni fórmulas
     """
 
     PLANTILLA = "Plantilla de exportación.xlsx"
 
     if not os.path.exists(PLANTILLA):
-        st.error("❌ No se encuentra la plantilla Excel en el repositorio")
+        st.error("❌ No se encuentra la plantilla Excel")
         return None
 
     # ---- crear archivo temporal
@@ -212,13 +212,12 @@ def exportar_excel_desde_plantilla(df_mes, mes_label):
 
     # ---- abrir Excel
     wb = load_workbook(ruta_salida)
-    ws = wb.active   # o wb["Hoja1"] si sabes el nombre
 
-    # ==================================================
-    # AQUÍ SOLO ESCRIBIMOS DATOS (NO CÁLCULOS)
-    # ==================================================
+    # ⚠️ MUY IMPORTANTE: usa el nombre REAL de la hoja
+    ws = wb["Hoja1"]   # 🔴 CAMBIA "Hoja1" si tu plantilla tiene otro nombre
 
-    fila_excel = 2  # empieza debajo de cabeceras
+    # ---- escribir SOLO datos (no cabeceras, no fórmulas)
+    fila_excel = 2  # ajusta si tu plantilla empieza en otra fila
 
     for _, r in df_mes.iterrows():
         ws.cell(row=fila_excel, column=1, value=r["fecha"])
@@ -229,7 +228,10 @@ def exportar_excel_desde_plantilla(df_mes, mes_label):
         fila_excel += 1
 
     wb.save(ruta_salida)
-    return ruta_salida
+
+    # ---- devolver como bytes para Streamlit
+    with open(ruta_salida, "rb") as f:
+        return f.read()
 
 def exportar_pdf(df_mes, mes_sel):
     columnas = ["nombre", "categoria", "dia", "turno"]
@@ -667,14 +669,15 @@ with tab_general:
 st.markdown("### 📤 Exportar cuadrante")
 
 if st.session_state.is_admin:
-    excel_file = exportar_excel(df_mes, mes_sel)
+    excel_bytes = exportar_excel_desde_plantilla(df_mes, mes_label)
 
-    st.download_button(
-        label="⬇️ Descargar Excel (ADMIN)",
-        data=excel_file,
-        file_name=f"Cuadrante_{MESES[mes_sel]}_2026.xlsx",
-        mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
-    )
+    if excel_bytes:
+        st.download_button(
+            label="⬇️ Descargar Excel (ADMIN)",
+            data=excel_bytes,
+            file_name=f"Cuadrante_{mes_label.replace(' ', '_')}.xlsx",
+            mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+        )
 
 else:
     pdf_file = exportar_pdf(df_mes, mes_sel)
