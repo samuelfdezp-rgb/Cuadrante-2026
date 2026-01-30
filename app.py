@@ -219,7 +219,7 @@ def exportar_excel_desde_plantilla(df_mes, mes_label):
     shutil.copy(PLANTILLA, ruta_salida)
 
     wb = load_workbook(ruta_salida)
-    ws = wb["Hoja1"]   # ⚠️ ajusta si cambia el nombre
+    ws = wb["Hoja 1"]   # ⚠️ ajusta si cambia el nombre
 
     fila_excel = 2
 
