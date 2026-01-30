@@ -212,7 +212,7 @@ def exportar_excel_desde_plantilla(df_mes, mes_label):
 
     # ---- abrir Excel
     wb = load_workbook(ruta_salida)
-    ws = wb["Hoja1"]   # ⚠️ cambia si tu hoja tiene otro nombre
+    ws = wb["Hoja 1"]   # ⚠️ cambia si tu hoja tiene otro nombre
 
     fila_excel = 2  # empieza debajo de cabeceras
 
