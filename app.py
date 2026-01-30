@@ -351,34 +351,82 @@ def exportar_pdf_cuadrante(df_mes, mes_sel, mes_label):
     # ==================================================
     # COLORES DE TURNOS + DOMINGOS / FESTIVOS
     # ==================================================
-    for fila_idx in range(1, len(data)):
-        for col_idx in range(3, len(data[0])):
-            turno = data[fila_idx][col_idx]
-            dia = col_idx - 2
-            fecha = date(2026, mes_sel, dia)
+    from datetime import date
 
-            # ---- TURNO
-            if turno:
-                e = estilo_turno(turno)
+for fila_idx in range(1, len(data)):
+    for col_idx in range(3, len(data[0])):
+
+        turno = data[fila_idx][col_idx]
+
+        # 🔹 día correcto
+        dia = col_idx - 3
+        fecha = date(2026, mes_sel, dia)
+
+        # ---------------------------
+        # CABECERA: FESTIVOS / DOMINGOS
+        # ---------------------------
+        if fila_idx == 1:  # SOLO cabecera
+            if es_festivo_pdf(fecha):
                 estilo.add(
                     "BACKGROUND",
-                    (col_idx, fila_idx),
-                    (col_idx, fila_idx),
-                    colors.HexColor(e["bg"])
+                    (col_idx, 0),
+                    (col_idx, 0),
+                    colors.HexColor("#92D050")
                 )
                 estilo.add(
                     "TEXTCOLOR",
-                    (col_idx, fila_idx),
-                    (col_idx, fila_idx),
-                    colors.HexColor(e["fg"])
+                    (col_idx, 0),
+                    (col_idx, 0),
+                    colors.red
                 )
-                if e.get("bold"):
-                    estilo.add(
-                        "FONTNAME",
-                        (col_idx, fila_idx),
-                        (col_idx, fila_idx),
-                        "Helvetica-Bold"
-                    )
+                estilo.add(
+                    "FONTNAME",
+                    (col_idx, 0),
+                    (col_idx, 0),
+                    "Helvetica-Bold"
+                )
+
+            elif fecha.weekday() == 6:  # domingo
+                estilo.add(
+                    "TEXTCOLOR",
+                    (col_idx, 0),
+                    (col_idx, 0),
+                    colors.red
+                )
+                estilo.add(
+                    "FONTNAME",
+                    (col_idx, 0),
+                    (col_idx, 0),
+                    "Helvetica-Bold"
+                )
+
+        # ---------------------------
+        # CELDA DE TURNO (SOLO ESA)
+        # ---------------------------
+        if turno:
+            e = estilo_turno(turno)
+
+            estilo.add(
+                "BACKGROUND",
+                (col_idx, fila_idx),
+                (col_idx, fila_idx),
+                colors.HexColor(e["bg"])
+            )
+
+            estilo.add(
+                "TEXTCOLOR",
+                (col_idx, fila_idx),
+                (col_idx, fila_idx),
+                colors.HexColor(e["fg"])
+            )
+
+            if e.get("bold"):
+                estilo.add(
+                    "FONTNAME",
+                    (col_idx, fila_idx),
+                    (col_idx, fila_idx),
+                    "Helvetica-Bold"
+                )
 
             # ---- FESTIVOS (PISAN EL TURNO)
             if es_festivo_pdf(fecha):
