@@ -193,7 +193,7 @@ def cargar_historial_desde_github():
 def exportar_excel_desde_plantilla(df_mes, mes_label):
     """
     Exporta el cuadrante usando la plantilla Excel
-    SIN romper formatos ni fórmulas
+    manteniendo formatos y fórmulas
     """
 
     PLANTILLA = "Plantilla de exportación.xlsx"
@@ -212,24 +212,24 @@ def exportar_excel_desde_plantilla(df_mes, mes_label):
 
     # ---- abrir Excel
     wb = load_workbook(ruta_salida)
+    ws = wb["Hoja1"]   # ⚠️ cambia si tu hoja tiene otro nombre
 
-    # ⚠️ MUY IMPORTANTE: usa el nombre REAL de la hoja
-    ws = wb["Hoja 1"]   # 🔴 CAMBIA "Hoja 1" si tu plantilla tiene otro nombre
-
-    # ---- escribir SOLO datos (no cabeceras, no fórmulas)
-    fila_excel = 2  # ajusta si tu plantilla empieza en otra fila
+    fila_excel = 2  # empieza debajo de cabeceras
 
     for _, r in df_mes.iterrows():
-        ws.cell(row=fila_excel, column=1, value=r["fecha"])
-        ws.cell(row=fila_excel, column=2, value=r["nombre"])
-        ws.cell(row=fila_excel, column=3, value=r["categoria"])
-        ws.cell(row=fila_excel, column=4, value=r["nip"])
-        ws.cell(row=fila_excel, column=5, value=r["turno"])
+        ws.cell(row=fila_excel, column=1, value=(
+            r["fecha"].to_pydatetime() if pd.notna(r["fecha"]) else ""
+        ))
+        ws.cell(row=fila_excel, column=2, value=str(r["nombre"]) if pd.notna(r["nombre"]) else "")
+        ws.cell(row=fila_excel, column=3, value=str(r["categoria"]) if pd.notna(r["categoria"]) else "")
+        ws.cell(row=fila_excel, column=4, value=str(r["nip"]) if pd.notna(r["nip"]) else "")
+        ws.cell(row=fila_excel, column=5, value=str(r["turno"]) if pd.notna(r["turno"]) else "")
+
         fila_excel += 1
 
     wb.save(ruta_salida)
 
-    # ---- devolver como bytes para Streamlit
+    # ---- devolver como bytes
     with open(ruta_salida, "rb") as f:
         return f.read()
 
