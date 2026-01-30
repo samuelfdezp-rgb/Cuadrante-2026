@@ -244,12 +244,8 @@ def es_festivo_pdf(fecha):
     }
     return fecha in festivos
 
-
 from reportlab.lib.pagesizes import A4, landscape
-from reportlab.platypus import (
-    SimpleDocTemplate, Table, TableStyle,
-    Paragraph, Spacer, Image
-)
+from reportlab.platypus import SimpleDocTemplate, Table, TableStyle, Paragraph, Spacer, Image
 from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
 from reportlab.lib.enums import TA_CENTER
 from reportlab.lib import colors
@@ -259,7 +255,6 @@ import calendar
 import os
 
 def exportar_pdf_cuadrante(df_mes, mes_sel, mes_label):
-
     buffer = BytesIO()
 
     doc = SimpleDocTemplate(
@@ -278,25 +273,24 @@ def exportar_pdf_cuadrante(df_mes, mes_sel, mes_label):
     # CABECERA (IMAGEN)
     # ==================================================
     if os.path.exists("cabecera.png"):
-        img = Image("cabecera.png", width=760, height=80)
-        elementos.append(img)
+        elementos.append(Image("cabecera.png", width=760, height=80))
         elementos.append(Spacer(1, 10))
 
     # ==================================================
-    # TÍTULO CENTRADO
+    # TÍTULO CENTRADO (COMO EL ORIGINAL)
     # ==================================================
     titulo_style = ParagraphStyle(
-        name="TituloCentrado",
+        "Titulo",
         parent=styles["Heading2"],
         alignment=TA_CENTER
     )
 
-    titulo = Paragraph(
-        f"<b>CUADRANTE DE SERVICIO PARA EL MES DE {mes_label.upper()}</b>",
-        titulo_style
+    elementos.append(
+        Paragraph(
+            f"<b>CUADRANTE DE SERVICIO PARA EL MES DE {mes_label.upper()}</b>",
+            titulo_style
+        )
     )
-
-    elementos.append(titulo)
     elementos.append(Spacer(1, 12))
 
     # ==================================================
@@ -309,21 +303,14 @@ def exportar_pdf_cuadrante(df_mes, mes_sel, mes_label):
     # ==================================================
     cabecera = ["Nombre y Apellidos", "Categoría", "N.I.P."]
     cabecera += [f"{d:02d}" for d in range(1, num_dias + 1)]
-
     data = [cabecera]
 
     # ==================================================
-    # ORDEN REAL DE LA APP
+    # ORDEN EXACTO DE LA APP
     # ==================================================
-    orden_agentes = (
-        df_mes[["nombre", "categoria", "nip"]]
-        .drop_duplicates()
-    )
+    orden = df_mes[["nombre", "categoria", "nip"]].drop_duplicates()
 
-    # ==================================================
-    # FILAS
-    # ==================================================
-    for _, ag in orden_agentes.iterrows():
+    for _, ag in orden.iterrows():
         fila = [ag["nombre"], ag["categoria"], ag["nip"]]
         df_ag = df_mes[df_mes["nip"] == ag["nip"]]
 
@@ -337,7 +324,6 @@ def exportar_pdf_cuadrante(df_mes, mes_sel, mes_label):
     # TABLA
     # ==================================================
     tabla = Table(data, repeatRows=1)
-
     estilo = TableStyle([
         ("GRID", (0, 0), (-1, -1), 0.5, colors.black),
         ("BACKGROUND", (0, 0), (-1, 0), colors.lightgrey),
@@ -350,120 +336,53 @@ def exportar_pdf_cuadrante(df_mes, mes_sel, mes_label):
     ])
 
     # ==================================================
-    # COLORES DE TURNOS + DOMINGOS / FESTIVOS
+    # ESTILOS DE DÍAS Y TURNOS (CLON DEL PDF ORIGINAL)
     # ==================================================
-    for fila_idx in range(1, len(data)):            # SOLO filas de agentes
-        for col_idx in range(3, len(data[0])):     # SOLO días
-
-            turno = data[fila_idx][col_idx]
-            dia = col_idx - 2                       # día REAL
-            fecha = date(2026, mes_sel, dia)
-
-            # ---------------------------
-            # CELDA DE TURNO
-            # ---------------------------
-            if turno:
-                e = estilo_turno(turno)
-
-                estilo.add(
-                    "BACKGROUND",
-                    (col_idx, fila_idx),
-                    (col_idx, fila_idx),
-                    colors.HexColor(e["bg"])
-                )
-                estilo.add(
-                    "TEXTCOLOR",
-                    (col_idx, fila_idx),
-                    (col_idx, fila_idx),
-                    colors.HexColor(e["fg"])
-                )
-
-                if e.get("bold"):
-                    estilo.add(
-                        "FONTNAME",
-                        (col_idx, fila_idx),
-                        (col_idx, fila_idx),
-                        "Helvetica-Bold"
-                    )
-
-            # ---------------------------
-            # FESTIVOS (SOLO ESA CELDA)
-            # ---------------------------
-            if es_festivo_pdf(fecha):
-                estilo.add(
-                    "BACKGROUND",
-                    (col_idx, fila_idx),
-                    (col_idx, fila_idx),
-                    colors.HexColor("#92D050")
-                )
-                estilo.add(
-                    "TEXTCOLOR",
-                    (col_idx, fila_idx),
-                    (col_idx, fila_idx),
-                    colors.red
-                )
-
-            # ---------------------------
-            # DOMINGOS
-            # ---------------------------
-            elif fecha.weekday() == 6:
-                estilo.add(
-                    "TEXTCOLOR",
-                    (col_idx, fila_idx),
-                    (col_idx, fila_idx),
-                    colors.red
-                )
-
-    # ==================================================
-    # CABECERA DE DÍAS (FESTIVOS / DOMINGOS)
-    # ==================================================
-    for col_idx in range(3, len(data[0])):
+    for col_idx in range(3, 3 + num_dias):
         dia = col_idx - 2
         fecha = date(2026, mes_sel, dia)
 
+        # ---- CABECERA
         if es_festivo_pdf(fecha):
-            estilo.add(
-                "BACKGROUND",
-                (col_idx, 0),
-                (col_idx, 0),
-                colors.HexColor("#92D050")
-            )
-            estilo.add(
-                "TEXTCOLOR",
-                (col_idx, 0),
-                (col_idx, 0),
-                colors.red
-            )
-            estilo.add(
-                "FONTNAME",
-                (col_idx, 0),
-                (col_idx, 0),
-                "Helvetica-Bold"
-            )
-
+            estilo.add("BACKGROUND", (col_idx, 0), (col_idx, 0), colors.HexColor("#92D050"))
+            estilo.add("TEXTCOLOR", (col_idx, 0), (col_idx, 0), colors.red)
+            estilo.add("FONTNAME", (col_idx, 0), (col_idx, 0), "Helvetica-Bold")
         elif fecha.weekday() == 6:
-            estilo.add(
-                "TEXTCOLOR",
-                (col_idx, 0),
-                (col_idx, 0),
-                colors.red
-            )
-            estilo.add(
-                "FONTNAME",
-                (col_idx, 0),
-                (col_idx, 0),
-                "Helvetica-Bold"
-            )
+            estilo.add("TEXTCOLOR", (col_idx, 0), (col_idx, 0), colors.red)
+            estilo.add("FONTNAME", (col_idx, 0), (col_idx, 0), "Helvetica-Bold")
+
+        # ---- CELDAS DE TURNOS
+        for fila_idx in range(1, len(data)):
+            turno = data[fila_idx][col_idx]
+            if not turno:
+                continue
+
+            e = estilo_turno(turno)
+
+            estilo.add("BACKGROUND", (col_idx, fila_idx), (col_idx, fila_idx), colors.HexColor(e["bg"]))
+            estilo.add("TEXTCOLOR", (col_idx, fila_idx), (col_idx, fila_idx), colors.HexColor(e["fg"]))
+
+            if e.get("bold"):
+                estilo.add("FONTNAME", (col_idx, fila_idx), (col_idx, fila_idx), "Helvetica-Bold")
+
+            # Festivo pisa todo
+            if es_festivo_pdf(fecha):
+                estilo.add("BACKGROUND", (col_idx, fila_idx), (col_idx, fila_idx), colors.HexColor("#92D050"))
+                estilo.add("TEXTCOLOR", (col_idx, fila_idx), (col_idx, fila_idx), colors.red)
+
+            # Domingo: solo texto rojo
+            elif fecha.weekday() == 6:
+                estilo.add("TEXTCOLOR", (col_idx, fila_idx), (col_idx, fila_idx), colors.red)
 
     # ==================================================
-    # ANCHOS DE COLUMNA
+    # ANCHOS
     # ==================================================
     tabla._argW = [130, 60, 50] + [18] * num_dias
-
     tabla.setStyle(estilo)
-    elementos.append(tabla)
 
+    elementos.append(tabla)
     doc.build(elementos)
+
     buffer.seek(0)
     return buffer
 
