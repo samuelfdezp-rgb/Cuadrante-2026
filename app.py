@@ -190,16 +190,6 @@ def cargar_historial_desde_github():
         "turno_anterior", "turno_nuevo", "observaciones"
     ])
 
-def safe_excel_value(v):
-    """
-    Devuelve SIEMPRE un tipo válido para openpyxl
-    """
-    if pd.isna(v):
-        return ""
-    if isinstance(v, pd.Timestamp):
-        return v.to_pydatetime()
-    return str(v)
-
 def exportar_excel_desde_plantilla(df_mes, mes_label):
 
     PLANTILLA = "Plantilla de exportación.xlsx"
@@ -215,16 +205,27 @@ def exportar_excel_desde_plantilla(df_mes, mes_label):
     shutil.copy(PLANTILLA, ruta_salida)
 
     wb = load_workbook(ruta_salida)
-    ws = wb["Hoja 1"]   # ajusta si la hoja se llama distinto
+    ws = wb.active   # o wb["Hoja 1"]
 
     fila_excel = 2
 
     for _, r in df_mes.iterrows():
-        ws.cell(row=fila_excel, column=1, value=safe_excel_value(r["fecha"]))
-        ws.cell(row=fila_excel, column=2, value=safe_excel_value(r["nombre"]))
-        ws.cell(row=fila_excel, column=3, value=safe_excel_value(r["categoria"]))
-        ws.cell(row=fila_excel, column=4, value=safe_excel_value(r["nip"]))
-        ws.cell(row=fila_excel, column=5, value=safe_excel_value(r["turno"]))
+
+        fecha = r["fecha"]
+        nombre = "" if pd.isna(r["nombre"]) else str(r["nombre"])
+        categoria = "" if pd.isna(r["categoria"]) else str(r["categoria"])
+        nip = "" if pd.isna(r["nip"]) else str(r["nip"])
+        turno = "" if pd.isna(r["turno"]) else str(r["turno"])
+
+        if isinstance(fecha, pd.Timestamp):
+            fecha = fecha.to_pydatetime()
+
+        ws.cell(row=fila_excel, column=1).value = fecha
+        ws.cell(row=fila_excel, column=2).value = nombre
+        ws.cell(row=fila_excel, column=3).value = categoria
+        ws.cell(row=fila_excel, column=4).value = nip
+        ws.cell(row=fila_excel, column=5).value = turno
+
         fila_excel += 1
 
     wb.save(ruta_salida)
