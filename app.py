@@ -192,15 +192,12 @@ def cargar_historial_desde_github():
 
 def safe_excel_value(v):
     """
-    Convierte cualquier valor pandas/numpy
-    en algo que openpyxl pueda escribir
+    Devuelve SIEMPRE un tipo válido para openpyxl
     """
     if pd.isna(v):
         return ""
     if isinstance(v, pd.Timestamp):
         return v.to_pydatetime()
-    if hasattr(v, "item"):  # numpy types
-        return v.item()
     return str(v)
 
 def exportar_excel_desde_plantilla(df_mes, mes_label):
@@ -211,7 +208,6 @@ def exportar_excel_desde_plantilla(df_mes, mes_label):
         st.error("❌ No se encuentra la plantilla Excel")
         return None
 
-    # ---- archivo temporal
     tmp_dir = tempfile.mkdtemp()
     nombre_salida = f"Cuadrante_{mes_label.replace(' ', '_')}.xlsx"
     ruta_salida = os.path.join(tmp_dir, nombre_salida)
@@ -219,7 +215,7 @@ def exportar_excel_desde_plantilla(df_mes, mes_label):
     shutil.copy(PLANTILLA, ruta_salida)
 
     wb = load_workbook(ruta_salida)
-    ws = wb["Hoja 1"]   # ⚠️ ajusta si cambia el nombre
+    ws = wb["Hoja1"]   # ajusta si la hoja se llama distinto
 
     fila_excel = 2
 
