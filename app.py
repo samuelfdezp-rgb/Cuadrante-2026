@@ -190,11 +190,20 @@ def cargar_historial_desde_github():
         "turno_anterior", "turno_nuevo", "observaciones"
     ])
 
+def safe_excel_value(v):
+    """
+    Convierte cualquier valor pandas/numpy
+    en algo que openpyxl pueda escribir
+    """
+    if pd.isna(v):
+        return ""
+    if isinstance(v, pd.Timestamp):
+        return v.to_pydatetime()
+    if hasattr(v, "item"):  # numpy types
+        return v.item()
+    return str(v)
+
 def exportar_excel_desde_plantilla(df_mes, mes_label):
-    """
-    Exporta el cuadrante usando la plantilla Excel
-    manteniendo formatos y fórmulas
-    """
 
     PLANTILLA = "Plantilla de exportación.xlsx"
 
@@ -202,34 +211,28 @@ def exportar_excel_desde_plantilla(df_mes, mes_label):
         st.error("❌ No se encuentra la plantilla Excel")
         return None
 
-    # ---- crear archivo temporal
+    # ---- archivo temporal
     tmp_dir = tempfile.mkdtemp()
     nombre_salida = f"Cuadrante_{mes_label.replace(' ', '_')}.xlsx"
     ruta_salida = os.path.join(tmp_dir, nombre_salida)
 
-    # ---- copiar plantilla
     shutil.copy(PLANTILLA, ruta_salida)
 
-    # ---- abrir Excel
     wb = load_workbook(ruta_salida)
-    ws = wb["Hoja 1"]   # ⚠️ cambia si tu hoja tiene otro nombre
+    ws = wb["Hoja1"]   # ⚠️ ajusta si cambia el nombre
 
-    fila_excel = 2  # empieza debajo de cabeceras
+    fila_excel = 2
 
     for _, r in df_mes.iterrows():
-        ws.cell(row=fila_excel, column=1, value=(
-            r["fecha"].to_pydatetime() if pd.notna(r["fecha"]) else ""
-        ))
-        ws.cell(row=fila_excel, column=2, value=str(r["nombre"]) if pd.notna(r["nombre"]) else "")
-        ws.cell(row=fila_excel, column=3, value=str(r["categoria"]) if pd.notna(r["categoria"]) else "")
-        ws.cell(row=fila_excel, column=4, value=str(r["nip"]) if pd.notna(r["nip"]) else "")
-        ws.cell(row=fila_excel, column=5, value=str(r["turno"]) if pd.notna(r["turno"]) else "")
-
+        ws.cell(row=fila_excel, column=1, value=safe_excel_value(r["fecha"]))
+        ws.cell(row=fila_excel, column=2, value=safe_excel_value(r["nombre"]))
+        ws.cell(row=fila_excel, column=3, value=safe_excel_value(r["categoria"]))
+        ws.cell(row=fila_excel, column=4, value=safe_excel_value(r["nip"]))
+        ws.cell(row=fila_excel, column=5, value=safe_excel_value(r["turno"]))
         fila_excel += 1
 
     wb.save(ruta_salida)
 
-    # ---- devolver como bytes
     with open(ruta_salida, "rb") as f:
         return f.read()
 
