@@ -251,6 +251,15 @@ if "is_admin" not in st.session_state:
     st.session_state.is_admin = False
 
 # ==================================================
+# AUTOLOGIN DESDE QUERY PARAMS
+# ==================================================
+params = st.experimental_get_query_params()
+
+if st.session_state.nip is None and "nip" in params:
+    st.session_state.nip = params["nip"][0]
+    st.session_state.is_admin = (st.session_state.nip == ADMIN_USER)
+
+# ==================================================
 # LOGIN
 # ==================================================
 if st.session_state.nip is None:
@@ -271,9 +280,11 @@ if st.session_state.nip is None:
     usuarios["nip"] = usuarios["nip"].apply(normalizar_nip)
 
     if st.button("Entrar"):
+        # ---- ADMIN
         if usuario == ADMIN_USER and password == ADMIN_PASS:
             st.session_state.nip = ADMIN_USER
             st.session_state.is_admin = True
+            st.experimental_set_query_params(nip=ADMIN_USER)
             st.rerun()
 
         nip = normalizar_nip(usuario)
@@ -282,6 +293,7 @@ if st.session_state.nip is None:
         if not fila.empty and fila.iloc[0]["dni"] == password:
             st.session_state.nip = nip
             st.session_state.is_admin = False
+            st.experimental_set_query_params(nip=nip)
             st.rerun()
 
         st.error("Usuario o contraseña incorrectos")
@@ -304,6 +316,7 @@ st.title("📅 Cuadrante 2026")
 if st.button("🚪 Cerrar sesión"):
     st.session_state.nip = None
     st.session_state.is_admin = False
+    st.experimental_set_query_params()  # 🔥 borra nip de la URL
     st.rerun()
 
 # ==================================================
