@@ -314,17 +314,25 @@ if not cuadrantes:
     st.error("No hay cuadrantes disponibles")
     st.stop()
 
-# Mes actual
+# 🔹 1. CARGAR TODOS LOS CUADRANTES
+df = cargar_cuadrantes()
+
+# 🔹 2. CARGAR HISTORIAL (DE TODOS LOS MESES)
+df_hist = cargar_historial_desde_github()
+
+# 🔹 3. APLICAR HISTORIAL A TODOS LOS DATOS
+df = aplicar_historial(df, df_hist)
+
+# 🔹 4. SELECCIÓN DE MES (MES ACTUAL POR DEFECTO)
 hoy = date.today()
 mes_actual_label = f"{MESES[hoy.month]} {hoy.year}"
 
 opciones_mes = list(cuadrantes.keys())
 
-# Índice por defecto
 if mes_actual_label in opciones_mes:
     default_index = opciones_mes.index(mes_actual_label)
 else:
-    default_index = 0  # fallback seguro
+    default_index = 0
 
 mes_label = st.selectbox(
     "📅 Selecciona mes",
@@ -332,11 +340,10 @@ mes_label = st.selectbox(
     index=default_index
 )
 
-df_hist = cargar_historial_desde_github()
-df = aplicar_historial(df, df_hist)
+# 🔹 5. FILTRAR MES SELECCIONADO
+anio_txt, anio_num = mes_label.split()
+mes_sel = list(MESES.keys())[list(MESES.values()).index(anio_txt)]
 
-anio_sel, mes_sel = mes_label.split()
-mes_sel = list(MESES.keys())[list(MESES.values()).index(anio_sel)]
 df_mes = df[df["mes"] == mes_sel]
 
 st.success(f"Mostrando cuadrante de {mes_label}")
