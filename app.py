@@ -29,6 +29,16 @@ MESES = {
 }
 
 # ==================================================
+# SESIÓN PERSISTENTE
+# ==================================================
+if "nip" not in st.session_state:
+    st.session_state.nip = None
+
+if "is_admin" not in st.session_state:
+    st.session_state.is_admin = False
+
+
+# ==================================================
 # GITHUB (PERSISTENCIA)
 # ==================================================
 GITHUB_USER = "samuelfdezp-rgb"
@@ -237,8 +247,6 @@ def excel_a_html(ruta_excel):
 # ==================================================
 # SESIÓN
 # ==================================================
-if "nip" not in st.session_state:
-    st.session_state.nip = None
 if "is_admin" not in st.session_state:
     st.session_state.is_admin = False
 
@@ -299,19 +307,33 @@ if st.button("🚪 Cerrar sesión"):
     st.rerun()
 
 # ==================================================
-# CARGA DE CUADRANTES
+# SELECCIÓN DE MES (MES ACTUAL POR DEFECTO)
 # ==================================================
 cuadrantes = listar_cuadrantes()
 if not cuadrantes:
     st.error("No hay cuadrantes disponibles")
     st.stop()
 
-mes_label = st.selectbox("📅 Selecciona mes", list(cuadrantes.keys()))
-df = cargar_cuadrantes()
+# Mes actual
+hoy = date.today()
+mes_actual_label = f"{MESES[hoy.month]} {hoy.year}"
+
+opciones_mes = list(cuadrantes.keys())
+
+# Índice por defecto
+if mes_actual_label in opciones_mes:
+    default_index = opciones_mes.index(mes_actual_label)
+else:
+    default_index = 0  # fallback seguro
+
+mes_label = st.selectbox(
+    "📅 Selecciona mes",
+    opciones_mes,
+    index=default_index
+)
 
 df_hist = cargar_historial_desde_github()
 df = aplicar_historial(df, df_hist)
-
 
 anio_sel, mes_sel = mes_label.split()
 mes_sel = list(MESES.keys())[list(MESES.values()).index(anio_sel)]
