@@ -753,6 +753,10 @@ with tab_mis_turnos:
 
         return resultado
 
+    hoy = date.today()
+    es_hoy_mes = (hoy.year == 2026 and hoy.month == mes_sel)
+    dia_hoy = hoy.day if es_hoy_mes else None
+
     # -------------------------------
     # CALENDARIO
     # -------------------------------
@@ -767,8 +771,13 @@ with tab_mis_turnos:
 
                 fila = df_user[df_user["fecha"] == pd.Timestamp(d)]
 
+                es_hoy = (dia_hoy == d.day)
+
+                fondo_hoy = "background:#00B0F0;color:#000;" if es_hoy else ""
+
                 html = (
                     "<div style='border:1px solid #999;"
+                    f"{fondo_hoy}"
                     "text-align:center;"
                     "padding:4px'>"
                     f"<b>{d.day}</b><br>"
