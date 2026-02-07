@@ -540,7 +540,21 @@ with tab_general:
         thead th {{
             position: sticky;
             top: 0;
-            z-index: 10;
+            z-index: 20;
+            background: #111;
+            color: white;
+        }}
+
+        /* COLUMNA NIP FIJA (SOLO MODO MÓVIL) */
+        .sticky-nip {{
+            position: sticky;
+            left: 0;
+            z-index: 15;
+            background: #ffffff;
+        }}
+
+        thead .sticky-nip {{
+            z-index: 30;
             background: #111;
             color: white;
         }}
@@ -575,7 +589,7 @@ with tab_general:
     """
 
     if modo_movil:
-        html += "<th>NIP</th>"
+        html += "<th class='sticky-nip'>NIP</th>"
     else:
         html += "<th>Nombre y apellidos</th><th>Categoría</th><th>NIP</th>"
 
@@ -603,7 +617,7 @@ with tab_general:
         html += f"<tr class='{clase_usuario}'>"
 
         if modo_movil:
-            html += f"<td>{nip_fila}</td>"
+            html += f"<td class='sticky-nip'>{nip_fila}</td>"
         else:
             nombre, cat, nip = idx
             html += f"<td>{nombre}</td><td>{cat}</td><td>{nip}</td>"
