@@ -970,7 +970,6 @@ if st.session_state.is_admin:
 # ==================================================
 # TAB RESUMEN
 # ==================================================
-
 with tab_resumen:
     st.subheader("📊 Resumen personal")
 
@@ -982,20 +981,34 @@ with tab_resumen:
     else:
         html_resumen = excel_a_html(ruta_excel)
 
-        # 🔧 CSS para forzar texto negro en fondos claros
-        css_fix = """
+        css_resumen = """
         <style>
-        td[style*="background-color:#DDEBF7"],
-        td[style*="background-color:#BDD7EE"],
-        td[style*="background-color:#DAE9F8"],
-        td[style*="background-color:#E7F3FF"],
-        td[style*="background-color:#DBE5F1"] {
+        /* CONTENEDOR GENERAL */
+        .resumen-wrapper {
+            background: #ffffff;
+            color: #000000;
+            padding: 10px;
+        }
+
+        /* TEXTO GENERAL NEGRO */
+        .resumen-wrapper td,
+        .resumen-wrapper th {
+            color: #000000;
+        }
+
+        /* FILAS AZUL CLARITO → TEXTO NEGRO */
+        .resumen-wrapper td[style*="background-color:#BDD7EE"],
+        .resumen-wrapper td[style*="background-color:#DDEBF7"],
+        .resumen-wrapper td[style*="background-color:#DAE9F8"],
+        .resumen-wrapper td[style*="background-color:#E7F3FF"],
+        .resumen-wrapper td[style*="background-color:#DBE5F1"] {
             color: #000000 !important;
         }
         </style>
         """
 
         st.markdown(
-            css_fix + f"<div style='overflow:auto; max-width:100%'>{html_resumen}</div>",
+            css_resumen +
+            f"<div class='resumen-wrapper' style='overflow:auto; max-width:100%'>{html_resumen}</div>",
             unsafe_allow_html=True
         )
