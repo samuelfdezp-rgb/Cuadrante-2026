@@ -381,7 +381,7 @@ NOMBRES_TURNO = {
     "Vac": "Vacaciones", "perm": "Permiso", "BAJA": "Baja",
     "Ts": "Tiempo sindical", "AP": "Asuntos particulares",
     "JuB": "Juicio Betanzos", "JuC": "Juicio Coruña",
-    "Curso": "Curso", "indisp": "Indisposición",
+    "Curso": "Curso", "indisp": "Indisposición", "EV": "Educación Vial"
 }
 
 def nombre_turno(c):
@@ -413,12 +413,14 @@ def estilo_turno(t):
         "Vac": ("#FFFFFF", "#FF0000"),
         "perm": ("#FFFFFF", "#FF0000"),
         "indisp": ("#FFFFFF", "#FF0000"),
+        "EV": ("#FFFFFF", "#FF0000"),
         "curso": ("#FFFFFF", "#FF0000"),
         "BAJA": ("#FFFFFF", "#FF0000"),
         "Ts": ("#FFFFFF", "#FF0000"),
         "JuB": ("#FFFFFF", "#FF0000"),
         "JuC": ("#FFFFFF", "#FF0000"),
         "1yJuB": ("#BDD7EE", "#FF0000"),
+        "LyJuB": ("#BDD7EE", "#FF0000"),
         "3yJuC": ("#BDD7EE", "#FF0000"),
         "AP": ("#FFFFFF", "#0070C0"),
         "1y2ex": ("#00B050", "#FF0000"),
@@ -436,7 +438,7 @@ def estilo_turno(t):
     }
 
     # Turnos dobles normales
-    if t in {"1y2", "1y3", "2y3", "3yJuC", "1yJuB"}:
+    if t in {"1y2", "1y3", "2y3", "3yJuC", "1yJuB", "LyJuB"}:
         return {"bg": "#DBDBDB", "fg": "#FF0000", "bold": True, "italic": False}
 
     # Turnos dobles con extra
@@ -447,7 +449,7 @@ def estilo_turno(t):
 
     # ---- NEGRITA
     bold = (
-        t in {"perm", "Ts", "JuB", "JuC", "AP", "Ts", "Vac", "BAJA", "indisp", "curso", "1yJuB", "3yJuC"} or
+        t in {"perm", "Ts", "JuB", "JuC", "AP", "Ts", "Vac", "BAJA", "indisp", "curso", "1yJuB", "3yJuC", "EV"} or
         "ex" in t or               # cualquier extra
         t in {"1y2", "1y3", "2y3"}
     )
@@ -849,7 +851,7 @@ if st.session_state.is_admin:
         "1y2", "1y3", "2y3",
         "1y2ex", "1y3ex", "2y3ex",
         "1|2ex", "1|3ex", "2|1ex", "2|3ex", "3|1ex", "3|2ex", "L|2ex",
-        "1yJuB", "AP|1ex", "AP|2ex", "AP|3ex", "3yJuC"
+        "1yJuB", "LyJuB", "AP|1ex", "AP|2ex", "AP|3ex", "3yJuC", "EV"
     ]
 
     with col3:
