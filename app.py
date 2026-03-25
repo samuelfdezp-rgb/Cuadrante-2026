@@ -381,7 +381,8 @@ NOMBRES_TURNO = {
     "Vac": "Vacaciones", "perm": "Permiso", "BAJA": "Baja",
     "Ts": "Tiempo sindical", "AP": "Asuntos particulares",
     "JuB": "Juicio Betanzos", "JuC": "Juicio Coruña",
-    "Curso": "Curso", "indisp": "Indisposición", "EV": "Educación Vial"
+    "Curso": "Curso", "indisp": "Indisposición", "EV": "Educación Vial",
+    "Tir": "Tiro"
 }
 
 def nombre_turno(c):
@@ -417,6 +418,8 @@ def estilo_turno(t):
         "curso": ("#FFFFFF", "#FF0000"),
         "BAJA": ("#FFFFFF", "#FF0000"),
         "Ts": ("#FFFFFF", "#FF0000"),
+        "Tir": ("#FFFFFF", "#FF0000"),
+        "indisp": ("#FFFFFF", "#FF0000"),
         "JuB": ("#FFFFFF", "#FF0000"),
         "JuC": ("#FFFFFF", "#FF0000"),
         "1yJuB": ("#BDD7EE", "#FF0000"),
@@ -449,7 +452,7 @@ def estilo_turno(t):
 
     # ---- NEGRITA
     bold = (
-        t in {"perm", "Ts", "JuB", "JuC", "AP", "Ts", "Vac", "BAJA", "indisp", "curso", "1yJuB", "3yJuC", "EV"} or
+        t in {"perm", "Ts", "JuB", "JuC", "AP", "Ts", "Vac", "BAJA", "indisp", "curso", "1yJuB", "3yJuC", "EV", "Tir"} or
         "ex" in t or               # cualquier extra
         t in {"1y2", "1y3", "2y3"}
     )
@@ -850,8 +853,8 @@ if st.session_state.is_admin:
         "JuB", "JuC", "Curso", "Indisp",
         "1y2", "1y3", "2y3",
         "1y2ex", "1y3ex", "2y3ex",
-        "1|2ex", "1|3ex", "2|1ex", "2|3ex", "3|1ex", "3|2ex", "L|2ex",
-        "1yJuB", "LyJuB", "AP|1ex", "AP|2ex", "AP|3ex", "3yJuC", "EV"
+        "1|2ex", "1|3ex", "2|1ex", "2|3ex", "3|1ex", "3|2ex", "L|2ex", "L|3ex",
+        "1yJuB", "LyJuB", "AP|1ex", "AP|2ex", "AP|3ex", "3yJuC", "EV", "Tir"
     ]
 
     with col3:
