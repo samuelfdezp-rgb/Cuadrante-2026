@@ -1,528 +1,528 @@
-AÒo;Mes;Fecha;DÌa;NIP;Nombre y Apellidos;CategorÌa;Turno;Tipo
-2026;5;01/05/2026;Viernes;032001;XosÈ Henrique Fidalgo GarcÌa;Inspector;Vac;Vacaciones
-2026;5;02/05/2026;S·bado;032001;XosÈ Henrique Fidalgo GarcÌa;Inspector;Vac;Vacaciones
-2026;5;03/05/2026;Domingo;032001;XosÈ Henrique Fidalgo GarcÌa;Inspector;Vac;Vacaciones
-2026;5;04/05/2026;Lunes;032001;XosÈ Henrique Fidalgo GarcÌa;Inspector;Vac;Vacaciones
-2026;5;05/05/2026;Martes;032001;XosÈ Henrique Fidalgo GarcÌa;Inspector;Vac;Vacaciones
-2026;5;06/05/2026;MiÈrcoles;032001;XosÈ Henrique Fidalgo GarcÌa;Inspector;Vac;Vacaciones
-2026;5;07/05/2026;Jueves;032001;XosÈ Henrique Fidalgo GarcÌa;Inspector;Tir;Tiro
-2026;5;08/05/2026;Viernes;032001;XosÈ Henrique Fidalgo GarcÌa;Inspector;L;Laborable
-2026;5;09/05/2026;S·bado;032001;XosÈ Henrique Fidalgo GarcÌa;Inspector;D;Descanso
-2026;5;10/05/2026;Domingo;032001;XosÈ Henrique Fidalgo GarcÌa;Inspector;D;Descanso
-2026;5;11/05/2026;Lunes;032001;XosÈ Henrique Fidalgo GarcÌa;Inspector;L;Laborable
-2026;5;12/05/2026;Martes;032001;XosÈ Henrique Fidalgo GarcÌa;Inspector;L;Laborable
-2026;5;13/05/2026;MiÈrcoles;032001;XosÈ Henrique Fidalgo GarcÌa;Inspector;L;Laborable
-2026;5;14/05/2026;Jueves;032001;XosÈ Henrique Fidalgo GarcÌa;Inspector;L;Laborable
-2026;5;15/05/2026;Viernes;032001;XosÈ Henrique Fidalgo GarcÌa;Inspector;L;Laborable
-2026;5;16/05/2026;S·bado;032001;XosÈ Henrique Fidalgo GarcÌa;Inspector;D;Descanso
-2026;5;17/05/2026;Domingo;032001;XosÈ Henrique Fidalgo GarcÌa;Inspector;D;Descanso
-2026;5;18/05/2026;Lunes;032001;XosÈ Henrique Fidalgo GarcÌa;Inspector;L;Laborable
-2026;5;19/05/2026;Martes;032001;XosÈ Henrique Fidalgo GarcÌa;Inspector;L;Laborable
-2026;5;20/05/2026;MiÈrcoles;032001;XosÈ Henrique Fidalgo GarcÌa;Inspector;L;Laborable
-2026;5;21/05/2026;Jueves;032001;XosÈ Henrique Fidalgo GarcÌa;Inspector;L;Laborable
-2026;5;22/05/2026;Viernes;032001;XosÈ Henrique Fidalgo GarcÌa;Inspector;L;Laborable
-2026;5;23/05/2026;S·bado;032001;XosÈ Henrique Fidalgo GarcÌa;Inspector;D;Descanso
-2026;5;24/05/2026;Domingo;032001;XosÈ Henrique Fidalgo GarcÌa;Inspector;D;Descanso
-2026;5;25/05/2026;Lunes;032001;XosÈ Henrique Fidalgo GarcÌa;Inspector;L;Laborable
-2026;5;26/05/2026;Martes;032001;XosÈ Henrique Fidalgo GarcÌa;Inspector;L;Laborable
-2026;5;27/05/2026;MiÈrcoles;032001;XosÈ Henrique Fidalgo GarcÌa;Inspector;L;Laborable
-2026;5;28/05/2026;Jueves;032001;XosÈ Henrique Fidalgo GarcÌa;Inspector;L;Laborable
-2026;5;29/05/2026;Viernes;032001;XosÈ Henrique Fidalgo GarcÌa;Inspector;L;Laborable
-2026;5;30/05/2026;S·bado;032001;XosÈ Henrique Fidalgo GarcÌa;Inspector;D;Descanso
-2026;5;31/05/2026;Domingo;032001;XosÈ Henrique Fidalgo GarcÌa;Inspector;D;Descanso
-2026;5;01/05/2026;Viernes;032018;Javier Fern·ndez Seijo;Oficial;D;Descanso
-2026;5;02/05/2026;S·bado;032018;Javier Fern·ndez Seijo;Oficial;D;Descanso
-2026;5;03/05/2026;Domingo;032018;Javier Fern·ndez Seijo;Oficial;D;Descanso
-2026;5;04/05/2026;Lunes;032018;Javier Fern·ndez Seijo;Oficial;L;Laborable
-2026;5;05/05/2026;Martes;032018;Javier Fern·ndez Seijo;Oficial;L;Laborable
-2026;5;06/05/2026;MiÈrcoles;032018;Javier Fern·ndez Seijo;Oficial;L;Laborable
-2026;5;07/05/2026;Jueves;032018;Javier Fern·ndez Seijo;Oficial;1;MaÒana
-2026;5;08/05/2026;Viernes;032018;Javier Fern·ndez Seijo;Oficial;D;Descanso
-2026;5;09/05/2026;S·bado;032018;Javier Fern·ndez Seijo;Oficial;D;Descanso
-2026;5;10/05/2026;Domingo;032018;Javier Fern·ndez Seijo;Oficial;D;Descanso
-2026;5;11/05/2026;Lunes;032018;Javier Fern·ndez Seijo;Oficial;Dcc;Descanso CompensaciÛn Curso
-2026;5;12/05/2026;Martes;032018;Javier Fern·ndez Seijo;Oficial;D;Descanso
-2026;5;13/05/2026;MiÈrcoles;032018;Javier Fern·ndez Seijo;Oficial;1;MaÒana
-2026;5;14/05/2026;Jueves;032018;Javier Fern·ndez Seijo;Oficial;Tir;Tiro
-2026;5;15/05/2026;Viernes;032018;Javier Fern·ndez Seijo;Oficial;D;Descanso
-2026;5;16/05/2026;S·bado;032018;Javier Fern·ndez Seijo;Oficial;1;MaÒana
-2026;5;17/05/2026;Domingo;032018;Javier Fern·ndez Seijo;Oficial;D;Descanso
-2026;5;18/05/2026;Lunes;032018;Javier Fern·ndez Seijo;Oficial;D;Descanso
-2026;5;19/05/2026;Martes;032018;Javier Fern·ndez Seijo;Oficial;D;Descanso
-2026;5;20/05/2026;MiÈrcoles;032018;Javier Fern·ndez Seijo;Oficial;D;Descanso
-2026;5;21/05/2026;Jueves;032018;Javier Fern·ndez Seijo;Oficial;3;Noche
-2026;5;22/05/2026;Viernes;032018;Javier Fern·ndez Seijo;Oficial;3;Noche
-2026;5;23/05/2026;S·bado;032018;Javier Fern·ndez Seijo;Oficial;3;Noche
-2026;5;24/05/2026;Domingo;032018;Javier Fern·ndez Seijo;Oficial;3;Noche
-2026;5;25/05/2026;Lunes;032018;Javier Fern·ndez Seijo;Oficial;3;Noche
-2026;5;26/05/2026;Martes;032018;Javier Fern·ndez Seijo;Oficial;D;Descanso
-2026;5;27/05/2026;MiÈrcoles;032018;Javier Fern·ndez Seijo;Oficial;Dcc;Descanso CompensaciÛn Curso
-2026;5;28/05/2026;Jueves;032018;Javier Fern·ndez Seijo;Oficial;D;Descanso
-2026;5;29/05/2026;Viernes;032018;Javier Fern·ndez Seijo;Oficial;2;Tarde
-2026;5;30/05/2026;S·bado;032018;Javier Fern·ndez Seijo;Oficial;2;Tarde
-2026;5;31/05/2026;Domingo;032018;Javier Fern·ndez Seijo;Oficial;2;Tarde
-2026;5;01/05/2026;Viernes;032015;Pedro RodrÌguez Pedreira;Oficial;3;Noche
-2026;5;02/05/2026;S·bado;032015;Pedro RodrÌguez Pedreira;Oficial;3;Noche
-2026;5;03/05/2026;Domingo;032015;Pedro RodrÌguez Pedreira;Oficial;D;Descanso
-2026;5;04/05/2026;Lunes;032015;Pedro RodrÌguez Pedreira;Oficial;Ts;Tiempo Sindical
-2026;5;05/05/2026;Martes;032015;Pedro RodrÌguez Pedreira;Oficial;3;Noche
-2026;5;06/05/2026;MiÈrcoles;032015;Pedro RodrÌguez Pedreira;Oficial;D;Descanso
-2026;5;07/05/2026;Jueves;032015;Pedro RodrÌguez Pedreira;Oficial;Tir;Tiro
-2026;5;08/05/2026;Viernes;032015;Pedro RodrÌguez Pedreira;Oficial;1;MaÒana
-2026;5;09/05/2026;S·bado;032015;Pedro RodrÌguez Pedreira;Oficial;1;MaÒana
-2026;5;10/05/2026;Domingo;032015;Pedro RodrÌguez Pedreira;Oficial;1;MaÒana
-2026;5;11/05/2026;Lunes;032015;Pedro RodrÌguez Pedreira;Oficial;2;Tarde
-2026;5;12/05/2026;Martes;032015;Pedro RodrÌguez Pedreira;Oficial;2;Tarde
-2026;5;13/05/2026;MiÈrcoles;032015;Pedro RodrÌguez Pedreira;Oficial;D;Descanso
-2026;5;14/05/2026;Jueves;032015;Pedro RodrÌguez Pedreira;Oficial;Tir;Tiro
-2026;5;15/05/2026;Viernes;032015;Pedro RodrÌguez Pedreira;Oficial;D;Descanso
-2026;5;16/05/2026;S·bado;032015;Pedro RodrÌguez Pedreira;Oficial;D;Descanso
-2026;5;17/05/2026;Domingo;032015;Pedro RodrÌguez Pedreira;Oficial;3;Noche
-2026;5;18/05/2026;Lunes;032015;Pedro RodrÌguez Pedreira;Oficial;D;Descanso
-2026;5;19/05/2026;Martes;032015;Pedro RodrÌguez Pedreira;Oficial;Ts;Tiempo Sindical
-2026;5;20/05/2026;MiÈrcoles;032015;Pedro RodrÌguez Pedreira;Oficial;3;Noche
-2026;5;21/05/2026;Jueves;032015;Pedro RodrÌguez Pedreira;Oficial;D;Descanso
-2026;5;22/05/2026;Viernes;032015;Pedro RodrÌguez Pedreira;Oficial;Dcc;Descanso CompensaciÛn Curso
-2026;5;23/05/2026;S·bado;032015;Pedro RodrÌguez Pedreira;Oficial;D;Descanso
-2026;5;24/05/2026;Domingo;032015;Pedro RodrÌguez Pedreira;Oficial;D;Descanso
-2026;5;25/05/2026;Lunes;032015;Pedro RodrÌguez Pedreira;Oficial;2;Tarde
-2026;5;26/05/2026;Martes;032015;Pedro RodrÌguez Pedreira;Oficial;Dcc;Descanso CompensaciÛn Curso
-2026;5;27/05/2026;MiÈrcoles;032015;Pedro RodrÌguez Pedreira;Oficial;D;Descanso
-2026;5;28/05/2026;Jueves;032015;Pedro RodrÌguez Pedreira;Oficial;D;Descanso
-2026;5;29/05/2026;Viernes;032015;Pedro RodrÌguez Pedreira;Oficial;D;Descanso
-2026;5;30/05/2026;S·bado;032015;Pedro RodrÌguez Pedreira;Oficial;D;Descanso
-2026;5;31/05/2026;Domingo;032015;Pedro RodrÌguez Pedreira;Oficial;D;Descanso
-2026;5;01/05/2026;Viernes;032016;VÌctor Mendez V·zquez;PolicÌa;D;Descanso
-2026;5;02/05/2026;S·bado;032016;VÌctor Mendez V·zquez;PolicÌa;D;Descanso
-2026;5;03/05/2026;Domingo;032016;VÌctor Mendez V·zquez;PolicÌa;D;Descanso
-2026;5;04/05/2026;Lunes;032016;VÌctor Mendez V·zquez;PolicÌa;2;Tarde
-2026;5;05/05/2026;Martes;032016;VÌctor Mendez V·zquez;PolicÌa;3;Noche
-2026;5;06/05/2026;MiÈrcoles;032016;VÌctor Mendez V·zquez;PolicÌa;3;Noche
-2026;5;07/05/2026;Jueves;032016;VÌctor Mendez V·zquez;PolicÌa;D;Descanso
-2026;5;08/05/2026;Viernes;032016;VÌctor Mendez V·zquez;PolicÌa;D;Descanso
-2026;5;09/05/2026;S·bado;032016;VÌctor Mendez V·zquez;PolicÌa;D;Descanso
-2026;5;10/05/2026;Domingo;032016;VÌctor Mendez V·zquez;PolicÌa;D;Descanso
-2026;5;11/05/2026;Lunes;032016;VÌctor Mendez V·zquez;PolicÌa;Dcc;Descanso CompensaciÛn Curso
-2026;5;12/05/2026;Martes;032016;VÌctor Mendez V·zquez;PolicÌa;2;Tarde
-2026;5;13/05/2026;MiÈrcoles;032016;VÌctor Mendez V·zquez;PolicÌa;D;Descanso
-2026;5;14/05/2026;Jueves;032016;VÌctor Mendez V·zquez;PolicÌa;Tir;Tiro
-2026;5;15/05/2026;Viernes;032016;VÌctor Mendez V·zquez;PolicÌa;1;MaÒana
-2026;5;16/05/2026;S·bado;032016;VÌctor Mendez V·zquez;PolicÌa;1;MaÒana
-2026;5;17/05/2026;Domingo;032016;VÌctor Mendez V·zquez;PolicÌa;1;MaÒana
-2026;5;18/05/2026;Lunes;032016;VÌctor Mendez V·zquez;PolicÌa;2;Tarde
-2026;5;19/05/2026;Martes;032016;VÌctor Mendez V·zquez;PolicÌa;D;Descanso
-2026;5;20/05/2026;MiÈrcoles;032016;VÌctor Mendez V·zquez;PolicÌa;Dcc;Descanso CompensaciÛn Curso
-2026;5;21/05/2026;Jueves;032016;VÌctor Mendez V·zquez;PolicÌa;1;MaÒana
-2026;5;22/05/2026;Viernes;032016;VÌctor Mendez V·zquez;PolicÌa;1;MaÒana
-2026;5;23/05/2026;S·bado;032016;VÌctor Mendez V·zquez;PolicÌa;1;MaÒana
-2026;5;24/05/2026;Domingo;032016;VÌctor Mendez V·zquez;PolicÌa;D;Descanso
-2026;5;25/05/2026;Lunes;032016;VÌctor Mendez V·zquez;PolicÌa;D;Descanso
-2026;5;26/05/2026;Martes;032016;VÌctor Mendez V·zquez;PolicÌa;D;Descanso
-2026;5;27/05/2026;MiÈrcoles;032016;VÌctor Mendez V·zquez;PolicÌa;D;Descanso
-2026;5;28/05/2026;Jueves;032016;VÌctor Mendez V·zquez;PolicÌa;D;Descanso
-2026;5;29/05/2026;Viernes;032016;VÌctor Mendez V·zquez;PolicÌa;3;Noche
-2026;5;30/05/2026;S·bado;032016;VÌctor Mendez V·zquez;PolicÌa;3;Noche
-2026;5;31/05/2026;Domingo;032016;VÌctor Mendez V·zquez;PolicÌa;3;Noche
-2026;5;01/05/2026;Viernes;032022;Miguel Naveiras Picos;PolicÌa;D;Descanso
-2026;5;02/05/2026;S·bado;032022;Miguel Naveiras Picos;PolicÌa;D;Descanso
-2026;5;03/05/2026;Domingo;032022;Miguel Naveiras Picos;PolicÌa;D;Descanso
-2026;5;04/05/2026;Lunes;032022;Miguel Naveiras Picos;PolicÌa;Dcc;Descanso CompensaciÛn Curso
-2026;5;05/05/2026;Martes;032022;Miguel Naveiras Picos;PolicÌa;D;Descanso
-2026;5;06/05/2026;MiÈrcoles;032022;Miguel Naveiras Picos;PolicÌa;D;Descanso
-2026;5;07/05/2026;Jueves;032022;Miguel Naveiras Picos;PolicÌa;1;MaÒana
-2026;5;08/05/2026;Viernes;032022;Miguel Naveiras Picos;PolicÌa;D;Descanso
-2026;5;09/05/2026;S·bado;032022;Miguel Naveiras Picos;PolicÌa;D;Descanso
-2026;5;10/05/2026;Domingo;032022;Miguel Naveiras Picos;PolicÌa;1;MaÒana
-2026;5;11/05/2026;Lunes;032022;Miguel Naveiras Picos;PolicÌa;1;MaÒana
-2026;5;12/05/2026;Martes;032022;Miguel Naveiras Picos;PolicÌa;D;Descanso
-2026;5;13/05/2026;MiÈrcoles;032022;Miguel Naveiras Picos;PolicÌa;1;MaÒana
-2026;5;14/05/2026;Jueves;032022;Miguel Naveiras Picos;PolicÌa;Tir;Tiro
-2026;5;15/05/2026;Viernes;032022;Miguel Naveiras Picos;PolicÌa;3;Noche
-2026;5;16/05/2026;S·bado;032022;Miguel Naveiras Picos;PolicÌa;3;Noche
-2026;5;17/05/2026;Domingo;032022;Miguel Naveiras Picos;PolicÌa;3;Noche
-2026;5;18/05/2026;Lunes;032022;Miguel Naveiras Picos;PolicÌa;D;Descanso
-2026;5;19/05/2026;Martes;032022;Miguel Naveiras Picos;PolicÌa;Dcc;Descanso CompensaciÛn Curso
-2026;5;20/05/2026;MiÈrcoles;032022;Miguel Naveiras Picos;PolicÌa;Ts;Tiempo Sindical
-2026;5;21/05/2026;Jueves;032022;Miguel Naveiras Picos;PolicÌa;D;Tarde
-2026;5;22/05/2026;Viernes;032022;Miguel Naveiras Picos;PolicÌa;2;Tarde
-2026;5;23/05/2026;S·bado;032022;Miguel Naveiras Picos;PolicÌa;2;Tarde
-2026;5;24/05/2026;Domingo;032022;Miguel Naveiras Picos;PolicÌa;2;Tarde
-2026;5;25/05/2026;Lunes;032022;Miguel Naveiras Picos;PolicÌa;3;Noche
-2026;5;26/05/2026;Martes;032022;Miguel Naveiras Picos;PolicÌa;3;Noche
-2026;5;27/05/2026;MiÈrcoles;032022;Miguel Naveiras Picos;PolicÌa;D;Descanso
-2026;5;28/05/2026;Jueves;032022;Miguel Naveiras Picos;PolicÌa;Ts;Tiempo Sindical
-2026;5;29/05/2026;Viernes;032022;Miguel Naveiras Picos;PolicÌa;D;Descanso
-2026;5;30/05/2026;S·bado;032022;Miguel Naveiras Picos;PolicÌa;D;Descanso
-2026;5;31/05/2026;Domingo;032022;Miguel Naveiras Picos;PolicÌa;D;Descanso
-2026;5;01/05/2026;Viernes;032023;Javier Plana Costoya;PolicÌa;3;Noche
-2026;5;02/05/2026;S·bado;032023;Javier Plana Costoya;PolicÌa;3;Noche
-2026;5;03/05/2026;Domingo;032023;Javier Plana Costoya;PolicÌa;3;Noche
-2026;5;04/05/2026;Lunes;032023;Javier Plana Costoya;PolicÌa;D;Descanso
-2026;5;05/05/2026;Martes;032023;Javier Plana Costoya;PolicÌa;Dcc;Descanso CompensaciÛn Curso
-2026;5;06/05/2026;MiÈrcoles;032023;Javier Plana Costoya;PolicÌa;1;MaÒana
-2026;5;07/05/2026;Jueves;032023;Javier Plana Costoya;PolicÌa;Tir;Tiro
-2026;5;08/05/2026;Viernes;032023;Javier Plana Costoya;PolicÌa;D;Descanso
-2026;5;09/05/2026;S·bado;032023;Javier Plana Costoya;PolicÌa;D;Descanso
-2026;5;10/05/2026;Domingo;032023;Javier Plana Costoya;PolicÌa;D;Descanso
-2026;5;11/05/2026;Lunes;032023;Javier Plana Costoya;PolicÌa;1;MaÒana
-2026;5;12/05/2026;Martes;032023;Javier Plana Costoya;PolicÌa;1;MaÒana
-2026;5;13/05/2026;MiÈrcoles;032023;Javier Plana Costoya;PolicÌa;3;Noche
-2026;5;14/05/2026;Jueves;032023;Javier Plana Costoya;PolicÌa;3;Noche
-2026;5;15/05/2026;Viernes;032023;Javier Plana Costoya;PolicÌa;D;Descanso
-2026;5;16/05/2026;S·bado;032023;Javier Plana Costoya;PolicÌa;D;Descanso
-2026;5;17/05/2026;Domingo;032023;Javier Plana Costoya;PolicÌa;D;Descanso
-2026;5;18/05/2026;Lunes;032023;Javier Plana Costoya;PolicÌa;D;Descanso
-2026;5;19/05/2026;Martes;032023;Javier Plana Costoya;PolicÌa;Dcc;Descanso CompensaciÛn Curso
-2026;5;20/05/2026;MiÈrcoles;032023;Javier Plana Costoya;PolicÌa;D;Descanso
-2026;5;21/05/2026;Jueves;032023;Javier Plana Costoya;PolicÌa;D;Descanso
-2026;5;22/05/2026;Viernes;032023;Javier Plana Costoya;PolicÌa;D;Descanso
-2026;5;23/05/2026;S·bado;032023;Javier Plana Costoya;PolicÌa;D;Descanso
-2026;5;24/05/2026;Domingo;032023;Javier Plana Costoya;PolicÌa;1;MaÒana
-2026;5;25/05/2026;Lunes;032023;Javier Plana Costoya;PolicÌa;1;MaÒana
-2026;5;26/05/2026;Martes;032023;Javier Plana Costoya;PolicÌa;1;MaÒana
-2026;5;27/05/2026;MiÈrcoles;032023;Javier Plana Costoya;PolicÌa;D;Descanso
-2026;5;28/05/2026;Jueves;032023;Javier Plana Costoya;PolicÌa;D;Descanso
-2026;5;29/05/2026;Viernes;032023;Javier Plana Costoya;PolicÌa;2;Tarde
-2026;5;30/05/2026;S·bado;032023;Javier Plana Costoya;PolicÌa;2;Tarde
-2026;5;31/05/2026;Domingo;032023;Javier Plana Costoya;PolicÌa;2;Tarde
-2026;5;01/05/2026;Viernes;032025;Samuel Fern·ndez PÈrez;PolicÌa;3;Noche
-2026;5;02/05/2026;S·bado;032025;Samuel Fern·ndez PÈrez;PolicÌa;3;Noche
-2026;5;03/05/2026;Domingo;032025;Samuel Fern·ndez PÈrez;PolicÌa;D;Descanso
-2026;5;04/05/2026;Lunes;032025;Samuel Fern·ndez PÈrez;PolicÌa;D;Descanso
-2026;5;05/05/2026;Martes;032025;Samuel Fern·ndez PÈrez;PolicÌa;1;MaÒana
-2026;5;06/05/2026;MiÈrcoles;032025;Samuel Fern·ndez PÈrez;PolicÌa;1;MaÒana
-2026;5;07/05/2026;Jueves;032025;Samuel Fern·ndez PÈrez;PolicÌa;Tir;Tiro
-2026;5;08/05/2026;Viernes;032025;Samuel Fern·ndez PÈrez;PolicÌa;D;Descanso
-2026;5;09/05/2026;S·bado;032025;Samuel Fern·ndez PÈrez;PolicÌa;D;Descanso
-2026;5;10/05/2026;Domingo;032025;Samuel Fern·ndez PÈrez;PolicÌa;3;Noche
-2026;5;11/05/2026;Lunes;032025;Samuel Fern·ndez PÈrez;PolicÌa;3;Noche
-2026;5;12/05/2026;Martes;032025;Samuel Fern·ndez PÈrez;PolicÌa;3;Noche
-2026;5;13/05/2026;MiÈrcoles;032025;Samuel Fern·ndez PÈrez;PolicÌa;D;Descanso
-2026;5;14/05/2026;Jueves;032025;Samuel Fern·ndez PÈrez;PolicÌa;1;MaÒana
-2026;5;15/05/2026;Viernes;032025;Samuel Fern·ndez PÈrez;PolicÌa;2;Tarde
-2026;5;16/05/2026;S·bado;032025;Samuel Fern·ndez PÈrez;PolicÌa;2;Tarde
-2026;5;17/05/2026;Domingo;032025;Samuel Fern·ndez PÈrez;PolicÌa;2;Tarde
-2026;5;18/05/2026;Lunes;032025;Samuel Fern·ndez PÈrez;PolicÌa;D;Descanso
-2026;5;19/05/2026;Martes;032025;Samuel Fern·ndez PÈrez;PolicÌa;D;Descanso
-2026;5;20/05/2026;MiÈrcoles;032025;Samuel Fern·ndez PÈrez;PolicÌa;Dcc;Descanso CompensaciÛn Curso
-2026;5;21/05/2026;Jueves;032025;Samuel Fern·ndez PÈrez;PolicÌa;Dcc;Descanso CompensaciÛn Curso
-2026;5;22/05/2026;Viernes;032025;Samuel Fern·ndez PÈrez;PolicÌa;D;Descanso
-2026;5;23/05/2026;S·bado;032025;Samuel Fern·ndez PÈrez;PolicÌa;D;Descanso
-2026;5;24/05/2026;Domingo;032025;Samuel Fern·ndez PÈrez;PolicÌa;D;Descanso
-2026;5;25/05/2026;Lunes;032025;Samuel Fern·ndez PÈrez;PolicÌa;D;Descanso
-2026;5;26/05/2026;Martes;032025;Samuel Fern·ndez PÈrez;PolicÌa;1;MaÒana
-2026;5;27/05/2026;MiÈrcoles;032025;Samuel Fern·ndez PÈrez;PolicÌa;1;MaÒana
-2026;5;28/05/2026;Jueves;032025;Samuel Fern·ndez PÈrez;PolicÌa;1;MaÒana
-2026;5;29/05/2026;Viernes;032025;Samuel Fern·ndez PÈrez;PolicÌa;D;Descanso
-2026;5;30/05/2026;S·bado;032025;Samuel Fern·ndez PÈrez;PolicÌa;D;Descanso
-2026;5;31/05/2026;Domingo;032025;Samuel Fern·ndez PÈrez;PolicÌa;D;Descanso
-2026;5;01/05/2026;Viernes;032026;Iago Blanco MuiÒo;PolicÌa;2;Tarde
-2026;5;02/05/2026;S·bado;032026;Iago Blanco MuiÒo;PolicÌa;2;Tarde
-2026;5;03/05/2026;Domingo;032026;Iago Blanco MuiÒo;PolicÌa;2;Tarde
-2026;5;04/05/2026;Lunes;032026;Iago Blanco MuiÒo;PolicÌa;D;Descanso
-2026;5;05/05/2026;Martes;032026;Iago Blanco MuiÒo;PolicÌa;Ts;Tiempo Sindical
-2026;5;06/05/2026;MiÈrcoles;032026;Iago Blanco MuiÒo;PolicÌa;D;Descanso
-2026;5;07/05/2026;Jueves;032026;Iago Blanco MuiÒo;PolicÌa;Tir;Tiro
-2026;5;08/05/2026;Viernes;032026;Iago Blanco MuiÒo;PolicÌa;D;Descanso
-2026;5;09/05/2026;S·bado;032026;Iago Blanco MuiÒo;PolicÌa;D;Descanso
-2026;5;10/05/2026;Domingo;032026;Iago Blanco MuiÒo;PolicÌa;D;Descanso
-2026;5;11/05/2026;Lunes;032026;Iago Blanco MuiÒo;PolicÌa;Ts;Tiempo Sindical
-2026;5;12/05/2026;Martes;032026;Iago Blanco MuiÒo;PolicÌa;Dcc;Descanso CompensaciÛn Curso
-2026;5;13/05/2026;MiÈrcoles;032026;Iago Blanco MuiÒo;PolicÌa;D;Descanso
-2026;5;14/05/2026;Jueves;032026;Iago Blanco MuiÒo;PolicÌa;3;Noche
-2026;5;15/05/2026;Viernes;032026;Iago Blanco MuiÒo;PolicÌa;3;Noche
-2026;5;16/05/2026;S·bado;032026;Iago Blanco MuiÒo;PolicÌa;3;Noche
-2026;5;17/05/2026;Domingo;032026;Iago Blanco MuiÒo;PolicÌa;D;Descanso
-2026;5;18/05/2026;Lunes;032026;Iago Blanco MuiÒo;PolicÌa;D;Descanso
-2026;5;19/05/2026;Martes;032026;Iago Blanco MuiÒo;PolicÌa;D;Descanso
-2026;5;20/05/2026;MiÈrcoles;032026;Iago Blanco MuiÒo;PolicÌa;1;MaÒana
-2026;5;21/05/2026;Jueves;032026;Iago Blanco MuiÒo;PolicÌa;1;MaÒana
-2026;5;22/05/2026;Viernes;032026;Iago Blanco MuiÒo;PolicÌa;D;Descanso
-2026;5;23/05/2026;S·bado;032026;Iago Blanco MuiÒo;PolicÌa;D;Descanso
-2026;5;24/05/2026;Domingo;032026;Iago Blanco MuiÒo;PolicÌa;D;Descanso
-2026;5;25/05/2026;Lunes;032026;Iago Blanco MuiÒo;PolicÌa;Dcc;Descanso CompensaciÛn Curso
-2026;5;26/05/2026;Martes;032026;Iago Blanco MuiÒo;PolicÌa;2;Tarde
-2026;5;27/05/2026;MiÈrcoles;032026;Iago Blanco MuiÒo;PolicÌa;3;Noche
-2026;5;28/05/2026;Jueves;032026;Iago Blanco MuiÒo;PolicÌa;3;Noche
-2026;5;29/05/2026;Viernes;032026;Iago Blanco MuiÒo;PolicÌa;D;Descanso
-2026;5;30/05/2026;S·bado;032026;Iago Blanco MuiÒo;PolicÌa;D;Descanso
-2026;5;31/05/2026;Domingo;032026;Iago Blanco MuiÒo;PolicÌa;1;MaÒana
-2026;5;01/05/2026;Viernes;032027;Iago Romar Tajes;PolicÌa;D;Descanso
-2026;5;02/05/2026;S·bado;032027;Iago Romar Tajes;PolicÌa;3;Noche
-2026;5;03/05/2026;Domingo;032027;Iago Romar Tajes;PolicÌa;3;Noche
-2026;5;04/05/2026;Lunes;032027;Iago Romar Tajes;PolicÌa;3;Noche
-2026;5;05/05/2026;Martes;032027;Iago Romar Tajes;PolicÌa;D;Descanso
-2026;5;06/05/2026;MiÈrcoles;032027;Iago Romar Tajes;PolicÌa;D;Descanso
-2026;5;07/05/2026;Jueves;032027;Iago Romar Tajes;PolicÌa;Tir;Tiro
-2026;5;08/05/2026;Viernes;032027;Iago Romar Tajes;PolicÌa;2;Tarde
-2026;5;09/05/2026;S·bado;032027;Iago Romar Tajes;PolicÌa;2;Tarde
-2026;5;10/05/2026;Domingo;032027;Iago Romar Tajes;PolicÌa;2;Tarde
-2026;5;11/05/2026;Lunes;032027;Iago Romar Tajes;PolicÌa;D;Descanso
-2026;5;12/05/2026;Martes;032027;Iago Romar Tajes;PolicÌa;D;Descanso
-2026;5;13/05/2026;MiÈrcoles;032027;Iago Romar Tajes;PolicÌa;Dcc;Descanso CompensaciÛn Curso
-2026;5;14/05/2026;Jueves;032027;Iago Romar Tajes;PolicÌa;D;Descanso
-2026;5;15/05/2026;Viernes;032027;Iago Romar Tajes;PolicÌa;Dcc;Descanso CompensaciÛn Curso
-2026;5;16/05/2026;S·bado;032027;Iago Romar Tajes;PolicÌa;D;Descanso
-2026;5;17/05/2026;Domingo;032027;Iago Romar Tajes;PolicÌa;D;Descanso
-2026;5;18/05/2026;Lunes;032027;Iago Romar Tajes;PolicÌa;2;Tarde
-2026;5;19/05/2026;Martes;032027;Iago Romar Tajes;PolicÌa;3;Noche
-2026;5;20/05/2026;MiÈrcoles;032027;Iago Romar Tajes;PolicÌa;3;Noche
-2026;5;21/05/2026;Jueves;032027;Iago Romar Tajes;PolicÌa;D;Descanso
-2026;5;22/05/2026;Viernes;032027;Iago Romar Tajes;PolicÌa;1;MaÒana
-2026;5;23/05/2026;S·bado;032027;Iago Romar Tajes;PolicÌa;D;Descanso
-2026;5;24/05/2026;Domingo;032027;Iago Romar Tajes;PolicÌa;1;MaÒana
-2026;5;25/05/2026;Lunes;032027;Iago Romar Tajes;PolicÌa;1;MaÒana
-2026;5;26/05/2026;Martes;032027;Iago Romar Tajes;PolicÌa;D;Descanso
-2026;5;27/05/2026;MiÈrcoles;032027;Iago Romar Tajes;PolicÌa;2;Tarde
-2026;5;28/05/2026;Jueves;032027;Iago Romar Tajes;PolicÌa;2;Tarde
-2026;5;29/05/2026;Viernes;032027;Iago Romar Tajes;PolicÌa;D;Descanso
-2026;5;30/05/2026;S·bado;032027;Iago Romar Tajes;PolicÌa;D;Descanso
-2026;5;31/05/2026;Domingo;032027;Iago Romar Tajes;PolicÌa;D;Descanso
-2026;5;01/05/2026;Viernes;032028;Iker DÌaz Villaverde;PolicÌa;D;Descanso
-2026;5;02/05/2026;S·bado;032028;Iker DÌaz Villaverde;PolicÌa;D;Descanso
-2026;5;03/05/2026;Domingo;032028;Iker DÌaz Villaverde;PolicÌa;D;Descanso
-2026;5;04/05/2026;Lunes;032028;Iker DÌaz Villaverde;PolicÌa;D;Descanso
-2026;5;05/05/2026;Martes;032028;Iker DÌaz Villaverde;PolicÌa;Dcc;Descanso CompensaciÛn Curso
-2026;5;06/05/2026;MiÈrcoles;032028;Iker DÌaz Villaverde;PolicÌa;2;Tarde
-2026;5;07/05/2026;Jueves;032028;Iker DÌaz Villaverde;PolicÌa;2;Tarde
-2026;5;08/05/2026;Viernes;032028;Iker DÌaz Villaverde;PolicÌa;3;Noche
-2026;5;09/05/2026;S·bado;032028;Iker DÌaz Villaverde;PolicÌa;3;Noche
-2026;5;10/05/2026;Domingo;032028;Iker DÌaz Villaverde;PolicÌa;3;Noche
-2026;5;11/05/2026;Lunes;032028;Iker DÌaz Villaverde;PolicÌa;D;Descanso
-2026;5;12/05/2026;Martes;032028;Iker DÌaz Villaverde;PolicÌa;D;Descanso
-2026;5;13/05/2026;MiÈrcoles;032028;Iker DÌaz Villaverde;PolicÌa;Dcc;Descanso CompensaciÛn Curso
-2026;5;14/05/2026;Jueves;032028;Iker DÌaz Villaverde;PolicÌa;Tir;Tiro
-2026;5;15/05/2026;Viernes;032028;Iker DÌaz Villaverde;PolicÌa;1;MaÒana
-2026;5;16/05/2026;S·bado;032028;Iker DÌaz Villaverde;PolicÌa;1;MaÒana
-2026;5;17/05/2026;Domingo;032028;Iker DÌaz Villaverde;PolicÌa;1;MaÒana
-2026;5;18/05/2026;Lunes;032028;Iker DÌaz Villaverde;PolicÌa;D;Descanso
-2026;5;19/05/2026;Martes;032028;Iker DÌaz Villaverde;PolicÌa;D;Descanso
-2026;5;20/05/2026;MiÈrcoles;032028;Iker DÌaz Villaverde;PolicÌa;3;Noche
-2026;5;21/05/2026;Jueves;032028;Iker DÌaz Villaverde;PolicÌa;3;Noche
-2026;5;22/05/2026;Viernes;032028;Iker DÌaz Villaverde;PolicÌa;D;Descanso
-2026;5;23/05/2026;S·bado;032028;Iker DÌaz Villaverde;PolicÌa;D;Descanso
-2026;5;24/05/2026;Domingo;032028;Iker DÌaz Villaverde;PolicÌa;D;Descanso
-2026;5;25/05/2026;Lunes;032028;Iker DÌaz Villaverde;PolicÌa;2;Tarde
-2026;5;26/05/2026;Martes;032028;Iker DÌaz Villaverde;PolicÌa;2;Tarde
-2026;5;27/05/2026;MiÈrcoles;032028;Iker DÌaz Villaverde;PolicÌa;D;Descanso
-2026;5;28/05/2026;Jueves;032028;Iker DÌaz Villaverde;PolicÌa;D;Descanso
-2026;5;29/05/2026;Viernes;032028;Iker DÌaz Villaverde;PolicÌa;1;MaÒana
-2026;5;30/05/2026;S·bado;032028;Iker DÌaz Villaverde;PolicÌa;1;MaÒana
-2026;5;31/05/2026;Domingo;032028;Iker DÌaz Villaverde;PolicÌa;D;Descanso
-2026;5;01/05/2026;Viernes;032029;XoaquÌn Miguel Novo V·zquez;PolicÌa;1;MaÒana
-2026;5;02/05/2026;S·bado;032029;XoaquÌn Miguel Novo V·zquez;PolicÌa;D;Descanso
-2026;5;03/05/2026;Domingo;032029;XoaquÌn Miguel Novo V·zquez;PolicÌa;D;Descanso
-2026;5;04/05/2026;Lunes;032029;XoaquÌn Miguel Novo V·zquez;PolicÌa;D;Descanso
-2026;5;05/05/2026;Martes;032029;XoaquÌn Miguel Novo V·zquez;PolicÌa;2;Tarde
-2026;5;06/05/2026;MiÈrcoles;032029;XoaquÌn Miguel Novo V·zquez;PolicÌa;2;Tarde
-2026;5;07/05/2026;Jueves;032029;XoaquÌn Miguel Novo V·zquez;PolicÌa;Tir;Tiro
-2026;5;08/05/2026;Viernes;032029;XoaquÌn Miguel Novo V·zquez;PolicÌa;D;Descanso
-2026;5;09/05/2026;S·bado;032029;XoaquÌn Miguel Novo V·zquez;PolicÌa;D;Descanso
-2026;5;10/05/2026;Domingo;032029;XoaquÌn Miguel Novo V·zquez;PolicÌa;D;Descanso
-2026;5;11/05/2026;Lunes;032029;XoaquÌn Miguel Novo V·zquez;PolicÌa;Dcc;Descanso CompensaciÛn Curso
-2026;5;12/05/2026;Martes;032029;XoaquÌn Miguel Novo V·zquez;PolicÌa;3;Noche
-2026;5;13/05/2026;MiÈrcoles;032029;XoaquÌn Miguel Novo V·zquez;PolicÌa;3;Noche
-2026;5;14/05/2026;Jueves;032029;XoaquÌn Miguel Novo V·zquez;PolicÌa;D;Descanso
-2026;5;15/05/2026;Viernes;032029;XoaquÌn Miguel Novo V·zquez;PolicÌa;2;Tarde
-2026;5;16/05/2026;S·bado;032029;XoaquÌn Miguel Novo V·zquez;PolicÌa;2;Tarde
-2026;5;17/05/2026;Domingo;032029;XoaquÌn Miguel Novo V·zquez;PolicÌa;2;Tarde
-2026;5;18/05/2026;Lunes;032029;XoaquÌn Miguel Novo V·zquez;PolicÌa;D;Descanso
-2026;5;19/05/2026;Martes;032029;XoaquÌn Miguel Novo V·zquez;PolicÌa;D;Descanso
-2026;5;20/05/2026;MiÈrcoles;032029;XoaquÌn Miguel Novo V·zquez;PolicÌa;2;Tarde
-2026;5;21/05/2026;Jueves;032029;XoaquÌn Miguel Novo V·zquez;PolicÌa;2;Tarde
-2026;5;22/05/2026;Viernes;032029;XoaquÌn Miguel Novo V·zquez;PolicÌa;3;Noche
-2026;5;23/05/2026;S·bado;032029;XoaquÌn Miguel Novo V·zquez;PolicÌa;3;Noche
-2026;5;24/05/2026;Domingo;032029;XoaquÌn Miguel Novo V·zquez;PolicÌa;3;Noche
-2026;5;25/05/2026;Lunes;032029;XoaquÌn Miguel Novo V·zquez;PolicÌa;D;Descanso
-2026;5;26/05/2026;Martes;032029;XoaquÌn Miguel Novo V·zquez;PolicÌa;D;Descanso
-2026;5;27/05/2026;MiÈrcoles;032029;XoaquÌn Miguel Novo V·zquez;PolicÌa;Dcc;Descanso CompensaciÛn Curso
-2026;5;28/05/2026;Jueves;032029;XoaquÌn Miguel Novo V·zquez;PolicÌa;D;Descanso
-2026;5;29/05/2026;Viernes;032029;XoaquÌn Miguel Novo V·zquez;PolicÌa;D;Descanso
-2026;5;30/05/2026;S·bado;032029;XoaquÌn Miguel Novo V·zquez;PolicÌa;D;Descanso
-2026;5;31/05/2026;Domingo;032029;XoaquÌn Miguel Novo V·zquez;PolicÌa;1;MaÒana
-2026;5;01/05/2026;Viernes;032030;MartÌn Lago Fern·ndez;PolicÌa;1;MaÒana
-2026;5;02/05/2026;S·bado;032030;MartÌn Lago Fern·ndez;PolicÌa;1;MaÒana
-2026;5;03/05/2026;Domingo;032030;MartÌn Lago Fern·ndez;PolicÌa;1;MaÒana
-2026;5;04/05/2026;Lunes;032030;MartÌn Lago Fern·ndez;PolicÌa;1;MaÒana
-2026;5;05/05/2026;Martes;032030;MartÌn Lago Fern·ndez;PolicÌa;Dcc;Descanso CompensaciÛn Curso
-2026;5;06/05/2026;MiÈrcoles;032030;MartÌn Lago Fern·ndez;PolicÌa;D;Descanso
-2026;5;07/05/2026;Jueves;032030;MartÌn Lago Fern·ndez;PolicÌa;3;Noche
-2026;5;08/05/2026;Viernes;032030;MartÌn Lago Fern·ndez;PolicÌa;3;Noche
-2026;5;09/05/2026;S·bado;032030;MartÌn Lago Fern·ndez;PolicÌa;3;Noche
-2026;5;10/05/2026;Domingo;032030;MartÌn Lago Fern·ndez;PolicÌa;D;Descanso
-2026;5;11/05/2026;Lunes;032030;MartÌn Lago Fern·ndez;PolicÌa;D;Descanso
-2026;5;12/05/2026;Martes;032030;MartÌn Lago Fern·ndez;PolicÌa;1;MaÒana
-2026;5;13/05/2026;MiÈrcoles;032030;MartÌn Lago Fern·ndez;PolicÌa;2;Tarde
-2026;5;14/05/2026;Jueves;032030;MartÌn Lago Fern·ndez;PolicÌa;Tir;Tiro
-2026;5;15/05/2026;Viernes;032030;MartÌn Lago Fern·ndez;PolicÌa;D;Descanso
-2026;5;16/05/2026;S·bado;032030;MartÌn Lago Fern·ndez;PolicÌa;D;Descanso
-2026;5;17/05/2026;Domingo;032030;MartÌn Lago Fern·ndez;PolicÌa;D;Descanso
-2026;5;18/05/2026;Lunes;032030;MartÌn Lago Fern·ndez;PolicÌa;3;Noche
-2026;5;19/05/2026;Martes;032030;MartÌn Lago Fern·ndez;PolicÌa;3;Noche
-2026;5;20/05/2026;MiÈrcoles;032030;MartÌn Lago Fern·ndez;PolicÌa;D;Descanso
-2026;5;21/05/2026;Jueves;032030;MartÌn Lago Fern·ndez;PolicÌa;D;Descanso
-2026;5;22/05/2026;Viernes;032030;MartÌn Lago Fern·ndez;PolicÌa;Dcc;Descanso CompensaciÛn Curso
-2026;5;23/05/2026;S·bado;032030;MartÌn Lago Fern·ndez;PolicÌa;1;MaÒana
-2026;5;24/05/2026;Domingo;032030;MartÌn Lago Fern·ndez;PolicÌa;D;Descanso
-2026;5;25/05/2026;Lunes;032030;MartÌn Lago Fern·ndez;PolicÌa;D;Descanso
-2026;5;26/05/2026;Martes;032030;MartÌn Lago Fern·ndez;PolicÌa;D;Descanso
-2026;5;27/05/2026;MiÈrcoles;032030;MartÌn Lago Fern·ndez;PolicÌa;2;Tarde
-2026;5;28/05/2026;Jueves;032030;MartÌn Lago Fern·ndez;PolicÌa;2;Tarde
-2026;5;29/05/2026;Viernes;032030;MartÌn Lago Fern·ndez;PolicÌa;D;Descanso
-2026;5;30/05/2026;S·bado;032030;MartÌn Lago Fern·ndez;PolicÌa;D;Descanso
-2026;5;31/05/2026;Domingo;032030;MartÌn Lago Fern·ndez;PolicÌa;D;Descanso
-2026;5;01/05/2026;Viernes;032031;Carlota Tella Granda;PolicÌa;2;Tarde
-2026;5;02/05/2026;S·bado;032031;Carlota Tella Granda;PolicÌa;2;Tarde
-2026;5;03/05/2026;Domingo;032031;Carlota Tella Granda;PolicÌa;2;Tarde
-2026;5;04/05/2026;Lunes;032031;Carlota Tella Granda;PolicÌa;3;Noche
-2026;5;05/05/2026;Martes;032031;Carlota Tella Granda;PolicÌa;D;Descanso
-2026;5;06/05/2026;MiÈrcoles;032031;Carlota Tella Granda;PolicÌa;D;Descanso
-2026;5;07/05/2026;Jueves;032031;Carlota Tella Granda;PolicÌa;Tir;Tiro
-2026;5;08/05/2026;Viernes;032031;Carlota Tella Granda;PolicÌa;D;Descanso
-2026;5;09/05/2026;S·bado;032031;Carlota Tella Granda;PolicÌa;1;MaÒana
-2026;5;10/05/2026;Domingo;032031;Carlota Tella Granda;PolicÌa;D;Descanso
-2026;5;11/05/2026;Lunes;032031;Carlota Tella Granda;PolicÌa;3;Noche
-2026;5;12/05/2026;Martes;032031;Carlota Tella Granda;PolicÌa;D;Descanso
-2026;5;13/05/2026;MiÈrcoles;032031;Carlota Tella Granda;PolicÌa;2;Tarde
-2026;5;14/05/2026;Jueves;032031;Carlota Tella Granda;PolicÌa;2;Tarde
-2026;5;15/05/2026;Viernes;032031;Carlota Tella Granda;PolicÌa;D;Descanso
-2026;5;16/05/2026;S·bado;032031;Carlota Tella Granda;PolicÌa;D;Descanso
-2026;5;17/05/2026;Domingo;032031;Carlota Tella Granda;PolicÌa;D;Descanso
-2026;5;18/05/2026;Lunes;032031;Carlota Tella Granda;PolicÌa;1;MaÒana
-2026;5;19/05/2026;Martes;032031;Carlota Tella Granda;PolicÌa;1;MaÒana
-2026;5;20/05/2026;MiÈrcoles;032031;Carlota Tella Granda;PolicÌa;Dcc;Descanso CompensaciÛn Curso
-2026;5;21/05/2026;Jueves;032031;Carlota Tella Granda;PolicÌa;D;Descanso
-2026;5;22/05/2026;Viernes;032031;Carlota Tella Granda;PolicÌa;D;Descanso
-2026;5;23/05/2026;S·bado;032031;Carlota Tella Granda;PolicÌa;D;Descanso
-2026;5;24/05/2026;Domingo;032031;Carlota Tella Granda;PolicÌa;D;Descanso
-2026;5;25/05/2026;Lunes;032031;Carlota Tella Granda;PolicÌa;Dcc;Descanso CompensaciÛn Curso
-2026;5;26/05/2026;Martes;032031;Carlota Tella Granda;PolicÌa;D;Descanso
-2026;5;27/05/2026;MiÈrcoles;032031;Carlota Tella Granda;PolicÌa;1;MaÒana
-2026;5;28/05/2026;Jueves;032031;Carlota Tella Granda;PolicÌa;D;Descanso
-2026;5;29/05/2026;Viernes;032031;Carlota Tella Granda;PolicÌa;3;Noche
-2026;5;30/05/2026;S·bado;032031;Carlota Tella Granda;PolicÌa;3;Noche
-2026;5;31/05/2026;Domingo;032031;Carlota Tella Granda;PolicÌa;3;Noche
-2026;5;01/05/2026;Viernes;032013;SimeÛn Porto Fern·ndez;PolicÌa;D;Descanso
-2026;5;02/05/2026;S·bado;032013;SimeÛn Porto Fern·ndez;PolicÌa;D;Descanso
-2026;5;03/05/2026;Domingo;032013;SimeÛn Porto Fern·ndez;PolicÌa;D;Descanso
-2026;5;04/05/2026;Lunes;032013;SimeÛn Porto Fern·ndez;PolicÌa;D;Descanso
-2026;5;05/05/2026;Martes;032013;SimeÛn Porto Fern·ndez;PolicÌa;2;Tarde
-2026;5;06/05/2026;MiÈrcoles;032013;SimeÛn Porto Fern·ndez;PolicÌa;3;Noche
-2026;5;07/05/2026;Jueves;032013;SimeÛn Porto Fern·ndez;PolicÌa;3;Noche
-2026;5;08/05/2026;Viernes;032013;SimeÛn Porto Fern·ndez;PolicÌa;3;Noche
-2026;5;09/05/2026;S·bado;032013;SimeÛn Porto Fern·ndez;PolicÌa;3;Noche
-2026;5;10/05/2026;Domingo;032013;SimeÛn Porto Fern·ndez;PolicÌa;D;Descanso
-2026;5;11/05/2026;Lunes;032013;SimeÛn Porto Fern·ndez;PolicÌa;2;Tarde
-2026;5;12/05/2026;Martes;032013;SimeÛn Porto Fern·ndez;PolicÌa;D;Descanso
-2026;5;13/05/2026;MiÈrcoles;032013;SimeÛn Porto Fern·ndez;PolicÌa;Dcc;Descanso CompensaciÛn Curso
-2026;5;14/05/2026;Jueves;032013;SimeÛn Porto Fern·ndez;PolicÌa;Tir;Tiro
-2026;5;15/05/2026;Viernes;032013;SimeÛn Porto Fern·ndez;PolicÌa;D;Descanso
-2026;5;16/05/2026;S·bado;032013;SimeÛn Porto Fern·ndez;PolicÌa;1;MaÒana
-2026;5;17/05/2026;Domingo;032013;SimeÛn Porto Fern·ndez;PolicÌa;D;Descanso
-2026;5;18/05/2026;Lunes;032013;SimeÛn Porto Fern·ndez;PolicÌa;3;Noche
-2026;5;19/05/2026;Martes;032013;SimeÛn Porto Fern·ndez;PolicÌa;D;Descanso
-2026;5;20/05/2026;MiÈrcoles;032013;SimeÛn Porto Fern·ndez;PolicÌa;D;Descanso
-2026;5;21/05/2026;Jueves;032013;SimeÛn Porto Fern·ndez;PolicÌa;D;Descanso
-2026;5;22/05/2026;Viernes;032013;SimeÛn Porto Fern·ndez;PolicÌa;2;Tarde
-2026;5;23/05/2026;S·bado;032013;SimeÛn Porto Fern·ndez;PolicÌa;2;Tarde
-2026;5;24/05/2026;Domingo;032013;SimeÛn Porto Fern·ndez;PolicÌa;2;Tarde
-2026;5;25/05/2026;Lunes;032013;SimeÛn Porto Fern·ndez;PolicÌa;Dcc;Descanso CompensaciÛn Curso
-2026;5;26/05/2026;Martes;032013;SimeÛn Porto Fern·ndez;PolicÌa;D;Descanso
-2026;5;27/05/2026;MiÈrcoles;032013;SimeÛn Porto Fern·ndez;PolicÌa;D;Descanso
-2026;5;28/05/2026;Jueves;032013;SimeÛn Porto Fern·ndez;PolicÌa;1;MaÒana
-2026;5;29/05/2026;Viernes;032013;SimeÛn Porto Fern·ndez;PolicÌa;1;MaÒana
-2026;5;30/05/2026;S·bado;032013;SimeÛn Porto Fern·ndez;PolicÌa;1;MaÒana
-2026;5;31/05/2026;Domingo;032013;SimeÛn Porto Fern·ndez;PolicÌa;D;Descanso
-2026;5;01/05/2026;Viernes;032019;Juan Rozados Saya;PolicÌa;BAJA;Baja
-2026;5;02/05/2026;S·bado;032019;Juan Rozados Saya;PolicÌa;BAJA;Baja
-2026;5;03/05/2026;Domingo;032019;Juan Rozados Saya;PolicÌa;BAJA;Baja
-2026;5;04/05/2026;Lunes;032019;Juan Rozados Saya;PolicÌa;BAJA;Baja
-2026;5;05/05/2026;Martes;032019;Juan Rozados Saya;PolicÌa;BAJA;Baja
-2026;5;06/05/2026;MiÈrcoles;032019;Juan Rozados Saya;PolicÌa;BAJA;Baja
-2026;5;07/05/2026;Jueves;032019;Juan Rozados Saya;PolicÌa;BAJA;Baja
-2026;5;08/05/2026;Viernes;032019;Juan Rozados Saya;PolicÌa;BAJA;Baja
-2026;5;09/05/2026;S·bado;032019;Juan Rozados Saya;PolicÌa;BAJA;Baja
-2026;5;10/05/2026;Domingo;032019;Juan Rozados Saya;PolicÌa;BAJA;Baja
-2026;5;11/05/2026;Lunes;032019;Juan Rozados Saya;PolicÌa;BAJA;Baja
-2026;5;12/05/2026;Martes;032019;Juan Rozados Saya;PolicÌa;BAJA;Baja
-2026;5;13/05/2026;MiÈrcoles;032019;Juan Rozados Saya;PolicÌa;BAJA;Baja
-2026;5;14/05/2026;Jueves;032019;Juan Rozados Saya;PolicÌa;BAJA;Baja
-2026;5;15/05/2026;Viernes;032019;Juan Rozados Saya;PolicÌa;BAJA;Baja
-2026;5;16/05/2026;S·bado;032019;Juan Rozados Saya;PolicÌa;BAJA;Baja
-2026;5;17/05/2026;Domingo;032019;Juan Rozados Saya;PolicÌa;BAJA;Baja
-2026;5;18/05/2026;Lunes;032019;Juan Rozados Saya;PolicÌa;BAJA;Baja
-2026;5;19/05/2026;Martes;032019;Juan Rozados Saya;PolicÌa;BAJA;Baja
-2026;5;20/05/2026;MiÈrcoles;032019;Juan Rozados Saya;PolicÌa;BAJA;Baja
-2026;5;21/05/2026;Jueves;032019;Juan Rozados Saya;PolicÌa;BAJA;Baja
-2026;5;22/05/2026;Viernes;032019;Juan Rozados Saya;PolicÌa;BAJA;Baja
-2026;5;23/05/2026;S·bado;032019;Juan Rozados Saya;PolicÌa;BAJA;Baja
-2026;5;24/05/2026;Domingo;032019;Juan Rozados Saya;PolicÌa;BAJA;Baja
-2026;5;25/05/2026;Lunes;032019;Juan Rozados Saya;PolicÌa;BAJA;Baja
-2026;5;26/05/2026;Martes;032019;Juan Rozados Saya;PolicÌa;BAJA;Baja
-2026;5;27/05/2026;MiÈrcoles;032019;Juan Rozados Saya;PolicÌa;BAJA;Baja
-2026;5;28/05/2026;Jueves;032019;Juan Rozados Saya;PolicÌa;BAJA;Baja
-2026;5;29/05/2026;Viernes;032019;Juan Rozados Saya;PolicÌa;BAJA;Baja
-2026;5;30/05/2026;S·bado;032019;Juan Rozados Saya;PolicÌa;BAJA;Baja
-2026;5;31/05/2026;Domingo;032019;Juan Rozados Saya;PolicÌa;BAJA;Baja
-2026;5;01/05/2026;Viernes;A032099;Ricardo FariÒa Vidal;Auxiliar;1;MaÒana
-2026;5;02/05/2026;S·bado;A032099;Ricardo FariÒa Vidal;Auxiliar;D;Descanso
-2026;5;03/05/2026;Domingo;A032099;Ricardo FariÒa Vidal;Auxiliar;1;MaÒana
-2026;5;04/05/2026;Lunes;A032099;Ricardo FariÒa Vidal;Auxiliar;D;Descanso
-2026;5;05/05/2026;Martes;A032099;Ricardo FariÒa Vidal;Auxiliar;Dcc;Descanso CompensaciÛn Curso
-2026;5;06/05/2026;MiÈrcoles;A032099;Ricardo FariÒa Vidal;Auxiliar;Dcc;Descanso CompensaciÛn Curso
-2026;5;07/05/2026;Jueves;A032099;Ricardo FariÒa Vidal;Auxiliar;D;Descanso
-2026;5;08/05/2026;Viernes;A032099;Ricardo FariÒa Vidal;Auxiliar;2;Tarde
-2026;5;09/05/2026;S·bado;A032099;Ricardo FariÒa Vidal;Auxiliar;2;Tarde
-2026;5;10/05/2026;Domingo;A032099;Ricardo FariÒa Vidal;Auxiliar;2;Tarde
-2026;5;11/05/2026;Lunes;A032099;Ricardo FariÒa Vidal;Auxiliar;D;Descanso
-2026;5;12/05/2026;Martes;A032099;Ricardo FariÒa Vidal;Auxiliar;D;Descanso
-2026;5;13/05/2026;MiÈrcoles;A032099;Ricardo FariÒa Vidal;Auxiliar;D;Descanso
-2026;5;14/05/2026;Jueves;A032099;Ricardo FariÒa Vidal;Auxiliar;D;Descanso
-2026;5;15/05/2026;Viernes;A032099;Ricardo FariÒa Vidal;Auxiliar;D;Descanso
-2026;5;16/05/2026;S·bado;A032099;Ricardo FariÒa Vidal;Auxiliar;D;Descanso
-2026;5;17/05/2026;Domingo;A032099;Ricardo FariÒa Vidal;Auxiliar;D;Descanso
-2026;5;18/05/2026;Lunes;A032099;Ricardo FariÒa Vidal;Auxiliar;D;Descanso
-2026;5;19/05/2026;Martes;A032099;Ricardo FariÒa Vidal;Auxiliar;2;Tarde
-2026;5;20/05/2026;MiÈrcoles;A032099;Ricardo FariÒa Vidal;Auxiliar;2;Tarde
-2026;5;21/05/2026;Jueves;A032099;Ricardo FariÒa Vidal;Auxiliar;D;Descanso
-2026;5;22/05/2026;Viernes;A032099;Ricardo FariÒa Vidal;Auxiliar;Ts;Tiempo Sindical
-2026;5;23/05/2026;S·bado;A032099;Ricardo FariÒa Vidal;Auxiliar;D;Descanso
-2026;5;24/05/2026;Domingo;A032099;Ricardo FariÒa Vidal;Auxiliar;D;Descanso
-2026;5;25/05/2026;Lunes;A032099;Ricardo FariÒa Vidal;Auxiliar;Ts;Tiempo Sindical
-2026;5;26/05/2026;Martes;A032099;Ricardo FariÒa Vidal;Auxiliar;3;Noche
-2026;5;27/05/2026;MiÈrcoles;A032099;Ricardo FariÒa Vidal;Auxiliar;3;Noche
-2026;5;28/05/2026;Jueves;A032099;Ricardo FariÒa Vidal;Auxiliar;3;Noche
-2026;5;29/05/2026;Viernes;A032099;Ricardo FariÒa Vidal;Auxiliar;3;Noche
-2026;5;30/05/2026;S·bado;A032099;Ricardo FariÒa Vidal;Auxiliar;3;Noche
-2026;5;31/05/2026;Domingo;A032099;Ricardo FariÒa Vidal;Auxiliar;D;Descanso
-2026;5;01/05/2026;Viernes;032017;Francisco Fern·ndez Otero;PolicÌa;D;Descanso
-2026;5;02/05/2026;S·bado;032017;Francisco Fern·ndez Otero;PolicÌa;D;Descanso
-2026;5;03/05/2026;Domingo;032017;Francisco Fern·ndez Otero;PolicÌa;D;Descanso
-2026;5;04/05/2026;Lunes;032017;Francisco Fern·ndez Otero;PolicÌa;L;Laborable
-2026;5;05/05/2026;Martes;032017;Francisco Fern·ndez Otero;PolicÌa;L;Laborable
-2026;5;06/05/2026;MiÈrcoles;032017;Francisco Fern·ndez Otero;PolicÌa;L;Laborable
-2026;5;07/05/2026;Jueves;032017;Francisco Fern·ndez Otero;PolicÌa;L;Laborable
-2026;5;08/05/2026;Viernes;032017;Francisco Fern·ndez Otero;PolicÌa;L;Laborable
-2026;5;09/05/2026;S·bado;032017;Francisco Fern·ndez Otero;PolicÌa;D;Descanso
-2026;5;10/05/2026;Domingo;032017;Francisco Fern·ndez Otero;PolicÌa;D;Descanso
-2026;5;11/05/2026;Lunes;032017;Francisco Fern·ndez Otero;PolicÌa;L;Laborable
-2026;5;12/05/2026;Martes;032017;Francisco Fern·ndez Otero;PolicÌa;L;Laborable
-2026;5;13/05/2026;MiÈrcoles;032017;Francisco Fern·ndez Otero;PolicÌa;L;Laborable
-2026;5;14/05/2026;Jueves;032017;Francisco Fern·ndez Otero;PolicÌa;Tir;Tiro
-2026;5;15/05/2026;Viernes;032017;Francisco Fern·ndez Otero;PolicÌa;L;Laborable
-2026;5;16/05/2026;S·bado;032017;Francisco Fern·ndez Otero;PolicÌa;D;Descanso
-2026;5;17/05/2026;Domingo;032017;Francisco Fern·ndez Otero;PolicÌa;D;Descanso
-2026;5;18/05/2026;Lunes;032017;Francisco Fern·ndez Otero;PolicÌa;Vac;Vacaciones
-2026;5;19/05/2026;Martes;032017;Francisco Fern·ndez Otero;PolicÌa;Vac;Vacaciones
-2026;5;20/05/2026;MiÈrcoles;032017;Francisco Fern·ndez Otero;PolicÌa;Vac;Vacaciones
-2026;5;21/05/2026;Jueves;032017;Francisco Fern·ndez Otero;PolicÌa;Vac;Vacaciones
-2026;5;22/05/2026;Viernes;032017;Francisco Fern·ndez Otero;PolicÌa;Vac;Vacaciones
-2026;5;23/05/2026;S·bado;032017;Francisco Fern·ndez Otero;PolicÌa;D;Descanso
-2026;5;24/05/2026;Domingo;032017;Francisco Fern·ndez Otero;PolicÌa;D;Descanso
-2026;5;25/05/2026;Lunes;032017;Francisco Fern·ndez Otero;PolicÌa;L;Laborable
-2026;5;26/05/2026;Martes;032017;Francisco Fern·ndez Otero;PolicÌa;L;Laborable
-2026;5;27/05/2026;MiÈrcoles;032017;Francisco Fern·ndez Otero;PolicÌa;L;Laborable
-2026;5;28/05/2026;Jueves;032017;Francisco Fern·ndez Otero;PolicÌa;L;Laborable
-2026;5;29/05/2026;Viernes;032017;Francisco Fern·ndez Otero;PolicÌa;L;Laborable
-2026;5;30/05/2026;S·bado;032017;Francisco Fern·ndez Otero;PolicÌa;D;Descanso
-2026;5;31/05/2026;Domingo;032017;Francisco Fern·ndez Otero;PolicÌa;D;Descanso
+A√±o,Mes,Fecha,D√≠a,NIP,Nombre y Apellidos,Categor√≠a,Turno,Tipo
+2026,5,01/05/2026,Viernes,032001,Xos√© Henrique Fidalgo Garc√≠a,Inspector,Vac,Vacaciones
+2026,5,02/05/2026,S√°bado,032001,Xos√© Henrique Fidalgo Garc√≠a,Inspector,Vac,Vacaciones
+2026,5,03/05/2026,Domingo,032001,Xos√© Henrique Fidalgo Garc√≠a,Inspector,Vac,Vacaciones
+2026,5,04/05/2026,Lunes,032001,Xos√© Henrique Fidalgo Garc√≠a,Inspector,Vac,Vacaciones
+2026,5,05/05/2026,Martes,032001,Xos√© Henrique Fidalgo Garc√≠a,Inspector,Vac,Vacaciones
+2026,5,06/05/2026,Mi√©rcoles,032001,Xos√© Henrique Fidalgo Garc√≠a,Inspector,Vac,Vacaciones
+2026,5,07/05/2026,Jueves,032001,Xos√© Henrique Fidalgo Garc√≠a,Inspector,Tir,Tiro
+2026,5,08/05/2026,Viernes,032001,Xos√© Henrique Fidalgo Garc√≠a,Inspector,L,Laborable
+2026,5,09/05/2026,S√°bado,032001,Xos√© Henrique Fidalgo Garc√≠a,Inspector,D,Descanso
+2026,5,10/05/2026,Domingo,032001,Xos√© Henrique Fidalgo Garc√≠a,Inspector,D,Descanso
+2026,5,11/05/2026,Lunes,032001,Xos√© Henrique Fidalgo Garc√≠a,Inspector,L,Laborable
+2026,5,12/05/2026,Martes,032001,Xos√© Henrique Fidalgo Garc√≠a,Inspector,L,Laborable
+2026,5,13/05/2026,Mi√©rcoles,032001,Xos√© Henrique Fidalgo Garc√≠a,Inspector,L,Laborable
+2026,5,14/05/2026,Jueves,032001,Xos√© Henrique Fidalgo Garc√≠a,Inspector,L,Laborable
+2026,5,15/05/2026,Viernes,032001,Xos√© Henrique Fidalgo Garc√≠a,Inspector,L,Laborable
+2026,5,16/05/2026,S√°bado,032001,Xos√© Henrique Fidalgo Garc√≠a,Inspector,D,Descanso
+2026,5,17/05/2026,Domingo,032001,Xos√© Henrique Fidalgo Garc√≠a,Inspector,D,Descanso
+2026,5,18/05/2026,Lunes,032001,Xos√© Henrique Fidalgo Garc√≠a,Inspector,L,Laborable
+2026,5,19/05/2026,Martes,032001,Xos√© Henrique Fidalgo Garc√≠a,Inspector,L,Laborable
+2026,5,20/05/2026,Mi√©rcoles,032001,Xos√© Henrique Fidalgo Garc√≠a,Inspector,L,Laborable
+2026,5,21/05/2026,Jueves,032001,Xos√© Henrique Fidalgo Garc√≠a,Inspector,L,Laborable
+2026,5,22/05/2026,Viernes,032001,Xos√© Henrique Fidalgo Garc√≠a,Inspector,L,Laborable
+2026,5,23/05/2026,S√°bado,032001,Xos√© Henrique Fidalgo Garc√≠a,Inspector,D,Descanso
+2026,5,24/05/2026,Domingo,032001,Xos√© Henrique Fidalgo Garc√≠a,Inspector,D,Descanso
+2026,5,25/05/2026,Lunes,032001,Xos√© Henrique Fidalgo Garc√≠a,Inspector,L,Laborable
+2026,5,26/05/2026,Martes,032001,Xos√© Henrique Fidalgo Garc√≠a,Inspector,L,Laborable
+2026,5,27/05/2026,Mi√©rcoles,032001,Xos√© Henrique Fidalgo Garc√≠a,Inspector,L,Laborable
+2026,5,28/05/2026,Jueves,032001,Xos√© Henrique Fidalgo Garc√≠a,Inspector,L,Laborable
+2026,5,29/05/2026,Viernes,032001,Xos√© Henrique Fidalgo Garc√≠a,Inspector,L,Laborable
+2026,5,30/05/2026,S√°bado,032001,Xos√© Henrique Fidalgo Garc√≠a,Inspector,D,Descanso
+2026,5,31/05/2026,Domingo,032001,Xos√© Henrique Fidalgo Garc√≠a,Inspector,D,Descanso
+2026,5,01/05/2026,Viernes,032018,Javier Fern√°ndez Seijo,Oficial,D,Descanso
+2026,5,02/05/2026,S√°bado,032018,Javier Fern√°ndez Seijo,Oficial,D,Descanso
+2026,5,03/05/2026,Domingo,032018,Javier Fern√°ndez Seijo,Oficial,D,Descanso
+2026,5,04/05/2026,Lunes,032018,Javier Fern√°ndez Seijo,Oficial,L,Laborable
+2026,5,05/05/2026,Martes,032018,Javier Fern√°ndez Seijo,Oficial,L,Laborable
+2026,5,06/05/2026,Mi√©rcoles,032018,Javier Fern√°ndez Seijo,Oficial,L,Laborable
+2026,5,07/05/2026,Jueves,032018,Javier Fern√°ndez Seijo,Oficial,1,Ma√±ana
+2026,5,08/05/2026,Viernes,032018,Javier Fern√°ndez Seijo,Oficial,D,Descanso
+2026,5,09/05/2026,S√°bado,032018,Javier Fern√°ndez Seijo,Oficial,D,Descanso
+2026,5,10/05/2026,Domingo,032018,Javier Fern√°ndez Seijo,Oficial,D,Descanso
+2026,5,11/05/2026,Lunes,032018,Javier Fern√°ndez Seijo,Oficial,Dcc,Descanso Compensaci√≥n Curso
+2026,5,12/05/2026,Martes,032018,Javier Fern√°ndez Seijo,Oficial,D,Descanso
+2026,5,13/05/2026,Mi√©rcoles,032018,Javier Fern√°ndez Seijo,Oficial,1,Ma√±ana
+2026,5,14/05/2026,Jueves,032018,Javier Fern√°ndez Seijo,Oficial,Tir,Tiro
+2026,5,15/05/2026,Viernes,032018,Javier Fern√°ndez Seijo,Oficial,D,Descanso
+2026,5,16/05/2026,S√°bado,032018,Javier Fern√°ndez Seijo,Oficial,1,Ma√±ana
+2026,5,17/05/2026,Domingo,032018,Javier Fern√°ndez Seijo,Oficial,D,Descanso
+2026,5,18/05/2026,Lunes,032018,Javier Fern√°ndez Seijo,Oficial,D,Descanso
+2026,5,19/05/2026,Martes,032018,Javier Fern√°ndez Seijo,Oficial,D,Descanso
+2026,5,20/05/2026,Mi√©rcoles,032018,Javier Fern√°ndez Seijo,Oficial,D,Descanso
+2026,5,21/05/2026,Jueves,032018,Javier Fern√°ndez Seijo,Oficial,3,Noche
+2026,5,22/05/2026,Viernes,032018,Javier Fern√°ndez Seijo,Oficial,3,Noche
+2026,5,23/05/2026,S√°bado,032018,Javier Fern√°ndez Seijo,Oficial,3,Noche
+2026,5,24/05/2026,Domingo,032018,Javier Fern√°ndez Seijo,Oficial,3,Noche
+2026,5,25/05/2026,Lunes,032018,Javier Fern√°ndez Seijo,Oficial,3,Noche
+2026,5,26/05/2026,Martes,032018,Javier Fern√°ndez Seijo,Oficial,D,Descanso
+2026,5,27/05/2026,Mi√©rcoles,032018,Javier Fern√°ndez Seijo,Oficial,Dcc,Descanso Compensaci√≥n Curso
+2026,5,28/05/2026,Jueves,032018,Javier Fern√°ndez Seijo,Oficial,D,Descanso
+2026,5,29/05/2026,Viernes,032018,Javier Fern√°ndez Seijo,Oficial,2,Tarde
+2026,5,30/05/2026,S√°bado,032018,Javier Fern√°ndez Seijo,Oficial,2,Tarde
+2026,5,31/05/2026,Domingo,032018,Javier Fern√°ndez Seijo,Oficial,2,Tarde
+2026,5,01/05/2026,Viernes,032015,Pedro Rodr√≠guez Pedreira,Oficial,3,Noche
+2026,5,02/05/2026,S√°bado,032015,Pedro Rodr√≠guez Pedreira,Oficial,3,Noche
+2026,5,03/05/2026,Domingo,032015,Pedro Rodr√≠guez Pedreira,Oficial,D,Descanso
+2026,5,04/05/2026,Lunes,032015,Pedro Rodr√≠guez Pedreira,Oficial,Ts,Tiempo Sindical
+2026,5,05/05/2026,Martes,032015,Pedro Rodr√≠guez Pedreira,Oficial,3,Noche
+2026,5,06/05/2026,Mi√©rcoles,032015,Pedro Rodr√≠guez Pedreira,Oficial,D,Descanso
+2026,5,07/05/2026,Jueves,032015,Pedro Rodr√≠guez Pedreira,Oficial,Tir,Tiro
+2026,5,08/05/2026,Viernes,032015,Pedro Rodr√≠guez Pedreira,Oficial,1,Ma√±ana
+2026,5,09/05/2026,S√°bado,032015,Pedro Rodr√≠guez Pedreira,Oficial,1,Ma√±ana
+2026,5,10/05/2026,Domingo,032015,Pedro Rodr√≠guez Pedreira,Oficial,1,Ma√±ana
+2026,5,11/05/2026,Lunes,032015,Pedro Rodr√≠guez Pedreira,Oficial,2,Tarde
+2026,5,12/05/2026,Martes,032015,Pedro Rodr√≠guez Pedreira,Oficial,2,Tarde
+2026,5,13/05/2026,Mi√©rcoles,032015,Pedro Rodr√≠guez Pedreira,Oficial,D,Descanso
+2026,5,14/05/2026,Jueves,032015,Pedro Rodr√≠guez Pedreira,Oficial,Tir,Tiro
+2026,5,15/05/2026,Viernes,032015,Pedro Rodr√≠guez Pedreira,Oficial,D,Descanso
+2026,5,16/05/2026,S√°bado,032015,Pedro Rodr√≠guez Pedreira,Oficial,D,Descanso
+2026,5,17/05/2026,Domingo,032015,Pedro Rodr√≠guez Pedreira,Oficial,3,Noche
+2026,5,18/05/2026,Lunes,032015,Pedro Rodr√≠guez Pedreira,Oficial,D,Descanso
+2026,5,19/05/2026,Martes,032015,Pedro Rodr√≠guez Pedreira,Oficial,Ts,Tiempo Sindical
+2026,5,20/05/2026,Mi√©rcoles,032015,Pedro Rodr√≠guez Pedreira,Oficial,3,Noche
+2026,5,21/05/2026,Jueves,032015,Pedro Rodr√≠guez Pedreira,Oficial,D,Descanso
+2026,5,22/05/2026,Viernes,032015,Pedro Rodr√≠guez Pedreira,Oficial,Dcc,Descanso Compensaci√≥n Curso
+2026,5,23/05/2026,S√°bado,032015,Pedro Rodr√≠guez Pedreira,Oficial,D,Descanso
+2026,5,24/05/2026,Domingo,032015,Pedro Rodr√≠guez Pedreira,Oficial,D,Descanso
+2026,5,25/05/2026,Lunes,032015,Pedro Rodr√≠guez Pedreira,Oficial,2,Tarde
+2026,5,26/05/2026,Martes,032015,Pedro Rodr√≠guez Pedreira,Oficial,Dcc,Descanso Compensaci√≥n Curso
+2026,5,27/05/2026,Mi√©rcoles,032015,Pedro Rodr√≠guez Pedreira,Oficial,D,Descanso
+2026,5,28/05/2026,Jueves,032015,Pedro Rodr√≠guez Pedreira,Oficial,D,Descanso
+2026,5,29/05/2026,Viernes,032015,Pedro Rodr√≠guez Pedreira,Oficial,D,Descanso
+2026,5,30/05/2026,S√°bado,032015,Pedro Rodr√≠guez Pedreira,Oficial,D,Descanso
+2026,5,31/05/2026,Domingo,032015,Pedro Rodr√≠guez Pedreira,Oficial,D,Descanso
+2026,5,01/05/2026,Viernes,032016,V√≠ctor Mendez V√°zquez,Polic√≠a,D,Descanso
+2026,5,02/05/2026,S√°bado,032016,V√≠ctor Mendez V√°zquez,Polic√≠a,D,Descanso
+2026,5,03/05/2026,Domingo,032016,V√≠ctor Mendez V√°zquez,Polic√≠a,D,Descanso
+2026,5,04/05/2026,Lunes,032016,V√≠ctor Mendez V√°zquez,Polic√≠a,2,Tarde
+2026,5,05/05/2026,Martes,032016,V√≠ctor Mendez V√°zquez,Polic√≠a,3,Noche
+2026,5,06/05/2026,Mi√©rcoles,032016,V√≠ctor Mendez V√°zquez,Polic√≠a,3,Noche
+2026,5,07/05/2026,Jueves,032016,V√≠ctor Mendez V√°zquez,Polic√≠a,D,Descanso
+2026,5,08/05/2026,Viernes,032016,V√≠ctor Mendez V√°zquez,Polic√≠a,D,Descanso
+2026,5,09/05/2026,S√°bado,032016,V√≠ctor Mendez V√°zquez,Polic√≠a,D,Descanso
+2026,5,10/05/2026,Domingo,032016,V√≠ctor Mendez V√°zquez,Polic√≠a,D,Descanso
+2026,5,11/05/2026,Lunes,032016,V√≠ctor Mendez V√°zquez,Polic√≠a,Dcc,Descanso Compensaci√≥n Curso
+2026,5,12/05/2026,Martes,032016,V√≠ctor Mendez V√°zquez,Polic√≠a,2,Tarde
+2026,5,13/05/2026,Mi√©rcoles,032016,V√≠ctor Mendez V√°zquez,Polic√≠a,D,Descanso
+2026,5,14/05/2026,Jueves,032016,V√≠ctor Mendez V√°zquez,Polic√≠a,Tir,Tiro
+2026,5,15/05/2026,Viernes,032016,V√≠ctor Mendez V√°zquez,Polic√≠a,1,Ma√±ana
+2026,5,16/05/2026,S√°bado,032016,V√≠ctor Mendez V√°zquez,Polic√≠a,1,Ma√±ana
+2026,5,17/05/2026,Domingo,032016,V√≠ctor Mendez V√°zquez,Polic√≠a,1,Ma√±ana
+2026,5,18/05/2026,Lunes,032016,V√≠ctor Mendez V√°zquez,Polic√≠a,2,Tarde
+2026,5,19/05/2026,Martes,032016,V√≠ctor Mendez V√°zquez,Polic√≠a,D,Descanso
+2026,5,20/05/2026,Mi√©rcoles,032016,V√≠ctor Mendez V√°zquez,Polic√≠a,Dcc,Descanso Compensaci√≥n Curso
+2026,5,21/05/2026,Jueves,032016,V√≠ctor Mendez V√°zquez,Polic√≠a,1,Ma√±ana
+2026,5,22/05/2026,Viernes,032016,V√≠ctor Mendez V√°zquez,Polic√≠a,1,Ma√±ana
+2026,5,23/05/2026,S√°bado,032016,V√≠ctor Mendez V√°zquez,Polic√≠a,1,Ma√±ana
+2026,5,24/05/2026,Domingo,032016,V√≠ctor Mendez V√°zquez,Polic√≠a,D,Descanso
+2026,5,25/05/2026,Lunes,032016,V√≠ctor Mendez V√°zquez,Polic√≠a,D,Descanso
+2026,5,26/05/2026,Martes,032016,V√≠ctor Mendez V√°zquez,Polic√≠a,D,Descanso
+2026,5,27/05/2026,Mi√©rcoles,032016,V√≠ctor Mendez V√°zquez,Polic√≠a,D,Descanso
+2026,5,28/05/2026,Jueves,032016,V√≠ctor Mendez V√°zquez,Polic√≠a,D,Descanso
+2026,5,29/05/2026,Viernes,032016,V√≠ctor Mendez V√°zquez,Polic√≠a,3,Noche
+2026,5,30/05/2026,S√°bado,032016,V√≠ctor Mendez V√°zquez,Polic√≠a,3,Noche
+2026,5,31/05/2026,Domingo,032016,V√≠ctor Mendez V√°zquez,Polic√≠a,3,Noche
+2026,5,01/05/2026,Viernes,032022,Miguel Naveiras Picos,Polic√≠a,D,Descanso
+2026,5,02/05/2026,S√°bado,032022,Miguel Naveiras Picos,Polic√≠a,D,Descanso
+2026,5,03/05/2026,Domingo,032022,Miguel Naveiras Picos,Polic√≠a,D,Descanso
+2026,5,04/05/2026,Lunes,032022,Miguel Naveiras Picos,Polic√≠a,Dcc,Descanso Compensaci√≥n Curso
+2026,5,05/05/2026,Martes,032022,Miguel Naveiras Picos,Polic√≠a,D,Descanso
+2026,5,06/05/2026,Mi√©rcoles,032022,Miguel Naveiras Picos,Polic√≠a,D,Descanso
+2026,5,07/05/2026,Jueves,032022,Miguel Naveiras Picos,Polic√≠a,1,Ma√±ana
+2026,5,08/05/2026,Viernes,032022,Miguel Naveiras Picos,Polic√≠a,D,Descanso
+2026,5,09/05/2026,S√°bado,032022,Miguel Naveiras Picos,Polic√≠a,D,Descanso
+2026,5,10/05/2026,Domingo,032022,Miguel Naveiras Picos,Polic√≠a,1,Ma√±ana
+2026,5,11/05/2026,Lunes,032022,Miguel Naveiras Picos,Polic√≠a,1,Ma√±ana
+2026,5,12/05/2026,Martes,032022,Miguel Naveiras Picos,Polic√≠a,D,Descanso
+2026,5,13/05/2026,Mi√©rcoles,032022,Miguel Naveiras Picos,Polic√≠a,1,Ma√±ana
+2026,5,14/05/2026,Jueves,032022,Miguel Naveiras Picos,Polic√≠a,Tir,Tiro
+2026,5,15/05/2026,Viernes,032022,Miguel Naveiras Picos,Polic√≠a,3,Noche
+2026,5,16/05/2026,S√°bado,032022,Miguel Naveiras Picos,Polic√≠a,3,Noche
+2026,5,17/05/2026,Domingo,032022,Miguel Naveiras Picos,Polic√≠a,3,Noche
+2026,5,18/05/2026,Lunes,032022,Miguel Naveiras Picos,Polic√≠a,D,Descanso
+2026,5,19/05/2026,Martes,032022,Miguel Naveiras Picos,Polic√≠a,Dcc,Descanso Compensaci√≥n Curso
+2026,5,20/05/2026,Mi√©rcoles,032022,Miguel Naveiras Picos,Polic√≠a,Ts,Tiempo Sindical
+2026,5,21/05/2026,Jueves,032022,Miguel Naveiras Picos,Polic√≠a,D,Tarde
+2026,5,22/05/2026,Viernes,032022,Miguel Naveiras Picos,Polic√≠a,2,Tarde
+2026,5,23/05/2026,S√°bado,032022,Miguel Naveiras Picos,Polic√≠a,2,Tarde
+2026,5,24/05/2026,Domingo,032022,Miguel Naveiras Picos,Polic√≠a,2,Tarde
+2026,5,25/05/2026,Lunes,032022,Miguel Naveiras Picos,Polic√≠a,3,Noche
+2026,5,26/05/2026,Martes,032022,Miguel Naveiras Picos,Polic√≠a,3,Noche
+2026,5,27/05/2026,Mi√©rcoles,032022,Miguel Naveiras Picos,Polic√≠a,D,Descanso
+2026,5,28/05/2026,Jueves,032022,Miguel Naveiras Picos,Polic√≠a,Ts,Tiempo Sindical
+2026,5,29/05/2026,Viernes,032022,Miguel Naveiras Picos,Polic√≠a,D,Descanso
+2026,5,30/05/2026,S√°bado,032022,Miguel Naveiras Picos,Polic√≠a,D,Descanso
+2026,5,31/05/2026,Domingo,032022,Miguel Naveiras Picos,Polic√≠a,D,Descanso
+2026,5,01/05/2026,Viernes,032023,Javier Plana Costoya,Polic√≠a,3,Noche
+2026,5,02/05/2026,S√°bado,032023,Javier Plana Costoya,Polic√≠a,3,Noche
+2026,5,03/05/2026,Domingo,032023,Javier Plana Costoya,Polic√≠a,3,Noche
+2026,5,04/05/2026,Lunes,032023,Javier Plana Costoya,Polic√≠a,D,Descanso
+2026,5,05/05/2026,Martes,032023,Javier Plana Costoya,Polic√≠a,Dcc,Descanso Compensaci√≥n Curso
+2026,5,06/05/2026,Mi√©rcoles,032023,Javier Plana Costoya,Polic√≠a,1,Ma√±ana
+2026,5,07/05/2026,Jueves,032023,Javier Plana Costoya,Polic√≠a,Tir,Tiro
+2026,5,08/05/2026,Viernes,032023,Javier Plana Costoya,Polic√≠a,D,Descanso
+2026,5,09/05/2026,S√°bado,032023,Javier Plana Costoya,Polic√≠a,D,Descanso
+2026,5,10/05/2026,Domingo,032023,Javier Plana Costoya,Polic√≠a,D,Descanso
+2026,5,11/05/2026,Lunes,032023,Javier Plana Costoya,Polic√≠a,1,Ma√±ana
+2026,5,12/05/2026,Martes,032023,Javier Plana Costoya,Polic√≠a,1,Ma√±ana
+2026,5,13/05/2026,Mi√©rcoles,032023,Javier Plana Costoya,Polic√≠a,3,Noche
+2026,5,14/05/2026,Jueves,032023,Javier Plana Costoya,Polic√≠a,3,Noche
+2026,5,15/05/2026,Viernes,032023,Javier Plana Costoya,Polic√≠a,D,Descanso
+2026,5,16/05/2026,S√°bado,032023,Javier Plana Costoya,Polic√≠a,D,Descanso
+2026,5,17/05/2026,Domingo,032023,Javier Plana Costoya,Polic√≠a,D,Descanso
+2026,5,18/05/2026,Lunes,032023,Javier Plana Costoya,Polic√≠a,D,Descanso
+2026,5,19/05/2026,Martes,032023,Javier Plana Costoya,Polic√≠a,Dcc,Descanso Compensaci√≥n Curso
+2026,5,20/05/2026,Mi√©rcoles,032023,Javier Plana Costoya,Polic√≠a,D,Descanso
+2026,5,21/05/2026,Jueves,032023,Javier Plana Costoya,Polic√≠a,D,Descanso
+2026,5,22/05/2026,Viernes,032023,Javier Plana Costoya,Polic√≠a,D,Descanso
+2026,5,23/05/2026,S√°bado,032023,Javier Plana Costoya,Polic√≠a,D,Descanso
+2026,5,24/05/2026,Domingo,032023,Javier Plana Costoya,Polic√≠a,1,Ma√±ana
+2026,5,25/05/2026,Lunes,032023,Javier Plana Costoya,Polic√≠a,1,Ma√±ana
+2026,5,26/05/2026,Martes,032023,Javier Plana Costoya,Polic√≠a,1,Ma√±ana
+2026,5,27/05/2026,Mi√©rcoles,032023,Javier Plana Costoya,Polic√≠a,D,Descanso
+2026,5,28/05/2026,Jueves,032023,Javier Plana Costoya,Polic√≠a,D,Descanso
+2026,5,29/05/2026,Viernes,032023,Javier Plana Costoya,Polic√≠a,2,Tarde
+2026,5,30/05/2026,S√°bado,032023,Javier Plana Costoya,Polic√≠a,2,Tarde
+2026,5,31/05/2026,Domingo,032023,Javier Plana Costoya,Polic√≠a,2,Tarde
+2026,5,01/05/2026,Viernes,032025,Samuel Fern√°ndez P√©rez,Polic√≠a,3,Noche
+2026,5,02/05/2026,S√°bado,032025,Samuel Fern√°ndez P√©rez,Polic√≠a,3,Noche
+2026,5,03/05/2026,Domingo,032025,Samuel Fern√°ndez P√©rez,Polic√≠a,D,Descanso
+2026,5,04/05/2026,Lunes,032025,Samuel Fern√°ndez P√©rez,Polic√≠a,D,Descanso
+2026,5,05/05/2026,Martes,032025,Samuel Fern√°ndez P√©rez,Polic√≠a,1,Ma√±ana
+2026,5,06/05/2026,Mi√©rcoles,032025,Samuel Fern√°ndez P√©rez,Polic√≠a,1,Ma√±ana
+2026,5,07/05/2026,Jueves,032025,Samuel Fern√°ndez P√©rez,Polic√≠a,Tir,Tiro
+2026,5,08/05/2026,Viernes,032025,Samuel Fern√°ndez P√©rez,Polic√≠a,D,Descanso
+2026,5,09/05/2026,S√°bado,032025,Samuel Fern√°ndez P√©rez,Polic√≠a,D,Descanso
+2026,5,10/05/2026,Domingo,032025,Samuel Fern√°ndez P√©rez,Polic√≠a,3,Noche
+2026,5,11/05/2026,Lunes,032025,Samuel Fern√°ndez P√©rez,Polic√≠a,3,Noche
+2026,5,12/05/2026,Martes,032025,Samuel Fern√°ndez P√©rez,Polic√≠a,3,Noche
+2026,5,13/05/2026,Mi√©rcoles,032025,Samuel Fern√°ndez P√©rez,Polic√≠a,D,Descanso
+2026,5,14/05/2026,Jueves,032025,Samuel Fern√°ndez P√©rez,Polic√≠a,1,Ma√±ana
+2026,5,15/05/2026,Viernes,032025,Samuel Fern√°ndez P√©rez,Polic√≠a,2,Tarde
+2026,5,16/05/2026,S√°bado,032025,Samuel Fern√°ndez P√©rez,Polic√≠a,2,Tarde
+2026,5,17/05/2026,Domingo,032025,Samuel Fern√°ndez P√©rez,Polic√≠a,2,Tarde
+2026,5,18/05/2026,Lunes,032025,Samuel Fern√°ndez P√©rez,Polic√≠a,D,Descanso
+2026,5,19/05/2026,Martes,032025,Samuel Fern√°ndez P√©rez,Polic√≠a,D,Descanso
+2026,5,20/05/2026,Mi√©rcoles,032025,Samuel Fern√°ndez P√©rez,Polic√≠a,Dcc,Descanso Compensaci√≥n Curso
+2026,5,21/05/2026,Jueves,032025,Samuel Fern√°ndez P√©rez,Polic√≠a,Dcc,Descanso Compensaci√≥n Curso
+2026,5,22/05/2026,Viernes,032025,Samuel Fern√°ndez P√©rez,Polic√≠a,D,Descanso
+2026,5,23/05/2026,S√°bado,032025,Samuel Fern√°ndez P√©rez,Polic√≠a,D,Descanso
+2026,5,24/05/2026,Domingo,032025,Samuel Fern√°ndez P√©rez,Polic√≠a,D,Descanso
+2026,5,25/05/2026,Lunes,032025,Samuel Fern√°ndez P√©rez,Polic√≠a,D,Descanso
+2026,5,26/05/2026,Martes,032025,Samuel Fern√°ndez P√©rez,Polic√≠a,1,Ma√±ana
+2026,5,27/05/2026,Mi√©rcoles,032025,Samuel Fern√°ndez P√©rez,Polic√≠a,1,Ma√±ana
+2026,5,28/05/2026,Jueves,032025,Samuel Fern√°ndez P√©rez,Polic√≠a,1,Ma√±ana
+2026,5,29/05/2026,Viernes,032025,Samuel Fern√°ndez P√©rez,Polic√≠a,D,Descanso
+2026,5,30/05/2026,S√°bado,032025,Samuel Fern√°ndez P√©rez,Polic√≠a,D,Descanso
+2026,5,31/05/2026,Domingo,032025,Samuel Fern√°ndez P√©rez,Polic√≠a,D,Descanso
+2026,5,01/05/2026,Viernes,032026,Iago Blanco Mui√±o,Polic√≠a,2,Tarde
+2026,5,02/05/2026,S√°bado,032026,Iago Blanco Mui√±o,Polic√≠a,2,Tarde
+2026,5,03/05/2026,Domingo,032026,Iago Blanco Mui√±o,Polic√≠a,2,Tarde
+2026,5,04/05/2026,Lunes,032026,Iago Blanco Mui√±o,Polic√≠a,D,Descanso
+2026,5,05/05/2026,Martes,032026,Iago Blanco Mui√±o,Polic√≠a,Ts,Tiempo Sindical
+2026,5,06/05/2026,Mi√©rcoles,032026,Iago Blanco Mui√±o,Polic√≠a,D,Descanso
+2026,5,07/05/2026,Jueves,032026,Iago Blanco Mui√±o,Polic√≠a,Tir,Tiro
+2026,5,08/05/2026,Viernes,032026,Iago Blanco Mui√±o,Polic√≠a,D,Descanso
+2026,5,09/05/2026,S√°bado,032026,Iago Blanco Mui√±o,Polic√≠a,D,Descanso
+2026,5,10/05/2026,Domingo,032026,Iago Blanco Mui√±o,Polic√≠a,D,Descanso
+2026,5,11/05/2026,Lunes,032026,Iago Blanco Mui√±o,Polic√≠a,Ts,Tiempo Sindical
+2026,5,12/05/2026,Martes,032026,Iago Blanco Mui√±o,Polic√≠a,Dcc,Descanso Compensaci√≥n Curso
+2026,5,13/05/2026,Mi√©rcoles,032026,Iago Blanco Mui√±o,Polic√≠a,D,Descanso
+2026,5,14/05/2026,Jueves,032026,Iago Blanco Mui√±o,Polic√≠a,3,Noche
+2026,5,15/05/2026,Viernes,032026,Iago Blanco Mui√±o,Polic√≠a,3,Noche
+2026,5,16/05/2026,S√°bado,032026,Iago Blanco Mui√±o,Polic√≠a,3,Noche
+2026,5,17/05/2026,Domingo,032026,Iago Blanco Mui√±o,Polic√≠a,D,Descanso
+2026,5,18/05/2026,Lunes,032026,Iago Blanco Mui√±o,Polic√≠a,D,Descanso
+2026,5,19/05/2026,Martes,032026,Iago Blanco Mui√±o,Polic√≠a,D,Descanso
+2026,5,20/05/2026,Mi√©rcoles,032026,Iago Blanco Mui√±o,Polic√≠a,1,Ma√±ana
+2026,5,21/05/2026,Jueves,032026,Iago Blanco Mui√±o,Polic√≠a,1,Ma√±ana
+2026,5,22/05/2026,Viernes,032026,Iago Blanco Mui√±o,Polic√≠a,D,Descanso
+2026,5,23/05/2026,S√°bado,032026,Iago Blanco Mui√±o,Polic√≠a,D,Descanso
+2026,5,24/05/2026,Domingo,032026,Iago Blanco Mui√±o,Polic√≠a,D,Descanso
+2026,5,25/05/2026,Lunes,032026,Iago Blanco Mui√±o,Polic√≠a,Dcc,Descanso Compensaci√≥n Curso
+2026,5,26/05/2026,Martes,032026,Iago Blanco Mui√±o,Polic√≠a,2,Tarde
+2026,5,27/05/2026,Mi√©rcoles,032026,Iago Blanco Mui√±o,Polic√≠a,3,Noche
+2026,5,28/05/2026,Jueves,032026,Iago Blanco Mui√±o,Polic√≠a,3,Noche
+2026,5,29/05/2026,Viernes,032026,Iago Blanco Mui√±o,Polic√≠a,D,Descanso
+2026,5,30/05/2026,S√°bado,032026,Iago Blanco Mui√±o,Polic√≠a,D,Descanso
+2026,5,31/05/2026,Domingo,032026,Iago Blanco Mui√±o,Polic√≠a,1,Ma√±ana
+2026,5,01/05/2026,Viernes,032027,Iago Romar Tajes,Polic√≠a,D,Descanso
+2026,5,02/05/2026,S√°bado,032027,Iago Romar Tajes,Polic√≠a,3,Noche
+2026,5,03/05/2026,Domingo,032027,Iago Romar Tajes,Polic√≠a,3,Noche
+2026,5,04/05/2026,Lunes,032027,Iago Romar Tajes,Polic√≠a,3,Noche
+2026,5,05/05/2026,Martes,032027,Iago Romar Tajes,Polic√≠a,D,Descanso
+2026,5,06/05/2026,Mi√©rcoles,032027,Iago Romar Tajes,Polic√≠a,D,Descanso
+2026,5,07/05/2026,Jueves,032027,Iago Romar Tajes,Polic√≠a,Tir,Tiro
+2026,5,08/05/2026,Viernes,032027,Iago Romar Tajes,Polic√≠a,2,Tarde
+2026,5,09/05/2026,S√°bado,032027,Iago Romar Tajes,Polic√≠a,2,Tarde
+2026,5,10/05/2026,Domingo,032027,Iago Romar Tajes,Polic√≠a,2,Tarde
+2026,5,11/05/2026,Lunes,032027,Iago Romar Tajes,Polic√≠a,D,Descanso
+2026,5,12/05/2026,Martes,032027,Iago Romar Tajes,Polic√≠a,D,Descanso
+2026,5,13/05/2026,Mi√©rcoles,032027,Iago Romar Tajes,Polic√≠a,Dcc,Descanso Compensaci√≥n Curso
+2026,5,14/05/2026,Jueves,032027,Iago Romar Tajes,Polic√≠a,D,Descanso
+2026,5,15/05/2026,Viernes,032027,Iago Romar Tajes,Polic√≠a,Dcc,Descanso Compensaci√≥n Curso
+2026,5,16/05/2026,S√°bado,032027,Iago Romar Tajes,Polic√≠a,D,Descanso
+2026,5,17/05/2026,Domingo,032027,Iago Romar Tajes,Polic√≠a,D,Descanso
+2026,5,18/05/2026,Lunes,032027,Iago Romar Tajes,Polic√≠a,2,Tarde
+2026,5,19/05/2026,Martes,032027,Iago Romar Tajes,Polic√≠a,3,Noche
+2026,5,20/05/2026,Mi√©rcoles,032027,Iago Romar Tajes,Polic√≠a,3,Noche
+2026,5,21/05/2026,Jueves,032027,Iago Romar Tajes,Polic√≠a,D,Descanso
+2026,5,22/05/2026,Viernes,032027,Iago Romar Tajes,Polic√≠a,1,Ma√±ana
+2026,5,23/05/2026,S√°bado,032027,Iago Romar Tajes,Polic√≠a,D,Descanso
+2026,5,24/05/2026,Domingo,032027,Iago Romar Tajes,Polic√≠a,1,Ma√±ana
+2026,5,25/05/2026,Lunes,032027,Iago Romar Tajes,Polic√≠a,1,Ma√±ana
+2026,5,26/05/2026,Martes,032027,Iago Romar Tajes,Polic√≠a,D,Descanso
+2026,5,27/05/2026,Mi√©rcoles,032027,Iago Romar Tajes,Polic√≠a,2,Tarde
+2026,5,28/05/2026,Jueves,032027,Iago Romar Tajes,Polic√≠a,2,Tarde
+2026,5,29/05/2026,Viernes,032027,Iago Romar Tajes,Polic√≠a,D,Descanso
+2026,5,30/05/2026,S√°bado,032027,Iago Romar Tajes,Polic√≠a,D,Descanso
+2026,5,31/05/2026,Domingo,032027,Iago Romar Tajes,Polic√≠a,D,Descanso
+2026,5,01/05/2026,Viernes,032028,Iker D√≠az Villaverde,Polic√≠a,D,Descanso
+2026,5,02/05/2026,S√°bado,032028,Iker D√≠az Villaverde,Polic√≠a,D,Descanso
+2026,5,03/05/2026,Domingo,032028,Iker D√≠az Villaverde,Polic√≠a,D,Descanso
+2026,5,04/05/2026,Lunes,032028,Iker D√≠az Villaverde,Polic√≠a,D,Descanso
+2026,5,05/05/2026,Martes,032028,Iker D√≠az Villaverde,Polic√≠a,Dcc,Descanso Compensaci√≥n Curso
+2026,5,06/05/2026,Mi√©rcoles,032028,Iker D√≠az Villaverde,Polic√≠a,2,Tarde
+2026,5,07/05/2026,Jueves,032028,Iker D√≠az Villaverde,Polic√≠a,2,Tarde
+2026,5,08/05/2026,Viernes,032028,Iker D√≠az Villaverde,Polic√≠a,3,Noche
+2026,5,09/05/2026,S√°bado,032028,Iker D√≠az Villaverde,Polic√≠a,3,Noche
+2026,5,10/05/2026,Domingo,032028,Iker D√≠az Villaverde,Polic√≠a,3,Noche
+2026,5,11/05/2026,Lunes,032028,Iker D√≠az Villaverde,Polic√≠a,D,Descanso
+2026,5,12/05/2026,Martes,032028,Iker D√≠az Villaverde,Polic√≠a,D,Descanso
+2026,5,13/05/2026,Mi√©rcoles,032028,Iker D√≠az Villaverde,Polic√≠a,Dcc,Descanso Compensaci√≥n Curso
+2026,5,14/05/2026,Jueves,032028,Iker D√≠az Villaverde,Polic√≠a,Tir,Tiro
+2026,5,15/05/2026,Viernes,032028,Iker D√≠az Villaverde,Polic√≠a,1,Ma√±ana
+2026,5,16/05/2026,S√°bado,032028,Iker D√≠az Villaverde,Polic√≠a,1,Ma√±ana
+2026,5,17/05/2026,Domingo,032028,Iker D√≠az Villaverde,Polic√≠a,1,Ma√±ana
+2026,5,18/05/2026,Lunes,032028,Iker D√≠az Villaverde,Polic√≠a,D,Descanso
+2026,5,19/05/2026,Martes,032028,Iker D√≠az Villaverde,Polic√≠a,D,Descanso
+2026,5,20/05/2026,Mi√©rcoles,032028,Iker D√≠az Villaverde,Polic√≠a,3,Noche
+2026,5,21/05/2026,Jueves,032028,Iker D√≠az Villaverde,Polic√≠a,3,Noche
+2026,5,22/05/2026,Viernes,032028,Iker D√≠az Villaverde,Polic√≠a,D,Descanso
+2026,5,23/05/2026,S√°bado,032028,Iker D√≠az Villaverde,Polic√≠a,D,Descanso
+2026,5,24/05/2026,Domingo,032028,Iker D√≠az Villaverde,Polic√≠a,D,Descanso
+2026,5,25/05/2026,Lunes,032028,Iker D√≠az Villaverde,Polic√≠a,2,Tarde
+2026,5,26/05/2026,Martes,032028,Iker D√≠az Villaverde,Polic√≠a,2,Tarde
+2026,5,27/05/2026,Mi√©rcoles,032028,Iker D√≠az Villaverde,Polic√≠a,D,Descanso
+2026,5,28/05/2026,Jueves,032028,Iker D√≠az Villaverde,Polic√≠a,D,Descanso
+2026,5,29/05/2026,Viernes,032028,Iker D√≠az Villaverde,Polic√≠a,1,Ma√±ana
+2026,5,30/05/2026,S√°bado,032028,Iker D√≠az Villaverde,Polic√≠a,1,Ma√±ana
+2026,5,31/05/2026,Domingo,032028,Iker D√≠az Villaverde,Polic√≠a,D,Descanso
+2026,5,01/05/2026,Viernes,032029,Xoaqu√≠n Miguel Novo V√°zquez,Polic√≠a,1,Ma√±ana
+2026,5,02/05/2026,S√°bado,032029,Xoaqu√≠n Miguel Novo V√°zquez,Polic√≠a,D,Descanso
+2026,5,03/05/2026,Domingo,032029,Xoaqu√≠n Miguel Novo V√°zquez,Polic√≠a,D,Descanso
+2026,5,04/05/2026,Lunes,032029,Xoaqu√≠n Miguel Novo V√°zquez,Polic√≠a,D,Descanso
+2026,5,05/05/2026,Martes,032029,Xoaqu√≠n Miguel Novo V√°zquez,Polic√≠a,2,Tarde
+2026,5,06/05/2026,Mi√©rcoles,032029,Xoaqu√≠n Miguel Novo V√°zquez,Polic√≠a,2,Tarde
+2026,5,07/05/2026,Jueves,032029,Xoaqu√≠n Miguel Novo V√°zquez,Polic√≠a,Tir,Tiro
+2026,5,08/05/2026,Viernes,032029,Xoaqu√≠n Miguel Novo V√°zquez,Polic√≠a,D,Descanso
+2026,5,09/05/2026,S√°bado,032029,Xoaqu√≠n Miguel Novo V√°zquez,Polic√≠a,D,Descanso
+2026,5,10/05/2026,Domingo,032029,Xoaqu√≠n Miguel Novo V√°zquez,Polic√≠a,D,Descanso
+2026,5,11/05/2026,Lunes,032029,Xoaqu√≠n Miguel Novo V√°zquez,Polic√≠a,Dcc,Descanso Compensaci√≥n Curso
+2026,5,12/05/2026,Martes,032029,Xoaqu√≠n Miguel Novo V√°zquez,Polic√≠a,3,Noche
+2026,5,13/05/2026,Mi√©rcoles,032029,Xoaqu√≠n Miguel Novo V√°zquez,Polic√≠a,3,Noche
+2026,5,14/05/2026,Jueves,032029,Xoaqu√≠n Miguel Novo V√°zquez,Polic√≠a,D,Descanso
+2026,5,15/05/2026,Viernes,032029,Xoaqu√≠n Miguel Novo V√°zquez,Polic√≠a,2,Tarde
+2026,5,16/05/2026,S√°bado,032029,Xoaqu√≠n Miguel Novo V√°zquez,Polic√≠a,2,Tarde
+2026,5,17/05/2026,Domingo,032029,Xoaqu√≠n Miguel Novo V√°zquez,Polic√≠a,2,Tarde
+2026,5,18/05/2026,Lunes,032029,Xoaqu√≠n Miguel Novo V√°zquez,Polic√≠a,D,Descanso
+2026,5,19/05/2026,Martes,032029,Xoaqu√≠n Miguel Novo V√°zquez,Polic√≠a,D,Descanso
+2026,5,20/05/2026,Mi√©rcoles,032029,Xoaqu√≠n Miguel Novo V√°zquez,Polic√≠a,2,Tarde
+2026,5,21/05/2026,Jueves,032029,Xoaqu√≠n Miguel Novo V√°zquez,Polic√≠a,2,Tarde
+2026,5,22/05/2026,Viernes,032029,Xoaqu√≠n Miguel Novo V√°zquez,Polic√≠a,3,Noche
+2026,5,23/05/2026,S√°bado,032029,Xoaqu√≠n Miguel Novo V√°zquez,Polic√≠a,3,Noche
+2026,5,24/05/2026,Domingo,032029,Xoaqu√≠n Miguel Novo V√°zquez,Polic√≠a,3,Noche
+2026,5,25/05/2026,Lunes,032029,Xoaqu√≠n Miguel Novo V√°zquez,Polic√≠a,D,Descanso
+2026,5,26/05/2026,Martes,032029,Xoaqu√≠n Miguel Novo V√°zquez,Polic√≠a,D,Descanso
+2026,5,27/05/2026,Mi√©rcoles,032029,Xoaqu√≠n Miguel Novo V√°zquez,Polic√≠a,Dcc,Descanso Compensaci√≥n Curso
+2026,5,28/05/2026,Jueves,032029,Xoaqu√≠n Miguel Novo V√°zquez,Polic√≠a,D,Descanso
+2026,5,29/05/2026,Viernes,032029,Xoaqu√≠n Miguel Novo V√°zquez,Polic√≠a,D,Descanso
+2026,5,30/05/2026,S√°bado,032029,Xoaqu√≠n Miguel Novo V√°zquez,Polic√≠a,D,Descanso
+2026,5,31/05/2026,Domingo,032029,Xoaqu√≠n Miguel Novo V√°zquez,Polic√≠a,1,Ma√±ana
+2026,5,01/05/2026,Viernes,032030,Mart√≠n Lago Fern√°ndez,Polic√≠a,1,Ma√±ana
+2026,5,02/05/2026,S√°bado,032030,Mart√≠n Lago Fern√°ndez,Polic√≠a,1,Ma√±ana
+2026,5,03/05/2026,Domingo,032030,Mart√≠n Lago Fern√°ndez,Polic√≠a,1,Ma√±ana
+2026,5,04/05/2026,Lunes,032030,Mart√≠n Lago Fern√°ndez,Polic√≠a,1,Ma√±ana
+2026,5,05/05/2026,Martes,032030,Mart√≠n Lago Fern√°ndez,Polic√≠a,Dcc,Descanso Compensaci√≥n Curso
+2026,5,06/05/2026,Mi√©rcoles,032030,Mart√≠n Lago Fern√°ndez,Polic√≠a,D,Descanso
+2026,5,07/05/2026,Jueves,032030,Mart√≠n Lago Fern√°ndez,Polic√≠a,3,Noche
+2026,5,08/05/2026,Viernes,032030,Mart√≠n Lago Fern√°ndez,Polic√≠a,3,Noche
+2026,5,09/05/2026,S√°bado,032030,Mart√≠n Lago Fern√°ndez,Polic√≠a,3,Noche
+2026,5,10/05/2026,Domingo,032030,Mart√≠n Lago Fern√°ndez,Polic√≠a,D,Descanso
+2026,5,11/05/2026,Lunes,032030,Mart√≠n Lago Fern√°ndez,Polic√≠a,D,Descanso
+2026,5,12/05/2026,Martes,032030,Mart√≠n Lago Fern√°ndez,Polic√≠a,1,Ma√±ana
+2026,5,13/05/2026,Mi√©rcoles,032030,Mart√≠n Lago Fern√°ndez,Polic√≠a,2,Tarde
+2026,5,14/05/2026,Jueves,032030,Mart√≠n Lago Fern√°ndez,Polic√≠a,Tir,Tiro
+2026,5,15/05/2026,Viernes,032030,Mart√≠n Lago Fern√°ndez,Polic√≠a,D,Descanso
+2026,5,16/05/2026,S√°bado,032030,Mart√≠n Lago Fern√°ndez,Polic√≠a,D,Descanso
+2026,5,17/05/2026,Domingo,032030,Mart√≠n Lago Fern√°ndez,Polic√≠a,D,Descanso
+2026,5,18/05/2026,Lunes,032030,Mart√≠n Lago Fern√°ndez,Polic√≠a,3,Noche
+2026,5,19/05/2026,Martes,032030,Mart√≠n Lago Fern√°ndez,Polic√≠a,3,Noche
+2026,5,20/05/2026,Mi√©rcoles,032030,Mart√≠n Lago Fern√°ndez,Polic√≠a,D,Descanso
+2026,5,21/05/2026,Jueves,032030,Mart√≠n Lago Fern√°ndez,Polic√≠a,D,Descanso
+2026,5,22/05/2026,Viernes,032030,Mart√≠n Lago Fern√°ndez,Polic√≠a,Dcc,Descanso Compensaci√≥n Curso
+2026,5,23/05/2026,S√°bado,032030,Mart√≠n Lago Fern√°ndez,Polic√≠a,1,Ma√±ana
+2026,5,24/05/2026,Domingo,032030,Mart√≠n Lago Fern√°ndez,Polic√≠a,D,Descanso
+2026,5,25/05/2026,Lunes,032030,Mart√≠n Lago Fern√°ndez,Polic√≠a,D,Descanso
+2026,5,26/05/2026,Martes,032030,Mart√≠n Lago Fern√°ndez,Polic√≠a,D,Descanso
+2026,5,27/05/2026,Mi√©rcoles,032030,Mart√≠n Lago Fern√°ndez,Polic√≠a,2,Tarde
+2026,5,28/05/2026,Jueves,032030,Mart√≠n Lago Fern√°ndez,Polic√≠a,2,Tarde
+2026,5,29/05/2026,Viernes,032030,Mart√≠n Lago Fern√°ndez,Polic√≠a,D,Descanso
+2026,5,30/05/2026,S√°bado,032030,Mart√≠n Lago Fern√°ndez,Polic√≠a,D,Descanso
+2026,5,31/05/2026,Domingo,032030,Mart√≠n Lago Fern√°ndez,Polic√≠a,D,Descanso
+2026,5,01/05/2026,Viernes,032031,Carlota Tella Granda,Polic√≠a,2,Tarde
+2026,5,02/05/2026,S√°bado,032031,Carlota Tella Granda,Polic√≠a,2,Tarde
+2026,5,03/05/2026,Domingo,032031,Carlota Tella Granda,Polic√≠a,2,Tarde
+2026,5,04/05/2026,Lunes,032031,Carlota Tella Granda,Polic√≠a,3,Noche
+2026,5,05/05/2026,Martes,032031,Carlota Tella Granda,Polic√≠a,D,Descanso
+2026,5,06/05/2026,Mi√©rcoles,032031,Carlota Tella Granda,Polic√≠a,D,Descanso
+2026,5,07/05/2026,Jueves,032031,Carlota Tella Granda,Polic√≠a,Tir,Tiro
+2026,5,08/05/2026,Viernes,032031,Carlota Tella Granda,Polic√≠a,D,Descanso
+2026,5,09/05/2026,S√°bado,032031,Carlota Tella Granda,Polic√≠a,1,Ma√±ana
+2026,5,10/05/2026,Domingo,032031,Carlota Tella Granda,Polic√≠a,D,Descanso
+2026,5,11/05/2026,Lunes,032031,Carlota Tella Granda,Polic√≠a,3,Noche
+2026,5,12/05/2026,Martes,032031,Carlota Tella Granda,Polic√≠a,D,Descanso
+2026,5,13/05/2026,Mi√©rcoles,032031,Carlota Tella Granda,Polic√≠a,2,Tarde
+2026,5,14/05/2026,Jueves,032031,Carlota Tella Granda,Polic√≠a,2,Tarde
+2026,5,15/05/2026,Viernes,032031,Carlota Tella Granda,Polic√≠a,D,Descanso
+2026,5,16/05/2026,S√°bado,032031,Carlota Tella Granda,Polic√≠a,D,Descanso
+2026,5,17/05/2026,Domingo,032031,Carlota Tella Granda,Polic√≠a,D,Descanso
+2026,5,18/05/2026,Lunes,032031,Carlota Tella Granda,Polic√≠a,1,Ma√±ana
+2026,5,19/05/2026,Martes,032031,Carlota Tella Granda,Polic√≠a,1,Ma√±ana
+2026,5,20/05/2026,Mi√©rcoles,032031,Carlota Tella Granda,Polic√≠a,Dcc,Descanso Compensaci√≥n Curso
+2026,5,21/05/2026,Jueves,032031,Carlota Tella Granda,Polic√≠a,D,Descanso
+2026,5,22/05/2026,Viernes,032031,Carlota Tella Granda,Polic√≠a,D,Descanso
+2026,5,23/05/2026,S√°bado,032031,Carlota Tella Granda,Polic√≠a,D,Descanso
+2026,5,24/05/2026,Domingo,032031,Carlota Tella Granda,Polic√≠a,D,Descanso
+2026,5,25/05/2026,Lunes,032031,Carlota Tella Granda,Polic√≠a,Dcc,Descanso Compensaci√≥n Curso
+2026,5,26/05/2026,Martes,032031,Carlota Tella Granda,Polic√≠a,D,Descanso
+2026,5,27/05/2026,Mi√©rcoles,032031,Carlota Tella Granda,Polic√≠a,1,Ma√±ana
+2026,5,28/05/2026,Jueves,032031,Carlota Tella Granda,Polic√≠a,D,Descanso
+2026,5,29/05/2026,Viernes,032031,Carlota Tella Granda,Polic√≠a,3,Noche
+2026,5,30/05/2026,S√°bado,032031,Carlota Tella Granda,Polic√≠a,3,Noche
+2026,5,31/05/2026,Domingo,032031,Carlota Tella Granda,Polic√≠a,3,Noche
+2026,5,01/05/2026,Viernes,032013,Sime√≥n Porto Fern√°ndez,Polic√≠a,D,Descanso
+2026,5,02/05/2026,S√°bado,032013,Sime√≥n Porto Fern√°ndez,Polic√≠a,D,Descanso
+2026,5,03/05/2026,Domingo,032013,Sime√≥n Porto Fern√°ndez,Polic√≠a,D,Descanso
+2026,5,04/05/2026,Lunes,032013,Sime√≥n Porto Fern√°ndez,Polic√≠a,D,Descanso
+2026,5,05/05/2026,Martes,032013,Sime√≥n Porto Fern√°ndez,Polic√≠a,2,Tarde
+2026,5,06/05/2026,Mi√©rcoles,032013,Sime√≥n Porto Fern√°ndez,Polic√≠a,3,Noche
+2026,5,07/05/2026,Jueves,032013,Sime√≥n Porto Fern√°ndez,Polic√≠a,3,Noche
+2026,5,08/05/2026,Viernes,032013,Sime√≥n Porto Fern√°ndez,Polic√≠a,3,Noche
+2026,5,09/05/2026,S√°bado,032013,Sime√≥n Porto Fern√°ndez,Polic√≠a,3,Noche
+2026,5,10/05/2026,Domingo,032013,Sime√≥n Porto Fern√°ndez,Polic√≠a,D,Descanso
+2026,5,11/05/2026,Lunes,032013,Sime√≥n Porto Fern√°ndez,Polic√≠a,2,Tarde
+2026,5,12/05/2026,Martes,032013,Sime√≥n Porto Fern√°ndez,Polic√≠a,D,Descanso
+2026,5,13/05/2026,Mi√©rcoles,032013,Sime√≥n Porto Fern√°ndez,Polic√≠a,Dcc,Descanso Compensaci√≥n Curso
+2026,5,14/05/2026,Jueves,032013,Sime√≥n Porto Fern√°ndez,Polic√≠a,Tir,Tiro
+2026,5,15/05/2026,Viernes,032013,Sime√≥n Porto Fern√°ndez,Polic√≠a,D,Descanso
+2026,5,16/05/2026,S√°bado,032013,Sime√≥n Porto Fern√°ndez,Polic√≠a,1,Ma√±ana
+2026,5,17/05/2026,Domingo,032013,Sime√≥n Porto Fern√°ndez,Polic√≠a,D,Descanso
+2026,5,18/05/2026,Lunes,032013,Sime√≥n Porto Fern√°ndez,Polic√≠a,3,Noche
+2026,5,19/05/2026,Martes,032013,Sime√≥n Porto Fern√°ndez,Polic√≠a,D,Descanso
+2026,5,20/05/2026,Mi√©rcoles,032013,Sime√≥n Porto Fern√°ndez,Polic√≠a,D,Descanso
+2026,5,21/05/2026,Jueves,032013,Sime√≥n Porto Fern√°ndez,Polic√≠a,D,Descanso
+2026,5,22/05/2026,Viernes,032013,Sime√≥n Porto Fern√°ndez,Polic√≠a,2,Tarde
+2026,5,23/05/2026,S√°bado,032013,Sime√≥n Porto Fern√°ndez,Polic√≠a,2,Tarde
+2026,5,24/05/2026,Domingo,032013,Sime√≥n Porto Fern√°ndez,Polic√≠a,2,Tarde
+2026,5,25/05/2026,Lunes,032013,Sime√≥n Porto Fern√°ndez,Polic√≠a,Dcc,Descanso Compensaci√≥n Curso
+2026,5,26/05/2026,Martes,032013,Sime√≥n Porto Fern√°ndez,Polic√≠a,D,Descanso
+2026,5,27/05/2026,Mi√©rcoles,032013,Sime√≥n Porto Fern√°ndez,Polic√≠a,D,Descanso
+2026,5,28/05/2026,Jueves,032013,Sime√≥n Porto Fern√°ndez,Polic√≠a,1,Ma√±ana
+2026,5,29/05/2026,Viernes,032013,Sime√≥n Porto Fern√°ndez,Polic√≠a,1,Ma√±ana
+2026,5,30/05/2026,S√°bado,032013,Sime√≥n Porto Fern√°ndez,Polic√≠a,1,Ma√±ana
+2026,5,31/05/2026,Domingo,032013,Sime√≥n Porto Fern√°ndez,Polic√≠a,D,Descanso
+2026,5,01/05/2026,Viernes,032019,Juan Rozados Saya,Polic√≠a,BAJA,Baja
+2026,5,02/05/2026,S√°bado,032019,Juan Rozados Saya,Polic√≠a,BAJA,Baja
+2026,5,03/05/2026,Domingo,032019,Juan Rozados Saya,Polic√≠a,BAJA,Baja
+2026,5,04/05/2026,Lunes,032019,Juan Rozados Saya,Polic√≠a,BAJA,Baja
+2026,5,05/05/2026,Martes,032019,Juan Rozados Saya,Polic√≠a,BAJA,Baja
+2026,5,06/05/2026,Mi√©rcoles,032019,Juan Rozados Saya,Polic√≠a,BAJA,Baja
+2026,5,07/05/2026,Jueves,032019,Juan Rozados Saya,Polic√≠a,BAJA,Baja
+2026,5,08/05/2026,Viernes,032019,Juan Rozados Saya,Polic√≠a,BAJA,Baja
+2026,5,09/05/2026,S√°bado,032019,Juan Rozados Saya,Polic√≠a,BAJA,Baja
+2026,5,10/05/2026,Domingo,032019,Juan Rozados Saya,Polic√≠a,BAJA,Baja
+2026,5,11/05/2026,Lunes,032019,Juan Rozados Saya,Polic√≠a,BAJA,Baja
+2026,5,12/05/2026,Martes,032019,Juan Rozados Saya,Polic√≠a,BAJA,Baja
+2026,5,13/05/2026,Mi√©rcoles,032019,Juan Rozados Saya,Polic√≠a,BAJA,Baja
+2026,5,14/05/2026,Jueves,032019,Juan Rozados Saya,Polic√≠a,BAJA,Baja
+2026,5,15/05/2026,Viernes,032019,Juan Rozados Saya,Polic√≠a,BAJA,Baja
+2026,5,16/05/2026,S√°bado,032019,Juan Rozados Saya,Polic√≠a,BAJA,Baja
+2026,5,17/05/2026,Domingo,032019,Juan Rozados Saya,Polic√≠a,BAJA,Baja
+2026,5,18/05/2026,Lunes,032019,Juan Rozados Saya,Polic√≠a,BAJA,Baja
+2026,5,19/05/2026,Martes,032019,Juan Rozados Saya,Polic√≠a,BAJA,Baja
+2026,5,20/05/2026,Mi√©rcoles,032019,Juan Rozados Saya,Polic√≠a,BAJA,Baja
+2026,5,21/05/2026,Jueves,032019,Juan Rozados Saya,Polic√≠a,BAJA,Baja
+2026,5,22/05/2026,Viernes,032019,Juan Rozados Saya,Polic√≠a,BAJA,Baja
+2026,5,23/05/2026,S√°bado,032019,Juan Rozados Saya,Polic√≠a,BAJA,Baja
+2026,5,24/05/2026,Domingo,032019,Juan Rozados Saya,Polic√≠a,BAJA,Baja
+2026,5,25/05/2026,Lunes,032019,Juan Rozados Saya,Polic√≠a,BAJA,Baja
+2026,5,26/05/2026,Martes,032019,Juan Rozados Saya,Polic√≠a,BAJA,Baja
+2026,5,27/05/2026,Mi√©rcoles,032019,Juan Rozados Saya,Polic√≠a,BAJA,Baja
+2026,5,28/05/2026,Jueves,032019,Juan Rozados Saya,Polic√≠a,BAJA,Baja
+2026,5,29/05/2026,Viernes,032019,Juan Rozados Saya,Polic√≠a,BAJA,Baja
+2026,5,30/05/2026,S√°bado,032019,Juan Rozados Saya,Polic√≠a,BAJA,Baja
+2026,5,31/05/2026,Domingo,032019,Juan Rozados Saya,Polic√≠a,BAJA,Baja
+2026,5,01/05/2026,Viernes,A032099,Ricardo Fari√±a Vidal,Auxiliar,1,Ma√±ana
+2026,5,02/05/2026,S√°bado,A032099,Ricardo Fari√±a Vidal,Auxiliar,D,Descanso
+2026,5,03/05/2026,Domingo,A032099,Ricardo Fari√±a Vidal,Auxiliar,1,Ma√±ana
+2026,5,04/05/2026,Lunes,A032099,Ricardo Fari√±a Vidal,Auxiliar,D,Descanso
+2026,5,05/05/2026,Martes,A032099,Ricardo Fari√±a Vidal,Auxiliar,Dcc,Descanso Compensaci√≥n Curso
+2026,5,06/05/2026,Mi√©rcoles,A032099,Ricardo Fari√±a Vidal,Auxiliar,Dcc,Descanso Compensaci√≥n Curso
+2026,5,07/05/2026,Jueves,A032099,Ricardo Fari√±a Vidal,Auxiliar,D,Descanso
+2026,5,08/05/2026,Viernes,A032099,Ricardo Fari√±a Vidal,Auxiliar,2,Tarde
+2026,5,09/05/2026,S√°bado,A032099,Ricardo Fari√±a Vidal,Auxiliar,2,Tarde
+2026,5,10/05/2026,Domingo,A032099,Ricardo Fari√±a Vidal,Auxiliar,2,Tarde
+2026,5,11/05/2026,Lunes,A032099,Ricardo Fari√±a Vidal,Auxiliar,D,Descanso
+2026,5,12/05/2026,Martes,A032099,Ricardo Fari√±a Vidal,Auxiliar,D,Descanso
+2026,5,13/05/2026,Mi√©rcoles,A032099,Ricardo Fari√±a Vidal,Auxiliar,D,Descanso
+2026,5,14/05/2026,Jueves,A032099,Ricardo Fari√±a Vidal,Auxiliar,D,Descanso
+2026,5,15/05/2026,Viernes,A032099,Ricardo Fari√±a Vidal,Auxiliar,D,Descanso
+2026,5,16/05/2026,S√°bado,A032099,Ricardo Fari√±a Vidal,Auxiliar,D,Descanso
+2026,5,17/05/2026,Domingo,A032099,Ricardo Fari√±a Vidal,Auxiliar,D,Descanso
+2026,5,18/05/2026,Lunes,A032099,Ricardo Fari√±a Vidal,Auxiliar,D,Descanso
+2026,5,19/05/2026,Martes,A032099,Ricardo Fari√±a Vidal,Auxiliar,2,Tarde
+2026,5,20/05/2026,Mi√©rcoles,A032099,Ricardo Fari√±a Vidal,Auxiliar,2,Tarde
+2026,5,21/05/2026,Jueves,A032099,Ricardo Fari√±a Vidal,Auxiliar,D,Descanso
+2026,5,22/05/2026,Viernes,A032099,Ricardo Fari√±a Vidal,Auxiliar,Ts,Tiempo Sindical
+2026,5,23/05/2026,S√°bado,A032099,Ricardo Fari√±a Vidal,Auxiliar,D,Descanso
+2026,5,24/05/2026,Domingo,A032099,Ricardo Fari√±a Vidal,Auxiliar,D,Descanso
+2026,5,25/05/2026,Lunes,A032099,Ricardo Fari√±a Vidal,Auxiliar,Ts,Tiempo Sindical
+2026,5,26/05/2026,Martes,A032099,Ricardo Fari√±a Vidal,Auxiliar,3,Noche
+2026,5,27/05/2026,Mi√©rcoles,A032099,Ricardo Fari√±a Vidal,Auxiliar,3,Noche
+2026,5,28/05/2026,Jueves,A032099,Ricardo Fari√±a Vidal,Auxiliar,3,Noche
+2026,5,29/05/2026,Viernes,A032099,Ricardo Fari√±a Vidal,Auxiliar,3,Noche
+2026,5,30/05/2026,S√°bado,A032099,Ricardo Fari√±a Vidal,Auxiliar,3,Noche
+2026,5,31/05/2026,Domingo,A032099,Ricardo Fari√±a Vidal,Auxiliar,D,Descanso
+2026,5,01/05/2026,Viernes,032017,Francisco Fern√°ndez Otero,Polic√≠a,D,Descanso
+2026,5,02/05/2026,S√°bado,032017,Francisco Fern√°ndez Otero,Polic√≠a,D,Descanso
+2026,5,03/05/2026,Domingo,032017,Francisco Fern√°ndez Otero,Polic√≠a,D,Descanso
+2026,5,04/05/2026,Lunes,032017,Francisco Fern√°ndez Otero,Polic√≠a,L,Laborable
+2026,5,05/05/2026,Martes,032017,Francisco Fern√°ndez Otero,Polic√≠a,L,Laborable
+2026,5,06/05/2026,Mi√©rcoles,032017,Francisco Fern√°ndez Otero,Polic√≠a,L,Laborable
+2026,5,07/05/2026,Jueves,032017,Francisco Fern√°ndez Otero,Polic√≠a,L,Laborable
+2026,5,08/05/2026,Viernes,032017,Francisco Fern√°ndez Otero,Polic√≠a,L,Laborable
+2026,5,09/05/2026,S√°bado,032017,Francisco Fern√°ndez Otero,Polic√≠a,D,Descanso
+2026,5,10/05/2026,Domingo,032017,Francisco Fern√°ndez Otero,Polic√≠a,D,Descanso
+2026,5,11/05/2026,Lunes,032017,Francisco Fern√°ndez Otero,Polic√≠a,L,Laborable
+2026,5,12/05/2026,Martes,032017,Francisco Fern√°ndez Otero,Polic√≠a,L,Laborable
+2026,5,13/05/2026,Mi√©rcoles,032017,Francisco Fern√°ndez Otero,Polic√≠a,L,Laborable
+2026,5,14/05/2026,Jueves,032017,Francisco Fern√°ndez Otero,Polic√≠a,Tir,Tiro
+2026,5,15/05/2026,Viernes,032017,Francisco Fern√°ndez Otero,Polic√≠a,L,Laborable
+2026,5,16/05/2026,S√°bado,032017,Francisco Fern√°ndez Otero,Polic√≠a,D,Descanso
+2026,5,17/05/2026,Domingo,032017,Francisco Fern√°ndez Otero,Polic√≠a,D,Descanso
+2026,5,18/05/2026,Lunes,032017,Francisco Fern√°ndez Otero,Polic√≠a,Vac,Vacaciones
+2026,5,19/05/2026,Martes,032017,Francisco Fern√°ndez Otero,Polic√≠a,Vac,Vacaciones
+2026,5,20/05/2026,Mi√©rcoles,032017,Francisco Fern√°ndez Otero,Polic√≠a,Vac,Vacaciones
+2026,5,21/05/2026,Jueves,032017,Francisco Fern√°ndez Otero,Polic√≠a,Vac,Vacaciones
+2026,5,22/05/2026,Viernes,032017,Francisco Fern√°ndez Otero,Polic√≠a,Vac,Vacaciones
+2026,5,23/05/2026,S√°bado,032017,Francisco Fern√°ndez Otero,Polic√≠a,D,Descanso
+2026,5,24/05/2026,Domingo,032017,Francisco Fern√°ndez Otero,Polic√≠a,D,Descanso
+2026,5,25/05/2026,Lunes,032017,Francisco Fern√°ndez Otero,Polic√≠a,L,Laborable
+2026,5,26/05/2026,Martes,032017,Francisco Fern√°ndez Otero,Polic√≠a,L,Laborable
+2026,5,27/05/2026,Mi√©rcoles,032017,Francisco Fern√°ndez Otero,Polic√≠a,L,Laborable
+2026,5,28/05/2026,Jueves,032017,Francisco Fern√°ndez Otero,Polic√≠a,L,Laborable
+2026,5,29/05/2026,Viernes,032017,Francisco Fern√°ndez Otero,Polic√≠a,L,Laborable
+2026,5,30/05/2026,S√°bado,032017,Francisco Fern√°ndez Otero,Polic√≠a,D,Descanso
+2026,5,31/05/2026,Domingo,032017,Francisco Fern√°ndez Otero,Polic√≠a,D,Descanso
