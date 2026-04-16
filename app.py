@@ -441,7 +441,7 @@ def estilo_turno(t):
     }
 
     # Turnos dobles normales
-    if t in {"1y2", "1y3", "2y3", "3yJuC", "1yJuB", "LyJuB"}:
+    if t in {"1y2", "1y3", "2y3", "3yJuC", "1yJuB", "LyJuB", "1ycurso", "2ycurso", "3ycurso"}:
         return {"bg": "#DBDBDB", "fg": "#FF0000", "bold": True, "italic": False}
 
     # Turnos dobles con extra
@@ -454,7 +454,7 @@ def estilo_turno(t):
     bold = (
         t in {"perm", "Ts", "JuB", "JuC", "AP", "Ts", "Vac", "BAJA", "indisp", "curso", "1yJuB", "3yJuC", "EV", "Tir"} or
         "ex" in t or               # cualquier extra
-        t in {"1y2", "1y3", "2y3"}
+        t in {"1y2", "1y3", "2y3", "1ycurso", "2ycurso", "3ycurso"}
     )
 
     # ---- CURSIVA
@@ -633,7 +633,7 @@ with tab_general:
             return set()
 
         c = str(codigo)
-        NO_CUENTAN = ["D","Vac","BAJA","perm","Ts","Dc","Dct","Dcc","Dcv","Curso","indisp"]
+        NO_CUENTAN = ["D","Vac","BAJA","perm","Ts","Dc","Dct","Dcc","Dcv","curso","indisp"]
         if any(x in c for x in NO_CUENTAN):
             return set()
 
@@ -854,7 +854,8 @@ if st.session_state.is_admin:
         "1y2", "1y3", "2y3",
         "1y2ex", "1y3ex", "2y3ex",
         "1|2ex", "1|3ex", "2|1ex", "2|3ex", "3|1ex", "3|2ex", "L|2ex", "L|3ex",
-        "1yJuB", "LyJuB", "AP|1ex", "AP|2ex", "AP|3ex", "3yJuC", "EV", "Tir"
+        "1yJuB", "LyJuB", "AP|1ex", "AP|2ex", "AP|3ex", "3yJuC", "EV", "Tir",
+        "1ycurso", "2ycurso", "3ycurso"
     ]
 
     with col3:
