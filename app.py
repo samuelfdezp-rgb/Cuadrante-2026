@@ -381,7 +381,7 @@ NOMBRES_TURNO = {
     "Vac": "Vacaciones", "perm": "Permiso", "BAJA": "Baja",
     "Ts": "Tiempo sindical", "AP": "Asuntos particulares",
     "JuB": "Juicio Betanzos", "JuC": "Juicio Coruña",
-    "Curso": "Curso", "indisp": "Indisposición", "EV": "Educación Vial",
+    "curso": "curso", "indisp": "Indisposición", "EV": "Educación Vial",
     "Tir": "Tiro"
 }
 
