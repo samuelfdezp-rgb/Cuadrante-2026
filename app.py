@@ -717,7 +717,7 @@ with tab_mis_turnos:
         NO_CUENTAN = [
             "D","Vac","BAJA","perm","AP","Ts",
             "Dc","Dct","Dcc","Dcv","JuB","JuC",
-            "Curso","indisp"
+            "curso","indisp"
         ]
 
         if any(x in t for x in NO_CUENTAN):
@@ -850,7 +850,7 @@ if st.session_state.is_admin:
         "1ex", "2ex", "3ex",
         "D", "Dc", "Dcv", "Dcc", "Dct", "Dcj",
         "Vac", "BAJA", "perm", "Ts", "AP",
-        "JuB", "JuC", "Curso", "indisp",
+        "JuB", "JuC", "curso", "indisp",
         "1y2", "1y3", "2y3",
         "1y2ex", "1y3ex", "2y3ex",
         "1|2ex", "1|3ex", "2|1ex", "2|3ex", "3|1ex", "3|2ex", "L|2ex", "L|3ex",
