@@ -538,3 +538,4 @@ fecha_hora,usuario_admin,nip_afectado,nombre_afectado,fecha_turno,turno_anterior
 2026-04-16 09:42:08,ADMIN,032015,Pedro Rodríguez Pedreira,2026-04-20,3,D,Cambio de turno con 022 por tarde 21
 2026-04-16 09:42:20,ADMIN,032015,Pedro Rodríguez Pedreira,2026-04-21,D,2,Cambio de turno con 022 por tarde 20
 2026-04-20 12:20:59,ADMIN,032015,Pedro Rodríguez Pedreira,2026-04-20,D,3,Deshacer cambio por acuerdo
+2026-04-20 12:21:10,ADMIN,032015,Pedro Rodríguez Pedreira,2026-04-21,2,D,Deshacer cambio por acuerdo
