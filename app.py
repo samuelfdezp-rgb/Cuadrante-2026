@@ -855,7 +855,7 @@ if st.session_state.is_admin:
         "1y2ex", "1y3ex", "2y3ex",
         "1|2ex", "1|3ex", "2|1ex", "2|3ex", "3|1ex", "3|2ex", "L|2ex", "L|3ex",
         "1yJuB", "LyJuB", "AP|1ex", "AP|2ex", "AP|3ex", "3yJuC", "EV", "Tir",
-        "1ycurso", "2ycurso", "3ycurso"
+        "1ycurso", "2ycurso", "3ycurso", "Tir|2ex"
     ]
 
     with col3:
