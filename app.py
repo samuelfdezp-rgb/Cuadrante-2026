@@ -382,7 +382,7 @@ NOMBRES_TURNO = {
     "Ts": "Tiempo sindical", "AP": "Asuntos particulares",
     "JuB": "Juicio Betanzos", "JuC": "Juicio Coruña",
     "curso": "curso", "indisp": "Indisposición", "EV": "Educación Vial",
-    "Tir": "Tiro"
+    "Tir": "Tiro", "AGASP": "AGASP"
 }
 
 def nombre_turno(c):
@@ -426,6 +426,7 @@ def estilo_turno(t):
         "LyJuB": ("#BDD7EE", "#FF0000"),
         "3yJuC": ("#BDD7EE", "#FF0000"),
         "AP": ("#FFFFFF", "#0070C0"),
+        "AGASP": ("#FFFFFF", "#0070C0"),
         "1y2ex": ("#00B050", "#FF0000"),
         "2y3ex": ("#00B050", "#FF0000"),
         "1y3ex": ("#00B050", "#FF0000"),
@@ -452,7 +453,7 @@ def estilo_turno(t):
 
     # ---- NEGRITA
     bold = (
-        t in {"perm", "Ts", "JuB", "JuC", "AP", "Ts", "Vac", "BAJA", "indisp", "curso", "1yJuB", "3yJuC", "EV", "Tir"} or
+        t in {"perm", "Ts", "JuB", "JuC", "AP", "AGASP", "Ts", "Vac", "BAJA", "indisp", "curso", "1yJuB", "3yJuC", "EV", "Tir"} or
         "ex" in t or               # cualquier extra
         t in {"1y2", "1y3", "2y3", "1ycurso", "2ycurso", "3ycurso"}
     )
