@@ -686,3 +686,4 @@ fecha_hora,usuario_admin,nip_afectado,nombre_afectado,fecha_turno,turno_anterior
 2026-06-03 15:43:37,ADMIN,A032099,Ricardo Fariña Vidal,2026-06-06,3,D,cambio turno 3 con 30 día 27
 2026-06-03 15:43:54,ADMIN,A032099,Ricardo Fariña Vidal,2026-06-27,Vac,3,cambio turno 3 con 30 día 06
 2026-06-03 15:44:12,ADMIN,032030,Martín Lago Fernández,2026-06-27,3,D,cambio turno 3 con A99 día 06
+2026-06-03 15:44:50,ADMIN,032030,Martín Lago Fernández,2026-06-24,1,D,cambio turno con 31
