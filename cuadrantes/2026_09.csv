@@ -1,0 +1,541 @@
+Año;Mes;Fecha;Día;NIP;Nombre y Apellidos;Categoría;Turno;Tipo
+2026;9;2026-09-01;Martes;032001;Xosé Henrique Fidalgo García;Inspector;L;Laborable
+2026;9;2026-09-02;Miércoles;032001;Xosé Henrique Fidalgo García;Inspector;L;Laborable
+2026;9;2026-09-03;Jueves;032001;Xosé Henrique Fidalgo García;Inspector;L;Laborable
+2026;9;2026-09-04;Viernes;032001;Xosé Henrique Fidalgo García;Inspector;L;Laborable
+2026;9;2026-09-05;Sábado;032001;Xosé Henrique Fidalgo García;Inspector;D;Descanso
+2026;9;2026-09-06;Domingo;032001;Xosé Henrique Fidalgo García;Inspector;D;Descanso
+2026;9;2026-09-07;Lunes;032001;Xosé Henrique Fidalgo García;Inspector;L;Laborable
+2026;9;2026-09-08;Martes;032001;Xosé Henrique Fidalgo García;Inspector;L;Laborable
+2026;9;2026-09-09;Miércoles;032001;Xosé Henrique Fidalgo García;Inspector;L;Laborable
+2026;9;2026-09-10;Jueves;032001;Xosé Henrique Fidalgo García;Inspector;L;Laborable
+2026;9;2026-09-11;Viernes;032001;Xosé Henrique Fidalgo García;Inspector;L;Laborable
+2026;9;2026-09-12;Sábado;032001;Xosé Henrique Fidalgo García;Inspector;D;Descanso
+2026;9;2026-09-13;Domingo;032001;Xosé Henrique Fidalgo García;Inspector;D;Descanso
+2026;9;2026-09-14;Lunes;032001;Xosé Henrique Fidalgo García;Inspector;L;Laborable
+2026;9;2026-09-15;Martes;032001;Xosé Henrique Fidalgo García;Inspector;L;Laborable
+2026;9;2026-09-16;Miércoles;032001;Xosé Henrique Fidalgo García;Inspector;L;Laborable
+2026;9;2026-09-17;Jueves;032001;Xosé Henrique Fidalgo García;Inspector;L;Laborable
+2026;9;2026-09-18;Viernes;032001;Xosé Henrique Fidalgo García;Inspector;L;Laborable
+2026;9;2026-09-19;Sábado;032001;Xosé Henrique Fidalgo García;Inspector;D;Descanso
+2026;9;2026-09-20;Domingo;032001;Xosé Henrique Fidalgo García;Inspector;D;Descanso
+2026;9;2026-09-21;Lunes;032001;Xosé Henrique Fidalgo García;Inspector;L;Laborable
+2026;9;2026-09-22;Martes;032001;Xosé Henrique Fidalgo García;Inspector;L;Laborable
+2026;9;2026-09-23;Miércoles;032001;Xosé Henrique Fidalgo García;Inspector;L;Laborable
+2026;9;2026-09-24;Jueves;032001;Xosé Henrique Fidalgo García;Inspector;L;Laborable
+2026;9;2026-09-25;Viernes;032001;Xosé Henrique Fidalgo García;Inspector;L;Laborable
+2026;9;2026-09-26;Sábado;032001;Xosé Henrique Fidalgo García;Inspector;D;Descanso
+2026;9;2026-09-27;Domingo;032001;Xosé Henrique Fidalgo García;Inspector;D;Descanso
+2026;9;2026-09-28;Lunes;032001;Xosé Henrique Fidalgo García;Inspector;L;Laborable
+2026;9;2026-09-29;Martes;032001;Xosé Henrique Fidalgo García;Inspector;L;Laborable
+2026;9;2026-09-30;Miércoles;032001;Xosé Henrique Fidalgo García;Inspector;L;Laborable
+2026;9;2026-09-01;Martes;032018;Javier Fernández Seijo;Oficial;Vac;Vacaciones
+2026;9;2026-09-02;Miércoles;032018;Javier Fernández Seijo;Oficial;Vac;Vacaciones
+2026;9;2026-09-03;Jueves;032018;Javier Fernández Seijo;Oficial;Vac;Vacaciones
+2026;9;2026-09-04;Viernes;032018;Javier Fernández Seijo;Oficial;Vac;Vacaciones
+2026;9;2026-09-05;Sábado;032018;Javier Fernández Seijo;Oficial;Vac;Vacaciones
+2026;9;2026-09-06;Domingo;032018;Javier Fernández Seijo;Oficial;Vac;Vacaciones
+2026;9;2026-09-07;Lunes;032018;Javier Fernández Seijo;Oficial;Vac;Vacaciones
+2026;9;2026-09-08;Martes;032018;Javier Fernández Seijo;Oficial;Vac;Vacaciones
+2026;9;2026-09-09;Miércoles;032018;Javier Fernández Seijo;Oficial;Vac;Vacaciones
+2026;9;2026-09-10;Jueves;032018;Javier Fernández Seijo;Oficial;Vac;Vacaciones
+2026;9;2026-09-11;Viernes;032018;Javier Fernández Seijo;Oficial;Vac;Vacaciones
+2026;9;2026-09-12;Sábado;032018;Javier Fernández Seijo;Oficial;Vac;Vacaciones
+2026;9;2026-09-13;Domingo;032018;Javier Fernández Seijo;Oficial;Vac;Vacaciones
+2026;9;2026-09-14;Lunes;032018;Javier Fernández Seijo;Oficial;Vac;Vacaciones
+2026;9;2026-09-15;Martes;032018;Javier Fernández Seijo;Oficial;Vac;Vacaciones
+2026;9;2026-09-16;Miércoles;032018;Javier Fernández Seijo;Oficial;Vac;Vacaciones
+2026;9;2026-09-17;Jueves;032018;Javier Fernández Seijo;Oficial;Vac;Vacaciones
+2026;9;2026-09-18;Viernes;032018;Javier Fernández Seijo;Oficial;Vac;Vacaciones
+2026;9;2026-09-19;Sábado;032018;Javier Fernández Seijo;Oficial;Vac;Vacaciones
+2026;9;2026-09-20;Domingo;032018;Javier Fernández Seijo;Oficial;Vac;Vacaciones
+2026;9;2026-09-21;Lunes;032018;Javier Fernández Seijo;Oficial;Vac;Vacaciones
+2026;9;2026-09-22;Martes;032018;Javier Fernández Seijo;Oficial;Vac;Vacaciones
+2026;9;2026-09-23;Miércoles;032018;Javier Fernández Seijo;Oficial;Vac;Vacaciones
+2026;9;2026-09-24;Jueves;032018;Javier Fernández Seijo;Oficial;Vac;Vacaciones
+2026;9;2026-09-25;Viernes;032018;Javier Fernández Seijo;Oficial;Vac;Vacaciones
+2026;9;2026-09-26;Sábado;032018;Javier Fernández Seijo;Oficial;Vac;Vacaciones
+2026;9;2026-09-27;Domingo;032018;Javier Fernández Seijo;Oficial;Vac;Vacaciones
+2026;9;2026-09-28;Lunes;032018;Javier Fernández Seijo;Oficial;Vac;Vacaciones
+2026;9;2026-09-29;Martes;032018;Javier Fernández Seijo;Oficial;Vac;Vacaciones
+2026;9;2026-09-30;Miércoles;032018;Javier Fernández Seijo;Oficial;Vac;Vacaciones
+2026;9;2026-09-01;Martes;032015;Pedro Rodríguez Pedreira;Oficial;Vac;Vacaciones
+2026;9;2026-09-02;Miércoles;032015;Pedro Rodríguez Pedreira;Oficial;Vac;Vacaciones
+2026;9;2026-09-03;Jueves;032015;Pedro Rodríguez Pedreira;Oficial;Vac;Vacaciones
+2026;9;2026-09-04;Viernes;032015;Pedro Rodríguez Pedreira;Oficial;Vac;Vacaciones
+2026;9;2026-09-05;Sábado;032015;Pedro Rodríguez Pedreira;Oficial;Vac;Vacaciones
+2026;9;2026-09-06;Domingo;032015;Pedro Rodríguez Pedreira;Oficial;Vac;Vacaciones
+2026;9;2026-09-07;Lunes;032015;Pedro Rodríguez Pedreira;Oficial;Vac;Vacaciones
+2026;9;2026-09-08;Martes;032015;Pedro Rodríguez Pedreira;Oficial;Vac;Vacaciones
+2026;9;2026-09-09;Miércoles;032015;Pedro Rodríguez Pedreira;Oficial;Vac;Vacaciones
+2026;9;2026-09-10;Jueves;032015;Pedro Rodríguez Pedreira;Oficial;Vac;Vacaciones
+2026;9;2026-09-11;Viernes;032015;Pedro Rodríguez Pedreira;Oficial;Vac;Vacaciones
+2026;9;2026-09-12;Sábado;032015;Pedro Rodríguez Pedreira;Oficial;Vac;Vacaciones
+2026;9;2026-09-13;Domingo;032015;Pedro Rodríguez Pedreira;Oficial;Vac;Vacaciones
+2026;9;2026-09-14;Lunes;032015;Pedro Rodríguez Pedreira;Oficial;Vac;Vacaciones
+2026;9;2026-09-15;Martes;032015;Pedro Rodríguez Pedreira;Oficial;Vac;Vacaciones
+2026;9;2026-09-16;Miércoles;032015;Pedro Rodríguez Pedreira;Oficial;Dcj;Descanso Compensasión Juicio
+2026;9;2026-09-17;Jueves;032015;Pedro Rodríguez Pedreira;Oficial;2;Tarde
+2026;9;2026-09-18;Viernes;032015;Pedro Rodríguez Pedreira;Oficial;3;Noche
+2026;9;2026-09-19;Sábado;032015;Pedro Rodríguez Pedreira;Oficial;3;Noche
+2026;9;2026-09-20;Domingo;032015;Pedro Rodríguez Pedreira;Oficial;3;Noche
+2026;9;2026-09-21;Lunes;032015;Pedro Rodríguez Pedreira;Oficial;D;Descanso
+2026;9;2026-09-22;Martes;032015;Pedro Rodríguez Pedreira;Oficial;Ts;Tiempo sindical
+2026;9;2026-09-23;Miércoles;032015;Pedro Rodríguez Pedreira;Oficial;1;Mañana
+2026;9;2026-09-24;Jueves;032015;Pedro Rodríguez Pedreira;Oficial;2;Tarde
+2026;9;2026-09-25;Viernes;032015;Pedro Rodríguez Pedreira;Oficial;D;Descanso
+2026;9;2026-09-26;Sábado;032015;Pedro Rodríguez Pedreira;Oficial;D;Descanso
+2026;9;2026-09-27;Domingo;032015;Pedro Rodríguez Pedreira;Oficial;D;Descanso
+2026;9;2026-09-28;Lunes;032015;Pedro Rodríguez Pedreira;Oficial;D;Descanso
+2026;9;2026-09-29;Martes;032015;Pedro Rodríguez Pedreira;Oficial;D;Descanso
+2026;9;2026-09-30;Miércoles;032015;Pedro Rodríguez Pedreira;Oficial;1;Mañana
+2026;9;2026-09-01;Martes;032016;Víctor Mendez Vázquez;Policía;D;Descanso
+2026;9;2026-09-02;Miércoles;032016;Víctor Mendez Vázquez;Policía;2;Tarde
+2026;9;2026-09-03;Jueves;032016;Víctor Mendez Vázquez;Policía;2;Tarde
+2026;9;2026-09-04;Viernes;032016;Víctor Mendez Vázquez;Policía;3;Noche
+2026;9;2026-09-05;Sábado;032016;Víctor Mendez Vázquez;Policía;3;Noche
+2026;9;2026-09-06;Domingo;032016;Víctor Mendez Vázquez;Policía;3;Noche
+2026;9;2026-09-07;Lunes;032016;Víctor Mendez Vázquez;Policía;D;Descanso
+2026;9;2026-09-08;Martes;032016;Víctor Mendez Vázquez;Policía;D;Descanso
+2026;9;2026-09-09;Miércoles;032016;Víctor Mendez Vázquez;Policía;1;Mañana
+2026;9;2026-09-10;Jueves;032016;Víctor Mendez Vázquez;Policía;1;Mañana
+2026;9;2026-09-11;Viernes;032016;Víctor Mendez Vázquez;Policía;1;Mañana
+2026;9;2026-09-12;Sábado;032016;Víctor Mendez Vázquez;Policía;D;Descanso
+2026;9;2026-09-13;Domingo;032016;Víctor Mendez Vázquez;Policía;D;Descanso
+2026;9;2026-09-14;Lunes;032016;Víctor Mendez Vázquez;Policía;1;Mañana
+2026;9;2026-09-15;Martes;032016;Víctor Mendez Vázquez;Policía;1;Mañana
+2026;9;2026-09-16;Miércoles;032016;Víctor Mendez Vázquez;Policía;D;Descanso
+2026;9;2026-09-17;Jueves;032016;Víctor Mendez Vázquez;Policía;1;Mañana
+2026;9;2026-09-18;Viernes;032016;Víctor Mendez Vázquez;Policía;D;Descanso
+2026;9;2026-09-19;Sábado;032016;Víctor Mendez Vázquez;Policía;D;Descanso
+2026;9;2026-09-20;Domingo;032016;Víctor Mendez Vázquez;Policía;D;Descanso
+2026;9;2026-09-21;Lunes;032016;Víctor Mendez Vázquez;Policía;3;Noche
+2026;9;2026-09-22;Martes;032016;Víctor Mendez Vázquez;Policía;3;Noche
+2026;9;2026-09-23;Miércoles;032016;Víctor Mendez Vázquez;Policía;D;Descanso
+2026;9;2026-09-24;Jueves;032016;Víctor Mendez Vázquez;Policía;D;Descanso
+2026;9;2026-09-25;Viernes;032016;Víctor Mendez Vázquez;Policía;1;Mañana
+2026;9;2026-09-26;Sábado;032016;Víctor Mendez Vázquez;Policía;1;Mañana
+2026;9;2026-09-27;Domingo;032016;Víctor Mendez Vázquez;Policía;1;Mañana
+2026;9;2026-09-28;Lunes;032016;Víctor Mendez Vázquez;Policía;1;Mañana
+2026;9;2026-09-29;Martes;032016;Víctor Mendez Vázquez;Policía;1;Mañana
+2026;9;2026-09-30;Miércoles;032016;Víctor Mendez Vázquez;Policía;D;Descanso
+2026;9;2026-09-01;Martes;032022;Miguel Naveiras Picos;Policía;D;Descanso
+2026;9;2026-09-02;Miércoles;032022;Miguel Naveiras Picos;Policía;Ts;Tiempo sindical
+2026;9;2026-09-03;Jueves;032022;Miguel Naveiras Picos;Policía;D;Descanso
+2026;9;2026-09-04;Viernes;032022;Miguel Naveiras Picos;Policía;2;Tarde
+2026;9;2026-09-05;Sábado;032022;Miguel Naveiras Picos;Policía;2;Tarde
+2026;9;2026-09-06;Domingo;032022;Miguel Naveiras Picos;Policía;2;Tarde
+2026;9;2026-09-07;Lunes;032022;Miguel Naveiras Picos;Policía;3;Noche
+2026;9;2026-09-08;Martes;032022;Miguel Naveiras Picos;Policía;3;Noche
+2026;9;2026-09-09;Miércoles;032022;Miguel Naveiras Picos;Policía;D;Descanso
+2026;9;2026-09-10;Jueves;032022;Miguel Naveiras Picos;Policía;Ts;Tiempo sindical
+2026;9;2026-09-11;Viernes;032022;Miguel Naveiras Picos;Policía;D;Descanso
+2026;9;2026-09-12;Sábado;032022;Miguel Naveiras Picos;Policía;D;Descanso
+2026;9;2026-09-13;Domingo;032022;Miguel Naveiras Picos;Policía;D;Descanso
+2026;9;2026-09-14;Lunes;032022;Miguel Naveiras Picos;Policía;D;Descanso
+2026;9;2026-09-15;Martes;032022;Miguel Naveiras Picos;Policía;Dcj;Descanso Compensasión Juicio
+2026;9;2026-09-16;Miércoles;032022;Miguel Naveiras Picos;Policía;1;Mañana
+2026;9;2026-09-17;Jueves;032022;Miguel Naveiras Picos;Policía;1;Mañana
+2026;9;2026-09-18;Viernes;032022;Miguel Naveiras Picos;Policía;D;Descanso
+2026;9;2026-09-19;Sábado;032022;Miguel Naveiras Picos;Policía;D;Descanso
+2026;9;2026-09-20;Domingo;032022;Miguel Naveiras Picos;Policía;D;Descanso
+2026;9;2026-09-21;Lunes;032022;Miguel Naveiras Picos;Policía;2;Tarde
+2026;9;2026-09-22;Martes;032022;Miguel Naveiras Picos;Policía;2;Tarde
+2026;9;2026-09-23;Miércoles;032022;Miguel Naveiras Picos;Policía;2;Tarde
+2026;9;2026-09-24;Jueves;032022;Miguel Naveiras Picos;Policía;3;Noche
+2026;9;2026-09-25;Viernes;032022;Miguel Naveiras Picos;Policía;3;Noche
+2026;9;2026-09-26;Sábado;032022;Miguel Naveiras Picos;Policía;3;Noche
+2026;9;2026-09-27;Domingo;032022;Miguel Naveiras Picos;Policía;D;Descanso
+2026;9;2026-09-28;Lunes;032022;Miguel Naveiras Picos;Policía;D;Descanso
+2026;9;2026-09-29;Martes;032022;Miguel Naveiras Picos;Policía;2;Tarde
+2026;9;2026-09-30;Miércoles;032022;Miguel Naveiras Picos;Policía;D;Descanso
+2026;9;2026-09-01;Martes;032023;Javier Plana Costoya;Policía;2;Tarde
+2026;9;2026-09-02;Miércoles;032023;Javier Plana Costoya;Policía;3;Noche
+2026;9;2026-09-03;Jueves;032023;Javier Plana Costoya;Policía;3;Noche
+2026;9;2026-09-04;Viernes;032023;Javier Plana Costoya;Policía;D;Descanso
+2026;9;2026-09-05;Sábado;032023;Javier Plana Costoya;Policía;D;Descanso
+2026;9;2026-09-06;Domingo;032023;Javier Plana Costoya;Policía;D;Descanso
+2026;9;2026-09-07;Lunes;032023;Javier Plana Costoya;Policía;Dcc;Descanso Compensación Curso
+2026;9;2026-09-08;Martes;032023;Javier Plana Costoya;Policía;Dcc;Descanso Compensación Curso
+2026;9;2026-09-09;Miércoles;032023;Javier Plana Costoya;Policía;D;Descanso
+2026;9;2026-09-10;Jueves;032023;Javier Plana Costoya;Policía;D;Descanso
+2026;9;2026-09-11;Viernes;032023;Javier Plana Costoya;Policía;1;Mañana
+2026;9;2026-09-12;Sábado;032023;Javier Plana Costoya;Policía;1;Mañana
+2026;9;2026-09-13;Domingo;032023;Javier Plana Costoya;Policía;1;Mañana
+2026;9;2026-09-14;Lunes;032023;Javier Plana Costoya;Policía;D;Descanso
+2026;9;2026-09-15;Martes;032023;Javier Plana Costoya;Policía;D;Descanso
+2026;9;2026-09-16;Miércoles;032023;Javier Plana Costoya;Policía;Vac;Vacaciones
+2026;9;2026-09-17;Jueves;032023;Javier Plana Costoya;Policía;Vac;Vacaciones
+2026;9;2026-09-18;Viernes;032023;Javier Plana Costoya;Policía;Vac;Vacaciones
+2026;9;2026-09-19;Sábado;032023;Javier Plana Costoya;Policía;Vac;Vacaciones
+2026;9;2026-09-20;Domingo;032023;Javier Plana Costoya;Policía;Vac;Vacaciones
+2026;9;2026-09-21;Lunes;032023;Javier Plana Costoya;Policía;Vac;Vacaciones
+2026;9;2026-09-22;Martes;032023;Javier Plana Costoya;Policía;Vac;Vacaciones
+2026;9;2026-09-23;Miércoles;032023;Javier Plana Costoya;Policía;Vac;Vacaciones
+2026;9;2026-09-24;Jueves;032023;Javier Plana Costoya;Policía;Vac;Vacaciones
+2026;9;2026-09-25;Viernes;032023;Javier Plana Costoya;Policía;Vac;Vacaciones
+2026;9;2026-09-26;Sábado;032023;Javier Plana Costoya;Policía;Vac;Vacaciones
+2026;9;2026-09-27;Domingo;032023;Javier Plana Costoya;Policía;Vac;Vacaciones
+2026;9;2026-09-28;Lunes;032023;Javier Plana Costoya;Policía;Vac;Vacaciones
+2026;9;2026-09-29;Martes;032023;Javier Plana Costoya;Policía;Vac;Vacaciones
+2026;9;2026-09-30;Miércoles;032023;Javier Plana Costoya;Policía;Vac;Vacaciones
+2026;9;2026-09-01;Martes;032025;Samuel Fernández Pérez;Policía;3;Noche
+2026;9;2026-09-02;Miércoles;032025;Samuel Fernández Pérez;Policía;3;Noche
+2026;9;2026-09-03;Jueves;032025;Samuel Fernández Pérez;Policía;D;Descanso
+2026;9;2026-09-04;Viernes;032025;Samuel Fernández Pérez;Policía;D;Descanso
+2026;9;2026-09-05;Sábado;032025;Samuel Fernández Pérez;Policía;D;Descanso
+2026;9;2026-09-06;Domingo;032025;Samuel Fernández Pérez;Policía;D;Descanso
+2026;9;2026-09-07;Lunes;032025;Samuel Fernández Pérez;Policía;2;Tarde
+2026;9;2026-09-08;Martes;032025;Samuel Fernández Pérez;Policía;2;Tarde
+2026;9;2026-09-09;Miércoles;032025;Samuel Fernández Pérez;Policía;2;Tarde
+2026;9;2026-09-10;Jueves;032025;Samuel Fernández Pérez;Policía;D;Descanso
+2026;9;2026-09-11;Viernes;032025;Samuel Fernández Pérez;Policía;3;Noche
+2026;9;2026-09-12;Sábado;032025;Samuel Fernández Pérez;Policía;3;Noche
+2026;9;2026-09-13;Domingo;032025;Samuel Fernández Pérez;Policía;3;Noche
+2026;9;2026-09-14;Lunes;032025;Samuel Fernández Pérez;Policía;D;Descanso
+2026;9;2026-09-15;Martes;032025;Samuel Fernández Pérez;Policía;Dcc;Descanso Compensación Curso
+2026;9;2026-09-16;Miércoles;032025;Samuel Fernández Pérez;Policía;1;Mañana
+2026;9;2026-09-17;Jueves;032025;Samuel Fernández Pérez;Policía;D;Descanso
+2026;9;2026-09-18;Viernes;032025;Samuel Fernández Pérez;Policía;D;Descanso
+2026;9;2026-09-19;Sábado;032025;Samuel Fernández Pérez;Policía;D;Descanso
+2026;9;2026-09-20;Domingo;032025;Samuel Fernández Pérez;Policía;D;Descanso
+2026;9;2026-09-21;Lunes;032025;Samuel Fernández Pérez;Policía;2;Tarde
+2026;9;2026-09-22;Martes;032025;Samuel Fernández Pérez;Policía;D;Descanso
+2026;9;2026-09-23;Miércoles;032025;Samuel Fernández Pérez;Policía;D;Descanso
+2026;9;2026-09-24;Jueves;032025;Samuel Fernández Pérez;Policía;CU;0
+2026;9;2026-09-25;Viernes;032025;Samuel Fernández Pérez;Policía;1;Mañana
+2026;9;2026-09-26;Sábado;032025;Samuel Fernández Pérez;Policía;1;Mañana
+2026;9;2026-09-27;Domingo;032025;Samuel Fernández Pérez;Policía;1;Mañana
+2026;9;2026-09-28;Lunes;032025;Samuel Fernández Pérez;Policía;D;Descanso
+2026;9;2026-09-29;Martes;032025;Samuel Fernández Pérez;Policía;Dcu;Descanso Compensación Cuadrante
+2026;9;2026-09-30;Miércoles;032025;Samuel Fernández Pérez;Policía;2;Tarde
+2026;9;2026-09-01;Martes;032026;Iago Blanco Muiño;Policía;D;Descanso
+2026;9;2026-09-02;Miércoles;032026;Iago Blanco Muiño;Policía;D;Descanso
+2026;9;2026-09-03;Jueves;032026;Iago Blanco Muiño;Policía;1;Mañana
+2026;9;2026-09-04;Viernes;032026;Iago Blanco Muiño;Policía;1;Mañana
+2026;9;2026-09-05;Sábado;032026;Iago Blanco Muiño;Policía;1;Mañana
+2026;9;2026-09-06;Domingo;032026;Iago Blanco Muiño;Policía;1;Mañana
+2026;9;2026-09-07;Lunes;032026;Iago Blanco Muiño;Policía;D;Descanso
+2026;9;2026-09-08;Martes;032026;Iago Blanco Muiño;Policía;D;Descanso
+2026;9;2026-09-09;Miércoles;032026;Iago Blanco Muiño;Policía;1;Mañana
+2026;9;2026-09-10;Jueves;032026;Iago Blanco Muiño;Policía;2;Tarde
+2026;9;2026-09-11;Viernes;032026;Iago Blanco Muiño;Policía;D;Descanso
+2026;9;2026-09-12;Sábado;032026;Iago Blanco Muiño;Policía;D;Descanso
+2026;9;2026-09-13;Domingo;032026;Iago Blanco Muiño;Policía;D;Descanso
+2026;9;2026-09-14;Lunes;032026;Iago Blanco Muiño;Policía;3;Noche
+2026;9;2026-09-15;Martes;032026;Iago Blanco Muiño;Policía;3;Noche
+2026;9;2026-09-16;Miércoles;032026;Iago Blanco Muiño;Policía;D;Descanso
+2026;9;2026-09-17;Jueves;032026;Iago Blanco Muiño;Policía;Ts;Tiempo sindical
+2026;9;2026-09-18;Viernes;032026;Iago Blanco Muiño;Policía;D;Descanso
+2026;9;2026-09-19;Sábado;032026;Iago Blanco Muiño;Policía;D;Descanso
+2026;9;2026-09-20;Domingo;032026;Iago Blanco Muiño;Policía;D;Descanso
+2026;9;2026-09-21;Lunes;032026;Iago Blanco Muiño;Policía;1;Mañana
+2026;9;2026-09-22;Martes;032026;Iago Blanco Muiño;Policía;2;Tarde
+2026;9;2026-09-23;Miércoles;032026;Iago Blanco Muiño;Policía;2;Tarde
+2026;9;2026-09-24;Jueves;032026;Iago Blanco Muiño;Policía;D;Descanso
+2026;9;2026-09-25;Viernes;032026;Iago Blanco Muiño;Policía;3;Noche
+2026;9;2026-09-26;Sábado;032026;Iago Blanco Muiño;Policía;3;Noche
+2026;9;2026-09-27;Domingo;032026;Iago Blanco Muiño;Policía;3;Noche
+2026;9;2026-09-28;Lunes;032026;Iago Blanco Muiño;Policía;D;Descanso
+2026;9;2026-09-29;Martes;032026;Iago Blanco Muiño;Policía;Ts;Tiempo sindical
+2026;9;2026-09-30;Miércoles;032026;Iago Blanco Muiño;Policía;1;Mañana
+2026;9;2026-09-01;Martes;032027;Iago Romar Tajes;Policía;1;Mañana
+2026;9;2026-09-02;Miércoles;032027;Iago Romar Tajes;Policía;D;Descanso
+2026;9;2026-09-03;Jueves;032027;Iago Romar Tajes;Policía;D;Descanso
+2026;9;2026-09-04;Viernes;032027;Iago Romar Tajes;Policía;1;Mañana
+2026;9;2026-09-05;Sábado;032027;Iago Romar Tajes;Policía;D;Descanso
+2026;9;2026-09-06;Domingo;032027;Iago Romar Tajes;Policía;1;Mañana
+2026;9;2026-09-07;Lunes;032027;Iago Romar Tajes;Policía;1;Mañana
+2026;9;2026-09-08;Martes;032027;Iago Romar Tajes;Policía;D;Descanso
+2026;9;2026-09-09;Miércoles;032027;Iago Romar Tajes;Policía;2;Tarde
+2026;9;2026-09-10;Jueves;032027;Iago Romar Tajes;Policía;3;Noche
+2026;9;2026-09-11;Viernes;032027;Iago Romar Tajes;Policía;3;Noche
+2026;9;2026-09-12;Sábado;032027;Iago Romar Tajes;Policía;3;Noche
+2026;9;2026-09-13;Domingo;032027;Iago Romar Tajes;Policía;D;Descanso
+2026;9;2026-09-14;Lunes;032027;Iago Romar Tajes;Policía;D;Descanso
+2026;9;2026-09-15;Martes;032027;Iago Romar Tajes;Policía;VACACIONES;0
+2026;9;2026-09-16;Miércoles;032027;Iago Romar Tajes;Policía;;0
+2026;9;2026-09-17;Jueves;032027;Iago Romar Tajes;Policía;;0
+2026;9;2026-09-18;Viernes;032027;Iago Romar Tajes;Policía;;0
+2026;9;2026-09-19;Sábado;032027;Iago Romar Tajes;Policía;;0
+2026;9;2026-09-20;Domingo;032027;Iago Romar Tajes;Policía;;0
+2026;9;2026-09-21;Lunes;032027;Iago Romar Tajes;Policía;;0
+2026;9;2026-09-22;Martes;032027;Iago Romar Tajes;Policía;1;Mañana
+2026;9;2026-09-23;Miércoles;032027;Iago Romar Tajes;Policía;Dcj;Descanso Compensasión Juicio
+2026;9;2026-09-24;Jueves;032027;Iago Romar Tajes;Policía;1;Mañana
+2026;9;2026-09-25;Viernes;032027;Iago Romar Tajes;Policía;D;Descanso
+2026;9;2026-09-26;Sábado;032027;Iago Romar Tajes;Policía;D;Descanso
+2026;9;2026-09-27;Domingo;032027;Iago Romar Tajes;Policía;D;Descanso
+2026;9;2026-09-28;Lunes;032027;Iago Romar Tajes;Policía;1;Mañana
+2026;9;2026-09-29;Martes;032027;Iago Romar Tajes;Policía;1;Mañana
+2026;9;2026-09-30;Miércoles;032027;Iago Romar Tajes;Policía;1;Mañana
+2026;9;2026-09-01;Martes;032028;Iker Díaz Villaverde;Policía;D;Descanso
+2026;9;2026-09-02;Miércoles;032028;Iker Díaz Villaverde;Policía;1;Mañana
+2026;9;2026-09-03;Jueves;032028;Iker Díaz Villaverde;Policía;1;Mañana
+2026;9;2026-09-04;Viernes;032028;Iker Díaz Villaverde;Policía;D;Descanso
+2026;9;2026-09-05;Sábado;032028;Iker Díaz Villaverde;Policía;D;Descanso
+2026;9;2026-09-06;Domingo;032028;Iker Díaz Villaverde;Policía;D;Descanso
+2026;9;2026-09-07;Lunes;032028;Iker Díaz Villaverde;Policía;1;Mañana
+2026;9;2026-09-08;Martes;032028;Iker Díaz Villaverde;Policía;1;Mañana
+2026;9;2026-09-09;Miércoles;032028;Iker Díaz Villaverde;Policía;D;Descanso
+2026;9;2026-09-10;Jueves;032028;Iker Díaz Villaverde;Policía;D;Descanso
+2026;9;2026-09-11;Viernes;032028;Iker Díaz Villaverde;Policía;2;Tarde
+2026;9;2026-09-12;Sábado;032028;Iker Díaz Villaverde;Policía;2;Tarde
+2026;9;2026-09-13;Domingo;032028;Iker Díaz Villaverde;Policía;2;Tarde
+2026;9;2026-09-14;Lunes;032028;Iker Díaz Villaverde;Policía;2;Tarde
+2026;9;2026-09-15;Martes;032028;Iker Díaz Villaverde;Policía;Dcv;Descanso Compensasión Verano
+2026;9;2026-09-16;Miércoles;032028;Iker Díaz Villaverde;Policía;1;Mañana
+2026;9;2026-09-17;Jueves;032028;Iker Díaz Villaverde;Policía;1;Mañana
+2026;9;2026-09-18;Viernes;032028;Iker Díaz Villaverde;Policía;3;Noche
+2026;9;2026-09-19;Sábado;032028;Iker Díaz Villaverde;Policía;3;Noche
+2026;9;2026-09-20;Domingo;032028;Iker Díaz Villaverde;Policía;3;Noche
+2026;9;2026-09-21;Lunes;032028;Iker Díaz Villaverde;Policía;D;Descanso
+2026;9;2026-09-22;Martes;032028;Iker Díaz Villaverde;Policía;D;Descanso
+2026;9;2026-09-23;Miércoles;032028;Iker Díaz Villaverde;Policía;D;Descanso
+2026;9;2026-09-24;Jueves;032028;Iker Díaz Villaverde;Policía;2;Tarde
+2026;9;2026-09-25;Viernes;032028;Iker Díaz Villaverde;Policía;D;Descanso
+2026;9;2026-09-26;Sábado;032028;Iker Díaz Villaverde;Policía;D;Descanso
+2026;9;2026-09-27;Domingo;032028;Iker Díaz Villaverde;Policía;D;Descanso
+2026;9;2026-09-28;Lunes;032028;Iker Díaz Villaverde;Policía;3;Noche
+2026;9;2026-09-29;Martes;032028;Iker Díaz Villaverde;Policía;3;Noche
+2026;9;2026-09-30;Miércoles;032028;Iker Díaz Villaverde;Policía;D;Descanso
+2026;9;2026-09-01;Martes;032029;Xoaquín Miguel Novo Vázquez;Policía;2;Tarde
+2026;9;2026-09-02;Miércoles;032029;Xoaquín Miguel Novo Vázquez;Policía;2;Tarde
+2026;9;2026-09-03;Jueves;032029;Xoaquín Miguel Novo Vázquez;Policía;3;Noche
+2026;9;2026-09-04;Viernes;032029;Xoaquín Miguel Novo Vázquez;Policía;3;Noche
+2026;9;2026-09-05;Sábado;032029;Xoaquín Miguel Novo Vázquez;Policía;3;Noche
+2026;9;2026-09-06;Domingo;032029;Xoaquín Miguel Novo Vázquez;Policía;D;Descanso
+2026;9;2026-09-07;Lunes;032029;Xoaquín Miguel Novo Vázquez;Policía;2;Tarde
+2026;9;2026-09-08;Martes;032029;Xoaquín Miguel Novo Vázquez;Policía;2;Tarde
+2026;9;2026-09-09;Miércoles;032029;Xoaquín Miguel Novo Vázquez;Policía;D;Descanso
+2026;9;2026-09-10;Jueves;032029;Xoaquín Miguel Novo Vázquez;Policía;D;Descanso
+2026;9;2026-09-11;Viernes;032029;Xoaquín Miguel Novo Vázquez;Policía;D;Descanso
+2026;9;2026-09-12;Sábado;032029;Xoaquín Miguel Novo Vázquez;Policía;D;Descanso
+2026;9;2026-09-13;Domingo;032029;Xoaquín Miguel Novo Vázquez;Policía;D;Descanso
+2026;9;2026-09-14;Lunes;032029;Xoaquín Miguel Novo Vázquez;Policía;3;Noche
+2026;9;2026-09-15;Martes;032029;Xoaquín Miguel Novo Vázquez;Policía;3;Noche
+2026;9;2026-09-16;Miércoles;032029;Xoaquín Miguel Novo Vázquez;Policía;D;Descanso
+2026;9;2026-09-17;Jueves;032029;Xoaquín Miguel Novo Vázquez;Policía;D;Descanso
+2026;9;2026-09-18;Viernes;032029;Xoaquín Miguel Novo Vázquez;Policía;1;Mañana
+2026;9;2026-09-19;Sábado;032029;Xoaquín Miguel Novo Vázquez;Policía;D;Descanso
+2026;9;2026-09-20;Domingo;032029;Xoaquín Miguel Novo Vázquez;Policía;D;Descanso
+2026;9;2026-09-21;Lunes;032029;Xoaquín Miguel Novo Vázquez;Policía;1;Mañana
+2026;9;2026-09-22;Martes;032029;Xoaquín Miguel Novo Vázquez;Policía;1;Mañana
+2026;9;2026-09-23;Miércoles;032029;Xoaquín Miguel Novo Vázquez;Policía;D;Descanso
+2026;9;2026-09-24;Jueves;032029;Xoaquín Miguel Novo Vázquez;Policía;2;Tarde
+2026;9;2026-09-25;Viernes;032029;Xoaquín Miguel Novo Vázquez;Policía;2;Tarde
+2026;9;2026-09-26;Sábado;032029;Xoaquín Miguel Novo Vázquez;Policía;2;Tarde
+2026;9;2026-09-27;Domingo;032029;Xoaquín Miguel Novo Vázquez;Policía;2;Tarde
+2026;9;2026-09-28;Lunes;032029;Xoaquín Miguel Novo Vázquez;Policía;D;Descanso
+2026;9;2026-09-29;Martes;032029;Xoaquín Miguel Novo Vázquez;Policía;D;Descanso
+2026;9;2026-09-30;Miércoles;032029;Xoaquín Miguel Novo Vázquez;Policía;2;Tarde
+2026;9;2026-09-01;Martes;032030;Martín Lago Fernández;Policía;D;Descanso
+2026;9;2026-09-02;Miércoles;032030;Martín Lago Fernández;Policía;D;Descanso
+2026;9;2026-09-03;Jueves;032030;Martín Lago Fernández;Policía;2;Tarde
+2026;9;2026-09-04;Viernes;032030;Martín Lago Fernández;Policía;2;Tarde
+2026;9;2026-09-05;Sábado;032030;Martín Lago Fernández;Policía;D;Descanso
+2026;9;2026-09-06;Domingo;032030;Martín Lago Fernández;Policía;D;Descanso
+2026;9;2026-09-07;Lunes;032030;Martín Lago Fernández;Policía;D;Descanso
+2026;9;2026-09-08;Martes;032030;Martín Lago Fernández;Policía;1;Mañana
+2026;9;2026-09-09;Miércoles;032030;Martín Lago Fernández;Policía;D;Descanso
+2026;9;2026-09-10;Jueves;032030;Martín Lago Fernández;Policía;2;Tarde
+2026;9;2026-09-11;Viernes;032030;Martín Lago Fernández;Policía;3;Noche
+2026;9;2026-09-12;Sábado;032030;Martín Lago Fernández;Policía;3;Noche
+2026;9;2026-09-13;Domingo;032030;Martín Lago Fernández;Policía;3;Noche
+2026;9;2026-09-14;Lunes;032030;Martín Lago Fernández;Policía;D;Descanso
+2026;9;2026-09-15;Martes;032030;Martín Lago Fernández;Policía;D;Descanso
+2026;9;2026-09-16;Miércoles;032030;Martín Lago Fernández;Policía;2;Tarde
+2026;9;2026-09-17;Jueves;032030;Martín Lago Fernández;Policía;2;Tarde
+2026;9;2026-09-18;Viernes;032030;Martín Lago Fernández;Policía;2;Tarde
+2026;9;2026-09-19;Sábado;032030;Martín Lago Fernández;Policía;2;Tarde
+2026;9;2026-09-20;Domingo;032030;Martín Lago Fernández;Policía;2;Tarde
+2026;9;2026-09-21;Lunes;032030;Martín Lago Fernández;Policía;D;Descanso
+2026;9;2026-09-22;Martes;032030;Martín Lago Fernández;Policía;D;Descanso
+2026;9;2026-09-23;Miércoles;032030;Martín Lago Fernández;Policía;1;Mañana
+2026;9;2026-09-24;Jueves;032030;Martín Lago Fernández;Policía;1;Mañana
+2026;9;2026-09-25;Viernes;032030;Martín Lago Fernández;Policía;D;Descanso
+2026;9;2026-09-26;Sábado;032030;Martín Lago Fernández;Policía;D;Descanso
+2026;9;2026-09-27;Domingo;032030;Martín Lago Fernández;Policía;D;Descanso
+2026;9;2026-09-28;Lunes;032030;Martín Lago Fernández;Policía;1;Mañana
+2026;9;2026-09-29;Martes;032030;Martín Lago Fernández;Policía;3;Noche
+2026;9;2026-09-30;Miércoles;032030;Martín Lago Fernández;Policía;3;Noche
+2026;9;2026-09-01;Martes;032031;Carlota Tella Granda;Policía;1;Mañana
+2026;9;2026-09-02;Miércoles;032031;Carlota Tella Granda;Policía;2;Tarde
+2026;9;2026-09-03;Jueves;032031;Carlota Tella Granda;Policía;2;Tarde
+2026;9;2026-09-04;Viernes;032031;Carlota Tella Granda;Policía;D;Descanso
+2026;9;2026-09-05;Sábado;032031;Carlota Tella Granda;Policía;D;Descanso
+2026;9;2026-09-06;Domingo;032031;Carlota Tella Granda;Policía;D;Descanso
+2026;9;2026-09-07;Lunes;032031;Carlota Tella Granda;Policía;D;Descanso
+2026;9;2026-09-08;Martes;032031;Carlota Tella Granda;Policía;D;Descanso
+2026;9;2026-09-09;Miércoles;032031;Carlota Tella Granda;Policía;D;Descanso
+2026;9;2026-09-10;Jueves;032031;Carlota Tella Granda;Policía;D;Descanso
+2026;9;2026-09-11;Viernes;032031;Carlota Tella Granda;Policía;D;Descanso
+2026;9;2026-09-12;Sábado;032031;Carlota Tella Granda;Policía;D;Descanso
+2026;9;2026-09-13;Domingo;032031;Carlota Tella Granda;Policía;D;Descanso
+2026;9;2026-09-14;Lunes;032031;Carlota Tella Granda;Policía;2;Tarde
+2026;9;2026-09-15;Martes;032031;Carlota Tella Granda;Policía;2;Tarde
+2026;9;2026-09-16;Miércoles;032031;Carlota Tella Granda;Policía;3;Noche
+2026;9;2026-09-17;Jueves;032031;Carlota Tella Granda;Policía;D;Descanso
+2026;9;2026-09-18;Viernes;032031;Carlota Tella Granda;Policía;2;Tarde
+2026;9;2026-09-19;Sábado;032031;Carlota Tella Granda;Policía;2;Tarde
+2026;9;2026-09-20;Domingo;032031;Carlota Tella Granda;Policía;2;Tarde
+2026;9;2026-09-21;Lunes;032031;Carlota Tella Granda;Policía;D;Descanso
+2026;9;2026-09-22;Martes;032031;Carlota Tella Granda;Policía;1;Mañana
+2026;9;2026-09-23;Miércoles;032031;Carlota Tella Granda;Policía;1;Mañana
+2026;9;2026-09-24;Jueves;032031;Carlota Tella Granda;Policía;3;Noche
+2026;9;2026-09-25;Viernes;032031;Carlota Tella Granda;Policía;3;Noche
+2026;9;2026-09-26;Sábado;032031;Carlota Tella Granda;Policía;3;Noche
+2026;9;2026-09-27;Domingo;032031;Carlota Tella Granda;Policía;D;Descanso
+2026;9;2026-09-28;Lunes;032031;Carlota Tella Granda;Policía;2;Tarde
+2026;9;2026-09-29;Martes;032031;Carlota Tella Granda;Policía;2;Tarde
+2026;9;2026-09-30;Miércoles;032031;Carlota Tella Granda;Policía;3;Noche
+2026;9;2026-09-01;Martes;032013;Simeón Porto Fernández;Policía;3;Noche
+2026;9;2026-09-02;Miércoles;032013;Simeón Porto Fernández;Policía;D;Descanso
+2026;9;2026-09-03;Jueves;032013;Simeón Porto Fernández;Policía;AP;Asuntos Particulares
+2026;9;2026-09-04;Viernes;032013;Simeón Porto Fernández;Policía;D;Descanso
+2026;9;2026-09-05;Sábado;032013;Simeón Porto Fernández;Policía;D;Descanso
+2026;9;2026-09-06;Domingo;032013;Simeón Porto Fernández;Policía;D;Descanso
+2026;9;2026-09-07;Lunes;032013;Simeón Porto Fernández;Policía;AP;Asuntos Particulares
+2026;9;2026-09-08;Martes;032013;Simeón Porto Fernández;Policía;1;Mañana
+2026;9;2026-09-09;Miércoles;032013;Simeón Porto Fernández;Policía;D;Descanso
+2026;9;2026-09-10;Jueves;032013;Simeón Porto Fernández;Policía;1;Mañana
+2026;9;2026-09-11;Viernes;032013;Simeón Porto Fernández;Policía;1;Mañana
+2026;9;2026-09-12;Sábado;032013;Simeón Porto Fernández;Policía;D;Descanso
+2026;9;2026-09-13;Domingo;032013;Simeón Porto Fernández;Policía;D;Descanso
+2026;9;2026-09-14;Lunes;032013;Simeón Porto Fernández;Policía;2;Tarde
+2026;9;2026-09-15;Martes;032013;Simeón Porto Fernández;Policía;2;Tarde
+2026;9;2026-09-16;Miércoles;032013;Simeón Porto Fernández;Policía;2;Tarde
+2026;9;2026-09-17;Jueves;032013;Simeón Porto Fernández;Policía;D;Descanso
+2026;9;2026-09-18;Viernes;032013;Simeón Porto Fernández;Policía;1;Mañana
+2026;9;2026-09-19;Sábado;032013;Simeón Porto Fernández;Policía;1;Mañana
+2026;9;2026-09-20;Domingo;032013;Simeón Porto Fernández;Policía;1;Mañana
+2026;9;2026-09-21;Lunes;032013;Simeón Porto Fernández;Policía;AP;Asuntos Particulares
+2026;9;2026-09-22;Martes;032013;Simeón Porto Fernández;Policía;AP;Asuntos Particulares
+2026;9;2026-09-23;Miércoles;032013;Simeón Porto Fernández;Policía;3;Noche
+2026;9;2026-09-24;Jueves;032013;Simeón Porto Fernández;Policía;D;Descanso
+2026;9;2026-09-25;Viernes;032013;Simeón Porto Fernández;Policía;D;Descanso
+2026;9;2026-09-26;Sábado;032013;Simeón Porto Fernández;Policía;3;Noche
+2026;9;2026-09-27;Domingo;032013;Simeón Porto Fernández;Policía;3;Noche
+2026;9;2026-09-28;Lunes;032013;Simeón Porto Fernández;Policía;3;Noche
+2026;9;2026-09-29;Martes;032013;Simeón Porto Fernández;Policía;D;Descanso
+2026;9;2026-09-30;Miércoles;032013;Simeón Porto Fernández;Policía;D;Descanso
+2026;9;2026-09-01;Martes;032019;Juan Rozados Saya;Policía;BAJA;Baja
+2026;9;2026-09-02;Miércoles;032019;Juan Rozados Saya;Policía;BAJA;Baja
+2026;9;2026-09-03;Jueves;032019;Juan Rozados Saya;Policía;BAJA;Baja
+2026;9;2026-09-04;Viernes;032019;Juan Rozados Saya;Policía;BAJA;Baja
+2026;9;2026-09-05;Sábado;032019;Juan Rozados Saya;Policía;BAJA;Baja
+2026;9;2026-09-06;Domingo;032019;Juan Rozados Saya;Policía;BAJA;Baja
+2026;9;2026-09-07;Lunes;032019;Juan Rozados Saya;Policía;BAJA;Baja
+2026;9;2026-09-08;Martes;032019;Juan Rozados Saya;Policía;BAJA;Baja
+2026;9;2026-09-09;Miércoles;032019;Juan Rozados Saya;Policía;BAJA;Baja
+2026;9;2026-09-10;Jueves;032019;Juan Rozados Saya;Policía;BAJA;Baja
+2026;9;2026-09-11;Viernes;032019;Juan Rozados Saya;Policía;BAJA;Baja
+2026;9;2026-09-12;Sábado;032019;Juan Rozados Saya;Policía;BAJA;Baja
+2026;9;2026-09-13;Domingo;032019;Juan Rozados Saya;Policía;BAJA;Baja
+2026;9;2026-09-14;Lunes;032019;Juan Rozados Saya;Policía;BAJA;Baja
+2026;9;2026-09-15;Martes;032019;Juan Rozados Saya;Policía;BAJA;Baja
+2026;9;2026-09-16;Miércoles;032019;Juan Rozados Saya;Policía;BAJA;Baja
+2026;9;2026-09-17;Jueves;032019;Juan Rozados Saya;Policía;BAJA;Baja
+2026;9;2026-09-18;Viernes;032019;Juan Rozados Saya;Policía;BAJA;Baja
+2026;9;2026-09-19;Sábado;032019;Juan Rozados Saya;Policía;BAJA;Baja
+2026;9;2026-09-20;Domingo;032019;Juan Rozados Saya;Policía;BAJA;Baja
+2026;9;2026-09-21;Lunes;032019;Juan Rozados Saya;Policía;BAJA;Baja
+2026;9;2026-09-22;Martes;032019;Juan Rozados Saya;Policía;BAJA;Baja
+2026;9;2026-09-23;Miércoles;032019;Juan Rozados Saya;Policía;BAJA;Baja
+2026;9;2026-09-24;Jueves;032019;Juan Rozados Saya;Policía;BAJA;Baja
+2026;9;2026-09-25;Viernes;032019;Juan Rozados Saya;Policía;BAJA;Baja
+2026;9;2026-09-26;Sábado;032019;Juan Rozados Saya;Policía;BAJA;Baja
+2026;9;2026-09-27;Domingo;032019;Juan Rozados Saya;Policía;BAJA;Baja
+2026;9;2026-09-28;Lunes;032019;Juan Rozados Saya;Policía;BAJA;Baja
+2026;9;2026-09-29;Martes;032019;Juan Rozados Saya;Policía;BAJA;Baja
+2026;9;2026-09-30;Miércoles;032019;Juan Rozados Saya;Policía;BAJA;Baja
+2026;9;2026-09-01;Martes;032032;Martín Da Lama Vázquez;Policía Prácticas;D;Descanso
+2026;9;2026-09-02;Miércoles;032032;Martín Da Lama Vázquez;Policía Prácticas;1;Mañana
+2026;9;2026-09-03;Jueves;032032;Martín Da Lama Vázquez;Policía Prácticas;1;Mañana
+2026;9;2026-09-04;Viernes;032032;Martín Da Lama Vázquez;Policía Prácticas;D;Descanso
+2026;9;2026-09-05;Sábado;032032;Martín Da Lama Vázquez;Policía Prácticas;D;Descanso
+2026;9;2026-09-06;Domingo;032032;Martín Da Lama Vázquez;Policía Prácticas;D;Descanso
+2026;9;2026-09-07;Lunes;032032;Martín Da Lama Vázquez;Policía Prácticas;1;Mañana
+2026;9;2026-09-08;Martes;032032;Martín Da Lama Vázquez;Policía Prácticas;3;Noche
+2026;9;2026-09-09;Miércoles;032032;Martín Da Lama Vázquez;Policía Prácticas;3;Noche
+2026;9;2026-09-10;Jueves;032032;Martín Da Lama Vázquez;Policía Prácticas;D;Descanso
+2026;9;2026-09-11;Viernes;032032;Martín Da Lama Vázquez;Policía Prácticas;D;Descanso
+2026;9;2026-09-12;Sábado;032032;Martín Da Lama Vázquez;Policía Prácticas;D;Descanso
+2026;9;2026-09-13;Domingo;032032;Martín Da Lama Vázquez;Policía Prácticas;D;Descanso
+2026;9;2026-09-14;Lunes;032032;Martín Da Lama Vázquez;Policía Prácticas;1;Mañana
+2026;9;2026-09-15;Martes;032032;Martín Da Lama Vázquez;Policía Prácticas;1;Mañana
+2026;9;2026-09-16;Miércoles;032032;Martín Da Lama Vázquez;Policía Prácticas;1;Mañana
+2026;9;2026-09-17;Jueves;032032;Martín Da Lama Vázquez;Policía Prácticas;3;Noche
+2026;9;2026-09-18;Viernes;032032;Martín Da Lama Vázquez;Policía Prácticas;3;Noche
+2026;9;2026-09-19;Sábado;032032;Martín Da Lama Vázquez;Policía Prácticas;3;Noche
+2026;9;2026-09-20;Domingo;032032;Martín Da Lama Vázquez;Policía Prácticas;D;Descanso
+2026;9;2026-09-21;Lunes;032032;Martín Da Lama Vázquez;Policía Prácticas;D;Descanso
+2026;9;2026-09-22;Martes;032032;Martín Da Lama Vázquez;Policía Prácticas;1;Mañana
+2026;9;2026-09-23;Miércoles;032032;Martín Da Lama Vázquez;Policía Prácticas;2;Tarde
+2026;9;2026-09-24;Jueves;032032;Martín Da Lama Vázquez;Policía Prácticas;D;Descanso
+2026;9;2026-09-25;Viernes;032032;Martín Da Lama Vázquez;Policía Prácticas;2;Tarde
+2026;9;2026-09-26;Sábado;032032;Martín Da Lama Vázquez;Policía Prácticas;2;Tarde
+2026;9;2026-09-27;Domingo;032032;Martín Da Lama Vázquez;Policía Prácticas;2;Tarde
+2026;9;2026-09-28;Lunes;032032;Martín Da Lama Vázquez;Policía Prácticas;D;Descanso
+2026;9;2026-09-29;Martes;032032;Martín Da Lama Vázquez;Policía Prácticas;1;Mañana
+2026;9;2026-09-30;Miércoles;032032;Martín Da Lama Vázquez;Policía Prácticas;1;Mañana
+2026;9;2026-09-01;Martes;A032099;Ricardo Fariña Vidal;Auxiliar;1;Mañana
+2026;9;2026-09-02;Miércoles;A032099;Ricardo Fariña Vidal;Auxiliar;Dcv;Descanso Compensasión Verano
+2026;9;2026-09-03;Jueves;A032099;Ricardo Fariña Vidal;Auxiliar;D;Descanso
+2026;9;2026-09-04;Viernes;A032099;Ricardo Fariña Vidal;Auxiliar;3;Noche
+2026;9;2026-09-05;Sábado;A032099;Ricardo Fariña Vidal;Auxiliar;3;Noche
+2026;9;2026-09-06;Domingo;A032099;Ricardo Fariña Vidal;Auxiliar;3;Noche
+2026;9;2026-09-07;Lunes;A032099;Ricardo Fariña Vidal;Auxiliar;D;Descanso
+2026;9;2026-09-08;Martes;A032099;Ricardo Fariña Vidal;Auxiliar;D;Descanso
+2026;9;2026-09-09;Miércoles;A032099;Ricardo Fariña Vidal;Auxiliar;D;Descanso
+2026;9;2026-09-10;Jueves;A032099;Ricardo Fariña Vidal;Auxiliar;1;Mañana
+2026;9;2026-09-11;Viernes;A032099;Ricardo Fariña Vidal;Auxiliar;2;Tarde
+2026;9;2026-09-12;Sábado;A032099;Ricardo Fariña Vidal;Auxiliar;2;Tarde
+2026;9;2026-09-13;Domingo;A032099;Ricardo Fariña Vidal;Auxiliar;2;Tarde
+2026;9;2026-09-14;Lunes;A032099;Ricardo Fariña Vidal;Auxiliar;D;Descanso
+2026;9;2026-09-15;Martes;A032099;Ricardo Fariña Vidal;Auxiliar;D;Descanso
+2026;9;2026-09-16;Miércoles;A032099;Ricardo Fariña Vidal;Auxiliar;D;Descanso
+2026;9;2026-09-17;Jueves;A032099;Ricardo Fariña Vidal;Auxiliar;D;Descanso
+2026;9;2026-09-18;Viernes;A032099;Ricardo Fariña Vidal;Auxiliar;D;Descanso
+2026;9;2026-09-19;Sábado;A032099;Ricardo Fariña Vidal;Auxiliar;D;Descanso
+2026;9;2026-09-20;Domingo;A032099;Ricardo Fariña Vidal;Auxiliar;D;Descanso
+2026;9;2026-09-21;Lunes;A032099;Ricardo Fariña Vidal;Auxiliar;Ts;Tiempo sindical
+2026;9;2026-09-22;Martes;A032099;Ricardo Fariña Vidal;Auxiliar;3;Noche
+2026;9;2026-09-23;Miércoles;A032099;Ricardo Fariña Vidal;Auxiliar;3;Noche
+2026;9;2026-09-24;Jueves;A032099;Ricardo Fariña Vidal;Auxiliar;Dcc;Descanso Compensación Curso
+2026;9;2026-09-25;Viernes;A032099;Ricardo Fariña Vidal;Auxiliar;D;Descanso
+2026;9;2026-09-26;Sábado;A032099;Ricardo Fariña Vidal;Auxiliar;D;Descanso
+2026;9;2026-09-27;Domingo;A032099;Ricardo Fariña Vidal;Auxiliar;D;Descanso
+2026;9;2026-09-28;Lunes;A032099;Ricardo Fariña Vidal;Auxiliar;2;Tarde
+2026;9;2026-09-29;Martes;A032099;Ricardo Fariña Vidal;Auxiliar;Dcc;Descanso Compensación Curso
+2026;9;2026-09-30;Miércoles;A032099;Ricardo Fariña Vidal;Auxiliar;Ts;Tiempo sindical
+2026;9;2026-09-01;Martes;032017;Francisco Fernández Otero;Policía;L;Laborable
+2026;9;2026-09-02;Miércoles;032017;Francisco Fernández Otero;Policía;L;Laborable
+2026;9;2026-09-03;Jueves;032017;Francisco Fernández Otero;Policía;L;Laborable
+2026;9;2026-09-04;Viernes;032017;Francisco Fernández Otero;Policía;L;Laborable
+2026;9;2026-09-05;Sábado;032017;Francisco Fernández Otero;Policía;D;Descanso
+2026;9;2026-09-06;Domingo;032017;Francisco Fernández Otero;Policía;D;Descanso
+2026;9;2026-09-07;Lunes;032017;Francisco Fernández Otero;Policía;L;Laborable
+2026;9;2026-09-08;Martes;032017;Francisco Fernández Otero;Policía;L;Laborable
+2026;9;2026-09-09;Miércoles;032017;Francisco Fernández Otero;Policía;L;Laborable
+2026;9;2026-09-10;Jueves;032017;Francisco Fernández Otero;Policía;L;Laborable
+2026;9;2026-09-11;Viernes;032017;Francisco Fernández Otero;Policía;L;Laborable
+2026;9;2026-09-12;Sábado;032017;Francisco Fernández Otero;Policía;D;Descanso
+2026;9;2026-09-13;Domingo;032017;Francisco Fernández Otero;Policía;D;Descanso
+2026;9;2026-09-14;Lunes;032017;Francisco Fernández Otero;Policía;L;Laborable
+2026;9;2026-09-15;Martes;032017;Francisco Fernández Otero;Policía;L;Laborable
+2026;9;2026-09-16;Miércoles;032017;Francisco Fernández Otero;Policía;L;Laborable
+2026;9;2026-09-17;Jueves;032017;Francisco Fernández Otero;Policía;L;Laborable
+2026;9;2026-09-18;Viernes;032017;Francisco Fernández Otero;Policía;L;Laborable
+2026;9;2026-09-19;Sábado;032017;Francisco Fernández Otero;Policía;D;Descanso
+2026;9;2026-09-20;Domingo;032017;Francisco Fernández Otero;Policía;D;Descanso
+2026;9;2026-09-21;Lunes;032017;Francisco Fernández Otero;Policía;L;Laborable
+2026;9;2026-09-22;Martes;032017;Francisco Fernández Otero;Policía;L;Laborable
+2026;9;2026-09-23;Miércoles;032017;Francisco Fernández Otero;Policía;L;Laborable
+2026;9;2026-09-24;Jueves;032017;Francisco Fernández Otero;Policía;L;Laborable
+2026;9;2026-09-25;Viernes;032017;Francisco Fernández Otero;Policía;L;Laborable
+2026;9;2026-09-26;Sábado;032017;Francisco Fernández Otero;Policía;D;Descanso
+2026;9;2026-09-27;Domingo;032017;Francisco Fernández Otero;Policía;D;Descanso
+2026;9;2026-09-28;Lunes;032017;Francisco Fernández Otero;Policía;L;Laborable
+2026;9;2026-09-29;Martes;032017;Francisco Fernández Otero;Policía;L;Laborable
+2026;9;2026-09-30;Miércoles;032017;Francisco Fernández Otero;Policía;L;Laborable
