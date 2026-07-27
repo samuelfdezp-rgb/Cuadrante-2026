@@ -1,26 +1,26 @@
-Año,Mes,Fecha,Día,NIP,Nombre y Apellidos,Categoría,Turno,Tipo,,,,,
-2026,8,01/08/2026,Sábado,032001,Xosé Henrique Fidalgo García,Inspector,Vac,Vacaciones,,,,L,Laborable
-2026,8,02/08/2026,Domingo,032001,Xosé Henrique Fidalgo García,Inspector,Vac,Vacaciones,,,,D,Descanso
-2026,8,03/08/2026,Lunes,032001,Xosé Henrique Fidalgo García,Inspector,Vac,Vacaciones,,,,1,Mañana
-2026,8,04/08/2026,Martes,032001,Xosé Henrique Fidalgo García,Inspector,Vac,Vacaciones,,,,2,Tarde
-2026,8,05/08/2026,Miércoles,032001,Xosé Henrique Fidalgo García,Inspector,Vac,Vacaciones,,,,3,Noche
-2026,8,06/08/2026,Jueves,032001,Xosé Henrique Fidalgo García,Inspector,Vac,Vacaciones,,,,Ts,Tiempo sindical
-2026,8,07/08/2026,Viernes,032001,Xosé Henrique Fidalgo García,Inspector,Vac,Vacaciones,,,,AP,Asuntos Particulares
-2026,8,08/08/2026,Sábado,032001,Xosé Henrique Fidalgo García,Inspector,Vac,Vacaciones,,,,Perm,Permiso
-2026,8,09/08/2026,Domingo,032001,Xosé Henrique Fidalgo García,Inspector,Vac,Vacaciones,,,,Baja,Baja
-2026,8,10/08/2026,Lunes,032001,Xosé Henrique Fidalgo García,Inspector,Vac,Vacaciones,,,,Vac,Vacaciones
-2026,8,11/08/2026,Martes,032001,Xosé Henrique Fidalgo García,Inspector,Vac,Vacaciones,,,,Dcc,Descanso Compensación Curso
-2026,8,12/08/2026,Miércoles,032001,Xosé Henrique Fidalgo García,Inspector,Vac,Vacaciones,,,,JuC,Juicio Coruña
-2026,8,13/08/2026,Jueves,032001,Xosé Henrique Fidalgo García,Inspector,Vac,Vacaciones,,,,JuB,Juicio Betanzos
-2026,8,14/08/2026,Viernes,032001,Xosé Henrique Fidalgo García,Inspector,Vac,Vacaciones,,,,Dc,Descanso Compensación
-2026,8,15/08/2026,Sábado,032001,Xosé Henrique Fidalgo García,Inspector,Vac,Vacaciones,,,,Dcu,Descanso Compensación Cuadrante
-2026,8,16/08/2026,Domingo,032001,Xosé Henrique Fidalgo García,Inspector,Vac,Vacaciones,,,,Dcj,Descanso Compensasión Juicio
-2026,8,17/08/2026,Lunes,032001,Xosé Henrique Fidalgo García,Inspector,Vac,Vacaciones,,,,Tir,Tiro
-2026,8,18/08/2026,Martes,032001,Xosé Henrique Fidalgo García,Inspector,Vac,Vacaciones,,,,Dct,Descanso Compensasión Tiro
-2026,8,19/08/2026,Miércoles,032001,Xosé Henrique Fidalgo García,Inspector,Vac,Vacaciones,,,,Dcv,Descanso Compensasión Verano
-2026,8,20/08/2026,Jueves,032001,Xosé Henrique Fidalgo García,Inspector,Vac,Vacaciones,,,,EV,Educación Vial
-2026,8,21/08/2026,Viernes,032001,Xosé Henrique Fidalgo García,Inspector,Vac,Vacaciones,,,,,
-2026,8,22/08/2026,Sábado,032001,Xosé Henrique Fidalgo García,Inspector,Vac,Vacaciones,,,,,
+Año,Mes,Fecha,Día,NIP,Nombre y Apellidos,Categoría,Turno,Tipo
+2026,8,01/08/2026,Sábado,032001,Xosé Henrique Fidalgo García,Inspector,Vac,Vacaciones
+2026,8,02/08/2026,Domingo,032001,Xosé Henrique Fidalgo García,Inspector,Vac,Vacaciones
+2026,8,03/08/2026,Lunes,032001,Xosé Henrique Fidalgo García,Inspector,Vac,Vacaciones
+2026,8,04/08/2026,Martes,032001,Xosé Henrique Fidalgo García,Inspector,Vac,Vacaciones
+2026,8,05/08/2026,Miércoles,032001,Xosé Henrique Fidalgo García,Inspector,Vac,Vacaciones
+2026,8,06/08/2026,Jueves,032001,Xosé Henrique Fidalgo García,Inspector,Vac,Vacaciones
+2026,8,07/08/2026,Viernes,032001,Xosé Henrique Fidalgo García,Inspector,Vac,Vacaciones
+2026,8,08/08/2026,Sábado,032001,Xosé Henrique Fidalgo García,Inspector,Vac,Vacaciones
+2026,8,09/08/2026,Domingo,032001,Xosé Henrique Fidalgo García,Inspector,Vac,Vacaciones
+2026,8,10/08/2026,Lunes,032001,Xosé Henrique Fidalgo García,Inspector,Vac,Vacaciones
+2026,8,11/08/2026,Martes,032001,Xosé Henrique Fidalgo García,Inspector,Vac,Vacaciones
+2026,8,12/08/2026,Miércoles,032001,Xosé Henrique Fidalgo García,Inspector,Vac,Vacaciones
+2026,8,13/08/2026,Jueves,032001,Xosé Henrique Fidalgo García,Inspector,Vac,Vacaciones
+2026,8,14/08/2026,Viernes,032001,Xosé Henrique Fidalgo García,Inspector,Vac,Vacaciones
+2026,8,15/08/2026,Sábado,032001,Xosé Henrique Fidalgo García,Inspector,Vac,Vacaciones
+2026,8,16/08/2026,Domingo,032001,Xosé Henrique Fidalgo García,Inspector,Vac,Vacaciones
+2026,8,17/08/2026,Lunes,032001,Xosé Henrique Fidalgo García,Inspector,Vac,Vacaciones
+2026,8,18/08/2026,Martes,032001,Xosé Henrique Fidalgo García,Inspector,Vac,Vacaciones
+2026,8,19/08/2026,Miércoles,032001,Xosé Henrique Fidalgo García,Inspector,Vac,Vacaciones
+2026,8,20/08/2026,Jueves,032001,Xosé Henrique Fidalgo García,Inspector,Vac,Vacaciones
+2026,8,21/08/2026,Viernes,032001,Xosé Henrique Fidalgo García,Inspector,Vac,Vacaciones
+2026,8,22/08/2026,Sábado,032001,Xosé Henrique Fidalgo García,Inspector,Vac,Vacaciones
 2026,8,23/08/2026,Domingo,032001,Xosé Henrique Fidalgo García,Inspector,Vac,Vacaciones,,,,,
 2026,8,24/08/2026,Lunes,032001,Xosé Henrique Fidalgo García,Inspector,Vac,Vacaciones,,,,,
 2026,8,25/08/2026,Martes,032001,Xosé Henrique Fidalgo García,Inspector,Vac,Vacaciones,,,,,
