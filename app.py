@@ -382,7 +382,7 @@ NOMBRES_TURNO = {
     "Ts": "Tiempo sindical", "AP": "Asuntos particulares",
     "JuB": "Juicio Betanzos", "JuC": "Juicio Coruña",
     "curso": "curso", "indisp": "Indisposición", "EV": "Educación Vial",
-    "Tir": "Tiro", "AGASP": "AGASP"; "CU": "Cuadrante"; "Dcu": "Descanso Compensación Cuadrante" 
+    "Tir": "Tiro", "AGASP": "AGASP", "CU": "Cuadrante", "Dcu": "Desc. comp. cuad." 
 }
 
 def nombre_turno(c):
