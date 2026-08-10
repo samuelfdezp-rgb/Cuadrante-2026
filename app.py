@@ -985,20 +985,39 @@ with tab_resumen:
 
     ruta_csv = f"resumenes_csv/2026/{st.session_state.nip}.csv"
 
-    st.write(ruta_csv)
-
     if not os.path.exists(ruta_csv):
         st.warning("⚠️ No existe un resumen para este trabajador.")
+
     else:
+
         try:
 
-            df_resumen = pd.read_csv(
-                ruta_csv,
-                sep=",",
-                header=None
+            # ============================================
+            # LECTURA DEL CSV (permite filas desiguales)
+            # ============================================
+            with open(ruta_csv, encoding="utf-8") as f:
+                filas = [
+                    linea.rstrip("\n").split(",")
+                    for linea in f
+                ]
+
+            # Igualamos todas las filas al mismo tamaño
+            max_cols = max(len(fila) for fila in filas)
+
+            for fila in filas:
+                while len(fila) < max_cols:
+                    fila.append("")
+
+            df_resumen = pd.DataFrame(filas)
+
+            # ============================================
+            # MOSTRAR TABLA
+            # ============================================
+            st.dataframe(
+                df_resumen,
+                use_container_width=True,
+                hide_index=True
             )
 
-            st.write(df_resumen)
-
         except Exception as e:
-            st.error(e)
+            st.error(f"Error leyendo el resumen:\n\n{e}")
