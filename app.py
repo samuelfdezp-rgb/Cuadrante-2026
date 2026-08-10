@@ -1010,83 +1010,68 @@ with tab_resumen:
 
             df_resumen = pd.DataFrame(filas)
 
+                   filas_azules = {
+            1,
+            5,
+            9,
+            13,
+            17,
+            21,
+            25,
+            29
+        }
+
+        for indice, fila in df_resumen.iterrows():
+
             # ============================================
-            # CONVERTIR A HTML
+            # COLOR DE LA FILA
             # ============================================
-            html = """
-            <style>
+            if indice == 0:
+                html += "<tr style='background:#000000;color:#FFFFFF;'>"
 
-            .resumen table{
-                border-collapse:collapse;
-                width:100%;
-                font-size:15px;
-                background:white;
-            }
+            elif indice in filas_azules:
+                html += "<tr style='background:#DDEBF7;color:#000000;'>"
 
-            .resumen td,
-            .resumen th{
-                border:1px solid #000;
-                padding:6px;
-                text-align:center;
-                color:#000;
-            }
+            else:
+                html += "<tr style='background:#FFFFFF;color:#000000;'>"
 
-            .resumen tr:nth-child(odd){
-                background:#BDD7EE;
-            }
+            # ============================================
+            # CELDAS
+            # ============================================
+            for i, valor in enumerate(fila):
 
-            .resumen tr:nth-child(even){
-                background:#FFFFFF;
-            }
+                if pd.isna(valor):
+                    valor = ""
 
-            .resumen tr:first-child{
-                background:#000;
-                font-weight:bold;
-            }
+                # Primera columna
+                if i == 0:
+                    html += (
+                        "<td style='"
+                        "text-align:left;"
+                        "font-weight:bold;"
+                        "min-width:260px;"
+                        "padding-left:10px;'>"
+                        f"{valor}</td>"
+                    )
 
-            .resumen tr:first-child td{
-                color:#FFFFFF;
-                font-weight:bold;
-            }
+                # Resto de columnas
+                else:
+                    html += (
+                        "<td style='min-width:55px;'>"
+                        f"{valor}</td>"
+                    )
 
-            </style>
+            html += "</tr>"
 
-            <div class="resumen">
-            <table>
-            """
+        # ============================================
+        # CIERRE DE TABLA
+        # ============================================
+        html += "</table></div>"
 
-            for _, fila in df_resumen.iterrows():
+        st.markdown(
+            html,
+            unsafe_allow_html=True
+        )
 
-                html += "<tr>"
-
-                for i, valor in enumerate(fila):
-
-                    if pd.isna(valor):
-                        valor = ""
-
-                    # Primera columna (concepto)
-                    if i == 0:
-                        html += (
-                            "<td style='"
-                            "text-align:left;"
-                            "font-weight:bold;"
-                            "min-width:260px;"
-                            "padding-left:10px;'>"
-                            f"{valor}</td>"
-                        )
-
-                    # Resto de columnas
-                    else:
-                        html += (
-                            "<td style='min-width:55px;'>"
-                            f"{valor}</td>"
-                        )
-
-                html += "</tr>"
-
-            html += "</table></div>"
-
-            st.markdown(html, unsafe_allow_html=True)
-
-        except Exception as e:
-            st.error(f"Error leyendo el resumen: {e}")
+    except Exception as e:
+        st.error(f"Error leyendo el resumen: {e}")
