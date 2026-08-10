@@ -989,6 +989,7 @@ with tab_resumen:
         st.warning("⚠️ No existe un resumen para este trabajador.")
 
     else:
+
         try:
 
             # ============================================
@@ -1000,42 +1001,43 @@ with tab_resumen:
                     for linea in f
                 ]
 
-            # ============================================
-            # IGUALAR NÚMERO DE COLUMNAS
-            # ============================================
-            if filas:
-                max_cols = max(len(fila) for fila in filas)
+            # Si el archivo está vacío
+            if not filas:
+                st.warning("⚠️ El archivo de resumen está vacío.")
+                st.stop()
 
-                for fila in filas:
-                    while len(fila) < max_cols:
-                        fila.append("")
+            # ============================================
+            # IGUALAR TODAS LAS FILAS
+            # ============================================
+            max_cols = max(len(fila) for fila in filas)
+
+            for fila in filas:
+                while len(fila) < max_cols:
+                    fila.append("")
 
             df_resumen = pd.DataFrame(filas)
 
             # ============================================
-            # FILAS QUE TENDRÁN FONDO AZUL
+            # FILAS QUE VAN EN AZUL CLARO
             # ============================================
             filas_azules = {
                 1,
-                3,
                 5,
-                7,
                 9,
-                11,
                 13,
-                15,
                 17,
-                19,
                 21,
-                23
+                25,
+                29
             }
 
             # ============================================
-            # CONSTRUIR HTML
+            # HTML + CSS
             # ============================================
             html = """
             <style>
 
+            /* CONTENEDOR GENERAL */
             .resumen {
                 background: #FFFFFF;
                 color: #000000;
@@ -1057,7 +1059,6 @@ with tab_resumen:
                 padding: 6px;
                 text-align: center;
                 color: #000000;
-                background: #FFFFFF;
             }
 
             /* ENCABEZADO */
@@ -1072,7 +1073,6 @@ with tab_resumen:
             .resumen tr.resumen-azul td {
                 background: #DDEBF7 !important;
                 color: #000000 !important;
-                font-weight: normal;
             }
 
             /* FILAS BLANCAS */
@@ -1081,26 +1081,15 @@ with tab_resumen:
                 color: #000000 !important;
             }
 
-            /* PRIMERA COLUMNA: NOMBRE DEL CONCEPTO */
-            .resumen tr.resumen-azul td:first-child {
+            /* PRIMERA COLUMNA */
+            .resumen tr.resumen-azul td:first-child,
+            .resumen tr.resumen-blanco td:first-child {
                 font-weight: bold;
             }
-            
+
             /* COLUMNA TOTAL */
             .resumen td.total {
                 font-weight: bold;
-            }
-
-            /* TOTAL EN FILAS AZULES */
-            .resumen tr.resumen-azul td.total {
-                background: #DDEBF7 !important;
-                color: #000000 !important;
-            }
-
-            /* TOTAL EN FILAS BLANCAS */
-            .resumen tr.resumen-blanco td.total {
-                background: #FFFFFF !important;
-                color: #000000 !important;
             }
 
             </style>
@@ -1108,51 +1097,39 @@ with tab_resumen:
             <div class="resumen">
             <table>
             """
+
             # ============================================
-            # FILAS
+            # CONSTRUIR FILAS
             # ============================================
             for indice, fila in df_resumen.iterrows():
 
-                # Primera fila = encabezado
+                # ---------- CLASE DE LA FILA ----------
                 if indice == 0:
                     html += "<tr class='resumen-header'>"
 
-                # Filas azules
                 elif indice in filas_azules:
                     html += "<tr class='resumen-azul'>"
 
-                # Resto de filas = blancas
                 else:
                     html += "<tr class='resumen-blanco'>"
 
-                # ========================================
-                # CELDAS
-                # ========================================
-                for i, valor in enumerate(fila):
+                # ---------- CELDAS ----------
+                for col_idx, valor in enumerate(fila):
 
                     if pd.isna(valor):
                         valor = ""
 
-                    valor = str(valor).strip()
+                    valor = str(valor)
 
-                    if i == 0:
+                    # Última columna = Total
+                    if col_idx == len(fila) - 1:
                         html += (
-                            "<td>"
-                            f"{valor}"
-                            "</td>"
+                            f"<td class='total'>{valor}</td>"
                         )
-
                     else:
                         html += (
-                            "<td>"
-                            f"{valor}"
-                            "</td>"
+                            f"<td>{valor}</td>"
                         )
-                        
-                    # Última columna = TOTAL
-                    clase_total = " total" if col_idx == len(fila) - 1 else ""
-
-                    html += f"<td class='{clase_total.strip()}'>{valor}</td>"
 
                 html += "</tr>"
 
@@ -1170,6 +1147,4 @@ with tab_resumen:
             )
 
         except Exception as e:
-            st.error(
-                f"Error leyendo el resumen: {e}"
-            )
+            st.error(f"Error leyendo el resumen: {e}")
