@@ -985,22 +985,20 @@ with tab_resumen:
 
     ruta_csv = f"resumenes_csv/2026/{st.session_state.nip}.csv"
 
+    st.write(ruta_csv)
+
     if not os.path.exists(ruta_csv):
         st.warning("⚠️ No existe un resumen para este trabajador.")
     else:
         try:
-            # Excel en español suele guardar CSV separados por ;
+
             df_resumen = pd.read_csv(
                 ruta_csv,
-                sep=None,
-                engine="python"
+                sep=",",
+                header=None
             )
 
-            st.dataframe(
-                df_resumen,
-                use_container_width=True,
-                hide_index=True
-            )
+            st.write(df_resumen)
 
         except Exception as e:
-            st.error(f"Error leyendo el resumen:\n{e}")
+            st.error(e)
