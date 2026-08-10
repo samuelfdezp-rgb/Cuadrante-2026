@@ -1013,11 +1013,66 @@ with tab_resumen:
             # ============================================
             # MOSTRAR TABLA
             # ============================================
-            st.dataframe(
-                df_resumen,
-                use_container_width=True,
-                hide_index=True
-            )
+            # ============================================
+            # CONVERTIR A HTML
+            # ============================================
 
-        except Exception as e:
-            st.error(f"Error leyendo el resumen:\n\n{e}")
+            html = """
+            <style>
+
+            .resumen table{
+                border-collapse:collapse;
+                width:100%;
+                font-size:15px;
+                background:white;
+            }
+
+            .resumen td,
+            .resumen th{
+                border:1px solid #000;
+                padding:6px;
+                text-align:center;
+                color:#000;
+            }
+
+            .resumen tr:nth-child(odd){
+                background:#BDD7EE;
+            }
+
+            .resumen tr:nth-child(even){
+                background:#FFFFFF;
+            }
+
+            .resumen tr:first-child{
+                background:#000;
+                color:#FFF;
+                font-weight:bold;
+            }
+
+            .resumen tr:first-child td{
+                color:white;
+                font-weight:bold;
+            }
+
+            </style>
+
+            <div class="resumen">
+            <table>
+            """
+
+            for _, fila in df_resumen.iterrows():
+
+                html += "<tr>"
+
+                for valor in fila:
+
+                    if pd.isna(valor):
+                        valor = ""
+
+                    html += f"<td>{valor}</td>"
+
+                html += "</tr>"
+
+            html += "</table></div>"
+
+            st.markdown(html, unsafe_allow_html=True)
