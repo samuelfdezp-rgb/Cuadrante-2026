@@ -983,42 +983,24 @@ if st.session_state.is_admin:
 with tab_resumen:
     st.subheader("📊 Resumen personal")
 
-    nip = st.session_state.nip
-    ruta_excel = f"resumenes/{nip}.xlsx"
+    ruta_csv = f"resumenes_csv/2026/{st.session_state.nip}.csv"
 
-    if not os.path.exists(ruta_excel):
-        st.warning("⚠️ No hay resumen disponible para este trabajador.")
+    if not os.path.exists(ruta_csv):
+        st.warning("⚠️ No existe un resumen para este trabajador.")
     else:
-        html_resumen = excel_a_html(ruta_excel)
+        try:
+            # Excel en español suele guardar CSV separados por ;
+            df_resumen = pd.read_csv(
+                ruta_csv,
+                sep=None,
+                engine="python"
+            )
 
-        css_resumen = """
-        <style>
-        /* CONTENEDOR GENERAL */
-        .resumen-wrapper {
-            background: #ffffff;
-            color: #000000;
-            padding: 10px;
-        }
+            st.dataframe(
+                df_resumen,
+                use_container_width=True,
+                hide_index=True
+            )
 
-        /* TEXTO GENERAL NEGRO */
-        .resumen-wrapper td,
-        .resumen-wrapper th {
-            color: #000000;
-        }
-
-        /* FILAS AZUL CLARITO → TEXTO NEGRO */
-        .resumen-wrapper td[style*="background-color:#BDD7EE"],
-        .resumen-wrapper td[style*="background-color:#DDEBF7"],
-        .resumen-wrapper td[style*="background-color:#DAE9F8"],
-        .resumen-wrapper td[style*="background-color:#E7F3FF"],
-        .resumen-wrapper td[style*="background-color:#DBE5F1"] {
-            color: #000000 !important;
-        }
-        </style>
-        """
-
-        st.markdown(
-            css_resumen +
-            f"<div class='resumen-wrapper' style='overflow:auto; max-width:100%'>{html_resumen}</div>",
-            unsafe_allow_html=True
-        )
+        except Exception as e:
+            st.error(f"Error leyendo el resumen:\n{e}")
