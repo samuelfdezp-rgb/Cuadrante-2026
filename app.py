@@ -1036,61 +1036,78 @@ with tab_resumen:
             html = """
             <style>
 
-            .resumen-wrapper {
-                width: 100%;
-                overflow-x: auto;
-                background: #FFFFFF;
-                padding: 10px;
-                box-sizing: border-box;
-            }
-
-            .resumen-table {
-                border-collapse: collapse;
-                width: 100%;
-                min-width: 900px;
-                font-size: 15px;
+            .resumen {
                 background: #FFFFFF;
                 color: #000000;
+                width: 100%;
+                overflow-x: auto;
             }
 
-            .resumen-table td {
+            /* TABLA */
+            .resumen table {
+                border-collapse: collapse;
+                width: 100%;
+                font-size: 15px;
+                background: #FFFFFF;
+            }
+
+            /* TODAS LAS CELDAS */
+            .resumen td {
                 border: 1px solid #000000;
                 padding: 6px;
                 text-align: center;
                 color: #000000;
-                white-space: nowrap;
+                background: #FFFFFF;
             }
 
-            .resumen-table td:first-child {
-                text-align: left;
-                font-weight: bold;
-                min-width: 260px;
-                padding-left: 10px;
-            }
-
-            .resumen-header td {
-                background: #000000;
+            /* ENCABEZADO */
+            .resumen tr.resumen-header td {
+                background: #000000 !important;
                 color: #FFFFFF !important;
                 font-weight: bold;
-                text-align: center !important;
+                border: 1px solid #000000;
             }
 
-            .resumen-azul td {
-                background: #DDEBF7;
+            /* FILAS AZULES */
+            .resumen tr.resumen-azul td {
+                background: #DDEBF7 !important;
+                color: #000000 !important;
+                font-weight: normal;
+            }
+
+            /* FILAS BLANCAS */
+            .resumen tr.resumen-blanco td {
+                background: #FFFFFF !important;
                 color: #000000 !important;
             }
 
-            .resumen-blanco td {
-                background: #FFFFFF;
+            /* PRIMERA COLUMNA: NOMBRE DEL CONCEPTO */
+            .resumen tr.resumen-azul td:first-child {
+                font-weight: bold;
+            }
+            
+            /* COLUMNA TOTAL */
+            .resumen td.total {
+                font-weight: bold;
+            }
+
+            /* TOTAL EN FILAS AZULES */
+            .resumen tr.resumen-azul td.total {
+                background: #DDEBF7 !important;
+                color: #000000 !important;
+            }
+
+            /* TOTAL EN FILAS BLANCAS */
+            .resumen tr.resumen-blanco td.total {
+                background: #FFFFFF !important;
                 color: #000000 !important;
             }
 
             </style>
 
-            <div class="resumen-wrapper">
-            <table class="resumen-table">
+            <div class="resumen">
+            <table>
             """
-
             # ============================================
             # FILAS
             # ============================================
@@ -1131,6 +1148,11 @@ with tab_resumen:
                             f"{valor}"
                             "</td>"
                         )
+                        
+                    # Última columna = TOTAL
+                    clase_total = " total" if col_idx == len(fila) - 1 else ""
+
+                    html += f"<td class='{clase_total.strip()}'>{valor}</td>"
 
                 html += "</tr>"
 
