@@ -1059,12 +1059,28 @@ with tab_resumen:
 
                 html += "<tr>"
 
-                for valor in fila:
+                for i, valor in enumerate(fila):
 
                     if pd.isna(valor):
                         valor = ""
 
-                    html += f"<td>{valor}</td>"
+                    # Primera columna (concepto)
+                    if i == 0:
+                        html += (
+                            "<td style='"
+                            "text-align:left;"
+                            "font-weight:bold;"
+                            "min-width:260px;"
+                            "padding-left:10px;'>"
+                            f"{valor}</td>"
+                        )
+
+                    # Resto de columnas
+                    else:
+                        html += (
+                            "<td style='min-width:55px;'>"
+                            f"{valor}</td>"
+                        )
 
                 html += "</tr>"
 
