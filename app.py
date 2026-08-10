@@ -989,11 +989,10 @@ with tab_resumen:
         st.warning("⚠️ No existe un resumen para este trabajador.")
 
     else:
-
         try:
 
             # ============================================
-            # LECTURA DEL CSV (permite filas desiguales)
+            # LECTURA DEL CSV
             # ============================================
             with open(ruta_csv, encoding="utf-8") as f:
                 filas = [
@@ -1001,77 +1000,150 @@ with tab_resumen:
                     for linea in f
                 ]
 
-            # Igualamos todas las filas al mismo tamaño
-            max_cols = max(len(fila) for fila in filas)
+            # ============================================
+            # IGUALAR NÚMERO DE COLUMNAS
+            # ============================================
+            if filas:
+                max_cols = max(len(fila) for fila in filas)
 
-            for fila in filas:
-                while len(fila) < max_cols:
-                    fila.append("")
+                for fila in filas:
+                    while len(fila) < max_cols:
+                        fila.append("")
 
             df_resumen = pd.DataFrame(filas)
 
-                   filas_azules = {
-            1,
-            5,
-            9,
-            13,
-            17,
-            21,
-            25,
-            29
-        }
-
-        for indice, fila in df_resumen.iterrows():
+            # ============================================
+            # FILAS QUE TENDRÁN FONDO AZUL
+            # ============================================
+            filas_azules = {
+                1,
+                5,
+                9,
+                13,
+                17,
+                21,
+                25,
+                29
+            }
 
             # ============================================
-            # COLOR DE LA FILA
+            # CONSTRUIR HTML
             # ============================================
-            if indice == 0:
-                html += "<tr style='background:#000000;color:#FFFFFF;'>"
+            html = """
+            <style>
 
-            elif indice in filas_azules:
-                html += "<tr style='background:#DDEBF7;color:#000000;'>"
+            .resumen-wrapper {
+                width: 100%;
+                overflow-x: auto;
+                background: #FFFFFF;
+                padding: 10px;
+                box-sizing: border-box;
+            }
 
-            else:
-                html += "<tr style='background:#FFFFFF;color:#000000;'>"
+            .resumen-table {
+                border-collapse: collapse;
+                width: 100%;
+                min-width: 900px;
+                font-size: 15px;
+                background: #FFFFFF;
+                color: #000000;
+            }
+
+            .resumen-table td {
+                border: 1px solid #000000;
+                padding: 6px;
+                text-align: center;
+                color: #000000;
+                white-space: nowrap;
+            }
+
+            .resumen-table td:first-child {
+                text-align: left;
+                font-weight: bold;
+                min-width: 260px;
+                padding-left: 10px;
+            }
+
+            .resumen-header td {
+                background: #000000;
+                color: #FFFFFF !important;
+                font-weight: bold;
+                text-align: center !important;
+            }
+
+            .resumen-azul td {
+                background: #DDEBF7;
+                color: #000000 !important;
+            }
+
+            .resumen-blanco td {
+                background: #FFFFFF;
+                color: #000000 !important;
+            }
+
+            </style>
+
+            <div class="resumen-wrapper">
+            <table class="resumen-table">
+            """
 
             # ============================================
-            # CELDAS
+            # FILAS
             # ============================================
-            for i, valor in enumerate(fila):
+            for indice, fila in df_resumen.iterrows():
 
-                if pd.isna(valor):
-                    valor = ""
+                # Primera fila = encabezado
+                if indice == 0:
+                    html += "<tr class='resumen-header'>"
 
-                # Primera columna
-                if i == 0:
-                    html += (
-                        "<td style='"
-                        "text-align:left;"
-                        "font-weight:bold;"
-                        "min-width:260px;"
-                        "padding-left:10px;'>"
-                        f"{valor}</td>"
-                    )
+                # Filas azules
+                elif indice in filas_azules:
+                    html += "<tr class='resumen-azul'>"
 
-                # Resto de columnas
+                # Resto de filas = blancas
                 else:
-                    html += (
-                        "<td style='min-width:55px;'>"
-                        f"{valor}</td>"
-                    )
+                    html += "<tr class='resumen-blanco'>"
 
-            html += "</tr>"
+                # ========================================
+                # CELDAS
+                # ========================================
+                for i, valor in enumerate(fila):
 
-        # ============================================
-        # CIERRE DE TABLA
-        # ============================================
-        html += "</table></div>"
+                    if pd.isna(valor):
+                        valor = ""
 
-        st.markdown(
-            html,
-            unsafe_allow_html=True
-        )
+                    valor = str(valor).strip()
 
-    except Exception as e:
-        st.error(f"Error leyendo el resumen: {e}")
+                    if i == 0:
+                        html += (
+                            "<td>"
+                            f"{valor}"
+                            "</td>"
+                        )
+
+                    else:
+                        html += (
+                            "<td>"
+                            f"{valor}"
+                            "</td>"
+                        )
+
+                html += "</tr>"
+
+            # ============================================
+            # CIERRE
+            # ============================================
+            html += """
+            </table>
+            </div>
+            """
+
+            st.markdown(
+                html,
+                unsafe_allow_html=True
+            )
+
+        except Exception as e:
+            st.error(
+                f"Error leyendo el resumen: {e}"
+            )
