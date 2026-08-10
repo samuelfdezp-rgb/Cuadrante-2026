@@ -1011,12 +1011,8 @@ with tab_resumen:
             df_resumen = pd.DataFrame(filas)
 
             # ============================================
-            # MOSTRAR TABLA
-            # ============================================
-            # ============================================
             # CONVERTIR A HTML
             # ============================================
-
             html = """
             <style>
 
@@ -1045,12 +1041,11 @@ with tab_resumen:
 
             .resumen tr:first-child{
                 background:#000;
-                color:#FFF;
                 font-weight:bold;
             }
 
             .resumen tr:first-child td{
-                color:white;
+                color:#FFFFFF;
                 font-weight:bold;
             }
 
@@ -1076,3 +1071,6 @@ with tab_resumen:
             html += "</table></div>"
 
             st.markdown(html, unsafe_allow_html=True)
+
+        except Exception as e:
+            st.error(f"Error leyendo el resumen: {e}")
