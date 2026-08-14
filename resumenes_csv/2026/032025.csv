@@ -1,25 +1,25 @@
-﻿,Enero,Febrero,Marzo,Abril,Mayo,Junio,Julio,Agosto,Septiembre,Octubre,Noviembre,Diciembre,Total,,
-Mañanas,,,,,,,,,,,,,0,,
-Tardes,,,,,,,,,,,,,0,,
-Noches,,,,,,,,,,,,,0/54,,
-Vacaciones,,,,,,,,,,,,,0/22,,
-AP's,,,,,,,,,,,,,0/8,,
-Ferias,,,,,,,,,,,,,0/6,,
-Días de Trabajo Sindical,,,,,,,,,,,,,0,,
-Días de Baja,,,,,,,,,,,,,0,,
-Días de Juicio,,,,,,,,,,,,,0,,
-Permisos,,,,,,,,,,,,,0,,
-Cursos,,,,,,,,,,,,,0,,
-Descansos Compensados,,,,,,,,,,,,,0,,
-Indisposiciones,,,,,,,,,,,,,0/5,,
-Jefaturas de Servicio,,,,,,,,,,,,,0,,
-Festivos trabajados,,,,,,,,,,,,,0/20,,
-Fines de semana trabajados,,,,,,,,,,,,,0/24,H. de baja,
-Horas Trabajadas,,,,,,,,,,,,,0,00,,
-1ex (N),,,,,,,,,,,,,0,0,
-2ex (N),,,,,,,,,,,,,0,0,
-3ex (N),,,,,,,,,,,,,0,0,
-1ex (F),,,,,,,,,,,,,0,0,
-2ex (F),,,,,,,,,,,,,0,0,
-3ex (F),,,,,,,,,,,,,0,0,
-,,,,,,,,,,,,,,,
+﻿;Enero;Febrero;Marzo;Abril;Mayo;Junio;Julio;Agosto;Septiembre;Octubre;Noviembre;Diciembre;Total;;
+Mañanas;6;3;7;1;6;1;0;;;;;;24;;
+Tardes;5;0;3;4;3;3;0;;;;;;18;;
+Noches;5;3;3;5;5;0;0;;;;;;21/54;;
+Vacaciones;0;7;1;0;0;0;0;;;;;;8/22;;
+AP's;0;0;3;2;0;0;0;;;;;;0/8;;
+Ferias;0;0;1;0;0;1;0;;;;;;2/6;;
+Días de Trabajo Sindical;0;0;0;0;0;0;0;;;;;;0;;
+Días de Baja;0;0;0;0;0;0;20;;;;;;20;;
+Días de Juicio;0,5;0;0;0;0;0;0;;;;;;0,5;;
+Permisos;0;0;0;0;0;12;0;;;;;;12;;
+Cursos;0;0;2;4;2;0;0;;;;;;8;;
+Descansos Compensados;0;0;0;0;2;0;0;;;;;;2;;
+Indisposiciones;0;0;0;0;0;0;0;;;;;;0/5;;
+Jefaturas de Servicio;16;7;9;3;10;3;0;;;;;;48;;
+Festivos trabajados;2;2;0;3;1;0;0;;;;;;8/20;;
+Fines de semana trabajados;2;1,5;2;2;2,5;2;0;;;;;;12/24;H. de baja;
+Horas Trabajadas;151,38;59,63;156,13;160,38;139,38;129,5;137,5;;;;;;933,88;;
+1ex (N);1;1;0;0;0;0;;;;;;;2;15;
+2ex (N);2;1;0;0;0;0;;;;;;;3;22,5;
+3ex (N);1;1;3;0;1h;0;;;;;;;5;45;
+1ex (F);0;0;2;1;1;0;;;;;;;4;30;
+2ex (F);0;1;0;0;0;0;;;;;;;1;7,5;
+3ex (F);0;0;1;1;0;0;;;;;;;2;18;
+;;;;;;;;;;;;;;;
