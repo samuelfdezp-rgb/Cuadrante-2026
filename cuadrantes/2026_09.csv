@@ -253,13 +253,13 @@ Año,Mes,Fecha,Día,NIP,Nombre y Apellidos,Categoría,Turno,Tipo
 2026,9,2026-09-12,Sábado,032027,Iago Romar Tajes,Policía,3,Noche
 2026,9,2026-09-13,Domingo,032027,Iago Romar Tajes,Policía,D,Descanso
 2026,9,2026-09-14,Lunes,032027,Iago Romar Tajes,Policía,D,Descanso
-2026,9,2026-09-15,Martes,032027,Iago Romar Tajes,Policía,VAC,Vacaciones
-2026,9,2026-09-16,Miércoles,032027,Iago Romar Tajes,Policía,VAC,Vacaciones
-2026,9,2026-09-17,Jueves,032027,Iago Romar Tajes,Policía,VAC,Vacaciones
-2026,9,2026-09-18,Viernes,032027,Iago Romar Tajes,Policía,VAC,Vacaciones
-2026,9,2026-09-19,Sábado,032027,Iago Romar Tajes,Policía,VAC,Vacaciones
-2026,9,2026-09-20,Domingo,032027,Iago Romar Tajes,Policía,VAC,Vacaciones
-2026,9,2026-09-21,Lunes,032027,Iago Romar Tajes,Policía,VAC,Vacaciones
+2026,9,2026-09-15,Martes,032027,Iago Romar Tajes,Policía,Vac,Vacaciones
+2026,9,2026-09-16,Miércoles,032027,Iago Romar Tajes,Policía,Vac,Vacaciones
+2026,9,2026-09-17,Jueves,032027,Iago Romar Tajes,Policía,Vac,Vacaciones
+2026,9,2026-09-18,Viernes,032027,Iago Romar Tajes,Policía,Vac,Vacaciones
+2026,9,2026-09-19,Sábado,032027,Iago Romar Tajes,Policía,Vac,Vacaciones
+2026,9,2026-09-20,Domingo,032027,Iago Romar Tajes,Policía,Vac,Vacaciones
+2026,9,2026-09-21,Lunes,032027,Iago Romar Tajes,Policía,Vac,Vacaciones
 2026,9,2026-09-22,Martes,032027,Iago Romar Tajes,Policía,1,Mañana
 2026,9,2026-09-23,Miércoles,032027,Iago Romar Tajes,Policía,Dcj,Descanso Compensasión Juicio
 2026,9,2026-09-24,Jueves,032027,Iago Romar Tajes,Policía,1,Mañana
@@ -336,7 +336,7 @@ Año,Mes,Fecha,Día,NIP,Nombre y Apellidos,Categoría,Turno,Tipo
 2026,9,2026-09-05,Sábado,032030,Martín Lago Fernández,Policía,BAJA,Baja
 2026,9,2026-09-06,Domingo,032030,Martín Lago Fernández,Policía,BAJA,Baja
 2026,9,2026-09-07,Lunes,032030,Martín Lago Fernández,Policía,BAJA,Baja
-2026,9,2026-09-08,Martes,032030,Martín Lago Fernández,Policía, BAJA,Baja
+2026,9,2026-09-08,Martes,032030,Martín Lago Fernández,Policía,BAJA,Baja
 2026,9,2026-09-09,Miércoles,032030,Martín Lago Fernández,Policía,BAJA,Baja
 2026,9,2026-09-10,Jueves,032030,Martín Lago Fernández,Policía,BAJA,Baja
 2026,9,2026-09-11,Viernes,032030,Martín Lago Fernández,Policía,BAJA,Baja
