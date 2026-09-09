@@ -442,9 +442,9 @@ Año,Mes,Fecha,Día,NIP,Nombre y Apellidos,Categoría,Turno,Tipo
 2026,10,2026-10-07,Miércoles,032032,Martín Da Lama Vázquez,Policía Prácticas,AGASP,AGASP
 2026,10,2026-10-08,Jueves,032032,Martín Da Lama Vázquez,Policía Prácticas,AGASP,AGASP
 2026,10,2026-10-09,Viernes,032032,Martín Da Lama Vázquez,Policía Prácticas,AGASP,AGASP
-2026,10,2026-10-10,Sábado,032032,Martín Da Lama Vázquez,Policía Prácticas,AGASP,AGASP
-2026,10,2026-10-11,Domingo,032032,Martín Da Lama Vázquez,Policía Prácticas,AGASP,AGASP
-2026,10,2026-10-12,Lunes,032032,Martín Da Lama Vázquez,Policía Prácticas,AGASP,AGASP
+2026,10,2026-10-10,Sábado,032032,Martín Da Lama Vázquez,Policía Prácticas,D,Descanso
+2026,10,2026-10-11,Domingo,032032,Martín Da Lama Vázquez,Policía Prácticas,D,Descanso
+2026,10,2026-10-12,Lunes,032032,Martín Da Lama Vázquez,Policía Prácticas,D,Descanso
 2026,10,2026-10-13,Martes,032032,Martín Da Lama Vázquez,Policía Prácticas,Vac,Vacaciones
 2026,10,2026-10-14,Miércoles,032032,Martín Da Lama Vázquez,Policía Prácticas,Vac,Vacaciones
 2026,10,2026-10-15,Jueves,032032,Martín Da Lama Vázquez,Policía Prácticas,Vac,Vacaciones
