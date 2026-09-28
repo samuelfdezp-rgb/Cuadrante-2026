@@ -428,6 +428,7 @@ def estilo_turno(t):
         "LyJuB": ("#BDD7EE", "#FF0000"),
         "3yJuC": ("#BDD7EE", "#FF0000"),
         "2yJuC": ("#BDD7EE", "#FF0000"),
+        "2yJuB": ("#BDD7EE", "#FF0000"),
         "AP": ("#FFFFFF", "#0070C0"),
         "AGASP": ("#FFFFFF", "#0070C0"),
         "1y2ex": ("#00B050", "#FF0000"),
@@ -442,6 +443,8 @@ def estilo_turno(t):
         "AP|1ex": ("#00B050", "#FF0000"),
         "AP|2ex": ("#00B050", "#FF0000"),
         "AP|3ex": ("#00B050", "#FF0000"),
+        "JuB|3ex": ("#00B050", "#FF0000"),
+        "curso|3ex": ("#00B050", "#FF0000"),
     }
 
     # Turnos dobles normales
