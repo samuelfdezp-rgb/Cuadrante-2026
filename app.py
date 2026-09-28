@@ -448,7 +448,7 @@ def estilo_turno(t):
     }
 
     # Turnos dobles normales
-    if t in {"1y2", "1y3", "2y3", "3yJuC", "2yJuC", "1yJuB", "LyJuB", "1ycurso", "2ycurso", "3ycurso"}:
+    if t in {"1y2", "1y3", "2y3", "3yJuC", "2yJuC", "2yJuB", "1yJuB", "LyJuB", "1ycurso", "2ycurso", "3ycurso"}:
         return {"bg": "#DBDBDB", "fg": "#FF0000", "bold": True, "italic": False}
 
     # Turnos dobles con extra
@@ -459,7 +459,7 @@ def estilo_turno(t):
 
     # ---- NEGRITA
     bold = (
-        t in {"perm", "Ts", "JuB", "JuC", "AP", "AGASP", "Ts", "Vac", "BAJA", "indisp", "curso", "1yJuB", "3yJuC", "2yJuC", "EV", "Tir", "CU"} or
+        t in {"perm", "Ts", "JuB", "JuC", "AP", "AGASP", "Ts", "Vac", "BAJA", "indisp", "curso", "1yJuB", "3yJuC", "2yJuC", "2yJuB", "EV", "Tir", "CU"} or
         "ex" in t or               # cualquier extra
         t in {"1y2", "1y3", "2y3", "1ycurso", "2ycurso", "3ycurso"}
     )
